@@ -1,0 +1,44 @@
+Tabela Rotas:
+
+id_rota (Chave Primária) - INT (ou outro tipo de inteiro adequado)
+origem - VARCHAR (ou outro tipo de string, dependendo da necessidade de comprimento)
+destino - VARCHAR
+distancia - FLOAT (ou outro tipo de número de ponto flutuante)
+duracao - TIME ou VARCHAR (dependendo da forma como deseja armazenar a duração)
+preco - DECIMAL ou FLOAT (dependendo de como deseja lidar com valores decimais)
+
+Tabela Ônibus:
+
+id_onibus (Chave Primária) - INT
+modelo - VARCHAR
+placa - VARCHAR
+ano_fabricacao - INT (ou DATE se quiser incluir a data de fabricação completa)
+capacidade - INT
+
+Tabela Motoristas:
+
+id_motorista (Chave Primária) - INT
+nome - VARCHAR
+idade - INT
+cpf - VARCHAR ou CHAR (dependendo da formatação que deseja usar)
+telefone - VARCHAR
+
+Tabela Passageiros:
+
+id_passageiro (Chave Primária) - INT
+nome - VARCHAR
+idade - INT
+cpf - VARCHAR ou CHAR
+telefone - VARCHAR
+Email - VARCHAR
+Senha - VARCHAR
+
+Tabela Reservas:
+
+id_reserva (Chave Primária) - INT
+id_rota (Chave Estrangeira referenciando Rotas) - INT
+id_onibus (Chave Estrangeira referenciando Ônibus) - INT
+id_motorista (Chave Estrangeira referenciando Motoristas) - INT
+id_passageiro (Chave Estrangeira referenciando Passageiros) - INT
+data_reserva - DATE ou DATETIME (dependendo se deseja incluir a hora)
+status - VARCHAR (ou ENUM se tiver um conjunto limitado de valores)
