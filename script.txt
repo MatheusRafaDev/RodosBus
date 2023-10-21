@@ -33,7 +33,9 @@ CREATE TABLE TB_ROTA (
   	ds_destino 		VARCHAR(100) ,
   	vl_distancia 	DECIMAL(10,2),
   	ds_duracao		VARCHAR(10),
-  	vl_preco 		DECIMAL(10,2)
+  	vl_preco 		DECIMAL(10,2),
+	dt_saida		datetime,
+	dt_chegada		datetime
 );
 
 CREATE TABLE TB_RESERVAS (
