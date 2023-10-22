@@ -1,0 +1,53 @@
+Tabela Rotas:
+
+TB_ROTAS
+
+ ds_origem - VARCHAR 
+ds_destino - VARCHAR
+vl_distancia - DECIMAL 
+ds_duracao - VARCHAR
+vl_preco - DECIMAL
+
+Tabela Ônibus:
+
+TB_ONIBUS
+
+id_onibus - INT
+ds_modelo - VARCHAR
+ds_placa - VARCHAR
+ds_ano_fabricacao - INT 
+nr_capacidade - INT
+
+Tabela Motoristas:
+
+TB_MOTORISTA
+
+id_motorista  - INT
+ds_nome - VARCHAR
+idade - INT
+cpf - VARCHAR
+telefone - VARCHAR
+
+Tabela Passageiros:
+
+TB_PASSAGEIOS
+
+id_passageiro - INT
+ds_nome - VARCHAR
+nr_idade - INT
+ds_cpf - VARCHAR 
+ds_telefone - VARCHAR
+ds_mail - VARCHAR
+ds_senha - VARCHAR
+
+Tabela Reservas:
+
+TB_RESERVAS
+
+id_reserva - INT
+id_rot - INT
+id_onibus  - INT
+id_motorista - INT
+id_passageiro  - INT
+dt_reserva - DATETIME
+ds_status - VARCHAR 
