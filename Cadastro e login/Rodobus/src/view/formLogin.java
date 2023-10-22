@@ -28,7 +28,7 @@ public class formLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        txtLogin = new javax.swing.JTextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -37,9 +37,9 @@ public class formLogin extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnEntrar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        txtSenha = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
@@ -50,14 +50,21 @@ public class formLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(142, 157, 204));
         getContentPane().setLayout(null);
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(1021, 211, 295, 37);
+
+        txtLogin.setName("txtLogin"); // NOI18N
+        txtLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtLoginMouseClicked(evt);
+            }
+        });
+        getContentPane().add(txtLogin);
+        txtLogin.setBounds(1021, 211, 295, 37);
         getContentPane().add(filler1);
         filler1.setBounds(982, 423, 0, 0);
         getContentPane().add(jSeparator1);
-        jSeparator1.setBounds(920, 180, 50, 10);
+        jSeparator1.setBounds(920, 180, 0, 3);
         getContentPane().add(jSeparator2);
-        jSeparator2.setBounds(880, 110, 50, 190);
+        jSeparator2.setBounds(880, 110, 0, 190);
 
         jTextPane1.setBackground(new java.awt.Color(142, 157, 204));
         jTextPane1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -86,21 +93,34 @@ public class formLogin extends javax.swing.JFrame {
         jLabel6.setText("SENHA");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(1030, 269, 105, 43);
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(1021, 302, 295, 37);
 
-        jButton1.setBackground(new java.awt.Color(142, 157, 204));
-        jButton1.setFont(new java.awt.Font("Arial Black", 0, 23)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("   ENTRAR");
-        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        getContentPane().add(jButton1);
-        jButton1.setBounds(1046, 402, 270, 58);
+        btnEntrar.setBackground(new java.awt.Color(142, 157, 204));
+        btnEntrar.setFont(new java.awt.Font("Arial Black", 0, 23)); // NOI18N
+        btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEntrar.setText("   ENTRAR");
+        btnEntrar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnEntrar.setName("btnEntrar"); // NOI18N
+        btnEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEntrarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btnEntrar);
+        btnEntrar.setBounds(1046, 402, 270, 58);
 
         jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\thiag\\Downloads\\image 2.png")); // NOI18N
         jLabel7.setText("jLabel7");
         getContentPane().add(jLabel7);
         jLabel7.setBounds(969, 396, 61, 70);
+
+        txtSenha.setName("txtSenha"); // NOI18N
+        txtSenha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtSenhaMouseClicked(evt);
+            }
+        });
+        getContentPane().add(txtSenha);
+        txtSenha.setBounds(1021, 302, 295, 37);
 
         jLabel3.setBackground(new java.awt.Color(125, 132, 178));
         jLabel3.setForeground(new java.awt.Color(125, 132, 178));
@@ -109,7 +129,7 @@ public class formLogin extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(935, 77, 413, 427);
         getContentPane().add(jSeparator3);
-        jSeparator3.setBounds(1450, 190, 50, 10);
+        jSeparator3.setBounds(1450, 190, 0, 3);
 
         jLabel8.setFont(new java.awt.Font("Arial Black", 0, 23)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -131,6 +151,34 @@ public class formLogin extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLoginMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLoginMouseClicked
+
+    private void txtSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSenhaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSenhaMouseClicked
+
+    private void btnEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseClicked
+        // TODO add your handling code here:
+        String login = this.txtLogin.getText();
+        String senha = this.txtSenha.getText();
+
+        if (!login.equals("thiago") || !senha.equals("lindo")) {
+            JOptionPane.showMessageDialog(null, "Login ou Senha Inválidos", "Erro de operação", JOptionPane.WARNING_MESSAGE);
+            this.txtLogin.setText("");
+            this.txtSenha.setText("");
+
+        this.txtLogin.requestFocus();
+        return;
+        
+        }
+
+           formClientes obj = new formClientes();
+    obj.setVisible(true);
+    this.setVisible(false);
+    }//GEN-LAST:event_btnEntrarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -168,8 +216,8 @@ public class formLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEntrar;
     private javax.swing.Box.Filler filler1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -182,9 +230,9 @@ public class formLogin extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextField txtLogin;
+    private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }
