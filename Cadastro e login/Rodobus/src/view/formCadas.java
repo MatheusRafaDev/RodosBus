@@ -27,64 +27,104 @@ public class formCadas extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        ds_email = new javax.swing.JTextField();
+        ds_nome = new javax.swing.JTextField();
+        ds_telefone = new javax.swing.JTextField();
+        ds_senha = new javax.swing.JTextField();
+        ds_cpf = new javax.swing.JTextField();
+        ds_dia = new javax.swing.JTextField();
+        ds_mes = new javax.swing.JTextField();
+        ds_ano = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jButton_CAD = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro");
         setBackground(new java.awt.Color(153, 153, 255));
         getContentPane().setLayout(null);
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 23)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(217, 217, 217));
         jLabel4.setText("Criar conta");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(604, 16, 491, 83);
 
-        jTextField1.setName("txtEmail"); // NOI18N
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(284, 112, 742, 53);
+        ds_email.setName("txtEmail"); // NOI18N
+        getContentPane().add(ds_email);
+        ds_email.setBounds(284, 112, 742, 53);
+        getContentPane().add(ds_nome);
+        ds_nome.setBounds(287, 196, 742, 53);
 
-        jTextField2.setText("nome");
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(287, 196, 742, 53);
+        ds_telefone.setName("txtFone"); // NOI18N
+        getContentPane().add(ds_telefone);
+        ds_telefone.setBounds(284, 284, 270, 54);
 
-        jTextField3.setText("jTextField3");
-        jTextField3.setName("txtFone"); // NOI18N
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(284, 284, 270, 54);
+        ds_senha.setName("txtSenha"); // NOI18N
+        getContentPane().add(ds_senha);
+        ds_senha.setBounds(286, 366, 270, 54);
 
-        jTextField4.setText("jTextField4");
-        jTextField4.setName("txtSenha"); // NOI18N
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(286, 366, 270, 54);
+        ds_cpf.setName("txtCpf"); // NOI18N
+        getContentPane().add(ds_cpf);
+        ds_cpf.setBounds(595, 366, 434, 54);
+        getContentPane().add(ds_dia);
+        ds_dia.setBounds(595, 284, 99, 54);
 
-        jTextField5.setText("jTextField5");
-        jTextField5.setName("txtCpf"); // NOI18N
-        getContentPane().add(jTextField5);
-        jTextField5.setBounds(595, 366, 434, 54);
+        ds_mes.setName("txtMes"); // NOI18N
+        getContentPane().add(ds_mes);
+        ds_mes.setBounds(715, 284, 99, 54);
 
-        jTextField6.setText("jTextField6");
-        getContentPane().add(jTextField6);
-        jTextField6.setBounds(595, 284, 99, 54);
+        ds_ano.setName("txtAno"); // NOI18N
+        getContentPane().add(ds_ano);
+        ds_ano.setBounds(835, 284, 99, 54);
 
-        jTextField7.setText("jTextField7");
-        jTextField7.setName("txtMes"); // NOI18N
-        getContentPane().add(jTextField7);
-        jTextField7.setBounds(715, 284, 99, 54);
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("SENHA ");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(290, 340, 100, 26);
 
-        jTextField8.setText("jTextField8");
-        jTextField8.setName("txtAno"); // NOI18N
-        getContentPane().add(jTextField8);
-        jTextField8.setBounds(835, 284, 99, 54);
+        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("EMAIL");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(290, 80, 60, 26);
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("NOME");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(290, 170, 60, 26);
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("IDADE");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(600, 260, 100, 26);
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("CPF");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(600, 340, 100, 26);
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("TELEFONE");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(290, 260, 100, 26);
+
+        jButton_CAD.setBackground(new java.awt.Color(51, 51, 51));
+        jButton_CAD.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        jButton_CAD.setForeground(new java.awt.Color(255, 255, 255));
+        jButton_CAD.setText("CADASTRAR ");
+        getContentPane().add(jButton_CAD);
+        jButton_CAD.setBounds(830, 440, 200, 33);
 
         jLabel3.setBackground(new java.awt.Color(125, 132, 178));
         jLabel3.setForeground(new java.awt.Color(125, 132, 178));
@@ -92,12 +132,6 @@ public class formCadas extends javax.swing.JFrame {
         jLabel3.setOpaque(true);
         getContentPane().add(jLabel3);
         jLabel3.setBounds(84, -28, 1260, 698);
-        jLabel3.getAccessibleContext().setAccessibleName("fundo");
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\thiag\\Downloads\\image 3.png")); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1441, 461);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -138,16 +172,22 @@ public class formCadas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField ds_ano;
+    private javax.swing.JTextField ds_cpf;
+    private javax.swing.JTextField ds_dia;
+    private javax.swing.JTextField ds_email;
+    private javax.swing.JTextField ds_mes;
+    private javax.swing.JTextField ds_nome;
+    private javax.swing.JTextField ds_senha;
+    private javax.swing.JTextField ds_telefone;
+    private javax.swing.JButton jButton_CAD;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }
