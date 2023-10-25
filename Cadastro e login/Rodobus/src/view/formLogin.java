@@ -42,7 +42,7 @@ public class formLogin extends javax.swing.JFrame {
         txtSenha = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jLabel8 = new javax.swing.JLabel();
+        btnCadastro = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
@@ -131,11 +131,17 @@ public class formLogin extends javax.swing.JFrame {
         getContentPane().add(jSeparator3);
         jSeparator3.setBounds(1450, 190, 0, 3);
 
-        jLabel8.setFont(new java.awt.Font("Arial Black", 0, 23)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Criar conta");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(1187, 515, 161, 58);
+        btnCadastro.setFont(new java.awt.Font("Arial Black", 0, 23)); // NOI18N
+        btnCadastro.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastro.setText("Criar conta");
+        btnCadastro.setName("btnCadastro"); // NOI18N
+        btnCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCadastroMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btnCadastro);
+        btnCadastro.setBounds(1187, 515, 161, 58);
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\thiag\\Downloads\\image 3.png")); // NOI18N
         getContentPane().add(jLabel1);
@@ -180,6 +186,13 @@ public class formLogin extends javax.swing.JFrame {
     this.setVisible(false);
     }//GEN-LAST:event_btnEntrarMouseClicked
 
+    private void btnCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastroMouseClicked
+        // TODO add your handling code here:
+        formCadas cadastro = new formCadas();
+        cadastro.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCadastroMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -216,6 +229,7 @@ public class formLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnCadastro;
     private javax.swing.JButton btnEntrar;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
@@ -225,7 +239,6 @@ public class formLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

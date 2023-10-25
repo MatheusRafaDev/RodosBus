@@ -4,6 +4,9 @@
  */
 package view;
 
+import controller.usuarioDao;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author thiag
@@ -34,15 +37,16 @@ public class formCadas extends javax.swing.JFrame {
         ds_cpf = new javax.swing.JTextField();
         ds_dia = new javax.swing.JTextField();
         ds_mes = new javax.swing.JTextField();
-        ds_ano = new javax.swing.JTextField();
+        ds_idade = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jButton_CAD = new javax.swing.JButton();
+        btnCadastra = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro");
@@ -72,16 +76,26 @@ public class formCadas extends javax.swing.JFrame {
         ds_cpf.setName("txtCpf"); // NOI18N
         getContentPane().add(ds_cpf);
         ds_cpf.setBounds(595, 366, 434, 54);
+
+        ds_dia.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        ds_dia.setForeground(new java.awt.Color(204, 204, 204));
+        ds_dia.setText("DD");
         getContentPane().add(ds_dia);
         ds_dia.setBounds(595, 284, 99, 54);
 
+        ds_mes.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        ds_mes.setForeground(new java.awt.Color(204, 204, 204));
+        ds_mes.setText("MM");
         ds_mes.setName("txtMes"); // NOI18N
         getContentPane().add(ds_mes);
         ds_mes.setBounds(715, 284, 99, 54);
 
-        ds_ano.setName("txtAno"); // NOI18N
-        getContentPane().add(ds_ano);
-        ds_ano.setBounds(835, 284, 99, 54);
+        ds_idade.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        ds_idade.setForeground(new java.awt.Color(204, 204, 204));
+        ds_idade.setText("YY");
+        ds_idade.setName("txtAno"); // NOI18N
+        getContentPane().add(ds_idade);
+        ds_idade.setBounds(835, 284, 99, 54);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -119,12 +133,18 @@ public class formCadas extends javax.swing.JFrame {
         getContentPane().add(jLabel9);
         jLabel9.setBounds(290, 260, 100, 26);
 
-        jButton_CAD.setBackground(new java.awt.Color(51, 51, 51));
-        jButton_CAD.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        jButton_CAD.setForeground(new java.awt.Color(255, 255, 255));
-        jButton_CAD.setText("CADASTRAR ");
-        getContentPane().add(jButton_CAD);
-        jButton_CAD.setBounds(830, 440, 200, 33);
+        btnCadastra.setBackground(new java.awt.Color(51, 51, 51));
+        btnCadastra.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        btnCadastra.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastra.setText("CADASTRAR ");
+        btnCadastra.setName("btnCadastra"); // NOI18N
+        btnCadastra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCadastraMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btnCadastra);
+        btnCadastra.setBounds(830, 440, 200, 33);
 
         jLabel3.setBackground(new java.awt.Color(125, 132, 178));
         jLabel3.setForeground(new java.awt.Color(125, 132, 178));
@@ -133,8 +153,21 @@ public class formCadas extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(84, -28, 1260, 698);
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI Black", 0, 21)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel10.setText("DD");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(604, 289, 33, 45);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCadastraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastraMouseClicked
+        // TODO add your handling code here:
+        usuarioDao u = new usuarioDao();
+       
+       u.criarTabela();
+    }//GEN-LAST:event_btnCadastraMouseClicked
 
     /**
      * @param args the command line arguments
@@ -172,16 +205,17 @@ public class formCadas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ds_ano;
+    private javax.swing.JButton btnCadastra;
     private javax.swing.JTextField ds_cpf;
     private javax.swing.JTextField ds_dia;
     private javax.swing.JTextField ds_email;
+    private javax.swing.JTextField ds_idade;
     private javax.swing.JTextField ds_mes;
     private javax.swing.JTextField ds_nome;
     private javax.swing.JTextField ds_senha;
     private javax.swing.JTextField ds_telefone;
-    private javax.swing.JButton jButton_CAD;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
