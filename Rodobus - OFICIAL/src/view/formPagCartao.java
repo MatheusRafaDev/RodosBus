@@ -42,8 +42,9 @@ public class formPagCartao extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(125, 132, 178));
 
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Confirme o pagamento");
+        jLabel1.setText("CONFIRME O PAGAMENTO");
 
         jTextField1.setBackground(new java.awt.Color(204, 204, 204));
         jTextField1.setForeground(new java.awt.Color(102, 102, 102));
@@ -77,6 +78,7 @@ public class formPagCartao extends javax.swing.JFrame {
         });
 
         jButton1.setBackground(new java.awt.Color(51, 102, 255));
+        jButton1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("FINALIZAR COMPRA");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

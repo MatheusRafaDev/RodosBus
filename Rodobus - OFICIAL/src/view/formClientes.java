@@ -62,6 +62,11 @@ public class formClientes extends javax.swing.JFrame {
                 btnIncluirMouseClicked(evt);
             }
         });
+        btnIncluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIncluirActionPerformed(evt);
+            }
+        });
 
         ds_idade.setToolTipText("Insira o E-mail");
         ds_idade.addActionListener(new java.awt.event.ActionListener() {
@@ -246,6 +251,10 @@ public class formClientes extends javax.swing.JFrame {
     private void ds_idadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ds_idadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ds_idadeActionPerformed
+
+    private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIncluirActionPerformed
 
     /**
      * @param args the command line arguments

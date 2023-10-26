@@ -55,9 +55,9 @@ public class formCadUsuario extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Criar conta");
+        jLabel4.setText("CRIAR CONTA");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(400, 10, 140, 83);
+        jLabel4.setBounds(30, 10, 140, 83);
 
         ds_email.setName("txtEmail"); // NOI18N
         getContentPane().add(ds_email);
