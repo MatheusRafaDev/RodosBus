@@ -8,12 +8,12 @@ package view;
  *
  * @author SAMSUNG
  */
-public class ConfirmaePagar extends javax.swing.JFrame {
+public class formConfirmarPag extends javax.swing.JFrame {
 
     /**
      * Creates new form ConfirmaePagar
      */
-    public ConfirmaePagar() {
+    public formConfirmarPag() {
         initComponents();
     }
 
@@ -66,9 +66,6 @@ public class ConfirmaePagar extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBackground(java.awt.SystemColor.activeCaptionBorder);
-
-        jText_nome.setBackground(java.awt.SystemColor.activeCaptionBorder);
         jText_nome.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jText_nome.setForeground(new java.awt.Color(255, 255, 255));
         jText_nome.setText("Nome");
@@ -79,7 +76,6 @@ public class ConfirmaePagar extends javax.swing.JFrame {
             }
         });
 
-        jText_cpf.setBackground(java.awt.SystemColor.activeCaptionBorder);
         jText_cpf.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jText_cpf.setForeground(new java.awt.Color(255, 255, 255));
         jText_cpf.setText("CPF");
@@ -90,7 +86,6 @@ public class ConfirmaePagar extends javax.swing.JFrame {
             }
         });
 
-        jText_email.setBackground(java.awt.SystemColor.activeCaptionBorder);
         jText_email.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jText_email.setForeground(new java.awt.Color(255, 255, 255));
         jText_email.setText("E-mail");
@@ -101,7 +96,6 @@ public class ConfirmaePagar extends javax.swing.JFrame {
             }
         });
 
-        jText_telefone.setBackground(java.awt.SystemColor.activeCaptionBorder);
         jText_telefone.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jText_telefone.setForeground(new java.awt.Color(255, 255, 255));
         jText_telefone.setText("Telefone");
@@ -150,9 +144,6 @@ public class ConfirmaePagar extends javax.swing.JFrame {
             }
         });
 
-        jPanel3.setBackground(java.awt.SystemColor.activeCaptionBorder);
-
-        jText_embarque.setBackground(java.awt.SystemColor.activeCaptionBorder);
         jText_embarque.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jText_embarque.setForeground(new java.awt.Color(255, 255, 255));
         jText_embarque.setText("Embarque");
@@ -163,7 +154,6 @@ public class ConfirmaePagar extends javax.swing.JFrame {
             }
         });
 
-        jText_desembarque.setBackground(java.awt.SystemColor.activeCaptionBorder);
         jText_desembarque.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jText_desembarque.setForeground(new java.awt.Color(255, 255, 255));
         jText_desembarque.setText("Desembarque");
@@ -174,7 +164,6 @@ public class ConfirmaePagar extends javax.swing.JFrame {
             }
         });
 
-        jText_saida.setBackground(java.awt.SystemColor.activeCaptionBorder);
         jText_saida.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jText_saida.setForeground(new java.awt.Color(255, 255, 255));
         jText_saida.setText("Saída");
@@ -185,7 +174,6 @@ public class ConfirmaePagar extends javax.swing.JFrame {
             }
         });
 
-        jText_chegada.setBackground(java.awt.SystemColor.activeCaptionBorder);
         jText_chegada.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jText_chegada.setForeground(new java.awt.Color(255, 255, 255));
         jText_chegada.setText("Chegada");
@@ -196,7 +184,6 @@ public class ConfirmaePagar extends javax.swing.JFrame {
             }
         });
 
-        jText_data.setBackground(java.awt.SystemColor.activeCaptionBorder);
         jText_data.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jText_data.setForeground(new java.awt.Color(255, 255, 255));
         jText_data.setText("Data");
@@ -207,7 +194,6 @@ public class ConfirmaePagar extends javax.swing.JFrame {
             }
         });
 
-        jText_valor.setBackground(java.awt.SystemColor.activeCaptionBorder);
         jText_valor.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jText_valor.setForeground(new java.awt.Color(255, 255, 255));
         jText_valor.setText("Valor");
@@ -251,9 +237,6 @@ public class ConfirmaePagar extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel4.setBackground(java.awt.SystemColor.activeCaptionBorder);
-
-        jText_FormasPgt.setBackground(java.awt.SystemColor.activeCaptionBorder);
         jText_FormasPgt.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
         jText_FormasPgt.setForeground(new java.awt.Color(255, 255, 255));
         jText_FormasPgt.setText("Formas de pagamento");
@@ -343,7 +326,6 @@ public class ConfirmaePagar extends javax.swing.JFrame {
             }
         });
 
-        jButton_Confirmaepagar.setBackground(java.awt.SystemColor.activeCaptionBorder);
         jButton_Confirmaepagar.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jButton_Confirmaepagar.setForeground(new java.awt.Color(255, 255, 255));
         jButton_Confirmaepagar.setText("Confirma e pagar");
@@ -359,7 +341,7 @@ public class ConfirmaePagar extends javax.swing.JFrame {
                     .addComponent(jText_dadopassageiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jText_inf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -409,9 +391,7 @@ public class ConfirmaePagar extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -502,20 +482,23 @@ public class ConfirmaePagar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConfirmaePagar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formConfirmarPag.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConfirmaePagar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formConfirmarPag.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConfirmaePagar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formConfirmarPag.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConfirmaePagar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formConfirmarPag.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConfirmaePagar().setVisible(true);
+                new formConfirmarPag().setVisible(true);
             }
         });
     }

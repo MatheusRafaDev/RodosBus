@@ -30,10 +30,6 @@ public class formLogin extends javax.swing.JFrame {
 
         txtLogin = new javax.swing.JTextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -41,11 +37,13 @@ public class formLogin extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
         btnCadastro = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(142, 157, 204));
@@ -58,60 +56,51 @@ public class formLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtLogin);
-        txtLogin.setBounds(1021, 211, 295, 37);
+        txtLogin.setBounds(550, 150, 295, 37);
         getContentPane().add(filler1);
         filler1.setBounds(982, 423, 0, 0);
-        getContentPane().add(jSeparator1);
-        jSeparator1.setBounds(920, 180, 0, 3);
-        getContentPane().add(jSeparator2);
-        jSeparator2.setBounds(880, 110, 0, 190);
 
-        jTextPane1.setBackground(new java.awt.Color(142, 157, 204));
-        jTextPane1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jTextPane1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextPane1.setText("\n    APROVEITE E RESERVE JÁ \n    SEU ONIBUS PARA QUALQUER LUGAR DO BRASIL");
-        jScrollPane1.setViewportView(jTextPane1);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(0, 580, 1440, 210);
-
-        jLabel4.setFont(new java.awt.Font("Arial Black", 0, 23)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("LOGIN");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(1000, 111, 83, 54);
+        jLabel4.setBounds(550, 50, 90, 50);
 
-        jLabel5.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("EMAIL");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(1030, 180, 105, 43);
+        jLabel5.setBounds(550, 120, 105, 43);
 
-        jLabel6.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("SENHA");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(1030, 269, 105, 43);
+        jLabel6.setBounds(550, 210, 105, 43);
 
         btnEntrar.setBackground(new java.awt.Color(142, 157, 204));
-        btnEntrar.setFont(new java.awt.Font("Arial Black", 0, 23)); // NOI18N
+        btnEntrar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
         btnEntrar.setText("   ENTRAR");
-        btnEntrar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnEntrar.setName("btnEntrar"); // NOI18N
         btnEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEntrarMouseClicked(evt);
             }
         });
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnEntrar);
-        btnEntrar.setBounds(1046, 402, 270, 58);
+        btnEntrar.setBounds(630, 310, 170, 40);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\thiag\\Downloads\\image 2.png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\rafael.rocha\\OneDrive\\Área de Trabalho\\RodosBus\\Rodobus - OFICIAL\\src\\img\\image 2.png")); // NOI18N
         jLabel7.setText("jLabel7");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(969, 396, 61, 70);
+        jLabel7.setBounds(570, 300, 50, 50);
 
         txtSenha.setName("txtSenha"); // NOI18N
         txtSenha.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -120,18 +109,16 @@ public class formLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtSenha);
-        txtSenha.setBounds(1021, 302, 295, 37);
+        txtSenha.setBounds(550, 240, 295, 37);
 
         jLabel3.setBackground(new java.awt.Color(125, 132, 178));
         jLabel3.setForeground(new java.awt.Color(125, 132, 178));
         jLabel3.setText("LOGIN");
         jLabel3.setOpaque(true);
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(935, 77, 413, 427);
-        getContentPane().add(jSeparator3);
-        jSeparator3.setBounds(1450, 190, 0, 3);
+        jLabel3.setBounds(530, 40, 350, 340);
 
-        btnCadastro.setFont(new java.awt.Font("Arial Black", 0, 23)); // NOI18N
+        btnCadastro.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         btnCadastro.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastro.setText("Criar conta");
         btnCadastro.setName("btnCadastro"); // NOI18N
@@ -141,18 +128,58 @@ public class formLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCadastro);
-        btnCadastro.setBounds(1187, 515, 161, 58);
+        btnCadastro.setBounds(770, 360, 120, 60);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\thiag\\Downloads\\image 3.png")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\rafael.rocha\\OneDrive\\Área de Trabalho\\RodosBus\\Rodobus - OFICIAL\\src\\img\\image 2.png")); // NOI18N
+        jLabel8.setText("jLabel7");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(570, 300, 50, 50);
+
+        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\rafael.rocha\\OneDrive\\Área de Trabalho\\RodosBus\\Rodobus - OFICIAL\\src\\img\\image 2.png")); // NOI18N
+        jLabel9.setText("jLabel7");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(570, 300, 50, 50);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\rafael.rocha\\OneDrive\\Área de Trabalho\\RodosBus\\Rodobus - OFICIAL\\src\\img\\image 3.png")); // NOI18N
+        jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1440, 582);
-        jLabel1.getAccessibleContext().setAccessibleName("imagem");
+        jLabel1.setBounds(0, -80, 960, 520);
 
-        jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(1290, 150, 38, 16);
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(1021, 211, 295, 37);
+        jPanel2.setBackground(new java.awt.Color(142, 157, 204));
+
+        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("SEU ONIBUS PARA QUALQUER LUGAR DO BRASIL");
+        jLabel2.setToolTipText("");
+
+        jLabel10.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("APROVEITE E RESERVE JÁ");
+        jLabel10.setToolTipText("");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel2))
+                .addContainerGap(457, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 440, 960, 80);
 
         pack();
         setLocationRelativeTo(null);
@@ -188,10 +215,14 @@ public class formLogin extends javax.swing.JFrame {
 
     private void btnCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastroMouseClicked
         // TODO add your handling code here:
-        formCadas cadastro = new formCadas();
+        formCadUsuario cadastro = new formCadUsuario();
         cadastro.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnCadastroMouseClicked
+
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,18 +264,16 @@ public class formLogin extends javax.swing.JFrame {
     private javax.swing.JButton btnEntrar;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
