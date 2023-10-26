@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.passageiroDao;
 import javax.swing.JOptionPane;
 
 /**
@@ -97,7 +98,7 @@ public class formLogin extends javax.swing.JFrame {
         getContentPane().add(btnEntrar);
         btnEntrar.setBounds(630, 310, 170, 40);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\rafael.rocha\\OneDrive\\Área de Trabalho\\RodosBus\\Rodobus - OFICIAL\\src\\img\\image 2.png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/image 2.png"))); // NOI18N
         jLabel7.setText("jLabel7");
         getContentPane().add(jLabel7);
         jLabel7.setBounds(570, 300, 50, 50);
@@ -130,17 +131,15 @@ public class formLogin extends javax.swing.JFrame {
         getContentPane().add(btnCadastro);
         btnCadastro.setBounds(770, 360, 120, 60);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\rafael.rocha\\OneDrive\\Área de Trabalho\\RodosBus\\Rodobus - OFICIAL\\src\\img\\image 2.png")); // NOI18N
         jLabel8.setText("jLabel7");
         getContentPane().add(jLabel8);
         jLabel8.setBounds(570, 300, 50, 50);
 
-        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\rafael.rocha\\OneDrive\\Área de Trabalho\\RodosBus\\Rodobus - OFICIAL\\src\\img\\image 2.png")); // NOI18N
         jLabel9.setText("jLabel7");
         getContentPane().add(jLabel9);
         jLabel9.setBounds(570, 300, 50, 50);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\rafael.rocha\\OneDrive\\Área de Trabalho\\RodosBus\\Rodobus - OFICIAL\\src\\img\\image 3.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/image 3.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, -80, 960, 520);
@@ -197,18 +196,11 @@ public class formLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         String login = this.txtLogin.getText();
         String senha = this.txtSenha.getText();
-
-        if (!login.equals("thiago") || !senha.equals("lindo")) {
-            JOptionPane.showMessageDialog(null, "Login ou Senha Inválidos", "Erro de operação", JOptionPane.WARNING_MESSAGE);
-            this.txtLogin.setText("");
-            this.txtSenha.setText("");
-
-        this.txtLogin.requestFocus();
-        return;
+        passageiroDao p = new passageiroDao();
         
-        }
+        p.validarLogin(login, senha);
 
-           formClientes obj = new formClientes();
+           formLogin obj = new formLogin();
     obj.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_btnEntrarMouseClicked

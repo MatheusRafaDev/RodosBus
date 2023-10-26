@@ -6,6 +6,7 @@ package view;
 
 import controller.passageiroDao;
 import javax.swing.table.DefaultTableModel;
+import model.Passageiro;
 
 /**
  *
@@ -169,9 +170,24 @@ public class formCadPassageiro extends javax.swing.JFrame {
 
     private void btnCadastraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastraMouseClicked
         // TODO add your handling code here:
-        passageiroDao u = new passageiroDao();
+       passageiroDao u = new passageiroDao();
+       Passageiro passageiro = new Passageiro();
        
-       u.criarTabela();
+       String cpf = ds_cpf.getText();
+       String nome = ds_nome.getText();
+       String telefone = ds_telefone.getText();
+       String email = ds_email.getText();
+       String senha = ds_senha.getText();
+       int idade = Integer.parseInt(ds_idade.getText());
+       
+       passageiro.setCpf(cpf);
+       passageiro.setEmail(email);
+       passageiro.setNome(nome);
+       passageiro.setIdade(idade);
+       passageiro.setTelefone(telefone);
+       passageiro.setSenha(senha);
+       
+       u.cadastrar(passageiro);
     }//GEN-LAST:event_btnCadastraMouseClicked
 
     private void ds_diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ds_diaActionPerformed
