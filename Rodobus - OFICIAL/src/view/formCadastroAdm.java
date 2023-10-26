@@ -11,12 +11,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author thiag
  */
-public class formCadas extends javax.swing.JFrame {
+public class formCadastroAdm extends javax.swing.JFrame {
 
     /**
      * Creates new form formCadas
      */
-    public formCadas() {
+    public formCadastroAdm() {
         initComponents();
     }
 
@@ -44,9 +44,12 @@ public class formCadas extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        btnExcluir = new javax.swing.JButton();
         btnCadastra = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        btnCadastra1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro");
@@ -133,6 +136,12 @@ public class formCadas extends javax.swing.JFrame {
         getContentPane().add(jLabel9);
         jLabel9.setBounds(290, 260, 100, 26);
 
+        btnExcluir.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.setName("btnExcluir"); // NOI18N
+        getContentPane().add(btnExcluir);
+        btnExcluir.setBounds(600, 440, 200, 33);
+
         btnCadastra.setBackground(new java.awt.Color(51, 51, 51));
         btnCadastra.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         btnCadastra.setForeground(new java.awt.Color(255, 255, 255));
@@ -145,6 +154,12 @@ public class formCadas extends javax.swing.JFrame {
         });
         getContentPane().add(btnCadastra);
         btnCadastra.setBounds(830, 440, 200, 33);
+
+        btnBuscar.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.setName("btnExcluir"); // NOI18N
+        getContentPane().add(btnBuscar);
+        btnBuscar.setBounds(360, 440, 200, 33);
 
         jLabel3.setBackground(new java.awt.Color(125, 132, 178));
         jLabel3.setForeground(new java.awt.Color(125, 132, 178));
@@ -159,6 +174,19 @@ public class formCadas extends javax.swing.JFrame {
         getContentPane().add(jLabel10);
         jLabel10.setBounds(604, 289, 33, 45);
 
+        btnCadastra1.setBackground(new java.awt.Color(51, 51, 51));
+        btnCadastra1.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        btnCadastra1.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastra1.setText("CADASTRAR ");
+        btnCadastra1.setName("btnCadastra"); // NOI18N
+        btnCadastra1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCadastra1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(btnCadastra1);
+        btnCadastra1.setBounds(830, 440, 200, 33);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -168,6 +196,10 @@ public class formCadas extends javax.swing.JFrame {
        
        u.criarTabela();
     }//GEN-LAST:event_btnCadastraMouseClicked
+
+    private void btnCadastra1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastra1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCadastra1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -205,7 +237,10 @@ public class formCadas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCadastra;
+    private javax.swing.JButton btnCadastra1;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JTextField ds_cpf;
     private javax.swing.JTextField ds_dia;
     private javax.swing.JTextField ds_email;
