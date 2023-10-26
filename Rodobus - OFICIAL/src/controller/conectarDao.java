@@ -93,7 +93,7 @@ public class conectarDao {
                 mycon.close();
                 JOptionPane.showMessageDialog(null, "Banco criado com sucesso...");
             } catch (SQLException err) {
-                JOptionPane.showMessageDialog(null, "Erro ao criar banco de dados " + err.getMessage());
+                /*JOptionPane.showMessageDialog(null, "Erro ao criar banco de dados " + err.getMessage());*/
             }
         }
 }
