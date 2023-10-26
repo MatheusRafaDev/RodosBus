@@ -8,6 +8,6 @@ package controller;
  *
  * @author thiag
  */
-public class motoristaDao {
+public class reservaDao {
     
 }

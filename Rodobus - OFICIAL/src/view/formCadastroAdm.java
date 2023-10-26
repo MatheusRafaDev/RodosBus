@@ -11,12 +11,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author thiag
  */
-public class formCadUsuario extends javax.swing.JFrame {
+public class formCadastroAdm extends javax.swing.JFrame {
 
     /**
      * Creates new form formCadas
      */
-    public formCadUsuario() {
+    public formCadastroAdm() {
         initComponents();
     }
 
@@ -44,102 +44,106 @@ public class formCadUsuario extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        btnExcluir = new javax.swing.JButton();
         btnCadastra = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        btnCadastra1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro");
         setBackground(new java.awt.Color(153, 153, 255));
         getContentPane().setLayout(null);
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("CRIAR CONTA");
+        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(217, 217, 217));
+        jLabel4.setText("Criar conta");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 10, 140, 83);
+        jLabel4.setBounds(604, 16, 491, 83);
 
         ds_email.setName("txtEmail"); // NOI18N
         getContentPane().add(ds_email);
-        ds_email.setBounds(30, 120, 742, 30);
+        ds_email.setBounds(284, 112, 742, 53);
         getContentPane().add(ds_nome);
-        ds_nome.setBounds(30, 180, 742, 30);
+        ds_nome.setBounds(287, 196, 742, 53);
 
         ds_telefone.setName("txtFone"); // NOI18N
         getContentPane().add(ds_telefone);
-        ds_telefone.setBounds(30, 270, 270, 30);
+        ds_telefone.setBounds(284, 284, 270, 54);
 
         ds_senha.setName("txtSenha"); // NOI18N
         getContentPane().add(ds_senha);
-        ds_senha.setBounds(30, 350, 270, 30);
+        ds_senha.setBounds(286, 366, 270, 54);
 
         ds_cpf.setName("txtCpf"); // NOI18N
         getContentPane().add(ds_cpf);
-        ds_cpf.setBounds(340, 350, 250, 30);
+        ds_cpf.setBounds(595, 366, 434, 54);
 
-        ds_dia.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        ds_dia.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         ds_dia.setForeground(new java.awt.Color(204, 204, 204));
         ds_dia.setText("DD");
-        ds_dia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ds_diaActionPerformed(evt);
-            }
-        });
         getContentPane().add(ds_dia);
-        ds_dia.setBounds(340, 270, 99, 30);
+        ds_dia.setBounds(595, 284, 99, 54);
 
-        ds_mes.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        ds_mes.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         ds_mes.setForeground(new java.awt.Color(204, 204, 204));
         ds_mes.setText("MM");
         ds_mes.setName("txtMes"); // NOI18N
         getContentPane().add(ds_mes);
-        ds_mes.setBounds(460, 270, 99, 30);
+        ds_mes.setBounds(715, 284, 99, 54);
 
-        ds_idade.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        ds_idade.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         ds_idade.setForeground(new java.awt.Color(204, 204, 204));
         ds_idade.setText("YY");
         ds_idade.setName("txtAno"); // NOI18N
         getContentPane().add(ds_idade);
-        ds_idade.setBounds(580, 270, 99, 30);
+        ds_idade.setBounds(835, 284, 99, 54);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("SENHA ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 330, 100, 19);
+        jLabel1.setBounds(290, 340, 100, 26);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("EMAIL");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 100, 60, 19);
+        jLabel2.setBounds(290, 80, 60, 26);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("NOME");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(30, 160, 60, 19);
+        jLabel5.setBounds(290, 170, 60, 26);
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("IDADE");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(340, 250, 100, 19);
+        jLabel6.setBounds(600, 260, 100, 26);
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("CPF");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(340, 330, 100, 19);
+        jLabel7.setBounds(600, 340, 100, 26);
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("TELEFONE");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(30, 250, 100, 19);
+        jLabel9.setBounds(290, 260, 100, 26);
+
+        btnExcluir.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.setName("btnExcluir"); // NOI18N
+        getContentPane().add(btnExcluir);
+        btnExcluir.setBounds(600, 440, 200, 33);
 
         btnCadastra.setBackground(new java.awt.Color(51, 51, 51));
-        btnCadastra.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        btnCadastra.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         btnCadastra.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastra.setText("CADASTRAR ");
         btnCadastra.setName("btnCadastra"); // NOI18N
@@ -149,20 +153,39 @@ public class formCadUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCadastra);
-        btnCadastra.setBounds(340, 440, 140, 33);
+        btnCadastra.setBounds(830, 440, 200, 33);
+
+        btnBuscar.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.setName("btnExcluir"); // NOI18N
+        getContentPane().add(btnBuscar);
+        btnBuscar.setBounds(360, 440, 200, 33);
 
         jLabel3.setBackground(new java.awt.Color(125, 132, 178));
         jLabel3.setForeground(new java.awt.Color(125, 132, 178));
         jLabel3.setText("fundo");
         jLabel3.setOpaque(true);
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(-250, -20, 1200, 580);
+        jLabel3.setBounds(84, -28, 1260, 698);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Black", 0, 21)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(204, 204, 204));
         jLabel10.setText("DD");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(350, 300, 33, 45);
+        jLabel10.setBounds(604, 289, 33, 45);
+
+        btnCadastra1.setBackground(new java.awt.Color(51, 51, 51));
+        btnCadastra1.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        btnCadastra1.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastra1.setText("CADASTRAR ");
+        btnCadastra1.setName("btnCadastra"); // NOI18N
+        btnCadastra1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCadastra1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(btnCadastra1);
+        btnCadastra1.setBounds(830, 440, 200, 33);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -174,9 +197,9 @@ public class formCadUsuario extends javax.swing.JFrame {
        u.criarTabela();
     }//GEN-LAST:event_btnCadastraMouseClicked
 
-    private void ds_diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ds_diaActionPerformed
+    private void btnCadastra1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastra1MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_ds_diaActionPerformed
+    }//GEN-LAST:event_btnCadastra1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -195,27 +218,29 @@ public class formCadUsuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(formCadUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formCadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(formCadUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formCadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(formCadUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formCadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(formCadUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formCadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new formCadUsuario().setVisible(true);
+                new formCadas().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCadastra;
+    private javax.swing.JButton btnCadastra1;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JTextField ds_cpf;
     private javax.swing.JTextField ds_dia;
     private javax.swing.JTextField ds_email;
