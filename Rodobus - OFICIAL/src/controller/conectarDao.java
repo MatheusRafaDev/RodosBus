@@ -11,24 +11,23 @@ import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-
 public class conectarDao {
 
-    public  Connection mycon = null;
+    public Connection mycon = null;
     public String       sql = null;
 
-    public conectarDao () {
-        String con = "jdbc:mysql://localhost:3306/RodoBus";
-        
-        try {
-            mycon = DriverManager.getConnection(con, "root", "");
-            this.criarBanco();
+        public conectarDao () {
             
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Conexão com Mysql não realizada!\n" + ex);
+            String con = "jdbc:mysql://localhost:3306/rodobus";
+
+            try {
+                
+                mycon = DriverManager.getConnection(con, "root", "");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Conexão com Mysql não realizada!\n" + ex);
+            }
         }
-    }
-    
+
         public void criarBanco() {
             try {
                 sql = "CREATE TABLE IF NOT EXISTS TB_ONIBUS ("

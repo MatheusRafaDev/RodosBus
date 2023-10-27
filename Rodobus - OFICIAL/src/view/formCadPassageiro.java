@@ -7,6 +7,8 @@ package view;
 import controller.passageiroDao;
 import javax.swing.table.DefaultTableModel;
 import model.Passageiro;
+import controller.conectarDao;
+
 
 /**
  *
@@ -19,6 +21,9 @@ public class formCadPassageiro extends javax.swing.JFrame {
      */
     public formCadPassageiro() {
         initComponents();
+        passageiroDao u = new passageiroDao();
+        u.criarBanco();
+        
     }
 
     /**
@@ -149,8 +154,13 @@ public class formCadPassageiro extends javax.swing.JFrame {
                 btnCadastraMouseClicked(evt);
             }
         });
+        btnCadastra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastraActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCadastra);
-        btnCadastra.setBounds(340, 440, 140, 33);
+        btnCadastra.setBounds(30, 400, 150, 33);
 
         jLabel3.setBackground(new java.awt.Color(125, 132, 178));
         jLabel3.setForeground(new java.awt.Color(125, 132, 178));
@@ -193,6 +203,10 @@ public class formCadPassageiro extends javax.swing.JFrame {
     private void ds_diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ds_diaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ds_diaActionPerformed
+
+    private void btnCadastraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCadastraActionPerformed
 
     /**
      * @param args the command line arguments

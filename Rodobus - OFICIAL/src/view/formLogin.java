@@ -35,13 +35,11 @@ public class formLogin extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnEntrar = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         btnCadastro = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -98,11 +96,6 @@ public class formLogin extends javax.swing.JFrame {
         getContentPane().add(btnEntrar);
         btnEntrar.setBounds(630, 310, 170, 40);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/image 2.png"))); // NOI18N
-        jLabel7.setText("jLabel7");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(570, 300, 50, 50);
-
         txtSenha.setName("txtSenha"); // NOI18N
         txtSenha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -138,11 +131,6 @@ public class formLogin extends javax.swing.JFrame {
         jLabel9.setText("jLabel7");
         getContentPane().add(jLabel9);
         jLabel9.setBounds(570, 300, 50, 50);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/image 3.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, -80, 960, 520);
 
         jPanel2.setBackground(new java.awt.Color(142, 157, 204));
 
@@ -198,11 +186,19 @@ public class formLogin extends javax.swing.JFrame {
         String senha = this.txtSenha.getText();
         passageiroDao p = new passageiroDao();
         
-        p.validarLogin(login, senha);
+        formLogin obj = new formLogin();
 
-           formLogin obj = new formLogin();
-    obj.setVisible(true);
-    this.setVisible(false);
+        obj.setVisible(true);
+        this.setVisible(false);
+        formGerenciar opcoes = new formGerenciar();
+        opcoes.setVisible(true);
+        
+        /*p.validarLogin(login, senha);*/
+
+
+
+        
+        
     }//GEN-LAST:event_btnEntrarMouseClicked
 
     private void btnCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastroMouseClicked
@@ -210,6 +206,11 @@ public class formLogin extends javax.swing.JFrame {
         formCadPassageiro cadastro = new formCadPassageiro();
         cadastro.setVisible(true);
         this.setVisible(false);
+        
+        
+        
+        
+        
     }//GEN-LAST:event_btnCadastroMouseClicked
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
@@ -255,14 +256,12 @@ public class formLogin extends javax.swing.JFrame {
     private javax.swing.JLabel btnCadastro;
     private javax.swing.JButton btnEntrar;
     private javax.swing.Box.Filler filler1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
