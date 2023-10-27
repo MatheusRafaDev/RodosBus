@@ -187,9 +187,9 @@ public class formLogin extends javax.swing.JFrame {
         passageiroDao p = new passageiroDao();
         
         formLogin obj = new formLogin();
-
         obj.setVisible(true);
         this.setVisible(false);
+        
         formGerenciar opcoes = new formGerenciar();
         opcoes.setVisible(true);
         
