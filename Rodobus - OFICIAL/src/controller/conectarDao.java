@@ -18,7 +18,7 @@ public class conectarDao {
 
         public conectarDao () {
             
-            String con = "jdbc:mysql://localhost:3306/rodobus";
+            String con = "jdbc:mysql://localhost:3306/RodoBus";
 
             try {
                 

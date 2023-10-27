@@ -83,5 +83,30 @@ public class motoristaDao extends conectarDao {
             JOptionPane.showMessageDialog(null, "Erro ao Excluir usuário!"+ err.getMessage());
         }
     }
+    
+    public void alterar(Motorista obj) {
+    String sql = "UPDATE TB_MOTORISTA SET DS_NOME = ?, NR_IDADE = ?, DS_CPF = ?, DS_TELEFONE = ? WHERE ID_MOTORISTA = ?";
+    try {
+        PreparedStatement ps = mycon.prepareStatement(sql);
+
+        ps.setString(1, obj.getNome());
+        ps.setInt(2, obj.getIdade());
+        ps.setString(3, obj.getCpf());
+        ps.setString(4, obj.getTelefone());
+        ps.setInt(5, obj.getIdMotorista()); // Você deve fornecer o ID do motorista a ser atualizado
+
+        int rowsUpdated = ps.executeUpdate();
+        if (rowsUpdated > 0) {
+            JOptionPane.showMessageDialog(null, "Registro Alterado com Sucesso !");
+        } else {
+            
+        }
+        
+        ps.close();
+    } catch (SQLException err) {
+        // Lide com as exceções SQL, por exemplo, exibindo uma mensagem de erro.
+        err.printStackTrace();
+    }
+    }
 
 }
