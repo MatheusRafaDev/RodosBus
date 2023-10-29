@@ -21,6 +21,7 @@ public class formConsultaMotorista extends javax.swing.JFrame {
         
         DefaultTableModel model = (DefaultTableModel) tblMOTORISTAS.getModel();
         model.setRowCount(0); 
+        
         for (Motorista motorista : motoristas) {
             model.addRow(new Object[]{motorista.getIdMotorista(),motorista.getNome(), motorista.getIdade(), motorista.getCpf(), motorista.getTelefone()});
         }
@@ -47,7 +48,7 @@ public class formConsultaMotorista extends javax.swing.JFrame {
         textNome = new javax.swing.JTextField();
         btnAlterar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        btnDeletar1 = new javax.swing.JButton();
+        btnDeletar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -180,18 +181,18 @@ public class formConsultaMotorista extends javax.swing.JFrame {
             }
         });
 
-        btnDeletar1.setBackground(new java.awt.Color(142, 157, 204));
-        btnDeletar1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        btnDeletar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnDeletar1.setText("Deletar");
-        btnDeletar1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnDeletar.setBackground(new java.awt.Color(142, 157, 204));
+        btnDeletar.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        btnDeletar.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeletar.setText("Deletar");
+        btnDeletar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnDeletar1MouseClicked(evt);
+                btnDeletarMouseClicked(evt);
             }
         });
-        btnDeletar1.addActionListener(new java.awt.event.ActionListener() {
+        btnDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeletar1ActionPerformed(evt);
+                btnDeletarActionPerformed(evt);
             }
         });
 
@@ -205,34 +206,37 @@ public class formConsultaMotorista extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4)
-                    .addComponent(textCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
-                        .addComponent(textIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(textCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(40, 40, 40)
+                                .addComponent(textIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(24, 24, 24))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnDeletar1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))))
+                        .addGap(67, 67, 67)
+                        .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(lblID)
@@ -241,7 +245,7 @@ public class formConsultaMotorista extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(214, 214, 214)
                     .addComponent(jLabel7)
-                    .addContainerGap(618, Short.MAX_VALUE)))
+                    .addContainerGap(692, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,7 +263,7 @@ public class formConsultaMotorista extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textIdade))
+                            .addComponent(textIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -271,7 +275,7 @@ public class formConsultaMotorista extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnDeletar1)
+                            .addComponent(btnDeletar)
                             .addComponent(btnBuscar))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -291,9 +295,7 @@ public class formConsultaMotorista extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -384,13 +386,29 @@ public class formConsultaMotorista extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textIdadeActionPerformed
 
-    private void btnDeletar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeletar1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeletar1MouseClicked
+    private void btnDeletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeletarMouseClicked
+        motoristaDao m = new motoristaDao();
+        m.excluir(Integer.parseInt(this.lblID.getText()));
+       
+        ArrayList<Motorista> motoristas = m.selecionarMotoristas();
+        
+        DefaultTableModel model = (DefaultTableModel) tblMOTORISTAS.getModel();
+        model.setRowCount(0); 
+        for (Motorista motorista : motoristas) {
+            model.addRow(new Object[]{motorista.getIdMotorista(),motorista.getNome(), motorista.getIdade(), motorista.getCpf(), motorista.getTelefone()});
+        }
+        
+        this.textCPF.setText("");
+        this.textNome.setText("");
+        this.textTelefone.setText("");
+        this.textIdade.setText("");
+        this.lblID.setText("");
+       
+    }//GEN-LAST:event_btnDeletarMouseClicked
 
-    private void btnDeletar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletar1ActionPerformed
+    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeletar1ActionPerformed
+    }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void tblMOTORISTASMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMOTORISTASMouseClicked
         DefaultTableModel model = (DefaultTableModel) tblMOTORISTAS.getModel();
@@ -453,7 +471,7 @@ public class formConsultaMotorista extends javax.swing.JFrame {
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnDeletar1;
+    private javax.swing.JButton btnDeletar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

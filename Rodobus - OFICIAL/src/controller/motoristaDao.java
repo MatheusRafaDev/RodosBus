@@ -59,6 +59,7 @@ public class motoristaDao extends conectarDao {
                 motorista.setIdade(idade);
                 motorista.setNome(nome);
                 motorista.setTelefone(cpf);
+                
                 motoristas.add(motorista);
             }
 
