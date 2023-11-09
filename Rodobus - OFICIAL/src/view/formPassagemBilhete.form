@@ -342,11 +342,6 @@
         <Component class="javax.swing.JLabel" name="jLabel17">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\rafael.rocha\OneDrive\&#xc1;rea de Trabalho\RodosBus\Rodobus - OFICIAL\src\img\image 1.png"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField2">
         </Component>

@@ -185,20 +185,12 @@ public class formLogin extends javax.swing.JFrame {
         String login = this.txtLogin.getText();
         String senha = this.txtSenha.getText();
         passageiroDao p = new passageiroDao();
-        
-        formLogin obj = new formLogin();
-        obj.setVisible(true);
+        formOpcoes opt = new formOpcoes();   
         this.setVisible(false);
-        
-        formGerenciar opcoes = new formGerenciar();
-        opcoes.setVisible(true);
-        
+        opt.setVisible(true);
+
         /*p.validarLogin(login, senha);*/
-
-
-
-        
-        
+   
     }//GEN-LAST:event_btnEntrarMouseClicked
 
     private void btnCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastroMouseClicked
