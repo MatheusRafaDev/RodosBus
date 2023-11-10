@@ -194,12 +194,13 @@ public class formLogin extends javax.swing.JFrame {
         String login = this.txtLogin.getText();
         String senha = this.txtSenha.getText();
         passageiroDao p = new passageiroDao();
-        formOpcoes opt = new formOpcoes();
+        formGerenciar gerenciar = new formGerenciar();
         Passageiro obj = new Passageiro();
         
         if(login.equals("admin") && senha.equals("1234")){
+            gerenciar.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setVisible(false);
-        opt.setVisible(true);    
+        gerenciar.setVisible(true);    
         }
         
         else {
