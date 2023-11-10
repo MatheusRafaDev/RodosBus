@@ -331,6 +331,11 @@ public class formConfirmarPag extends javax.swing.JFrame {
         jButton_Confirmaepagar.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jButton_Confirmaepagar.setForeground(new java.awt.Color(255, 255, 255));
         jButton_Confirmaepagar.setText("Confirma e pagar");
+        jButton_Confirmaepagar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton_ConfirmaepagarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -466,6 +471,13 @@ public class formConfirmarPag extends javax.swing.JFrame {
     private void jText_inf4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jText_inf4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jText_inf4ActionPerformed
+
+    private void jButton_ConfirmaepagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_ConfirmaepagarMouseClicked
+        // TODO add your handling code here:
+        formPagCartao cartao = new formPagCartao();
+        this.setVisible(false);
+        cartao.setVisible(true); 
+    }//GEN-LAST:event_jButton_ConfirmaepagarMouseClicked
 
     /**
      * @param args the command line arguments
