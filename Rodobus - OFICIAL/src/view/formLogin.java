@@ -5,7 +5,11 @@
 package view;
 
 import controller.passageiroDao;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.Passageiro;
 
 /**
  *
@@ -29,6 +33,7 @@ public class formLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollBar1 = new javax.swing.JScrollBar();
         txtLogin = new javax.swing.JTextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         jLabel4 = new javax.swing.JLabel();
@@ -44,8 +49,12 @@ public class formLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
+        jScrollBar1.setRequestFocusEnabled(true);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(142, 157, 204));
+        setMinimumSize(new java.awt.Dimension(977, 506));
+        setSize(new java.awt.Dimension(977, 506));
         getContentPane().setLayout(null);
 
         txtLogin.setName("txtLogin"); // NOI18N
@@ -185,24 +194,50 @@ public class formLogin extends javax.swing.JFrame {
         String login = this.txtLogin.getText();
         String senha = this.txtSenha.getText();
         passageiroDao p = new passageiroDao();
-        formOpcoes opt = new formOpcoes();   
+        formOpcoes opt = new formOpcoes();
+        Passageiro obj = new Passageiro();
+        
+        if(login.equals("admin") && senha.equals("1234")){
         this.setVisible(false);
-        opt.setVisible(true);
+        opt.setVisible(true);    
+        }
+        
+        else {
+            try{
+                ResultSet resul = p.validarLogin(login, senha);
+                if(resul.next())
+                {
+                    JOptionPane.showMessageDialog(null, "Login realizado - seja bem-vindo " +login + " compre sua passagem e viaje com segurança", "Foi", JOptionPane.WARNING_MESSAGE);
+                    this.setVisible(false);
+                    formConsultaPassagem pass = new formConsultaPassagem();
+                    pass.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Usuário ou senha invalidos, verifique ou faça o cadastro", "Foi", JOptionPane.WARNING_MESSAGE);
 
-        /*p.validarLogin(login, senha);*/
-   
+                }
+            }catch(SQLException err) {
+                JOptionPane.showMessageDialog(null, "Erro ao Buscar usuário!" + err.getMessage());
+                JOptionPane.showMessageDialog(null, "Login ou Senha Inválidos", "Erro de operação", JOptionPane.WARNING_MESSAGE);
+
+                return; 
+            }
+        }
+        //else {
+            //JOptionPane.showMessageDialog(null, "Usuário não cadastrado, faça seu cadastro e não perca mais tempo!");
+        //}
+
+
+
     }//GEN-LAST:event_btnEntrarMouseClicked
 
     private void btnCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastroMouseClicked
         // TODO add your handling code here:
         formCadPassageiro cadastro = new formCadPassageiro();
+        cadastro.setExtendedState(JFrame.MAXIMIZED_BOTH);
         cadastro.setVisible(true);
         this.setVisible(false);
-        
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_btnCadastroMouseClicked
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
@@ -213,33 +248,15 @@ public class formLogin extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(formLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(formLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(formLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(formLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new formLogin().setVisible(true);
+                formLogin tela = new formLogin();
+                tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                tela.setVisible(true);
+
             }
         });
     }
@@ -257,6 +274,7 @@ public class formLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
