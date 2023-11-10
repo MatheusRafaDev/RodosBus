@@ -245,6 +245,9 @@ public class formLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
+     * 
+     * 
+     * 
      * @param args the command line arguments
      */
     public static void main(String args[]) {

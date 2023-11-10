@@ -55,22 +55,18 @@ public class passageiroDao extends conectarDao {
     
     public ResultSet validarLogin (String login, String senha)   {
     
-    sql = "SELECT * FROM TB_PASSAGEIRO WHERE ucase(DS_EMAIL) = ucase('"+login+"') and DS_SENHA= ucase('"+ senha +"')";
+    sql = "SELECT * FROM TB_PASSAGEIRO WHERE ucase(DS_NOME) = ucase('"+login+"') and DS_SENHA= ucase('"+ senha +"')";
    
     try {
             ps = mycon.prepareStatement(sql);
-             JOptionPane.showMessageDialog(null, "Login realizado", "Foi", JOptionPane.WARNING_MESSAGE);
-             
-             
-             
             return ps.executeQuery();
- 
-        } catch (SQLException err) {
-            JOptionPane.showMessageDialog(null, "Erro ao Buscar usuário!" + err.getMessage());
-            JOptionPane.showMessageDialog(null, "Login ou Senha Inválidos", "Erro de operação", JOptionPane.WARNING_MESSAGE);
-            
-            return null; 
-        }
+    } catch
+            (SQLException err) {
+        JOptionPane.showMessageDialog(null, "Erro ao Buscar usuário!" + err.getMessage());
+        JOptionPane.showMessageDialog(null, "Login ou Senha Inválidos", "Erro de operação", JOptionPane.WARNING_MESSAGE);
+
+        return null; 
+    }
 }
 
 }
