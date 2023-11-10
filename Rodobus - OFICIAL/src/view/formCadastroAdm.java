@@ -229,12 +229,7 @@ public class formCadastroAdm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastraMouseClicked
-<<<<<<< Updated upstream
        passageiroDao u = new passageiroDao();
-=======
-        // TODO add your handling code here:
-        passageiroDao u = new passageiroDao();
->>>>>>> Stashed changes
        Passageiro passageiro = new Passageiro();
        
        String cpf = ds_cpf.getText();
