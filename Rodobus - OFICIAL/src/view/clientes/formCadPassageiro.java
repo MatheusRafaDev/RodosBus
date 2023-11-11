@@ -14,12 +14,12 @@ import controller.conectarDao;
  *
  * @author thiag
  */
-public class formCadastroPassageiro extends javax.swing.JFrame {
+public class formCadPassageiro extends javax.swing.JFrame {
 
     /**
      * Creates new form formCadas
      */
-    public formCadastroPassageiro() {
+    public formCadPassageiro() {
         initComponents();
         passageiroDao u = new passageiroDao();
         u.criarBanco();
@@ -233,6 +233,30 @@ public class formCadastroPassageiro extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(formCadastroPassageiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

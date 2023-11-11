@@ -15,7 +15,7 @@ import model.Passageiro;
  *
  * @author matheus.rafael
  */
-public class Gerencial extends javax.swing.JFrame {
+public class formGerenciar extends javax.swing.JFrame {
 
     public void CaregarPassageiro(){
         passageiroDao passageiroDao = new passageiroDao();
@@ -42,7 +42,7 @@ public class Gerencial extends javax.swing.JFrame {
         }
     }
     
-    public Gerencial() {
+    public formGerenciar() {
         initComponents();
 
         // Populate motorista table
@@ -1046,20 +1046,21 @@ public class Gerencial extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Gerencial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Gerencial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Gerencial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Gerencial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Gerencial().setVisible(true);
+                new formGerenciar().setVisible(true);
             }
         });
     }

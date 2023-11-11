@@ -160,8 +160,10 @@ public class formConsultaPassagem extends javax.swing.JFrame {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
+        mnUSUARIO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons 1/user.png"))); // NOI18N
         mnUSUARIO.setText("Usuário");
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons 1/cart.png"))); // NOI18N
         jMenuItem1.setText("Pedidos");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,12 +172,14 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         });
         mnUSUARIO.add(jMenuItem1);
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons 1/user_suit.png"))); // NOI18N
         jMenuItem2.setText("Perfil");
         mnUSUARIO.add(jMenuItem2);
 
         jMenuBar1.add(mnUSUARIO);
         jMenuBar1.add(jMenu7);
 
+        mnSAIR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons 1/door_out.png"))); // NOI18N
         mnSAIR.setText("Sair");
         mnSAIR.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -194,7 +198,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
