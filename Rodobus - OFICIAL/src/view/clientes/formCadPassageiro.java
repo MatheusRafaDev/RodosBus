@@ -36,14 +36,12 @@ public class formCadPassageiro extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel4 = new javax.swing.JLabel();
-        ds_email = new javax.swing.JTextField();
-        ds_nome = new javax.swing.JTextField();
-        ds_telefone = new javax.swing.JTextField();
-        ds_senha = new javax.swing.JTextField();
-        ds_cpf = new javax.swing.JTextField();
-        ds_dia = new javax.swing.JTextField();
-        ds_mes = new javax.swing.JTextField();
-        ds_idade = new javax.swing.JTextField();
+        textEmail = new javax.swing.JTextField();
+        textNome = new javax.swing.JTextField();
+        textTelefone = new javax.swing.JTextField();
+        textSenha = new javax.swing.JTextField();
+        textCPF = new javax.swing.JTextField();
+        textIdade = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -52,102 +50,88 @@ public class formCadPassageiro extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         btnCadastra = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro");
         setBackground(new java.awt.Color(153, 153, 255));
+        setPreferredSize(new java.awt.Dimension(830, 430));
         getContentPane().setLayout(null);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("CRIAR CONTA");
+        jLabel4.setText("Criar Conta");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 10, 140, 83);
+        jLabel4.setBounds(30, 30, 140, 20);
 
-        ds_email.setName("txtEmail"); // NOI18N
-        getContentPane().add(ds_email);
-        ds_email.setBounds(30, 120, 742, 30);
-        getContentPane().add(ds_nome);
-        ds_nome.setBounds(30, 180, 742, 30);
+        textEmail.setName("txtEmail"); // NOI18N
+        getContentPane().add(textEmail);
+        textEmail.setBounds(30, 80, 410, 30);
+        getContentPane().add(textNome);
+        textNome.setBounds(30, 140, 410, 30);
 
-        ds_telefone.setName("txtFone"); // NOI18N
-        getContentPane().add(ds_telefone);
-        ds_telefone.setBounds(30, 270, 270, 30);
+        textTelefone.setName("txtFone"); // NOI18N
+        getContentPane().add(textTelefone);
+        textTelefone.setBounds(30, 200, 160, 30);
 
-        ds_senha.setName("txtSenha"); // NOI18N
-        getContentPane().add(ds_senha);
-        ds_senha.setBounds(30, 350, 270, 30);
+        textSenha.setName("txtSenha"); // NOI18N
+        getContentPane().add(textSenha);
+        textSenha.setBounds(30, 260, 160, 30);
 
-        ds_cpf.setName("txtCpf"); // NOI18N
-        getContentPane().add(ds_cpf);
-        ds_cpf.setBounds(340, 350, 250, 30);
+        textCPF.setName("txtCpf"); // NOI18N
+        getContentPane().add(textCPF);
+        textCPF.setBounds(230, 260, 200, 30);
 
-        ds_dia.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        ds_dia.setForeground(new java.awt.Color(204, 204, 204));
-        ds_dia.setText("DD");
-        ds_dia.addActionListener(new java.awt.event.ActionListener() {
+        textIdade.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        textIdade.setForeground(new java.awt.Color(204, 204, 204));
+        textIdade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ds_diaActionPerformed(evt);
+                textIdadeActionPerformed(evt);
             }
         });
-        getContentPane().add(ds_dia);
-        ds_dia.setBounds(340, 270, 99, 30);
-
-        ds_mes.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        ds_mes.setForeground(new java.awt.Color(204, 204, 204));
-        ds_mes.setText("MM");
-        ds_mes.setName("txtMes"); // NOI18N
-        getContentPane().add(ds_mes);
-        ds_mes.setBounds(460, 270, 99, 30);
-
-        ds_idade.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        ds_idade.setForeground(new java.awt.Color(204, 204, 204));
-        ds_idade.setText("YY");
-        ds_idade.setName("txtAno"); // NOI18N
-        getContentPane().add(ds_idade);
-        ds_idade.setBounds(580, 270, 99, 30);
+        getContentPane().add(textIdade);
+        textIdade.setBounds(230, 200, 99, 30);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("SENHA ");
+        jLabel1.setText("Senha");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 330, 100, 19);
+        jLabel1.setBounds(30, 240, 100, 19);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("EMAIL");
+        jLabel2.setText("Email");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 100, 60, 19);
+        jLabel2.setBounds(30, 60, 60, 19);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("NOME");
+        jLabel5.setText("Nome");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(30, 160, 60, 19);
+        jLabel5.setBounds(30, 120, 60, 19);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("IDADE");
+        jLabel6.setText("Idade");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(340, 250, 100, 19);
+        jLabel6.setBounds(230, 180, 100, 19);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("CPF");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(340, 330, 100, 19);
+        jLabel7.setBounds(230, 240, 100, 19);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("TELEFONE");
+        jLabel9.setText("Telefone");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(30, 250, 100, 19);
+        jLabel9.setBounds(30, 180, 100, 19);
 
         btnCadastra.setBackground(new java.awt.Color(51, 51, 51));
         btnCadastra.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         btnCadastra.setForeground(new java.awt.Color(255, 255, 255));
-        btnCadastra.setText("CADASTRAR ");
+        btnCadastra.setText("Cadastar");
         btnCadastra.setName("btnCadastra"); // NOI18N
         btnCadastra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -160,20 +144,22 @@ public class formCadPassageiro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCadastra);
-        btnCadastra.setBounds(30, 400, 150, 33);
+        btnCadastra.setBounds(30, 310, 140, 33);
 
         jLabel3.setBackground(new java.awt.Color(125, 132, 178));
         jLabel3.setForeground(new java.awt.Color(125, 132, 178));
         jLabel3.setText("fundo");
+        jLabel3.setMaximumSize(new java.awt.Dimension(1200, 580));
+        jLabel3.setMinimumSize(new java.awt.Dimension(1200, 580));
         jLabel3.setOpaque(true);
+        jLabel3.setPreferredSize(new java.awt.Dimension(1200, 580));
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(-250, -20, 1200, 580);
+        jLabel3.setBounds(1200, 580, 1200, 580);
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI Black", 0, 21)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel10.setText("DD");
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(350, 300, 33, 45);
+        jPanel2.setBackground(new java.awt.Color(125, 132, 178));
+        jPanel2.setVerifyInputWhenFocusTarget(false);
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 0, 830, 430);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -183,12 +169,12 @@ public class formCadPassageiro extends javax.swing.JFrame {
        passageiroDao u = new passageiroDao();
        Passageiro passageiro = new Passageiro();
        
-       String cpf = ds_cpf.getText();
-       String nome = ds_nome.getText();
-       String telefone = ds_telefone.getText();
-       String email = ds_email.getText();
-       String senha = ds_senha.getText();
-       int idade = Integer.parseInt(ds_idade.getText());
+       String cpf = textCPF.getText();
+       String nome = textNome.getText();
+       String telefone = textTelefone.getText();
+       String email = textEmail.getText();
+       String senha = textSenha.getText();
+       int idade = Integer.parseInt(textIdade.getText());
        
        passageiro.setCpf(cpf);
        passageiro.setEmail(email);
@@ -200,9 +186,9 @@ public class formCadPassageiro extends javax.swing.JFrame {
        u.Incluir(passageiro);
     }//GEN-LAST:event_btnCadastraMouseClicked
 
-    private void ds_diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ds_diaActionPerformed
+    private void textIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textIdadeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ds_diaActionPerformed
+    }//GEN-LAST:event_textIdadeActionPerformed
 
     private void btnCadastraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastraActionPerformed
         // TODO add your handling code here:
@@ -269,23 +255,14 @@ public class formCadPassageiro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new formCadastroPassageiro().setVisible(true);
+                new formCadPassageiro().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastra;
-    private javax.swing.JTextField ds_cpf;
-    private javax.swing.JTextField ds_dia;
-    private javax.swing.JTextField ds_email;
-    private javax.swing.JTextField ds_idade;
-    private javax.swing.JTextField ds_mes;
-    private javax.swing.JTextField ds_nome;
-    private javax.swing.JTextField ds_senha;
-    private javax.swing.JTextField ds_telefone;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -293,5 +270,12 @@ public class formCadPassageiro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField textCPF;
+    private javax.swing.JTextField textEmail;
+    private javax.swing.JTextField textIdade;
+    private javax.swing.JTextField textNome;
+    private javax.swing.JTextField textSenha;
+    private javax.swing.JTextField textTelefone;
     // End of variables declaration//GEN-END:variables
 }
