@@ -46,9 +46,6 @@ public class formLogin extends javax.swing.JFrame {
         btnCadastro = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
 
         jScrollBar1.setRequestFocusEnabled(true);
 
@@ -65,7 +62,7 @@ public class formLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtLogin);
-        txtLogin.setBounds(330, 160, 295, 37);
+        txtLogin.setBounds(310, 190, 295, 37);
         getContentPane().add(filler1);
         filler1.setBounds(982, 423, 0, 0);
 
@@ -74,24 +71,24 @@ public class formLogin extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("LOGIN");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(330, 60, 90, 50);
+        jLabel4.setBounds(310, 90, 90, 50);
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("EMAIL");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(330, 130, 105, 43);
+        jLabel5.setBounds(310, 160, 105, 43);
 
         jLabel6.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("SENHA");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(330, 220, 105, 43);
+        jLabel6.setBounds(310, 250, 105, 43);
 
         btnEntrar.setBackground(new java.awt.Color(142, 157, 204));
         btnEntrar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEntrar.setText("   ENTRAR");
+        btnEntrar.setText("ENTRAR");
         btnEntrar.setName("btnEntrar"); // NOI18N
         btnEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -104,7 +101,7 @@ public class formLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEntrar);
-        btnEntrar.setBounds(410, 320, 170, 40);
+        btnEntrar.setBounds(390, 350, 170, 40);
 
         txtSenha.setName("txtSenha"); // NOI18N
         txtSenha.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -113,14 +110,14 @@ public class formLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtSenha);
-        txtSenha.setBounds(330, 250, 295, 37);
+        txtSenha.setBounds(310, 280, 295, 37);
 
         jLabel3.setBackground(new java.awt.Color(125, 132, 178));
         jLabel3.setForeground(new java.awt.Color(125, 132, 178));
         jLabel3.setText("LOGIN");
         jLabel3.setOpaque(true);
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(310, 50, 350, 340);
+        jLabel3.setBounds(290, 80, 350, 340);
 
         btnCadastro.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         btnCadastro.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,51 +129,15 @@ public class formLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCadastro);
-        btnCadastro.setBounds(550, 370, 120, 60);
+        btnCadastro.setBounds(530, 400, 120, 60);
 
         jLabel8.setText("jLabel7");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(350, 310, 50, 50);
+        jLabel8.setBounds(330, 340, 50, 50);
 
         jLabel9.setText("jLabel7");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(350, 310, 50, 50);
-
-        jPanel2.setBackground(new java.awt.Color(142, 157, 204));
-
-        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("SEU ONIBUS PARA QUALQUER LUGAR DO BRASIL");
-        jLabel2.setToolTipText("");
-
-        jLabel10.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("APROVEITE E RESERVE JÁ");
-        jLabel10.setToolTipText("");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel2))
-                .addContainerGap(457, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 440, 960, 80);
+        jLabel9.setBounds(330, 340, 50, 50);
 
         pack();
         setLocationRelativeTo(null);
@@ -238,11 +199,10 @@ public class formLogin extends javax.swing.JFrame {
 
     private void btnCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastroMouseClicked
         // TODO add your handling code here:
-        formCadPassageiro cadastro = new formCadPassageiro();
+        formCadastroPassageiro cadastro = new formCadastroPassageiro();
         cadastro.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setVisible(false);
         cadastro.setVisible(true);
-
     }//GEN-LAST:event_btnCadastroMouseClicked
 
     /**
@@ -269,15 +229,12 @@ public class formLogin extends javax.swing.JFrame {
     private javax.swing.JLabel btnCadastro;
     private javax.swing.JButton btnEntrar;
     private javax.swing.Box.Filler filler1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JPasswordField txtSenha;

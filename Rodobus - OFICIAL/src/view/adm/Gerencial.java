@@ -499,7 +499,7 @@ public class Gerencial extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Cadastrar novo usuário");
+        jLabel9.setText("Cadastrar novo usuário/passageiro");
 
         jLabel10.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));

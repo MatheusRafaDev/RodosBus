@@ -14,12 +14,12 @@ import controller.conectarDao;
  *
  * @author thiag
  */
-public class formCadPassageiro extends javax.swing.JFrame {
+public class formCadastroPassageiro extends javax.swing.JFrame {
 
     /**
      * Creates new form formCadas
      */
-    public formCadPassageiro() {
+    public formCadastroPassageiro() {
         initComponents();
         passageiroDao u = new passageiroDao();
         u.criarBanco();
@@ -197,7 +197,7 @@ public class formCadPassageiro extends javax.swing.JFrame {
        passageiro.setTelefone(telefone);
        passageiro.setSenha(senha);
        
-       u.cadastrar(passageiro);
+       u.Incluir(passageiro);
     }//GEN-LAST:event_btnCadastraMouseClicked
 
     private void ds_diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ds_diaActionPerformed
@@ -225,14 +225,18 @@ public class formCadPassageiro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(formCadPassageiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formCadastroPassageiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(formCadPassageiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formCadastroPassageiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(formCadPassageiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formCadastroPassageiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(formCadPassageiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formCadastroPassageiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -241,7 +245,7 @@ public class formCadPassageiro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new formCadPassageiro().setVisible(true);
+                new formCadastroPassageiro().setVisible(true);
             }
         });
     }
