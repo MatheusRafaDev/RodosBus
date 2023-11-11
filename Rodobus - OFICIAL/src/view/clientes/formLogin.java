@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package view;
+package view.clientes;
 
+import view.adm.formGerenciar;
 import controller.passageiroDao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -64,7 +65,7 @@ public class formLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtLogin);
-        txtLogin.setBounds(550, 150, 295, 37);
+        txtLogin.setBounds(330, 160, 295, 37);
         getContentPane().add(filler1);
         filler1.setBounds(982, 423, 0, 0);
 
@@ -73,19 +74,19 @@ public class formLogin extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("LOGIN");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(550, 50, 90, 50);
+        jLabel4.setBounds(330, 60, 90, 50);
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("EMAIL");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(550, 120, 105, 43);
+        jLabel5.setBounds(330, 130, 105, 43);
 
         jLabel6.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("SENHA");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(550, 210, 105, 43);
+        jLabel6.setBounds(330, 220, 105, 43);
 
         btnEntrar.setBackground(new java.awt.Color(142, 157, 204));
         btnEntrar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -103,7 +104,7 @@ public class formLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEntrar);
-        btnEntrar.setBounds(630, 310, 170, 40);
+        btnEntrar.setBounds(410, 320, 170, 40);
 
         txtSenha.setName("txtSenha"); // NOI18N
         txtSenha.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -112,14 +113,14 @@ public class formLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtSenha);
-        txtSenha.setBounds(550, 240, 295, 37);
+        txtSenha.setBounds(330, 250, 295, 37);
 
         jLabel3.setBackground(new java.awt.Color(125, 132, 178));
         jLabel3.setForeground(new java.awt.Color(125, 132, 178));
         jLabel3.setText("LOGIN");
         jLabel3.setOpaque(true);
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(530, 40, 350, 340);
+        jLabel3.setBounds(310, 50, 350, 340);
 
         btnCadastro.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         btnCadastro.setForeground(new java.awt.Color(255, 255, 255));
@@ -131,15 +132,15 @@ public class formLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCadastro);
-        btnCadastro.setBounds(770, 360, 120, 60);
+        btnCadastro.setBounds(550, 370, 120, 60);
 
         jLabel8.setText("jLabel7");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(570, 300, 50, 50);
+        jLabel8.setBounds(350, 310, 50, 50);
 
         jLabel9.setText("jLabel7");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(570, 300, 50, 50);
+        jLabel9.setBounds(350, 310, 50, 50);
 
         jPanel2.setBackground(new java.awt.Color(142, 157, 204));
 
@@ -231,20 +232,18 @@ public class formLogin extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnEntrarMouseClicked
 
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEntrarActionPerformed
+
     private void btnCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastroMouseClicked
         // TODO add your handling code here:
         formCadPassageiro cadastro = new formCadPassageiro();
         cadastro.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setVisible(false);
         cadastro.setVisible(true);
-        
-
 
     }//GEN-LAST:event_btnCadastroMouseClicked
-
-    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
      * 

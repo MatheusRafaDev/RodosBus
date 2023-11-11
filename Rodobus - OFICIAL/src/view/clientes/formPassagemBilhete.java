@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package view;
+package view.clientes;
 
 /**
  *
@@ -99,8 +99,6 @@ public class formPassagemBilhete extends javax.swing.JFrame {
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Apresente este QRCODE na hora como passagem");
-
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\rafael.rocha\\OneDrive\\Área de Trabalho\\RodosBus\\Rodobus - OFICIAL\\src\\img\\image 1.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
