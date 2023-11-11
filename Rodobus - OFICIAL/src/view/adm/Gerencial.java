@@ -76,7 +76,7 @@ public class Gerencial extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jTextField16 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
-        pgPassageiro = new javax.swing.JTabbedPane();
+        pgROTAS = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -121,6 +121,8 @@ public class Gerencial extends javax.swing.JFrame {
         btnCadastrar1 = new javax.swing.JButton();
         lblID1 = new javax.swing.JLabel();
         btnNOVO1 = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
 
         jPanel5.setBackground(new java.awt.Color(142, 157, 204));
 
@@ -234,7 +236,7 @@ public class Gerencial extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pgPassageiro.setPreferredSize(new java.awt.Dimension(1100, 462));
+        pgROTAS.setPreferredSize(new java.awt.Dimension(1100, 462));
 
         jPanel2.setBackground(new java.awt.Color(142, 157, 204));
         jPanel2.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -493,7 +495,7 @@ public class Gerencial extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pgPassageiro.addTab("Motorista", jPanel1);
+        pgROTAS.addTab("Motorista", jPanel1);
 
         jPanel4.setBackground(new java.awt.Color(142, 157, 204));
 
@@ -712,9 +714,7 @@ public class Gerencial extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel9))
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
@@ -722,7 +722,9 @@ public class Gerencial extends javax.swing.JFrame {
                             .addComponent(btnDeletar1)
                             .addComponent(btnBuscar1)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 46, Short.MAX_VALUE)
+                        .addGap(0, 14, Short.MAX_VALUE)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textNOME1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -768,17 +770,19 @@ public class Gerencial extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pgPassageiro.addTab("Passageiro", jPanel3);
+        pgROTAS.addTab("Passageiro", jPanel3);
+        pgROTAS.addTab("Reservas/Passagens", jTabbedPane1);
+        pgROTAS.addTab("Rotas", jTabbedPane2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pgPassageiro, javax.swing.GroupLayout.DEFAULT_SIZE, 1043, Short.MAX_VALUE)
+            .addComponent(pgROTAS, javax.swing.GroupLayout.DEFAULT_SIZE, 1043, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pgPassageiro, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+            .addComponent(pgROTAS, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
         );
 
         pack();
@@ -1100,6 +1104,8 @@ public class Gerencial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
@@ -1108,7 +1114,7 @@ public class Gerencial extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblID1;
-    private javax.swing.JTabbedPane pgPassageiro;
+    private javax.swing.JTabbedPane pgROTAS;
     private javax.swing.JTable tblMOTORISTAS;
     private javax.swing.JTable tblPASSAGEIRO;
     private javax.swing.JTextField textCPF;

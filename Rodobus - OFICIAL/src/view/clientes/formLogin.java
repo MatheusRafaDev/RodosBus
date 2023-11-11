@@ -4,13 +4,13 @@
  */
 package view.clientes;
 
-import view.adm.formGerenciar;
 import controller.passageiroDao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Passageiro;
+import view.adm.formGerenciar;
 
 /**
  *
