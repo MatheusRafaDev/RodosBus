@@ -4,6 +4,7 @@
  */
 package view.clientes;
 
+import model.Passageiro;
 import view.clientes.formLogin;
 import view.clientes.formConfirmarPag;
 
@@ -16,8 +17,14 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     /**
      * Creates new form ConsultaPassagem
      */
-    public formConsultaPassagem() {
+    public formConsultaPassagem(Passageiro obj) {
         initComponents();
+        
+        this.mnNOME.setName(obj.getNome());
+    }
+
+    private formConsultaPassagem() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -45,10 +52,11 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         tblROTAS = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnUSUARIO = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        optPEDIDO = new javax.swing.JMenuItem();
+        optPERFIL = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         mnSAIR = new javax.swing.JMenu();
+        mnNOME = new javax.swing.JMenu();
 
         jMenu3.setText("File");
         jMenuBar2.add(jMenu3);
@@ -163,18 +171,18 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         mnUSUARIO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons 1/user.png"))); // NOI18N
         mnUSUARIO.setText("Usuário");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons 1/cart.png"))); // NOI18N
-        jMenuItem1.setText("Pedidos");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        optPEDIDO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons 1/cart.png"))); // NOI18N
+        optPEDIDO.setText("Pedidos");
+        optPEDIDO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                optPEDIDOActionPerformed(evt);
             }
         });
-        mnUSUARIO.add(jMenuItem1);
+        mnUSUARIO.add(optPEDIDO);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons 1/user_suit.png"))); // NOI18N
-        jMenuItem2.setText("Perfil");
-        mnUSUARIO.add(jMenuItem2);
+        optPERFIL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons 1/user_suit.png"))); // NOI18N
+        optPERFIL.setText("Perfil");
+        mnUSUARIO.add(optPERFIL);
 
         jMenuBar1.add(mnUSUARIO);
         jMenuBar1.add(jMenu7);
@@ -187,6 +195,9 @@ public class formConsultaPassagem extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(mnSAIR);
+
+        mnNOME.setText("Nome");
+        jMenuBar1.add(mnNOME);
 
         setJMenuBar(jMenuBar1);
 
@@ -219,9 +230,9 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         pagamento.setVisible(true); 
     }//GEN-LAST:event_btnComprarMouseClicked
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void optPEDIDOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optPEDIDOActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_optPEDIDOActionPerformed
 
     private void mnSAIRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnSAIRMouseClicked
         formLogin login= new formLogin();
@@ -276,15 +287,16 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuBar jMenuBar3;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JMenu mnNOME;
     private javax.swing.JMenu mnSAIR;
     private javax.swing.JMenu mnUSUARIO;
+    private javax.swing.JMenuItem optPEDIDO;
+    private javax.swing.JMenuItem optPERFIL;
     private javax.swing.JTable tblROTAS;
     // End of variables declaration//GEN-END:variables
 }
