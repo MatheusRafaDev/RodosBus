@@ -199,7 +199,7 @@ public class formLogin extends javax.swing.JFrame {
 
     private void btnCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastroMouseClicked
         // TODO add your handling code here:
-        formCadPassageiro cadastro = new formCadPassageiro();
+        formCadastroPassageiro cadastro = new formCadastroPassageiro();
         cadastro.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setVisible(false);
         cadastro.setVisible(true);

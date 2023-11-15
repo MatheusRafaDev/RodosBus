@@ -14,12 +14,12 @@ import controller.conectarDao;
  *
  * @author thiag
  */
-public class formCadPassageiro extends javax.swing.JFrame {
+public class formCadastroPassageiro extends javax.swing.JFrame {
 
     /**
      * Creates new form formCadas
      */
-    public formCadPassageiro() {
+    public formCadastroPassageiro() {
         initComponents();
         passageiroDao u = new passageiroDao();
         u.criarBanco();
@@ -55,7 +55,6 @@ public class formCadPassageiro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro");
         setBackground(new java.awt.Color(153, 153, 255));
-        setPreferredSize(new java.awt.Dimension(830, 430));
         getContentPane().setLayout(null);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
@@ -255,7 +254,7 @@ public class formCadPassageiro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new formCadPassageiro().setVisible(true);
+                new formCadastroPassageiro().setVisible(true);
             }
         });
     }
