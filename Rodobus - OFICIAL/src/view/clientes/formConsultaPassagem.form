@@ -42,17 +42,11 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="mnUSUARIO">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/icons 1/user.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="optPEDIDO">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/icons 1/cart.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Pedidos"/>
               </Properties>
               <Events>
@@ -61,9 +55,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="optPERFIL">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/icons 1/user_suit.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Perfil"/>
               </Properties>
             </MenuItem>
@@ -73,9 +64,6 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnSAIR">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/icons 1/door_out.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Sair"/>
           </Properties>
           <Events>
@@ -85,6 +73,11 @@
         <Menu class="javax.swing.JMenu" name="mnNOME">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nome"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="mnID">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Menu>
       </SubComponents>

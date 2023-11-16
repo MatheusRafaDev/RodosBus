@@ -17,8 +17,7 @@ public class formLogin extends javax.swing.JFrame {
     public formLogin() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
-        
+
     }
 
     /**
@@ -245,7 +244,6 @@ public class formLogin extends javax.swing.JFrame {
         else {
             Passageiro resul = p.validarLogin(login, senha);
             
-
             if(resul.getIdPassageiro() > 0){
                 JOptionPane.showMessageDialog(null, "Login realizado - seja bem-vindo " +login + " compre sua passagem e viaje com segurança", "Foi", JOptionPane.WARNING_MESSAGE);
                 

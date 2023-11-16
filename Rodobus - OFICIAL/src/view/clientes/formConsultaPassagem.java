@@ -4,6 +4,7 @@
  */
 package view.clientes;
 
+import javax.swing.JOptionPane;
 import model.Passageiro;
 import view.clientes.formLogin;
 import view.clientes.formConfirmarPag;
@@ -19,13 +20,11 @@ public class formConsultaPassagem extends javax.swing.JFrame {
      */
     public formConsultaPassagem(Passageiro obj) {
         initComponents();
-        
-        this.mnNOME.setName(obj.getNome());
+        this.mnNOME.setText(obj.getNome());  
+        this.mnID.setText(String.valueOf(obj.getIdPassageiro()));  
     }
 
-    private formConsultaPassagem() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,6 +56,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         mnSAIR = new javax.swing.JMenu();
         mnNOME = new javax.swing.JMenu();
+        mnID = new javax.swing.JMenu();
 
         jMenu3.setText("File");
         jMenuBar2.add(jMenu3);
@@ -168,10 +168,8 @@ public class formConsultaPassagem extends javax.swing.JFrame {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        mnUSUARIO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons 1/user.png"))); // NOI18N
         mnUSUARIO.setText("Usuário");
 
-        optPEDIDO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons 1/cart.png"))); // NOI18N
         optPEDIDO.setText("Pedidos");
         optPEDIDO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,14 +178,12 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         });
         mnUSUARIO.add(optPEDIDO);
 
-        optPERFIL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons 1/user_suit.png"))); // NOI18N
         optPERFIL.setText("Perfil");
         mnUSUARIO.add(optPERFIL);
 
         jMenuBar1.add(mnUSUARIO);
         jMenuBar1.add(jMenu7);
 
-        mnSAIR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons 1/door_out.png"))); // NOI18N
         mnSAIR.setText("Sair");
         mnSAIR.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -198,6 +194,9 @@ public class formConsultaPassagem extends javax.swing.JFrame {
 
         mnNOME.setText("Nome");
         jMenuBar1.add(mnNOME);
+
+        mnID.setText("0");
+        jMenuBar1.add(mnID);
 
         setJMenuBar(jMenuBar1);
 
@@ -271,7 +270,8 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new formConsultaPassagem().setVisible(true);
+                Passageiro passageiro = new Passageiro();
+                new formConsultaPassagem(passageiro).setVisible(true);
             }
         });
     }
@@ -292,6 +292,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JMenu mnID;
     private javax.swing.JMenu mnNOME;
     private javax.swing.JMenu mnSAIR;
     private javax.swing.JMenu mnUSUARIO;
