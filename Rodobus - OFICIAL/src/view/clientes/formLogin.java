@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Passageiro;
 import view.adm.formGerenciar;
-
+import controller.conectarDao;
 import javax.swing.JFrame;
 
 public class formLogin extends javax.swing.JFrame {
@@ -16,6 +16,9 @@ public class formLogin extends javax.swing.JFrame {
 
     public formLogin() {
         initComponents();
+        conectarDao c = new conectarDao();
+        c.criarBanco();
+        
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
     }
