@@ -21,7 +21,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     public formConsultaPassagem(Passageiro obj) {
         initComponents();
         this.mnNOME.setText(obj.getNome());  
-        this.mnID.setText(String.valueOf(obj.getIdPassageiro()));  
+        this.mnID.setText("Id: " + obj.getIdPassageiro());  
     }
 
 
@@ -50,13 +50,13 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblROTAS = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
-        mnUSUARIO = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
+        mnNOME = new javax.swing.JMenu();
         optPEDIDO = new javax.swing.JMenuItem();
         optPERFIL = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
-        mnSAIR = new javax.swing.JMenu();
-        mnNOME = new javax.swing.JMenu();
         mnID = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
+        mnSAIR = new javax.swing.JMenu();
 
         jMenu3.setText("File");
         jMenuBar2.add(jMenu3);
@@ -77,7 +77,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("busque a sua passagem");
+        jLabel2.setText("Busque a sua passagem");
 
         jTextField1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(123, 123, 123));
@@ -101,7 +101,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
             }
         });
 
-        btnComprar.setBackground(new java.awt.Color(125, 132, 178));
+        btnComprar.setBackground(new java.awt.Color(69, 73, 74));
         btnComprar.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         btnComprar.setForeground(new java.awt.Color(255, 255, 255));
         btnComprar.setText("BUSCAR PASSAGEM");
@@ -119,7 +119,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Embarque", "Dsembarque", "Saída", "Chegada", "Date", "Valor"
+                "Código", "Embarque", "Desembarque", "Saída", "Chegada", "Date", "Valor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -137,10 +137,10 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(23, 23, 23)
@@ -148,14 +148,14 @@ public class formConsultaPassagem extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                            .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 807, Short.MAX_VALUE)))
+                .addGap(28, 28, 28))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -164,11 +164,13 @@ public class formConsultaPassagem extends javax.swing.JFrame {
                     .addComponent(btnComprar)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
+                .addGap(23, 23, 23))
         );
 
-        mnUSUARIO.setText("Usuário");
+        jMenuBar1.add(jMenu7);
+
+        mnNOME.setText("Nome");
 
         optPEDIDO.setText("Pedidos");
         optPEDIDO.addActionListener(new java.awt.event.ActionListener() {
@@ -176,13 +178,18 @@ public class formConsultaPassagem extends javax.swing.JFrame {
                 optPEDIDOActionPerformed(evt);
             }
         });
-        mnUSUARIO.add(optPEDIDO);
+        mnNOME.add(optPEDIDO);
 
         optPERFIL.setText("Perfil");
-        mnUSUARIO.add(optPERFIL);
+        mnNOME.add(optPERFIL);
 
-        jMenuBar1.add(mnUSUARIO);
-        jMenuBar1.add(jMenu7);
+        jMenuBar1.add(mnNOME);
+
+        mnID.setText("0");
+        jMenuBar1.add(mnID);
+
+        jMenu1.setText("                                                                                                                                                                                                                       ");
+        jMenuBar1.add(jMenu1);
 
         mnSAIR.setText("Sair");
         mnSAIR.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -191,12 +198,6 @@ public class formConsultaPassagem extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(mnSAIR);
-
-        mnNOME.setText("Nome");
-        jMenuBar1.add(mnNOME);
-
-        mnID.setText("0");
-        jMenuBar1.add(mnID);
 
         setJMenuBar(jMenuBar1);
 
@@ -279,6 +280,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnComprar;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -295,7 +297,6 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     private javax.swing.JMenu mnID;
     private javax.swing.JMenu mnNOME;
     private javax.swing.JMenu mnSAIR;
-    private javax.swing.JMenu mnUSUARIO;
     private javax.swing.JMenuItem optPEDIDO;
     private javax.swing.JMenuItem optPERFIL;
     private javax.swing.JTable tblROTAS;
