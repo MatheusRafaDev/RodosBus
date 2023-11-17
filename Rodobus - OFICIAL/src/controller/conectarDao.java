@@ -84,10 +84,10 @@ public class conectarDao {
                         + "id_passageiro INT(5) NOT NULL,"
                         + "dt_reserva DATETIME,"
                         + "ds_status VARCHAR(20),"
-                        + "FOREIGN KEY (id_onibus) REFERENCES TB_ONIBUS(id_onibus),"
-                        + "FOREIGN KEY (id_motorista) REFERENCES TB_MOTORISTA(id_motorista),"
-                        + "FOREIGN KEY (id_passageiro) REFERENCES TB_PASSAGEIRO(id_passageiro),"
-                        + "FOREIGN KEY (id_rota) REFERENCES TB_ROTA(id_rota)"
+                        + "CONSTRAINT FOREIGN KEY (id_onibus) REFERENCES TB_ONIBUS(id_onibus),"
+                        + "CONSTRAINT FOREIGN KEY (id_motorista) REFERENCES TB_MOTORISTA(id_motorista),"
+                        + "CONSTRAINT FOREIGN KEY (id_passageiro) REFERENCES TB_PASSAGEIRO(id_passageiro),"
+                        + "CONSTRAINT FOREIGN KEY (id_rota) REFERENCES TB_ROTA(id_rota)"
                         + ");";
                 ps = mycon.prepareStatement(sql);
                 ps.execute();
