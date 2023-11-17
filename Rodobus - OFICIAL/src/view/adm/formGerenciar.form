@@ -482,11 +482,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="textTelefone">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textTelefoneActionPerformed"/>
                   </Events>
@@ -504,9 +499,6 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="textIdade">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
                     <Property name="inheritsPopupMenu" type="boolean" value="true"/>
                   </Properties>
                   <Events>
@@ -525,11 +517,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="textCPF">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnCadastrar">
                   <Properties>
@@ -572,11 +559,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="textNome">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnAlterar">
                   <Properties>
@@ -809,7 +791,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace type="separate" pref="19" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="32767" attributes="0"/>
                           <Component id="lblID1" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       </Group>
@@ -840,11 +822,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="textEMAIL1">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel11">
                   <Properties>
@@ -858,11 +835,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="textNOME1">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">
                   <Properties>
@@ -876,11 +848,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="textTELEFONE1">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel13">
                   <Properties>
@@ -894,11 +861,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="textIDADE1">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel14">
                   <Properties>
@@ -912,11 +874,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="textSENHA1">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel15">
                   <Properties>
@@ -930,11 +887,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="textCPF1">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textCPF1ActionPerformed"/>
                   </Events>

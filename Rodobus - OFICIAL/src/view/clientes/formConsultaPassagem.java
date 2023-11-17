@@ -8,20 +8,37 @@ import javax.swing.JOptionPane;
 import model.Passageiro;
 import view.clientes.formLogin;
 import view.clientes.formConfirmarPag;
-
+import controller.rotaDao;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+import model.Rota;
 /**
  *
  * @author alesandro.rsjunior
  */
 public class formConsultaPassagem extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ConsultaPassagem
-     */
+    
+    public void carregarRota() {
+    rotaDao rota = new rotaDao();
+    rota.criarBanco();
+    ArrayList<Rota> rotas = rota.selecionarRotas();
+       
+    DefaultTableModel model = (DefaultTableModel) tblROTAS.getModel();
+    model.setRowCount(0);
+     
+    for (Rota rota2 : rotas) {
+        model.addRow(new Object[]{rota2.getIdRota(), rota2.getOrigem(), rota2.getDestino(), rota2.getSaida(), rota2.getChegada(), rota2.getPreco()});
+    }
+}
+    
     public formConsultaPassagem(Passageiro obj) {
         initComponents();
         this.mnNOME.setText(obj.getNome());  
         this.mnID.setText("Id: " + obj.getIdPassageiro());  
+        carregarRota();
     }
 
 
@@ -113,21 +130,26 @@ public class formConsultaPassagem extends javax.swing.JFrame {
 
         tblROTAS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Embarque", "Desembarque", "Saída", "Chegada", "Date", "Valor"
+                "Código", "Embarque", "Desembarque", "Dt.Saída", "Dt.Chegada", "Valor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblROTAS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblROTASMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblROTAS);
@@ -226,10 +248,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void btnComprarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnComprarMouseClicked
-        // TODO add your handling code here:
-        formConfirmarPag pagamento = new formConfirmarPag();
-        this.setVisible(false);
-        pagamento.setVisible(true); 
+        carregarRota();
     }//GEN-LAST:event_btnComprarMouseClicked
 
     private void optPEDIDOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optPEDIDOActionPerformed
@@ -241,6 +260,12 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         this.setVisible(false);
         login.setVisible(true);
     }//GEN-LAST:event_mnSAIRMouseClicked
+
+    private void tblROTASMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblROTASMouseClicked
+        formConfirmarPag pagamento = new formConfirmarPag();
+        this.setVisible(false);
+        pagamento.setVisible(true); 
+    }//GEN-LAST:event_tblROTASMouseClicked
 
     /**
      * @param args the command line arguments

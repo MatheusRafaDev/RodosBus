@@ -63,13 +63,16 @@ public class conectarDao {
                 ps.execute();
 
                 sql = "CREATE TABLE IF NOT EXISTS TB_ROTA ("
-                        + "id_rota INT(5) PRIMARY KEY AUTO_INCREMENT,"
-                        + "ds_origem varchar(100),"
-                        + "ds_destino VARCHAR(100),"
-                        + "vl_distancia DECIMAL(10,2),"
-                        + "ds_duracao VARCHAR(10),"
-                        + "vl_preco DECIMAL(10,2)"
-                        + ");";
+                + "id_rota INT(5) PRIMARY KEY AUTO_INCREMENT,"
+                + "ds_origem VARCHAR(100),"
+                + "ds_destino VARCHAR(100),"
+                + "vl_distancia DECIMAL(10,2),"
+                +  "ds_duracao VARCHAR(10),"
+                + "vl_preco DECIMAL(10,2),"
+                + "dt_saida DATETIME,"
+                + "dt_chegada DATETIME"
+                + ");";
+
                 ps = mycon.prepareStatement(sql);
                 ps.execute();
 
