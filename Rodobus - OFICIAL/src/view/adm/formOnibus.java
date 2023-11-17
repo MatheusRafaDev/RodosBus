@@ -5,11 +5,13 @@
 package view.adm;
 
 import controller.motoristaDao;
+import controller.onibusDao;
 import controller.passageiroDao;
 import java.util.ArrayList;
+import java.util.HashSet;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
-import model.Motorista;
+import model.Onibus;
 import model.Passageiro;
 import view.clientes.formCadastroPassageiro;
 import view.clientes.formLogin;
@@ -20,8 +22,8 @@ import view.clientes.formLogin;
  */
 public class formOnibus extends javax.swing.JFrame {
 
-    public void CaregarPassageiro(){
-        passageiroDao passageiroDao = new passageiroDao();
+    /*public void CaregarPassageiro(){
+        //passageiroDao passageiroDao = new passageiroDao();
         passageiroDao.criarBanco();
         ArrayList<Passageiro> passageiros = passageiroDao.selecionarPassageiros();
         DefaultTableModel passageiroModel = (DefaultTableModel) tblPASSAGEIRO.getModel();
@@ -31,28 +33,27 @@ public class formOnibus extends javax.swing.JFrame {
             passageiroModel.addRow(new Object[]{passageiro.getIdPassageiro(), passageiro.getNome(), passageiro.getEmail(), passageiro.getCpf(), passageiro.getIdade(),passageiro.getTelefone(),passageiro.getSenha()});
         }
 
-    }
-    
-    public void CaregarMotorista(){
-        motoristaDao motoristaDao = new motoristaDao();
-        motoristaDao.criarBanco();
-        ArrayList<Motorista> motoristas = motoristaDao.selecionarMotoristas();
-        DefaultTableModel motoristaModel = (DefaultTableModel) tblMOTORISTAS.getModel();
-        motoristaModel.setRowCount(0);
+    }*/
+    public void CaregarOnibus() {
+        onibusDao onibusDao = new onibusDao();
+        onibusDao.criarBanco();
+        ArrayList<Onibus> onibuss = onibusDao.selecionarOnibus();
+        DefaultTableModel onibusModel = (DefaultTableModel) tblOnibus.getModel();
+        onibusModel.setRowCount(0);
 
-        for (Motorista motorista : motoristas) {
-            motoristaModel.addRow(new Object[]{motorista.getIdMotorista(), motorista.getNome(), motorista.getIdade(), motorista.getCpf(), motorista.getTelefone()});
+        for (Onibus onibus : onibuss) {
+            onibusModel.addRow(new Object[]{onibus.getIdOnibus(), onibus.getModelo(), onibus.getPlaca(), onibus.getCapacidade(), onibus.getAnoFabricacao(),});
         }
     }
-    
+
     public formOnibus() {
         initComponents();
 
         // Populate motorista table
-        CaregarMotorista();
+        CaregarOnibus();
 
         // Populate passageiro table
-        CaregarPassageiro();
+        //CaregarPassageiro();
     }
 
     /**
@@ -87,46 +88,23 @@ public class formOnibus extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblMOTORISTAS = new javax.swing.JTable();
+        tblOnibus = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        textTelefone = new javax.swing.JTextField();
-        lblID = new javax.swing.JLabel();
-        textIdade = new javax.swing.JTextField();
+        textPlacabus = new javax.swing.JTextField();
+        lblbusID = new javax.swing.JLabel();
+        textAnofabricacao = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        textCPF = new javax.swing.JTextField();
+        textCapacidadebus = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        textNome = new javax.swing.JTextField();
-        btnAlterar = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
-        btnDeletar = new javax.swing.JButton();
+        textModelobus = new javax.swing.JTextField();
+        btnAlterarbus = new javax.swing.JButton();
+        btnBuscarbus = new javax.swing.JButton();
+        btnDeletarbus = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        btnNOVO = new javax.swing.JButton();
+        btnCadastrarbus = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        textEMAIL1 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        textNOME1 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        textTELEFONE1 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        textIDADE1 = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        textSENHA1 = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        textCPF1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblPASSAGEIRO = new javax.swing.JTable();
-        btnDeletar1 = new javax.swing.JButton();
-        btnBuscar1 = new javax.swing.JButton();
-        btnAlterar1 = new javax.swing.JButton();
-        btnCadastrar1 = new javax.swing.JButton();
-        lblID1 = new javax.swing.JLabel();
-        btnNOVO1 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jMenuBar2 = new javax.swing.JMenuBar();
@@ -262,10 +240,10 @@ public class formOnibus extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Consulta de motorista");
+        jLabel1.setText("Consulta de ônibus");
 
-        tblMOTORISTAS.setForeground(new java.awt.Color(60, 63, 65));
-        tblMOTORISTAS.setModel(new javax.swing.table.DefaultTableModel(
+        tblOnibus.setForeground(new java.awt.Color(60, 63, 65));
+        tblOnibus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -273,7 +251,7 @@ public class formOnibus extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Código", "Nome", "Idade", "CPF", "Telefone"
+                "ID", "Modelo", "Placa", "Capacidade", "Ano Fabr"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -284,48 +262,48 @@ public class formOnibus extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblMOTORISTAS.setSelectionBackground(new java.awt.Color(204, 204, 204));
-        tblMOTORISTAS.setSelectionForeground(new java.awt.Color(60, 63, 65));
-        tblMOTORISTAS.addFocusListener(new java.awt.event.FocusAdapter() {
+        tblOnibus.setSelectionBackground(new java.awt.Color(204, 204, 204));
+        tblOnibus.setSelectionForeground(new java.awt.Color(60, 63, 65));
+        tblOnibus.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                tblMOTORISTASFocusGained(evt);
+                tblOnibusFocusGained(evt);
             }
         });
-        tblMOTORISTAS.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblOnibus.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblMOTORISTASMouseClicked(evt);
+                tblOnibusMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblMOTORISTAS);
+        jScrollPane1.setViewportView(tblOnibus);
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Telefone");
+        jLabel2.setText("Placa");
 
-        textTelefone.setBackground(new java.awt.Color(255, 255, 255));
-        textTelefone.addActionListener(new java.awt.event.ActionListener() {
+        textPlacabus.setBackground(new java.awt.Color(255, 255, 255));
+        textPlacabus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textTelefoneActionPerformed(evt);
+                textPlacabusActionPerformed(evt);
             }
         });
 
-        lblID.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        lblID.setForeground(new java.awt.Color(255, 255, 255));
-        lblID.setText("0");
+        lblbusID.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        lblbusID.setForeground(new java.awt.Color(255, 255, 255));
+        lblbusID.setText("0");
 
-        textIdade.setBackground(new java.awt.Color(255, 255, 255));
-        textIdade.setInheritsPopupMenu(true);
-        textIdade.addActionListener(new java.awt.event.ActionListener() {
+        textAnofabricacao.setBackground(new java.awt.Color(255, 255, 255));
+        textAnofabricacao.setInheritsPopupMenu(true);
+        textAnofabricacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textIdadeActionPerformed(evt);
+                textAnofabricacaoActionPerformed(evt);
             }
         });
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("CPF");
+        jLabel4.setText("Capacidade");
 
-        textCPF.setBackground(new java.awt.Color(255, 255, 255));
+        textCapacidadebus.setBackground(new java.awt.Color(255, 255, 255));
 
         btnCadastrar.setBackground(new java.awt.Color(69, 73, 74));
         btnCadastrar.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -348,71 +326,71 @@ public class formOnibus extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Nome");
+        jLabel6.setText("Modelo");
 
-        textNome.setBackground(new java.awt.Color(255, 255, 255));
+        textModelobus.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnAlterar.setBackground(new java.awt.Color(69, 73, 74));
-        btnAlterar.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        btnAlterar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAlterar.setText("Alterar");
-        btnAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAlterarbus.setBackground(new java.awt.Color(69, 73, 74));
+        btnAlterarbus.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        btnAlterarbus.setForeground(new java.awt.Color(255, 255, 255));
+        btnAlterarbus.setText("Alterar");
+        btnAlterarbus.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAlterarMouseClicked(evt);
+                btnAlterarbusMouseClicked(evt);
             }
         });
-        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+        btnAlterarbus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarActionPerformed(evt);
+                btnAlterarbusActionPerformed(evt);
             }
         });
 
-        btnBuscar.setBackground(new java.awt.Color(69, 73, 74));
-        btnBuscar.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscar.setText("Buscar");
-        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnBuscarbus.setBackground(new java.awt.Color(69, 73, 74));
+        btnBuscarbus.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        btnBuscarbus.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarbus.setText("Buscar");
+        btnBuscarbus.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBuscarMouseClicked(evt);
+                btnBuscarbusMouseClicked(evt);
             }
         });
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarbus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
+                btnBuscarbusActionPerformed(evt);
             }
         });
 
-        btnDeletar.setBackground(new java.awt.Color(69, 73, 74));
-        btnDeletar.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        btnDeletar.setForeground(new java.awt.Color(255, 255, 255));
-        btnDeletar.setText("Deletar");
-        btnDeletar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnDeletarbus.setBackground(new java.awt.Color(69, 73, 74));
+        btnDeletarbus.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        btnDeletarbus.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeletarbus.setText("Deletar");
+        btnDeletarbus.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnDeletarMouseClicked(evt);
+                btnDeletarbusMouseClicked(evt);
             }
         });
-        btnDeletar.addActionListener(new java.awt.event.ActionListener() {
+        btnDeletarbus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeletarActionPerformed(evt);
+                btnDeletarbusActionPerformed(evt);
             }
         });
 
         jLabel7.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Idade");
+        jLabel7.setText("Ano Fabr");
 
-        btnNOVO.setBackground(new java.awt.Color(69, 73, 74));
-        btnNOVO.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        btnNOVO.setForeground(new java.awt.Color(255, 255, 255));
-        btnNOVO.setText("Novo Cadastro");
-        btnNOVO.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnCadastrarbus.setBackground(new java.awt.Color(69, 73, 74));
+        btnCadastrarbus.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        btnCadastrarbus.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastrarbus.setText("Novo Cadastro");
+        btnCadastrarbus.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnNOVOMouseClicked(evt);
+                btnCadastrarbusMouseClicked(evt);
             }
         });
-        btnNOVO.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrarbus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNOVOActionPerformed(evt);
+                btnCadastrarbusActionPerformed(evt);
             }
         });
 
@@ -424,34 +402,31 @@ public class formOnibus extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel4)
                     .addComponent(jLabel6)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(31, 31, 31)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(textIdade)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addGap(0, 0, Short.MAX_VALUE))))
-                        .addComponent(textNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(textCPF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnNOVO, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblID))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                    .addComponent(textModelobus, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(lblbusID)
+                    .addComponent(textAnofabricacao, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(textPlacabus, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(textCapacidadebus, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCadastrarbus, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
+                        .addGap(49, 49, 49)
+                        .addComponent(btnAlterarbus, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDeletarbus, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(352, 352, 352)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnBuscarbus, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel1)))
@@ -467,25 +442,27 @@ public class formOnibus extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(textModelobus, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8)
+                                .addComponent(textPlacabus, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textCapacidadebus, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textAnofabricacao, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCadastrar)
-                            .addComponent(btnAlterar))
+                            .addComponent(btnAlterarbus))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnNOVO, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCadastrarbus, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1)
@@ -493,10 +470,10 @@ public class formOnibus extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnDeletar)
-                            .addComponent(btnBuscar))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(lblID, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                            .addComponent(btnDeletarbus)
+                            .addComponent(btnBuscarbus))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(lblbusID, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -511,278 +488,17 @@ public class formOnibus extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pgROTAS.addTab("Motorista", jPanel1);
-
-        jPanel4.setBackground(new java.awt.Color(142, 157, 204));
-
-        jLabel9.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Cadastrar novo usuário/passageiro");
-
-        jLabel10.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Email");
-
-        textEMAIL1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel11.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Nome");
-
-        textNOME1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel12.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Telefone");
-
-        textTELEFONE1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel13.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Idade");
-
-        textIDADE1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel14.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Senha");
-
-        textSENHA1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel15.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("CPF");
-
-        textCPF1.setBackground(new java.awt.Color(255, 255, 255));
-        textCPF1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textCPF1ActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Consulta de passageiros");
-
-        tblPASSAGEIRO.setForeground(new java.awt.Color(69, 73, 74));
-        tblPASSAGEIRO.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Código", "Nome", "Email", "CPF", "Idade", "Telefone", "Senha"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblPASSAGEIRO.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                tblPASSAGEIROFocusGained(evt);
-            }
-        });
-        tblPASSAGEIRO.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblPASSAGEIROMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(tblPASSAGEIRO);
-
-        btnDeletar1.setBackground(new java.awt.Color(69, 73, 74));
-        btnDeletar1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        btnDeletar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnDeletar1.setText("Deletar");
-        btnDeletar1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnDeletar1MouseClicked(evt);
-            }
-        });
-        btnDeletar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeletar1ActionPerformed(evt);
-            }
-        });
-
-        btnBuscar1.setBackground(new java.awt.Color(69, 73, 74));
-        btnBuscar1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        btnBuscar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscar1.setText("Buscar");
-        btnBuscar1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBuscar1MouseClicked(evt);
-            }
-        });
-        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar1ActionPerformed(evt);
-            }
-        });
-
-        btnAlterar1.setBackground(new java.awt.Color(69, 73, 74));
-        btnAlterar1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        btnAlterar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnAlterar1.setText("Alterar");
-        btnAlterar1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAlterar1MouseClicked(evt);
-            }
-        });
-        btnAlterar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterar1ActionPerformed(evt);
-            }
-        });
-
-        btnCadastrar1.setBackground(new java.awt.Color(69, 73, 74));
-        btnCadastrar1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        btnCadastrar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnCadastrar1.setText("Cadastrar");
-        btnCadastrar1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCadastrar1MouseClicked(evt);
-            }
-        });
-        btnCadastrar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrar1ActionPerformed(evt);
-            }
-        });
-
-        lblID1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        lblID1.setForeground(new java.awt.Color(255, 255, 255));
-        lblID1.setText("0");
-
-        btnNOVO1.setBackground(new java.awt.Color(69, 73, 74));
-        btnNOVO1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        btnNOVO1.setForeground(new java.awt.Color(255, 255, 255));
-        btnNOVO1.setText("Novo Cadastro");
-        btnNOVO1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnNOVO1MouseClicked(evt);
-            }
-        });
-        btnNOVO1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNOVO1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(lblID1)
-                        .addContainerGap(1008, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel11)
-                                .addComponent(jLabel9)
-                                .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel12)
-                                        .addComponent(textTELEFONE1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel15)
-                                        .addComponent(textCPF1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel10))
-                                    .addGap(27, 27, 27)
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(textIDADE1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel13)))
-                                .addComponent(jLabel14)
-                                .addComponent(textSENHA1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textEMAIL1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textNOME1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addComponent(btnCadastrar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGap(95, 95, 95)
-                                    .addComponent(btnAlterar1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(btnNOVO1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                    .addComponent(btnDeletar1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(352, 352, 352)
-                                    .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(290, 290, 290)))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37))))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textNOME1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13))
-                        .addGap(8, 8, 8)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textTELEFONE1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textIDADE1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textCPF1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textEMAIL1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(textSENHA1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCadastrar1)
-                            .addComponent(btnAlterar1))
-                        .addGap(10, 10, 10)
-                        .addComponent(btnNOVO1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnDeletar1)
-                            .addComponent(btnBuscar1))))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(lblID1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
-        );
+        pgROTAS.addTab("Ônibus", jPanel1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 1043, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 483, Short.MAX_VALUE)
         );
 
         pgROTAS.addTab("Passageiro", jPanel3);
@@ -816,246 +532,9 @@ public class formOnibus extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tblMOTORISTASFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tblMOTORISTASFocusGained
-
-    }//GEN-LAST:event_tblMOTORISTASFocusGained
-
-    private void tblMOTORISTASMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMOTORISTASMouseClicked
-        DefaultTableModel model = (DefaultTableModel) tblMOTORISTAS.getModel();
-
-        int selectedRow = tblMOTORISTAS.getSelectedRow();
-
-        if (selectedRow != -1) {
-            lblID.setText(tblMOTORISTAS.getValueAt(selectedRow, 0).toString());
-            textNome.setText(tblMOTORISTAS.getValueAt(selectedRow, 1).toString());
-            textIdade.setText(tblMOTORISTAS.getValueAt(selectedRow, 2).toString());
-            textCPF.setText(tblMOTORISTAS.getValueAt(selectedRow, 3).toString());
-            textTelefone.setText(tblMOTORISTAS.getValueAt(selectedRow, 4).toString());
-   
-        } else {
-            lblID.setText("0");
-            textNome.setText("");
-            textIdade.setText("");
-            textCPF.setText("");
-            textTelefone.setText("");
-        }
-    }//GEN-LAST:event_tblMOTORISTASMouseClicked
-
-    private void textTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTelefoneActionPerformed
-
-    }//GEN-LAST:event_textTelefoneActionPerformed
-
-    private void textIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textIdadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textIdadeActionPerformed
-
-    private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
-
-        Motorista Cadmoto = new Motorista();
-
-        Cadmoto.setCpf(this.textCPF.getText());
-        Cadmoto.setNome(this.textNome.getText());
-        Cadmoto.setTelefone(this.textTelefone.getText());
-        Cadmoto.setIdade(Integer.parseInt(this.textIdade.getText()));
-        Cadmoto.setIdMotorista(0);
-        
-        motoristaDao m = new motoristaDao();
-        
-        m.incluir(Cadmoto);
-         
-        CaregarMotorista();
-
-    }//GEN-LAST:event_btnCadastrarMouseClicked
-
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-
-    }//GEN-LAST:event_btnCadastrarActionPerformed
-
-    private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
-        motoristaDao m = new motoristaDao();
-
-        DefaultTableModel model = (DefaultTableModel) tblMOTORISTAS.getModel();
-
-        Motorista Cadmoto = new Motorista();
-
-        Cadmoto.setCpf(this.textCPF.getText());
-        Cadmoto.setNome(this.textNome.getText());
-        Cadmoto.setTelefone(this.textTelefone.getText());
-        Cadmoto.setIdade(Integer.parseInt(this.textIdade.getText()));
-        Cadmoto.setIdMotorista(Integer.parseInt(this.lblID.getText()));
-
-        m.alterar(Cadmoto);
-
-        CaregarMotorista();
-    }//GEN-LAST:event_btnAlterarMouseClicked
-
-    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAlterarActionPerformed
-
-    private void btnDeletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeletarMouseClicked
-        motoristaDao m = new motoristaDao();
-        m.excluir(Integer.parseInt(this.lblID.getText()));
-
-        CaregarMotorista();
-
-        this.textCPF.setText("");
-        this.textNome.setText("");
-        this.textTelefone.setText("");
-        this.textIdade.setText("");
-        this.lblID.setText("");
-
-    }//GEN-LAST:event_btnDeletarMouseClicked
-
-    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeletarActionPerformed
-
-    private void jPanel2ComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel2ComponentMoved
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
-        CaregarMotorista();
-    }//GEN-LAST:event_btnBuscarMouseClicked
-
-    private void textCPF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCPF1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textCPF1ActionPerformed
-
     private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField16ActionPerformed
-
-    private void tblPASSAGEIROFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tblPASSAGEIROFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblPASSAGEIROFocusGained
-
-    private void tblPASSAGEIROMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPASSAGEIROMouseClicked
-        DefaultTableModel passageiroModel = (DefaultTableModel) tblPASSAGEIRO.getModel();
-
-        int selectedRow = tblPASSAGEIRO.getSelectedRow();
-
-        if (selectedRow != -1) {
-            lblID1.setText(tblPASSAGEIRO.getValueAt(selectedRow, 0).toString());
-            textNOME1.setText(tblPASSAGEIRO.getValueAt(selectedRow, 1).toString());
-            textEMAIL1.setText(tblPASSAGEIRO.getValueAt(selectedRow, 2).toString());
-            textCPF1.setText(tblPASSAGEIRO.getValueAt(selectedRow, 3).toString());
-            textIDADE1.setText(tblPASSAGEIRO.getValueAt(selectedRow, 4).toString());
-            textTELEFONE1.setText(tblPASSAGEIRO.getValueAt(selectedRow, 5).toString());
-            textSENHA1.setText(tblPASSAGEIRO.getValueAt(selectedRow, 6).toString());
-        } else {
-            lblID1.setText("0");
-            textNOME1.setText("");
-            textIDADE1.setText("");
-            textCPF1.setText("");
-            textTELEFONE1.setText("");
-            textEMAIL1.setText("");
-            textSENHA1.setText("");
-        }
-    }//GEN-LAST:event_tblPASSAGEIROMouseClicked
-
-    private void btnDeletar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeletar1MouseClicked
-        passageiroDao passageiroDao = new passageiroDao();
-        passageiroDao.Excluir(Integer.parseInt(this.lblID1.getText())); 
-
-        CaregarPassageiro();
-
-        this.textCPF1.setText("");
-        this.textNOME1.setText("");
-        this.textTELEFONE1.setText("");
-        this.textIDADE1.setText("");
-        this.textSENHA1.setText("");
-        this.textEMAIL1.setText("");
-        this.lblID1.setText("");
-
-    }//GEN-LAST:event_btnDeletar1MouseClicked
-
-    private void btnDeletar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeletar1ActionPerformed
-
-    private void btnBuscar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscar1MouseClicked
-         CaregarPassageiro();
-    }//GEN-LAST:event_btnBuscar1MouseClicked
-
-    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscar1ActionPerformed
-
-    private void btnAlterar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterar1MouseClicked
-        Passageiro passageiroParaAtualizar = new Passageiro();
-
-        passageiroParaAtualizar.setIdPassageiro(Integer.parseInt(this.lblID1.getText())); 
-        passageiroParaAtualizar.setCpf(this.textCPF1.getText());
-        passageiroParaAtualizar.setNome(this.textNOME1.getText());
-        passageiroParaAtualizar.setTelefone(this.textTELEFONE1.getText());
-        passageiroParaAtualizar.setIdade(Integer.parseInt(this.textIDADE1.getText()));
-        passageiroParaAtualizar.setEmail(this.textEMAIL1.getText());
-        passageiroParaAtualizar.setSenha(this.textSENHA1.getText());
-
-        passageiroDao passageiroDao = new passageiroDao();
-        passageiroDao.Alterar(passageiroParaAtualizar);
-
-        CaregarPassageiro();
-    }//GEN-LAST:event_btnAlterar1MouseClicked
-
-    private void btnAlterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAlterar1ActionPerformed
-
-    private void btnCadastrar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrar1MouseClicked
-        Passageiro novoPassageiro = new Passageiro();
-
-        novoPassageiro.setCpf(this.textCPF1.getText());
-        novoPassageiro.setNome(this.textNOME1.getText());
-        novoPassageiro.setTelefone(this.textTELEFONE1.getText());
-        novoPassageiro.setEmail(this.textEMAIL1.getText());
-        novoPassageiro.setIdade(Integer.parseInt(this.textIDADE1.getText()));
-        novoPassageiro.setSenha(this.textSENHA1.getText());
-        novoPassageiro.setIdPassageiro(0);
-
-        passageiroDao passageiroDao = new passageiroDao();
-        passageiroDao.Incluir(novoPassageiro);
-
-        CaregarPassageiro();
-
-    }//GEN-LAST:event_btnCadastrar1MouseClicked
-
-    private void btnCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCadastrar1ActionPerformed
-
-    private void btnNOVOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNOVOMouseClicked
-        this.textCPF.setText("");
-        this.textNome.setText("");
-        this.textTelefone.setText("");
-        this.textIdade.setText("");
-        this.lblID.setText("");
-     
-    }//GEN-LAST:event_btnNOVOMouseClicked
-
-    private void btnNOVOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNOVOActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNOVOActionPerformed
-
-    private void btnNOVO1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNOVO1MouseClicked
-        lblID1.setText("0");
-        textNOME1.setText("");
-        textIDADE1.setText("");
-        textCPF1.setText("");
-        textTELEFONE1.setText("");
-        textEMAIL1.setText("");
-        textSENHA1.setText("");
-    }//GEN-LAST:event_btnNOVO1MouseClicked
-
-    private void btnNOVO1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNOVO1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNOVO1ActionPerformed
 
     private void mnSAIRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnSAIRMouseClicked
         formLogin login = new formLogin();
@@ -1063,6 +542,124 @@ public class formOnibus extends javax.swing.JFrame {
         this.setVisible(false);
         login.setVisible(true);
     }//GEN-LAST:event_mnSAIRMouseClicked
+
+    private void jPanel2ComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel2ComponentMoved
+
+    private void btnCadastrarbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarbusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCadastrarbusActionPerformed
+
+    private void btnCadastrarbusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarbusMouseClicked
+        this.textCapacidadebus.setText("");
+        this.textModelobus.setText("");
+        this.textPlacabus.setText("");
+        this.textAnofabricacao.setText("");
+        this.lblbusID.setText("");
+
+    }//GEN-LAST:event_btnCadastrarbusMouseClicked
+
+    private void btnDeletarbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarbusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeletarbusActionPerformed
+
+    private void btnDeletarbusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeletarbusMouseClicked
+        onibusDao bus = new onibusDao();
+        bus.excluir(Integer.parseInt(this.lblbusID.getText()));
+
+        CaregarOnibus();
+
+        this.textCapacidadebus.setText("");
+        this.textModelobus.setText("");
+        this.textPlacabus.setText("");
+        this.textAnofabricacao.setText("");
+        this.lblbusID.setText("");
+    }//GEN-LAST:event_btnDeletarbusMouseClicked
+
+    private void btnBuscarbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarbusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarbusActionPerformed
+
+    private void btnBuscarbusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarbusMouseClicked
+        CaregarOnibus();
+    }//GEN-LAST:event_btnBuscarbusMouseClicked
+
+    private void btnAlterarbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarbusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlterarbusActionPerformed
+
+    private void btnAlterarbusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarbusMouseClicked
+        onibusDao bus = new onibusDao();
+
+        DefaultTableModel model = (DefaultTableModel) tblOnibus.getModel();
+
+        Onibus Cadbus = new Onibus();
+
+        Cadbus.setModelo(this.textModelobus.getText());
+        Cadbus.setPlaca(this.textPlacabus.getText());
+        Cadbus.setAnoFabricacao(Integer.parseInt(this.textAnofabricacao.getText()));
+        Cadbus.setCapacidade(Integer.parseInt(this.textCapacidadebus.getText()));
+        Cadbus.setIdOnibus(Integer.parseInt(this.lblbusID.getText()));
+
+        bus.alterar(Cadbus);
+
+        CaregarOnibus();
+    }//GEN-LAST:event_btnAlterarbusMouseClicked
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
+
+        Onibus Cadbus = new Onibus();
+
+        Cadbus.setModelo(this.textModelobus.getText());
+        Cadbus.setPlaca(this.textPlacabus.getText());
+        Cadbus.setAnoFabricacao(Integer.parseInt(this.textAnofabricacao.getText()));
+        Cadbus.setCapacidade(Integer.parseInt(this.textCapacidadebus.getText()));
+        Cadbus.setIdOnibus(0);
+
+        onibusDao bus = new onibusDao();
+
+        bus.incluir(Cadbus);
+
+        //CaregarMotorista();
+    }//GEN-LAST:event_btnCadastrarMouseClicked
+
+    private void textAnofabricacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAnofabricacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textAnofabricacaoActionPerformed
+
+    private void textPlacabusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPlacabusActionPerformed
+
+    }//GEN-LAST:event_textPlacabusActionPerformed
+
+    private void tblOnibusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOnibusMouseClicked
+        DefaultTableModel model = (DefaultTableModel) tblOnibus.getModel();
+
+        int selectedRow = tblOnibus.getSelectedRow();
+
+        if (selectedRow != -1) {
+            lblbusID.setText(tblOnibus.getValueAt(selectedRow, 0).toString());
+            textModelobus.setText(tblOnibus.getValueAt(selectedRow, 1).toString());
+            textPlacabus.setText(tblOnibus.getValueAt(selectedRow, 2).toString());
+            textCapacidadebus.setText(tblOnibus.getValueAt(selectedRow, 3).toString());
+            textAnofabricacao.setText(tblOnibus.getValueAt(selectedRow, 4).toString());
+
+        } else {
+            lblbusID.setText("0");
+            textModelobus.setText("");
+            textAnofabricacao.setText("");
+            textCapacidadebus.setText("");
+            textPlacabus.setText("");
+        }
+    }//GEN-LAST:event_tblOnibusMouseClicked
+
+    private void tblOnibusFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tblOnibusFocusGained
+
+    }//GEN-LAST:event_tblOnibusFocusGained
 
     /**
      * @param args the command line arguments
@@ -1103,24 +700,13 @@ public class formOnibus extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAlterar;
-    private javax.swing.JButton btnAlterar1;
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnBuscar1;
+    private javax.swing.JButton btnAlterarbus;
+    private javax.swing.JButton btnBuscarbus;
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnCadastrar1;
-    private javax.swing.JButton btnDeletar;
-    private javax.swing.JButton btnDeletar1;
-    private javax.swing.JButton btnNOVO;
-    private javax.swing.JButton btnNOVO1;
+    private javax.swing.JButton btnCadastrarbus;
+    private javax.swing.JButton btnDeletarbus;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -1129,12 +715,10 @@ public class formOnibus extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -1143,10 +727,8 @@ public class formOnibus extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField10;
@@ -1155,21 +737,13 @@ public class formOnibus extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JLabel lblID;
-    private javax.swing.JLabel lblID1;
+    private javax.swing.JLabel lblbusID;
     private javax.swing.JMenu mnSAIR;
     private javax.swing.JTabbedPane pgROTAS;
-    private javax.swing.JTable tblMOTORISTAS;
-    private javax.swing.JTable tblPASSAGEIRO;
-    private javax.swing.JTextField textCPF;
-    private javax.swing.JTextField textCPF1;
-    private javax.swing.JTextField textEMAIL1;
-    private javax.swing.JTextField textIDADE1;
-    private javax.swing.JTextField textIdade;
-    private javax.swing.JTextField textNOME1;
-    private javax.swing.JTextField textNome;
-    private javax.swing.JTextField textSENHA1;
-    private javax.swing.JTextField textTELEFONE1;
-    private javax.swing.JTextField textTelefone;
+    private javax.swing.JTable tblOnibus;
+    private javax.swing.JTextField textAnofabricacao;
+    private javax.swing.JTextField textCapacidadebus;
+    private javax.swing.JTextField textModelobus;
+    private javax.swing.JTextField textPlacabus;
     // End of variables declaration//GEN-END:variables
 }

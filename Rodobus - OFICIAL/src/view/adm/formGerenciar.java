@@ -37,6 +37,7 @@ public class formGerenciar extends javax.swing.JFrame {
         motoristaDao motoristaDao = new motoristaDao();
         motoristaDao.criarBanco();
         ArrayList<Motorista> motoristas = motoristaDao.selecionarMotoristas();
+        
         DefaultTableModel motoristaModel = (DefaultTableModel) tblMOTORISTAS.getModel();
         motoristaModel.setRowCount(0);
 
