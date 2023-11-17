@@ -23,7 +23,7 @@ public class rotaDao extends conectarDao {
     public ArrayList<Rota> selecionarRotas() {
         ArrayList<Rota> rotas = new ArrayList<Rota>();
 
-        String sql = "SELECT ID_rota, ds_destino,ds_origem dt_saida, dt_chegada, vl_preco from tb_rota";
+        String sql = "SELECT id_rota, ds_origem, ds_destino, vl_distancia, ds_duracao, vl_preco, dt_saida, dt_chegada from tb_rota";
 
         try {
             PreparedStatement ps = mycon.prepareStatement(sql);
