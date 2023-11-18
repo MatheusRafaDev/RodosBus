@@ -4,13 +4,17 @@
  */
 package view.adm;
 
+import controller.rotaDao;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Rota;
+import java.util.ArrayList;
+import controller.conectarDao;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
-/**
- *
- * @author italo
- */
 public class formCadastroRotas extends javax.swing.JFrame {
 
     /**
@@ -18,6 +22,15 @@ public class formCadastroRotas extends javax.swing.JFrame {
      */
     public formCadastroRotas() {
         initComponents();
+        rotaDao rota = new rotaDao();
+        rota.criarBanco();
+        ArrayList<Rota> rotas = rota.selecionarRotas();
+        DefaultTableModel model = (DefaultTableModel) tblROTA.getModel();
+        model.setRowCount(0);
+        for (Rota rota2 : rotas) {
+            model.addRow(new Object[]{rota2.getIdRota(), rota2.getOrigem(), rota2.getDestino(), rota2.getChegada(), rota2.getSaida(), rota2.getPreco()});
+        }
+
     }
 
     /**
@@ -31,31 +44,30 @@ public class formCadastroRotas extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabela1 = new javax.swing.JTable();
+        tblROTA = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         cadastroBTN = new javax.swing.JButton();
-        filialSaidaComboBox = new javax.swing.JComboBox<>();
-        filialChegadaComboBox = new javax.swing.JComboBox<>();
-        motorista = new javax.swing.JComboBox<>();
-        valorTextField = new javax.swing.JTextField();
-        dataTextField = new javax.swing.JTextField();
-        horarioIdaTextField = new javax.swing.JTextField();
-        horarioChegTextField = new javax.swing.JTextField();
+        textVALOR = new javax.swing.JTextField();
+        txtIDA = new javax.swing.JTextField();
+        txtCHEGADA = new javax.swing.JTextField();
         deletarBTN = new javax.swing.JButton();
         alterarBTN = new javax.swing.JButton();
+        txtMOTO = new javax.swing.JTextField();
+        txtDESTINO = new javax.swing.JTextField();
+        txtSAIDA = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(125, 132, 178));
 
-        tabela1.setModel(new javax.swing.table.DefaultTableModel(
+        tblROTA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -71,21 +83,21 @@ public class formCadastroRotas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabela1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tabela1);
-        if (tabela1.getColumnModel().getColumnCount() > 0) {
-            tabela1.getColumnModel().getColumn(0).setResizable(false);
-            tabela1.getColumnModel().getColumn(1).setResizable(false);
-            tabela1.getColumnModel().getColumn(2).setResizable(false);
-            tabela1.getColumnModel().getColumn(3).setResizable(false);
-            tabela1.getColumnModel().getColumn(4).setResizable(false);
-            tabela1.getColumnModel().getColumn(5).setResizable(false);
-            tabela1.getColumnModel().getColumn(6).setResizable(false);
+        tblROTA.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblROTA);
+        if (tblROTA.getColumnModel().getColumnCount() > 0) {
+            tblROTA.getColumnModel().getColumn(0).setResizable(false);
+            tblROTA.getColumnModel().getColumn(1).setResizable(false);
+            tblROTA.getColumnModel().getColumn(2).setResizable(false);
+            tblROTA.getColumnModel().getColumn(3).setResizable(false);
+            tblROTA.getColumnModel().getColumn(4).setResizable(false);
+            tblROTA.getColumnModel().getColumn(5).setResizable(false);
+            tblROTA.getColumnModel().getColumn(6).setResizable(false);
         }
 
         jLabel8.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("CADASTRO DE ROTAS");
+        jLabel8.setText("Cadastro de rotas");
 
         jLabel9.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -95,17 +107,13 @@ public class formCadastroRotas extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Filial de Saida");
 
-        jLabel11.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Data Saida");
-
         jLabel12.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Horario Ida");
+        jLabel12.setText("Data de chegada");
 
         jLabel13.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Horario Chegada");
+        jLabel13.setText("Data de sáida");
 
         jLabel14.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -122,24 +130,16 @@ public class formCadastroRotas extends javax.swing.JFrame {
             }
         });
 
-        filialSaidaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        filialChegadaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        motorista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        valorTextField.setText("R$");
-        valorTextField.addActionListener(new java.awt.event.ActionListener() {
+        textVALOR.setText("R$");
+        textVALOR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                valorTextFieldActionPerformed(evt);
+                textVALORActionPerformed(evt);
             }
         });
 
-        dataTextField.setForeground(new java.awt.Color(204, 204, 204));
-        dataTextField.setText("DD/MM/YY");
-        dataTextField.addActionListener(new java.awt.event.ActionListener() {
+        txtCHEGADA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataTextFieldActionPerformed(evt);
+                txtCHEGADAActionPerformed(evt);
             }
         });
 
@@ -157,106 +157,95 @@ public class formCadastroRotas extends javax.swing.JFrame {
             }
         });
 
+        jLabel11.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Cadastro de rotas");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(txtSAIDA, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(135, 135, 135))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel9)
+                            .addGap(178, 178, 178))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel10)
+                            .addGap(113, 113, 113)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtMOTO, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel15)
+                                .addComponent(jLabel14)
+                                .addComponent(textVALOR, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(txtIDA, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDESTINO, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(txtCHEGADA, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(motorista, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(valorTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGap(273, 273, 273)
-                                .addComponent(cadastroBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(47, 47, 47)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(deletarBTN)
-                                    .addComponent(alterarBTN)))
-                            .addComponent(jLabel14)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel10)
-                                        .addGap(246, 246, 246)
-                                        .addComponent(jLabel11))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9)
-                                            .addComponent(filialChegadaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(filialSaidaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(217, 217, 217)
-                                                .addComponent(dataTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel12)
-                                                    .addComponent(horarioIdaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                                .addGap(78, 78, 78)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel13)
-                                    .addComponent(horarioChegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addComponent(jLabel8))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(210, 331, Short.MAX_VALUE))
+                        .addComponent(cadastroBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(131, 131, 131)
+                        .addComponent(alterarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel8))
+                .addGap(55, 55, 55)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(deletarBTN)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(779, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel8)
-                .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel8))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel11)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(filialSaidaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel15))
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSAIDA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMOTO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(filialChegadaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel14)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel14))
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtDESTINO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textVALOR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCHEGADA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)
-                        .addComponent(valorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(dataTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13))
+                        .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIDA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(horarioIdaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(horarioChegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                        .addComponent(alterarBTN)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cadastroBTN)
+                            .addComponent(alterarBTN))
+                        .addContainerGap(118, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(motorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cadastroBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(deletarBTN)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(deletarBTN)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -275,56 +264,41 @@ public class formCadastroRotas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void valorTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorTextFieldActionPerformed
+    private void textVALORActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textVALORActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_valorTextFieldActionPerformed
-
-    private void dataTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dataTextFieldActionPerformed
+    }//GEN-LAST:event_textVALORActionPerformed
 
     private void cadastroBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroBTNMouseClicked
-DefaultTableModel model = (DefaultTableModel) tabela1.getModel();
-tabela1.setModel(model);
-// Obtenha os valores das combo boxes e campos de texto
-String filialSaida = (String) filialSaidaComboBox.getSelectedItem();
-String filialChegada = (String) filialChegadaComboBox.getSelectedItem();
-String motoristaBox = (String) motorista.getSelectedItem();
-String data = dataTextField.getText();
-String horarioIda = horarioIdaTextField.getText();
-String horarioChegada = horarioChegTextField.getText();
-String valor = valorTextField.getText();
+        rotaDao r = new rotaDao();
+        Rota rota = new Rota();
 
-Object[] linhas ={filialSaida, filialChegada, motoristaBox, data, horarioIda, horarioChegada, valor};
-model.addRow(linhas);
+        String origem = txtSAIDA.getText();
+        String destino = txtDESTINO.getText();
+        int valor = Integer.parseInt(textVALOR.getText());
+        Date saida = txtSAIDA.getText();
+        Date chegada = txtCHEGADA.getText();
 
-JOptionPane.showMessageDialog(null,"Cadastrado com sucesso.");
-filialSaidaComboBox.setSelectedIndex(0);
-filialChegadaComboBox.setSelectedIndex(0);
-motorista.setSelectedIndex(0);
-dataTextField.setText("");
-horarioIdaTextField.setText("");
-horarioChegTextField.setText("");
-valorTextField.setText("R$");
+        rota.setDestino(destino);
+        rota.setOrigem(origem);
+        rota.setChegada(chegada);
+        rota.setSaida(saida);
+        rota.setPreco(valor);
+
+        r.incluirRota(rota);
     }//GEN-LAST:event_cadastroBTNMouseClicked
 
     private void deletarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletarBTNMouseClicked
 
-        int selectedRow = tabela1.getSelectedRow();
-        if (selectedRow != -1) {
-            DefaultTableModel model1 = (DefaultTableModel) tabela1.getModel();
-            model1.removeRow(selectedRow);
-            JOptionPane.showMessageDialog(null,"Deletado com sucesso.");
-        }else{
-            JOptionPane.showMessageDialog(null,"Selecione um para deletar.");
-        }
-    
 
     }//GEN-LAST:event_deletarBTNMouseClicked
 
     private void alterarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alterarBTNMouseClicked
 
     }//GEN-LAST:event_alterarBTNMouseClicked
+
+    private void txtCHEGADAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCHEGADAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCHEGADAActionPerformed
 
     /**
      * @param args the command line arguments
@@ -365,12 +339,7 @@ valorTextField.setText("R$");
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton alterarBTN;
     private javax.swing.JButton cadastroBTN;
-    private javax.swing.JTextField dataTextField;
     private javax.swing.JButton deletarBTN;
-    private javax.swing.JComboBox<String> filialChegadaComboBox;
-    private javax.swing.JComboBox<String> filialSaidaComboBox;
-    private javax.swing.JTextField horarioChegTextField;
-    private javax.swing.JTextField horarioIdaTextField;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -381,8 +350,12 @@ valorTextField.setText("R$");
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> motorista;
-    private javax.swing.JTable tabela1;
-    private javax.swing.JTextField valorTextField;
+    private javax.swing.JTable tblROTA;
+    private javax.swing.JTextField textVALOR;
+    private javax.swing.JTextField txtCHEGADA;
+    private javax.swing.JTextField txtDESTINO;
+    private javax.swing.JTextField txtIDA;
+    private javax.swing.JTextField txtMOTO;
+    private javax.swing.JTextField txtSAIDA;
     // End of variables declaration//GEN-END:variables
 }

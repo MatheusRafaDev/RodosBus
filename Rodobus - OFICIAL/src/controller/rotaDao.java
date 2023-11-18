@@ -23,7 +23,7 @@ public class rotaDao extends conectarDao {
     public ArrayList<Rota> selecionarRotas() {
         ArrayList<Rota> rotas = new ArrayList<Rota>();
 
-        String sql = "SELECT id_rota, ds_origem, ds_destino, vl_distancia, ds_duracao, vl_preco, dt_saida, dt_chegada from tb_rota";
+        String sql = "SELECT ID_rota, ds_destino,ds_origem dt_saida, dt_chegada, vl_preco from tb_rota";
 
         try {
             PreparedStatement ps = mycon.prepareStatement(sql);
@@ -59,6 +59,29 @@ public class rotaDao extends conectarDao {
         }
 
         return rotas;
+    }
+
+    public void incluirRota(Rota rota) {
+        sql= "INSERT INTO TB_ROTA (DS_ORIGEM, DS_DESTINO, VL_DISTANCIA, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA) VALUES (?,?,?,?,?,?,?)";
+        try {
+            ps = mycon.prepareStatement(sql);
+
+            ps.setString(1, rota.getOrigem());
+            ps.setString(2, rota.getDestino());
+            ps.setDouble(3, rota.getPreco());
+            ps.setDate(4,(java.sql.Date) rota.getSaida());
+            ps.setDate(5,(java.sql.Date) rota.getChegada());
+
+            ps.execute();
+            ps.close();
+            JOptionPane.showMessageDialog(null, "Cadastro concluído com Sucesso!");
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, "Erro ao Cadastrar!" + err.getMessage());
+        }
+    }
+
+    public void getDestino() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
 
