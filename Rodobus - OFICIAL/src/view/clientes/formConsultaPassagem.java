@@ -30,7 +30,10 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         IdPassageiro = pass.getIdPassageiro();
         IdRota = rt.getIdRota();
         
-        }
+        this.setVisible(false);
+        formConfirmarPag pag = new formConfirmarPag(IdRota,IdPassageiro);
+        pag.setVisible(true);
+    }
     
     public void carregarRota() {
         rotaDao rota = new rotaDao();
@@ -451,12 +454,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     
     
     private void RESERVARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RESERVARMouseClicked
-        // TODO add your handling code here:]
-        
-        this.setVisible(false);
-        formConfirmarPag pgsdn = new formConfirmarPag();
-        pgsdn.setVisible(true);
-        
+
         carregarInfo(pass.getIdPassageiro(),rt.getIdRota());
 
     }//GEN-LAST:event_RESERVARMouseClicked
