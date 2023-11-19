@@ -108,7 +108,6 @@ public class conectarDao {
                 int contador = Integer.parseInt(resultSet.getString("CONTAR"));
 
                 if (contador == 0) {
-                    // Se não houver registros, chama o método inserirDados()
                     inserirDados();
                 }
             } catch (SQLException ex) {
@@ -116,8 +115,8 @@ public class conectarDao {
             }
 
             ps.close();
-            mycon.close();
-            JOptionPane.showMessageDialog(null, "Banco criado com sucesso...");
+            //mycon.close();
+            //JOptionPane.showMessageDialog(null, "Banco criado com sucesso...");
         } catch (SQLException err) {
 
         }
