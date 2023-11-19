@@ -14,34 +14,40 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import model.Rota;
+
 /**
  *
  * @author alesandro.rsjunior
  */
 public class formConsultaPassagem extends javax.swing.JFrame {
 
-    
-    public void carregarRota() {
-    rotaDao rota = new rotaDao();
-    rota.criarBanco();
-    ArrayList<Rota> rotas = rota.selecionarRotas();
-       
-    DefaultTableModel model = (DefaultTableModel) tblROTAS.getModel();
-    model.setRowCount(0);
-     
-    for (Rota rota2 : rotas) {
-        model.addRow(new Object[]{rota2.getIdRota(), rota2.getOrigem(), rota2.getDestino(), rota2.getDtSaida(), rota2.getDtChegada(), rota2.getVlPreco()});
+    formConsultaPassagem(formConsultaPassagem pass) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-}
+
+    public void carregarRota() {
+        rotaDao rota = new rotaDao();
+        rota.criarBanco();
+        ArrayList<Rota> rotas = rota.selecionarRotas();
+
+        DefaultTableModel model = (DefaultTableModel) tblROTAS.getModel();
+        model.setRowCount(0);
+
+        for (Rota rota2 : rotas) {
+            model.addRow(new Object[]{rota2.getIdRota(), rota2.getOrigem(), rota2.getDestino(), rota2.getDtSaida(), rota2.getDtChegada(), rota2.getVlPreco()});
+        }
+    }
+    
+    Passageiro pass = new Passageiro();
     
     public formConsultaPassagem(Passageiro obj) {
         initComponents();
-        this.mnNOME.setText(obj.getNome());  
-        this.mnID.setText("Id: " + obj.getIdPassageiro());  
+        this.mnNOME.setText(obj.getNome());
+        this.mnID.setText("Id: " + obj.getIdPassageiro());
         carregarRota();
+        
+        pass = obj;
     }
-
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -64,10 +70,9 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
         mnNOME = new javax.swing.JMenu();
-        optPEDIDO = new javax.swing.JMenuItem();
-        optPERFIL = new javax.swing.JMenuItem();
         mnID = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
+        mnPedido = new javax.swing.JMenu();
+        mnPERFIL = new javax.swing.JMenu();
         mnSAIR = new javax.swing.JMenu();
 
         jMenu3.setText("File");
@@ -183,32 +188,34 @@ public class formConsultaPassagem extends javax.swing.JFrame {
                     .addComponent(btnComprar)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
-                .addGap(23, 23, 23))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         jMenuBar1.add(jMenu7);
 
         mnNOME.setText("Nome");
-
-        optPEDIDO.setText("Pedidos");
-        optPEDIDO.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                optPEDIDOActionPerformed(evt);
+        mnNOME.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnNOMEMouseClicked(evt);
             }
         });
-        mnNOME.add(optPEDIDO);
-
-        optPERFIL.setText("Perfil");
-        mnNOME.add(optPERFIL);
-
         jMenuBar1.add(mnNOME);
 
         mnID.setText("0");
         jMenuBar1.add(mnID);
 
-        jMenu1.setText("                                                                                                                                                                                                                       ");
-        jMenuBar1.add(jMenu1);
+        mnPedido.setText("Pedido");
+        mnPedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnPedidoMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(mnPedido);
+
+        mnPERFIL.setText("Perfil");
+        mnPERFIL.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jMenuBar1.add(mnPERFIL);
 
         mnSAIR.setText("Sair");
         mnSAIR.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -246,21 +253,27 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         carregarRota();
     }//GEN-LAST:event_btnComprarMouseClicked
 
-    private void optPEDIDOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optPEDIDOActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_optPEDIDOActionPerformed
-
     private void mnSAIRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnSAIRMouseClicked
-        formLogin login= new formLogin();
+        formLogin login = new formLogin();
         this.setVisible(false);
         login.setVisible(true);
     }//GEN-LAST:event_mnSAIRMouseClicked
 
     private void tblROTASMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblROTASMouseClicked
-        formConfirmarPag pagamento = new formConfirmarPag();
-        this.setVisible(false);
-        pagamento.setVisible(true); 
+        //formConfirmarPag pagamento = new formConfirmarPag();
+        // this.setVisible(false);
+        //pagamento.setVisible(true); 
     }//GEN-LAST:event_tblROTASMouseClicked
+
+    private void mnPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPedidoMouseClicked
+        this.setVisible(false);
+        formPedidoRealizado pedido = new formPedidoRealizado(pass);
+        pedido.setVisible(true);      
+    }//GEN-LAST:event_mnPedidoMouseClicked
+
+    private void mnNOMEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnNOMEMouseClicked
+
+    }//GEN-LAST:event_mnNOMEMouseClicked
 
     /**
      * @param args the command line arguments
@@ -302,7 +315,6 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnComprar;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -318,9 +330,9 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JMenu mnID;
     private javax.swing.JMenu mnNOME;
+    private javax.swing.JMenu mnPERFIL;
+    private javax.swing.JMenu mnPedido;
     private javax.swing.JMenu mnSAIR;
-    private javax.swing.JMenuItem optPEDIDO;
-    private javax.swing.JMenuItem optPERFIL;
     private javax.swing.JTable tblROTAS;
     // End of variables declaration//GEN-END:variables
 }

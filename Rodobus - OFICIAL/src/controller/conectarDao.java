@@ -42,7 +42,7 @@ public class conectarDao {
             PreparedStatement ps = mycon.prepareStatement(sql);
             ps.execute();
 
-            sql = "CREATE TABLE IF NOT TB_MOTORISTA ("
+            sql = "CREATE TABLE IF NOT EXISTS TB_MOTORISTA ("
                     + "id_motorista INT(5) PRIMARY KEY AUTO_INCREMENT,"
                     + "ds_nome VARCHAR(100),"
                     + "nr_idade INT(3),"
@@ -52,7 +52,7 @@ public class conectarDao {
             ps = mycon.prepareStatement(sql);
             ps.execute();
 
-            sql = "CREATE TABLE IF NOT TB_PASSAGEIRO ("
+            sql = "CREATE TABLE IF NOT EXISTS TB_PASSAGEIRO ("
                     + "id_passageiro INT(5) PRIMARY KEY AUTO_INCREMENT,"
                     + "ds_nome VARCHAR(100),"
                     + "nr_idade INT(3),"
@@ -100,7 +100,7 @@ public class conectarDao {
             mycon.close();
             JOptionPane.showMessageDialog(null, "Banco criado com sucesso...");
         } catch (SQLException err) {
-            /*JOptionPane.showMessageDialog(null, "Erro ao criar banco de dados " + err.getMessage());*/
+           
         }
     }
 
@@ -140,7 +140,7 @@ public class conectarDao {
             psMotorista.executeUpdate();
             psMotorista.close();
 
-            sql = "INSERT INTO TB_ROTA (ds_origem, ds_destino, vl_distancia, ds_duracao, vl_preco, dt_saida, dt_chegada,id_motorista) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO TB_ROTA (ds_origem, ds_destino, vl_distancia, ds_duracao, vl_preco, dt_saida, dt_chegada,id_motorista) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
             PreparedStatement psRota = mycon.prepareStatement(sql);
             psRota.setString(1, "Origem1");
             psRota.setString(2, "Destino1");
