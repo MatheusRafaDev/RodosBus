@@ -18,7 +18,6 @@ public class formLogin extends javax.swing.JFrame {
         initComponents();
         conectarDao c = new conectarDao();
         c.criarBanco();
-        
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
     }

@@ -4,6 +4,7 @@
  */
 package view.adm;
 
+import controller.conectarDao;
 import controller.motoristaDao;
 import controller.passageiroDao;
 import controller.onibusDao;
@@ -25,7 +26,6 @@ public class formGerenciar extends javax.swing.JFrame {
 
     public void CaregarPassageiro(){
         passageiroDao passageiroDao = new passageiroDao();
-        passageiroDao.criarBanco();
         ArrayList<Passageiro> passageiros = passageiroDao.selecionarPassageiros();
         DefaultTableModel passageiroModel = (DefaultTableModel) tblPASSAGEIRO.getModel();
         passageiroModel.setRowCount(0);
@@ -38,7 +38,6 @@ public class formGerenciar extends javax.swing.JFrame {
     
     public void CaregarMotorista(){
         motoristaDao motoristaDao = new motoristaDao();
-        motoristaDao.criarBanco();
         ArrayList<Motorista> motoristas = motoristaDao.selecionarMotoristas();
         
         DefaultTableModel motoristaModel = (DefaultTableModel) tblMOTORISTAS.getModel();
@@ -63,7 +62,10 @@ public class formGerenciar extends javax.swing.JFrame {
      
     public formGerenciar() {
         initComponents();
-
+        
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        conectarDao oDao = new conectarDao();
         CaregarMotorista();
         CaregarOnibus();
         CaregarPassageiro();
@@ -141,8 +143,6 @@ public class formGerenciar extends javax.swing.JFrame {
         btnCadastrar1 = new javax.swing.JButton();
         lblID1 = new javax.swing.JLabel();
         btnNOVO1 = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         textModelobus = new javax.swing.JTextField();
@@ -163,6 +163,8 @@ public class formGerenciar extends javax.swing.JFrame {
         tblOnibus = new javax.swing.JTable();
         jLabel27 = new javax.swing.JLabel();
         lblbusID = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         mnSAIR = new javax.swing.JMenu();
@@ -509,9 +511,9 @@ public class formGerenciar extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCadastrar)
-                            .addComponent(btnAlterar))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAlterar)
+                            .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnNOVO, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -803,8 +805,6 @@ public class formGerenciar extends javax.swing.JFrame {
         );
 
         pgROTAS.addTab("Passageiro", jPanel3);
-        pgROTAS.addTab("Reservas/Passagens", jTabbedPane1);
-        pgROTAS.addTab("Rotas", jTabbedPane2);
 
         jPanel8.setBackground(new java.awt.Color(142, 157, 204));
 
@@ -1065,6 +1065,32 @@ public class formGerenciar extends javax.swing.JFrame {
 
         pgROTAS.addTab("Ônibus", jPanel7);
 
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1041, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 490, Short.MAX_VALUE)
+        );
+
+        pgROTAS.addTab("Rotas", jPanel6);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1041, Short.MAX_VALUE)
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 490, Short.MAX_VALUE)
+        );
+
+        pgROTAS.addTab("Reservas", jPanel9);
+
         jMenu3.setText("RodoBus");
         jMenuBar2.add(jMenu3);
 
@@ -1092,124 +1118,212 @@ public class formGerenciar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tblMOTORISTASFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tblMOTORISTASFocusGained
-
-    }//GEN-LAST:event_tblMOTORISTASFocusGained
-
-    private void tblMOTORISTASMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMOTORISTASMouseClicked
-        DefaultTableModel model = (DefaultTableModel) tblMOTORISTAS.getModel();
-
-        int selectedRow = tblMOTORISTAS.getSelectedRow();
-
-        if (selectedRow != -1) {
-            lblID.setText(tblMOTORISTAS.getValueAt(selectedRow, 0).toString());
-            textNome.setText(tblMOTORISTAS.getValueAt(selectedRow, 1).toString());
-            textIdade.setText(tblMOTORISTAS.getValueAt(selectedRow, 2).toString());
-            textCPF.setText(tblMOTORISTAS.getValueAt(selectedRow, 3).toString());
-            textTelefone.setText(tblMOTORISTAS.getValueAt(selectedRow, 4).toString());
-   
-        } else {
-            lblID.setText("0");
-            textNome.setText("");
-            textIdade.setText("");
-            textCPF.setText("");
-            textTelefone.setText("");
-        }
-    }//GEN-LAST:event_tblMOTORISTASMouseClicked
-
-    private void textTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTelefoneActionPerformed
-
-    }//GEN-LAST:event_textTelefoneActionPerformed
-
-    private void textIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textIdadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textIdadeActionPerformed
-
-    private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
-
-        Motorista Cadmoto = new Motorista();
-
-        Cadmoto.setCpf(this.textCPF.getText());
-        Cadmoto.setNome(this.textNome.getText());
-        Cadmoto.setTelefone(this.textTelefone.getText());
-        Cadmoto.setIdade(Integer.parseInt(this.textIdade.getText()));
-        Cadmoto.setIdMotorista(0);
-        
-        motoristaDao m = new motoristaDao();
-        
-        m.incluir(Cadmoto);
-         
-        CaregarMotorista();
-
-    }//GEN-LAST:event_btnCadastrarMouseClicked
-
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-
-    }//GEN-LAST:event_btnCadastrarActionPerformed
-
-    private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
-        motoristaDao m = new motoristaDao();
-
-        DefaultTableModel model = (DefaultTableModel) tblMOTORISTAS.getModel();
-
-        Motorista Cadmoto = new Motorista();
-
-        Cadmoto.setCpf(this.textCPF.getText());
-        Cadmoto.setNome(this.textNome.getText());
-        Cadmoto.setTelefone(this.textTelefone.getText());
-        Cadmoto.setIdade(Integer.parseInt(this.textIdade.getText()));
-        Cadmoto.setIdMotorista(Integer.parseInt(this.lblID.getText()));
-
-        m.alterar(Cadmoto);
-
-        CaregarMotorista();
-    }//GEN-LAST:event_btnAlterarMouseClicked
-
-    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAlterarActionPerformed
-
-    private void btnDeletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeletarMouseClicked
-        motoristaDao m = new motoristaDao();
-        m.excluir(Integer.parseInt(this.lblID.getText()));
-
-        CaregarMotorista();
-
-        this.textCPF.setText("");
-        this.textNome.setText("");
-        this.textTelefone.setText("");
-        this.textIdade.setText("");
-        this.lblID.setText("");
-
-    }//GEN-LAST:event_btnDeletarMouseClicked
-
-    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeletarActionPerformed
-
-    private void jPanel2ComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel2ComponentMoved
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
-        CaregarMotorista();
-    }//GEN-LAST:event_btnBuscarMouseClicked
-
-    private void textCPF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCPF1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textCPF1ActionPerformed
-
     private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField16ActionPerformed
 
-    private void tblPASSAGEIROFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tblPASSAGEIROFocusGained
+    private void mnSAIRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnSAIRMouseClicked
+        formLogin login = new formLogin();
+        login.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setVisible(false);
+        login.setVisible(true);
+    }//GEN-LAST:event_mnSAIRMouseClicked
+
+    private void tblOnibusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOnibusMouseClicked
+        DefaultTableModel model = (DefaultTableModel) tblOnibus.getModel();
+
+        int selectedRow = tblOnibus.getSelectedRow();
+
+        if (selectedRow != -1) {
+            lblbusID.setText(tblOnibus.getValueAt(selectedRow, 0).toString());
+            textModelobus.setText(tblOnibus.getValueAt(selectedRow, 1).toString());
+            textPlacabus.setText(tblOnibus.getValueAt(selectedRow, 2).toString());
+            textCapacidadebus.setText(tblOnibus.getValueAt(selectedRow, 3).toString());
+            textAnofabricacao.setText(tblOnibus.getValueAt(selectedRow, 4).toString());
+
+        } else {
+            lblbusID.setText("0");
+            textModelobus.setText("");
+            textAnofabricacao.setText("");
+            textCapacidadebus.setText("");
+            textPlacabus.setText("");
+        }
+    }//GEN-LAST:event_tblOnibusMouseClicked
+
+    private void tblOnibusFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tblOnibusFocusGained
+
+    }//GEN-LAST:event_tblOnibusFocusGained
+
+    private void btnBuscarbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarbusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tblPASSAGEIROFocusGained
+    }//GEN-LAST:event_btnBuscarbusActionPerformed
+
+    private void btnBuscarbusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarbusMouseClicked
+        CaregarOnibus();
+    }//GEN-LAST:event_btnBuscarbusMouseClicked
+
+    private void btnDeletarbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarbusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeletarbusActionPerformed
+
+    private void btnDeletarbusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeletarbusMouseClicked
+        onibusDao bus = new onibusDao();
+        bus.excluir(Integer.parseInt(this.lblbusID.getText()));
+
+        CaregarOnibus();
+
+        this.textCapacidadebus.setText("");
+        this.textModelobus.setText("");
+        this.textPlacabus.setText("");
+        this.textAnofabricacao.setText("");
+        this.lblbusID.setText("");
+    }//GEN-LAST:event_btnDeletarbusMouseClicked
+
+    private void btnAlterarbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarbusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlterarbusActionPerformed
+
+    private void btnAlterarbusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarbusMouseClicked
+        onibusDao bus = new onibusDao();
+
+        DefaultTableModel model = (DefaultTableModel) tblOnibus.getModel();
+
+        Onibus Cadbus = new Onibus();
+
+        Cadbus.setModelo(this.textModelobus.getText());
+        Cadbus.setPlaca(this.textPlacabus.getText());
+        Cadbus.setAnoFabricacao(Integer.parseInt(this.textAnofabricacao.getText()));
+        Cadbus.setCapacidade(Integer.parseInt(this.textCapacidadebus.getText()));
+        Cadbus.setIdOnibus(Integer.parseInt(this.lblbusID.getText()));
+
+        bus.alterar(Cadbus);
+
+        CaregarOnibus();
+    }//GEN-LAST:event_btnAlterarbusMouseClicked
+
+    private void btnCadastrarbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarbusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCadastrarbusActionPerformed
+
+    private void btnCadastrarbusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarbusMouseClicked
+        this.textCapacidadebus.setText("");
+        this.textModelobus.setText("");
+        this.textPlacabus.setText("");
+        this.textAnofabricacao.setText("");
+        this.lblbusID.setText("");
+    }//GEN-LAST:event_btnCadastrarbusMouseClicked
+
+    private void btnCadastrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrar2ActionPerformed
+
+    }//GEN-LAST:event_btnCadastrar2ActionPerformed
+
+    private void btnCadastrar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrar2MouseClicked
+
+        Onibus Cadbus = new Onibus();
+
+        Cadbus.setModelo(this.textModelobus.getText());
+        Cadbus.setPlaca(this.textPlacabus.getText());
+        Cadbus.setAnoFabricacao(Integer.parseInt(this.textAnofabricacao.getText()));
+        Cadbus.setCapacidade(Integer.parseInt(this.textCapacidadebus.getText()));
+        Cadbus.setIdOnibus(0);
+
+        onibusDao bus = new onibusDao();
+
+        bus.incluir(Cadbus);
+
+        //CaregarMotorista();
+    }//GEN-LAST:event_btnCadastrar2MouseClicked
+
+    private void textAnofabricacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAnofabricacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textAnofabricacaoActionPerformed
+
+    private void textPlacabusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPlacabusActionPerformed
+
+    }//GEN-LAST:event_textPlacabusActionPerformed
+
+    private void btnNOVO1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNOVO1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNOVO1ActionPerformed
+
+    private void btnNOVO1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNOVO1MouseClicked
+        lblID1.setText("0");
+        textNOME1.setText("");
+        textIDADE1.setText("");
+        textCPF1.setText("");
+        textTELEFONE1.setText("");
+        textEMAIL1.setText("");
+        textSENHA1.setText("");
+    }//GEN-LAST:event_btnNOVO1MouseClicked
+
+    private void btnCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCadastrar1ActionPerformed
+
+    private void btnCadastrar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrar1MouseClicked
+        Passageiro novoPassageiro = new Passageiro();
+
+        novoPassageiro.setCpf(this.textCPF1.getText());
+        novoPassageiro.setNome(this.textNOME1.getText());
+        novoPassageiro.setTelefone(this.textTELEFONE1.getText());
+        novoPassageiro.setEmail(this.textEMAIL1.getText());
+        novoPassageiro.setIdade(Integer.parseInt(this.textIDADE1.getText()));
+        novoPassageiro.setSenha(this.textSENHA1.getText());
+        novoPassageiro.setIdPassageiro(0);
+
+        passageiroDao passageiroDao = new passageiroDao();
+        passageiroDao.Incluir(novoPassageiro);
+
+        CaregarPassageiro();
+    }//GEN-LAST:event_btnCadastrar1MouseClicked
+
+    private void btnAlterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlterar1ActionPerformed
+
+    private void btnAlterar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterar1MouseClicked
+        Passageiro passageiroParaAtualizar = new Passageiro();
+
+        passageiroParaAtualizar.setIdPassageiro(Integer.parseInt(this.lblID1.getText()));
+        passageiroParaAtualizar.setCpf(this.textCPF1.getText());
+        passageiroParaAtualizar.setNome(this.textNOME1.getText());
+        passageiroParaAtualizar.setTelefone(this.textTELEFONE1.getText());
+        passageiroParaAtualizar.setIdade(Integer.parseInt(this.textIDADE1.getText()));
+        passageiroParaAtualizar.setEmail(this.textEMAIL1.getText());
+        passageiroParaAtualizar.setSenha(this.textSENHA1.getText());
+
+        passageiroDao passageiroDao = new passageiroDao();
+        passageiroDao.Alterar(passageiroParaAtualizar);
+
+        CaregarPassageiro();
+    }//GEN-LAST:event_btnAlterar1MouseClicked
+
+    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscar1ActionPerformed
+
+    private void btnBuscar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscar1MouseClicked
+        CaregarPassageiro();
+    }//GEN-LAST:event_btnBuscar1MouseClicked
+
+    private void btnDeletar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeletar1ActionPerformed
+
+    private void btnDeletar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeletar1MouseClicked
+        passageiroDao passageiroDao = new passageiroDao();
+        passageiroDao.Excluir(Integer.parseInt(this.lblID1.getText()));
+
+        CaregarPassageiro();
+
+        this.textCPF1.setText("");
+        this.textNOME1.setText("");
+        this.textTELEFONE1.setText("");
+        this.textIDADE1.setText("");
+        this.textSENHA1.setText("");
+        this.textEMAIL1.setText("");
+        this.lblID1.setText("");
+    }//GEN-LAST:event_btnDeletar1MouseClicked
 
     private void tblPASSAGEIROMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPASSAGEIROMouseClicked
         DefaultTableModel passageiroModel = (DefaultTableModel) tblPASSAGEIRO.getModel();
@@ -1235,76 +1349,21 @@ public class formGerenciar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tblPASSAGEIROMouseClicked
 
-    private void btnDeletar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeletar1MouseClicked
-        passageiroDao passageiroDao = new passageiroDao();
-        passageiroDao.Excluir(Integer.parseInt(this.lblID1.getText())); 
-
-        CaregarPassageiro();
-
-        this.textCPF1.setText("");
-        this.textNOME1.setText("");
-        this.textTELEFONE1.setText("");
-        this.textIDADE1.setText("");
-        this.textSENHA1.setText("");
-        this.textEMAIL1.setText("");
-        this.lblID1.setText("");
-
-    }//GEN-LAST:event_btnDeletar1MouseClicked
-
-    private void btnDeletar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletar1ActionPerformed
+    private void tblPASSAGEIROFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tblPASSAGEIROFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeletar1ActionPerformed
+    }//GEN-LAST:event_tblPASSAGEIROFocusGained
 
-    private void btnBuscar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscar1MouseClicked
-         CaregarPassageiro();
-    }//GEN-LAST:event_btnBuscar1MouseClicked
-
-    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+    private void textCPF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCPF1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscar1ActionPerformed
+    }//GEN-LAST:event_textCPF1ActionPerformed
 
-    private void btnAlterar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterar1MouseClicked
-        Passageiro passageiroParaAtualizar = new Passageiro();
-
-        passageiroParaAtualizar.setIdPassageiro(Integer.parseInt(this.lblID1.getText())); 
-        passageiroParaAtualizar.setCpf(this.textCPF1.getText());
-        passageiroParaAtualizar.setNome(this.textNOME1.getText());
-        passageiroParaAtualizar.setTelefone(this.textTELEFONE1.getText());
-        passageiroParaAtualizar.setIdade(Integer.parseInt(this.textIDADE1.getText()));
-        passageiroParaAtualizar.setEmail(this.textEMAIL1.getText());
-        passageiroParaAtualizar.setSenha(this.textSENHA1.getText());
-
-        passageiroDao passageiroDao = new passageiroDao();
-        passageiroDao.Alterar(passageiroParaAtualizar);
-
-        CaregarPassageiro();
-    }//GEN-LAST:event_btnAlterar1MouseClicked
-
-    private void btnAlterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterar1ActionPerformed
+    private void jPanel2ComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentMoved
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAlterar1ActionPerformed
+    }//GEN-LAST:event_jPanel2ComponentMoved
 
-    private void btnCadastrar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrar1MouseClicked
-        Passageiro novoPassageiro = new Passageiro();
-
-        novoPassageiro.setCpf(this.textCPF1.getText());
-        novoPassageiro.setNome(this.textNOME1.getText());
-        novoPassageiro.setTelefone(this.textTELEFONE1.getText());
-        novoPassageiro.setEmail(this.textEMAIL1.getText());
-        novoPassageiro.setIdade(Integer.parseInt(this.textIDADE1.getText()));
-        novoPassageiro.setSenha(this.textSENHA1.getText());
-        novoPassageiro.setIdPassageiro(0);
-
-        passageiroDao passageiroDao = new passageiroDao();
-        passageiroDao.Incluir(novoPassageiro);
-
-        CaregarPassageiro();
-
-    }//GEN-LAST:event_btnCadastrar1MouseClicked
-
-    private void btnCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrar1ActionPerformed
+    private void btnNOVOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNOVOActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCadastrar1ActionPerformed
+    }//GEN-LAST:event_btnNOVOActionPerformed
 
     private void btnNOVOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNOVOMouseClicked
         this.textCPF.setText("");
@@ -1312,146 +1371,108 @@ public class formGerenciar extends javax.swing.JFrame {
         this.textTelefone.setText("");
         this.textIdade.setText("");
         this.lblID.setText("");
-     
     }//GEN-LAST:event_btnNOVOMouseClicked
 
-    private void btnNOVOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNOVOActionPerformed
+    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnNOVOActionPerformed
+    }//GEN-LAST:event_btnDeletarActionPerformed
 
-    private void btnNOVO1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNOVO1MouseClicked
-        lblID1.setText("0");
-        textNOME1.setText("");
-        textIDADE1.setText("");
-        textCPF1.setText("");
-        textTELEFONE1.setText("");
-        textEMAIL1.setText("");
-        textSENHA1.setText("");
-    }//GEN-LAST:event_btnNOVO1MouseClicked
+    private void btnDeletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeletarMouseClicked
+        motoristaDao m = new motoristaDao();
+        m.excluir(Integer.parseInt(this.lblID.getText()));
 
-    private void btnNOVO1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNOVO1ActionPerformed
+        CaregarMotorista();
+
+        this.textCPF.setText("");
+        this.textNome.setText("");
+        this.textTelefone.setText("");
+        this.textIdade.setText("");
+        this.lblID.setText("");
+    }//GEN-LAST:event_btnDeletarMouseClicked
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnNOVO1ActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void mnSAIRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnSAIRMouseClicked
-        formLogin login = new formLogin();
-        login.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setVisible(false);
-        login.setVisible(true);
-    }//GEN-LAST:event_mnSAIRMouseClicked
+    private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
+        CaregarMotorista();
+    }//GEN-LAST:event_btnBuscarMouseClicked
 
-    private void textPlacabusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPlacabusActionPerformed
-
-    }//GEN-LAST:event_textPlacabusActionPerformed
-
-    private void textAnofabricacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAnofabricacaoActionPerformed
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textAnofabricacaoActionPerformed
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
-    private void btnCadastrar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrar2MouseClicked
+    private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
+        motoristaDao m = new motoristaDao();
 
-        Onibus Cadbus = new Onibus();
+        DefaultTableModel model = (DefaultTableModel) tblMOTORISTAS.getModel();
 
-        Cadbus.setModelo(this.textModelobus.getText());
-        Cadbus.setPlaca(this.textPlacabus.getText());
-        Cadbus.setAnoFabricacao(Integer.parseInt(this.textAnofabricacao.getText()));
-        Cadbus.setCapacidade(Integer.parseInt(this.textCapacidadebus.getText()));
-        Cadbus.setIdOnibus(0);
+        Motorista Cadmoto = new Motorista();
 
-        onibusDao bus = new onibusDao();
+        Cadmoto.setCpf(this.textCPF.getText());
+        Cadmoto.setNome(this.textNome.getText());
+        Cadmoto.setTelefone(this.textTelefone.getText());
+        Cadmoto.setIdade(Integer.parseInt(this.textIdade.getText()));
+        Cadmoto.setIdMotorista(Integer.parseInt(this.lblID.getText()));
 
-        bus.incluir(Cadbus);
+        m.alterar(Cadmoto);
 
-        //CaregarMotorista();
-    }//GEN-LAST:event_btnCadastrar2MouseClicked
+        CaregarMotorista();
+    }//GEN-LAST:event_btnAlterarMouseClicked
 
-    private void btnCadastrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrar2ActionPerformed
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
 
-    }//GEN-LAST:event_btnCadastrar2ActionPerformed
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
-    private void btnCadastrarbusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarbusMouseClicked
-        this.textCapacidadebus.setText("");
-        this.textModelobus.setText("");
-        this.textPlacabus.setText("");
-        this.textAnofabricacao.setText("");
-        this.lblbusID.setText("");
-    }//GEN-LAST:event_btnCadastrarbusMouseClicked
+    private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
 
-    private void btnCadastrarbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarbusActionPerformed
+        Motorista Cadmoto = new Motorista();
+
+        Cadmoto.setCpf(this.textCPF.getText());
+        Cadmoto.setNome(this.textNome.getText());
+        Cadmoto.setTelefone(this.textTelefone.getText());
+        Cadmoto.setIdade(Integer.parseInt(this.textIdade.getText()));
+        Cadmoto.setIdMotorista(0);
+
+        motoristaDao m = new motoristaDao();
+
+        m.incluir(Cadmoto);
+
+        CaregarMotorista();
+    }//GEN-LAST:event_btnCadastrarMouseClicked
+
+    private void textIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textIdadeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCadastrarbusActionPerformed
+    }//GEN-LAST:event_textIdadeActionPerformed
 
-    private void btnAlterarbusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarbusMouseClicked
-        onibusDao bus = new onibusDao();
+    private void textTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTelefoneActionPerformed
 
-        DefaultTableModel model = (DefaultTableModel) tblOnibus.getModel();
+    }//GEN-LAST:event_textTelefoneActionPerformed
 
-        Onibus Cadbus = new Onibus();
+    private void tblMOTORISTASMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMOTORISTASMouseClicked
+        DefaultTableModel model = (DefaultTableModel) tblMOTORISTAS.getModel();
 
-        Cadbus.setModelo(this.textModelobus.getText());
-        Cadbus.setPlaca(this.textPlacabus.getText());
-        Cadbus.setAnoFabricacao(Integer.parseInt(this.textAnofabricacao.getText()));
-        Cadbus.setCapacidade(Integer.parseInt(this.textCapacidadebus.getText()));
-        Cadbus.setIdOnibus(Integer.parseInt(this.lblbusID.getText()));
-
-        bus.alterar(Cadbus);
-
-        CaregarOnibus();
-    }//GEN-LAST:event_btnAlterarbusMouseClicked
-
-    private void btnAlterarbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarbusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAlterarbusActionPerformed
-
-    private void btnDeletarbusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeletarbusMouseClicked
-        onibusDao bus = new onibusDao();
-        bus.excluir(Integer.parseInt(this.lblbusID.getText()));
-
-        CaregarOnibus();
-
-        this.textCapacidadebus.setText("");
-        this.textModelobus.setText("");
-        this.textPlacabus.setText("");
-        this.textAnofabricacao.setText("");
-        this.lblbusID.setText("");
-    }//GEN-LAST:event_btnDeletarbusMouseClicked
-
-    private void btnDeletarbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarbusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeletarbusActionPerformed
-
-    private void btnBuscarbusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarbusMouseClicked
-        CaregarOnibus();
-    }//GEN-LAST:event_btnBuscarbusMouseClicked
-
-    private void btnBuscarbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarbusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarbusActionPerformed
-
-    private void tblOnibusFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tblOnibusFocusGained
-
-    }//GEN-LAST:event_tblOnibusFocusGained
-
-    private void tblOnibusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOnibusMouseClicked
-        DefaultTableModel model = (DefaultTableModel) tblOnibus.getModel();
-
-        int selectedRow = tblOnibus.getSelectedRow();
+        int selectedRow = tblMOTORISTAS.getSelectedRow();
 
         if (selectedRow != -1) {
-            lblbusID.setText(tblOnibus.getValueAt(selectedRow, 0).toString());
-            textModelobus.setText(tblOnibus.getValueAt(selectedRow, 1).toString());
-            textPlacabus.setText(tblOnibus.getValueAt(selectedRow, 2).toString());
-            textCapacidadebus.setText(tblOnibus.getValueAt(selectedRow, 3).toString());
-            textAnofabricacao.setText(tblOnibus.getValueAt(selectedRow, 4).toString());
+            lblID.setText(tblMOTORISTAS.getValueAt(selectedRow, 0).toString());
+            textNome.setText(tblMOTORISTAS.getValueAt(selectedRow, 1).toString());
+            textIdade.setText(tblMOTORISTAS.getValueAt(selectedRow, 2).toString());
+            textCPF.setText(tblMOTORISTAS.getValueAt(selectedRow, 3).toString());
+            textTelefone.setText(tblMOTORISTAS.getValueAt(selectedRow, 4).toString());
 
         } else {
-            lblbusID.setText("0");
-            textModelobus.setText("");
-            textAnofabricacao.setText("");
-            textCapacidadebus.setText("");
-            textPlacabus.setText("");
+            lblID.setText("0");
+            textNome.setText("");
+            textIdade.setText("");
+            textCPF.setText("");
+            textTelefone.setText("");
         }
-    }//GEN-LAST:event_tblOnibusMouseClicked
+    }//GEN-LAST:event_tblMOTORISTASMouseClicked
+
+    private void tblMOTORISTASFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tblMOTORISTASFocusGained
+
+    }//GEN-LAST:event_tblMOTORISTASFocusGained
 
     /**
      * @param args the command line arguments
@@ -1490,21 +1511,27 @@ public class formGerenciar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnALTERAR4;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnAlterar1;
     private javax.swing.JButton btnAlterarbus;
+    private javax.swing.JButton btnBUSCAR4;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnBuscarbus;
+    private javax.swing.JButton btnCADASTRAR4;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCadastrar1;
     private javax.swing.JButton btnCadastrar2;
     private javax.swing.JButton btnCadastrarbus;
+    private javax.swing.JButton btnDELETAR4;
     private javax.swing.JButton btnDeletar;
     private javax.swing.JButton btnDeletar1;
     private javax.swing.JButton btnDeletarbus;
     private javax.swing.JButton btnNOVO;
     private javax.swing.JButton btnNOVO1;
+    private javax.swing.JButton btnNOVO4;
+    private javax.swing.JComboBox<String> cmbMOTORISTA4;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1526,7 +1553,15 @@ public class formGerenciar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1539,17 +1574,19 @@ public class formGerenciar extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
@@ -1564,6 +1601,7 @@ public class formGerenciar extends javax.swing.JFrame {
     private javax.swing.JTable tblMOTORISTAS;
     private javax.swing.JTable tblOnibus;
     private javax.swing.JTable tblPASSAGEIRO;
+    private javax.swing.JTable tblROTA;
     private javax.swing.JTextField textAnofabricacao;
     private javax.swing.JTextField textCPF;
     private javax.swing.JTextField textCPF1;
@@ -1578,5 +1616,10 @@ public class formGerenciar extends javax.swing.JFrame {
     private javax.swing.JTextField textSENHA1;
     private javax.swing.JTextField textTELEFONE1;
     private javax.swing.JTextField textTelefone;
+    private javax.swing.JFormattedTextField txtCHEGADA4;
+    private javax.swing.JTextField txtDESTINO4;
+    private javax.swing.JTextField txtORIGEM4;
+    private javax.swing.JFormattedTextField txtSAIDA4;
+    private javax.swing.JFormattedTextField txtVALOR4;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,12 +5,14 @@ import java.util.Date;
 public class Rota {
 
     private int idRota;
-    private double distancia;
     private String origem;
     private String destino;
-    private Date saida;
-    private Date chegada;
-    private double preco;
+    private double vlDistancia;
+    private String dsDuracao;
+    private double vlPreco;
+    private Date dtSaida;
+    private Date dtChegada;
+    private int idMotorista;
 
     public int getIdRota() {
         return idRota;
@@ -36,35 +38,51 @@ public class Rota {
         this.destino = destino;
     }
 
-    public double getDistancia() {
-        return distancia;
+    public double getVlDistancia() {
+        return vlDistancia;
     }
 
-    public void setDistancia(double distancia) {
-        this.distancia = distancia;
+    public void setVlDistancia(double vlDistancia) {
+        this.vlDistancia = vlDistancia;
     }
 
-    public double getPreco() {
-        return preco;
+    public String getDsDuracao() {
+        return dsDuracao;
     }
 
-    public void setPreco(double preco) {
-        this.preco = preco;
+    public void setDsDuracao(String dsDuracao) {
+        this.dsDuracao = dsDuracao;
     }
 
-    public Date getSaida() {
-        return saida;
+    public double getVlPreco() {
+        return vlPreco;
     }
 
-    public void setSaida(Date saida) {
-        this.saida = saida;
+    public void setVlPreco(double vlPreco) {
+        this.vlPreco = vlPreco;
     }
 
-    public Date getChegada() {
-        return chegada;
+    public Date getDtSaida() {
+        return dtSaida;
     }
 
-    public void setChegada(Date chegada) {
-        this.chegada = chegada;
+    public void setDtSaida(Date dtSaida) {
+        this.dtSaida = dtSaida;
+    }
+
+    public Date getDtChegada() {
+        return dtChegada;
+    }
+
+    public void setDtChegada(Date dtChegada) {
+        this.dtChegada = dtChegada;
+    }
+
+    public int getIdMotorista() {
+        return idMotorista;
+    }
+
+    public void setIdMotorista(int idMotorista) {
+        this.idMotorista = idMotorista;
     }
 }
