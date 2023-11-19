@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import model.Rota;
 
+
 /**
  *
  * @author alesandro.rsjunior
@@ -24,7 +25,13 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     formConsultaPassagem(formConsultaPassagem pass) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
+    public void carregarInfo(int IdPassageiro, int IdRota){
+        IdPassageiro = pass.getIdPassageiro();
+        IdRota = rt.getIdRota();
+        
+        }
+    
     public void carregarRota() {
         rotaDao rota = new rotaDao();
         rota.criarBanco();
@@ -39,6 +46,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     }
     
     Passageiro pass = new Passageiro();
+    Rota rt = new Rota();
     
     public formConsultaPassagem(Passageiro obj) {
         initComponents();
@@ -62,12 +70,23 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        Txtsaida = new javax.swing.JTextField();
+        Txtdestino = new javax.swing.JTextField();
+        Txtdata = new javax.swing.JTextField();
         btnComprar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblROTAS = new javax.swing.JTable();
+        RESERVAR = new javax.swing.JButton();
+        Txtembarque = new javax.swing.JTextField();
+        Txtdesembarque = new javax.swing.JTextField();
+        Txtdtsaida = new javax.swing.JTextField();
+        Txtdtchegada = new javax.swing.JTextField();
+        Txtvalor = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
         mnNOME = new javax.swing.JMenu();
@@ -97,35 +116,55 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Busque a sua passagem");
 
-        jTextField1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(123, 123, 123));
-        jTextField1.setText("De onde você vai sair?");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        Txtsaida.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        Txtsaida.setForeground(new java.awt.Color(123, 123, 123));
+        Txtsaida.setText("De onde você vai sair?");
+        Txtsaida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TxtsaidaMouseClicked(evt);
+            }
+        });
+        Txtsaida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                TxtsaidaActionPerformed(evt);
             }
         });
 
-        jTextField2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(123, 123, 123));
-        jTextField2.setText("Para onde você vai?");
+        Txtdestino.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        Txtdestino.setForeground(new java.awt.Color(123, 123, 123));
+        Txtdestino.setText("Para onde você vai?");
+        Txtdestino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TxtdestinoMouseClicked(evt);
+            }
+        });
 
-        jTextField3.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(123, 123, 123));
-        jTextField3.setText("Data ida");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        Txtdata.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        Txtdata.setForeground(new java.awt.Color(123, 123, 123));
+        Txtdata.setText("Data ida");
+        Txtdata.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TxtdataMouseClicked(evt);
+            }
+        });
+        Txtdata.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                TxtdataActionPerformed(evt);
             }
         });
 
         btnComprar.setBackground(new java.awt.Color(69, 73, 74));
         btnComprar.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         btnComprar.setForeground(new java.awt.Color(255, 255, 255));
-        btnComprar.setText("BUSCAR PASSAGEM");
+        btnComprar.setText("BUSCAR");
         btnComprar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnComprarMouseClicked(evt);
+            }
+        });
+        btnComprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprarActionPerformed(evt);
             }
         });
 
@@ -155,27 +194,94 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblROTAS);
 
+        RESERVAR.setBackground(new java.awt.Color(69, 73, 74));
+        RESERVAR.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        RESERVAR.setForeground(new java.awt.Color(255, 255, 255));
+        RESERVAR.setText("RESERVAR");
+        RESERVAR.setMaximumSize(new java.awt.Dimension(100, 25));
+        RESERVAR.setMinimumSize(new java.awt.Dimension(100, 25));
+        RESERVAR.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RESERVARMouseClicked(evt);
+            }
+        });
+        RESERVAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RESERVARActionPerformed(evt);
+            }
+        });
+
+        Txtembarque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtembarqueActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Embarque");
+
+        jLabel3.setText("Desembarque");
+
+        jLabel4.setText("Dt.Saída");
+
+        jLabel5.setText("Dt.Chegada");
+
+        jLabel6.setText("Valor");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
-                        .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28))
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 837, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Txtsaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Txtdestino, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(Txtembarque)
+                                .addGap(18, 18, 18))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(28, 28, 28)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(Txtdesembarque)
+                                .addGap(18, 18, 18)
+                                .addComponent(Txtdtsaida)
+                                .addGap(18, 18, 18))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(36, 36, 36)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(Txtdtchegada)
+                                .addGap(18, 18, 18)
+                                .addComponent(Txtvalor)
+                                .addGap(323, 323, 323))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(362, 362, 362)))
+                        .addComponent(RESERVAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,13 +290,30 @@ public class formConsultaPassagem extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Txtsaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnComprar)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Txtdestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(RESERVAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Txtembarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Txtdesembarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Txtdtsaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Txtdtchegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Txtvalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jMenuBar1.add(jMenu7);
@@ -247,13 +370,13 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void TxtsaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtsaidaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_TxtsaidaActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void TxtdataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtdataActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_TxtdataActionPerformed
 
     private void btnComprarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnComprarMouseClicked
         carregarRota();
@@ -269,6 +392,16 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         //formConfirmarPag pagamento = new formConfirmarPag();
         // this.setVisible(false);
         //pagamento.setVisible(true); 
+        int selectedRow =   tblROTAS.getSelectedRow();        
+        if(selectedRow != -1){
+            Txtembarque.setText(tblROTAS.getValueAt(selectedRow, 1).toString());
+            Txtdesembarque.setText(tblROTAS.getValueAt(selectedRow, 2).toString());
+            Txtdtsaida.setText(tblROTAS.getValueAt(selectedRow, 3).toString());
+            Txtdtchegada.setText(tblROTAS.getValueAt(selectedRow,4).toString());
+            Txtvalor.setText(tblROTAS.getValueAt(selectedRow,5).toString());
+
+        }
+        
     }//GEN-LAST:event_tblROTASMouseClicked
 
     private void mnPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPedidoMouseClicked
@@ -277,6 +410,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         pedido.setVisible(true);      
     }//GEN-LAST:event_mnPedidoMouseClicked
 
+    
     private void mnNOMEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnNOMEMouseClicked
 
     }//GEN-LAST:event_mnNOMEMouseClicked
@@ -286,6 +420,46 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         formInfoPassageiro info = new formInfoPassageiro(pass);
         info.setVisible(true);     
     }//GEN-LAST:event_mnPERFILMouseClicked
+
+    private void TxtsaidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TxtsaidaMouseClicked
+        // TODO add your handling code here:
+                this.Txtsaida.setText("");
+    }//GEN-LAST:event_TxtsaidaMouseClicked
+
+    private void TxtdestinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TxtdestinoMouseClicked
+        // TODO add your handling code here:
+                this.Txtdestino.setText("");
+    }//GEN-LAST:event_TxtdestinoMouseClicked
+
+    private void TxtdataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TxtdataMouseClicked
+        // TODO add your handling code here:
+                this.Txtdata.setText("");
+    }//GEN-LAST:event_TxtdataMouseClicked
+
+    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnComprarActionPerformed
+
+    private void RESERVARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RESERVARActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RESERVARActionPerformed
+
+    private void TxtembarqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtembarqueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtembarqueActionPerformed
+
+    
+    
+    private void RESERVARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RESERVARMouseClicked
+        // TODO add your handling code here:]
+        
+        this.setVisible(false);
+        formConfirmarPag pgsdn = new formConfirmarPag();
+        pgsdn.setVisible(true);
+        
+        carregarInfo(pass.getIdPassageiro(),rt.getIdRota());
+
+    }//GEN-LAST:event_RESERVARMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -317,13 +491,28 @@ public class formConsultaPassagem extends javax.swing.JFrame {
             public void run() {
                 Passageiro passageiro = new Passageiro();
                 new formConsultaPassagem(passageiro).setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton RESERVAR;
+    private javax.swing.JTextField Txtdata;
+    private javax.swing.JTextField Txtdesembarque;
+    private javax.swing.JTextField Txtdestino;
+    private javax.swing.JTextField Txtdtchegada;
+    private javax.swing.JTextField Txtdtsaida;
+    private javax.swing.JTextField Txtembarque;
+    private javax.swing.JTextField Txtsaida;
+    private javax.swing.JTextField Txtvalor;
     private javax.swing.JButton btnComprar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -334,9 +523,6 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JMenu mnID;
     private javax.swing.JMenu mnNOME;
     private javax.swing.JMenu mnPERFIL;

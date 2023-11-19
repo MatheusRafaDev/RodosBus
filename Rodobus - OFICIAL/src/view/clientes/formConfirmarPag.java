@@ -1,16 +1,35 @@
 
 package view.clientes;
 
+import controller.passageiroDao;
+import controller.rotaDao;
+import model.Passageiro;
+import model.Rota;
+
 
 
 
 public class formConfirmarPag extends javax.swing.JFrame {
-
+        int RotaId = 0;
+        int PassageiroId=0;
     /**
      * Creates new form ConfirmaePagar
      */
-    public formConfirmarPag() {
+    public formConfirmarPag(int RotaId, int PassageiroId) {
+        RotaId= RotaId;
+        PassageiroId = PassageiroId;
         initComponents();
+    }
+    
+    public void carregarInfo(){
+        rotaDao rt = new rotaDao();
+        passageiroDao pass = new passageiroDao();
+        Rota rota = new Rota();
+        Passageiro passageiro = new Passageiro();
+        rota = rt.selecionarUmaRota(RotaId);
+        passageiro = pass.selecionarUmPassageiro(PassageiroId);
+ 
+        
     }
 
     /**
@@ -22,6 +41,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jText_dadopassageiro = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
@@ -29,6 +49,10 @@ public class formConfirmarPag extends javax.swing.JFrame {
         jText_cpf = new javax.swing.JTextField();
         jText_email = new javax.swing.JTextField();
         jText_telefone = new javax.swing.JTextField();
+        lnlNome = new javax.swing.JLabel();
+        lxlEmail = new javax.swing.JLabel();
+        lblTelefone = new javax.swing.JLabel();
+        lblCpf = new javax.swing.JLabel();
         jText_dadopassagem = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jText_embarque = new javax.swing.JTextField();
@@ -37,6 +61,14 @@ public class formConfirmarPag extends javax.swing.JFrame {
         jText_chegada = new javax.swing.JTextField();
         jText_data = new javax.swing.JTextField();
         jText_valor = new javax.swing.JTextField();
+        jText_valor1 = new javax.swing.JTextField();
+        lblCpf1 = new javax.swing.JLabel();
+        lblCpf2 = new javax.swing.JLabel();
+        lblCpf3 = new javax.swing.JLabel();
+        lblCpf4 = new javax.swing.JLabel();
+        lblCpf5 = new javax.swing.JLabel();
+        lblCpf6 = new javax.swing.JLabel();
+        lblCpf7 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jText_FormasPgt = new javax.swing.JTextField();
         jRadioButton_pix = new javax.swing.JRadioButton();
@@ -46,6 +78,8 @@ public class formConfirmarPag extends javax.swing.JFrame {
         jText_inf3 = new javax.swing.JTextField();
         jText_inf4 = new javax.swing.JTextField();
         jButton_Confirmaepagar = new javax.swing.JButton();
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,7 +97,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         });
 
         jText_nome.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_nome.setForeground(new java.awt.Color(255, 255, 255));
+        jText_nome.setForeground(new java.awt.Color(0, 0, 0));
         jText_nome.setText("Nome");
         jText_nome.setBorder(null);
         jText_nome.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +107,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         });
 
         jText_cpf.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_cpf.setForeground(new java.awt.Color(255, 255, 255));
+        jText_cpf.setForeground(new java.awt.Color(0, 0, 0));
         jText_cpf.setText("CPF");
         jText_cpf.setBorder(null);
         jText_cpf.addActionListener(new java.awt.event.ActionListener() {
@@ -83,7 +117,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         });
 
         jText_email.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_email.setForeground(new java.awt.Color(255, 255, 255));
+        jText_email.setForeground(new java.awt.Color(0, 0, 0));
         jText_email.setText("E-mail");
         jText_email.setBorder(null);
         jText_email.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +127,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         });
 
         jText_telefone.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_telefone.setForeground(new java.awt.Color(255, 255, 255));
+        jText_telefone.setForeground(new java.awt.Color(0, 0, 0));
         jText_telefone.setText("Telefone");
         jText_telefone.setBorder(null);
         jText_telefone.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +135,23 @@ public class formConfirmarPag extends javax.swing.JFrame {
                 jText_telefoneActionPerformed(evt);
             }
         });
+
+        lnlNome.setBackground(new java.awt.Color(51, 255, 204));
+        lnlNome.setForeground(new java.awt.Color(0, 0, 0));
+        lnlNome.setText("jLabel2");
+        lnlNome.setToolTipText("");
+
+        lxlEmail.setBackground(new java.awt.Color(51, 255, 204));
+        lxlEmail.setForeground(new java.awt.Color(0, 0, 0));
+        lxlEmail.setText("jLabel2");
+
+        lblTelefone.setBackground(new java.awt.Color(51, 255, 204));
+        lblTelefone.setForeground(new java.awt.Color(0, 0, 0));
+        lblTelefone.setText("jLabel2");
+
+        lblCpf.setBackground(new java.awt.Color(51, 255, 204));
+        lblCpf.setForeground(new java.awt.Color(0, 0, 0));
+        lblCpf.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -110,23 +161,37 @@ public class formConfirmarPag extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jText_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jText_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jText_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jText_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lxlEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTelefone, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCpf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lnlNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jText_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jText_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lnlNome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jText_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jText_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCpf))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jText_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jText_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lxlEmail))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jText_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jText_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTelefone))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jText_dadopassagem.setBackground(new java.awt.Color(125, 132, 178));
@@ -141,7 +206,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         });
 
         jText_embarque.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_embarque.setForeground(new java.awt.Color(255, 255, 255));
+        jText_embarque.setForeground(new java.awt.Color(0, 0, 0));
         jText_embarque.setText("Embarque");
         jText_embarque.setBorder(null);
         jText_embarque.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +216,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         });
 
         jText_desembarque.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_desembarque.setForeground(new java.awt.Color(255, 255, 255));
+        jText_desembarque.setForeground(new java.awt.Color(0, 0, 0));
         jText_desembarque.setText("Desembarque");
         jText_desembarque.setBorder(null);
         jText_desembarque.addActionListener(new java.awt.event.ActionListener() {
@@ -161,7 +226,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         });
 
         jText_saida.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_saida.setForeground(new java.awt.Color(255, 255, 255));
+        jText_saida.setForeground(new java.awt.Color(0, 0, 0));
         jText_saida.setText("Saída");
         jText_saida.setBorder(null);
         jText_saida.addActionListener(new java.awt.event.ActionListener() {
@@ -171,7 +236,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         });
 
         jText_chegada.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_chegada.setForeground(new java.awt.Color(255, 255, 255));
+        jText_chegada.setForeground(new java.awt.Color(0, 0, 0));
         jText_chegada.setText("Chegada");
         jText_chegada.setBorder(null);
         jText_chegada.addActionListener(new java.awt.event.ActionListener() {
@@ -181,7 +246,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         });
 
         jText_data.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_data.setForeground(new java.awt.Color(255, 255, 255));
+        jText_data.setForeground(new java.awt.Color(0, 0, 0));
         jText_data.setText("Data");
         jText_data.setBorder(null);
         jText_data.addActionListener(new java.awt.event.ActionListener() {
@@ -191,7 +256,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         });
 
         jText_valor.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_valor.setForeground(new java.awt.Color(255, 255, 255));
+        jText_valor.setForeground(new java.awt.Color(0, 0, 0));
         jText_valor.setText("Valor");
         jText_valor.setBorder(null);
         jText_valor.addActionListener(new java.awt.event.ActionListener() {
@@ -200,6 +265,44 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
+        jText_valor1.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jText_valor1.setForeground(new java.awt.Color(0, 0, 0));
+        jText_valor1.setText("Motorista");
+        jText_valor1.setBorder(null);
+        jText_valor1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jText_valor1ActionPerformed(evt);
+            }
+        });
+
+        lblCpf1.setBackground(new java.awt.Color(51, 255, 204));
+        lblCpf1.setForeground(new java.awt.Color(0, 0, 0));
+        lblCpf1.setText("jLabel2");
+
+        lblCpf2.setBackground(new java.awt.Color(51, 255, 204));
+        lblCpf2.setForeground(new java.awt.Color(0, 0, 0));
+        lblCpf2.setText("jLabel2");
+
+        lblCpf3.setBackground(new java.awt.Color(51, 255, 204));
+        lblCpf3.setForeground(new java.awt.Color(0, 0, 0));
+        lblCpf3.setText("jLabel2");
+
+        lblCpf4.setBackground(new java.awt.Color(51, 255, 204));
+        lblCpf4.setForeground(new java.awt.Color(0, 0, 0));
+        lblCpf4.setText("jLabel2");
+
+        lblCpf5.setBackground(new java.awt.Color(51, 255, 204));
+        lblCpf5.setForeground(new java.awt.Color(0, 0, 0));
+        lblCpf5.setText("jLabel2");
+
+        lblCpf6.setBackground(new java.awt.Color(51, 255, 204));
+        lblCpf6.setForeground(new java.awt.Color(0, 0, 0));
+        lblCpf6.setText("jLabel2");
+
+        lblCpf7.setBackground(new java.awt.Color(51, 255, 204));
+        lblCpf7.setForeground(new java.awt.Color(0, 0, 0));
+        lblCpf7.setText("jLabel2");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -207,34 +310,66 @@ public class formConfirmarPag extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jText_embarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_desembarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_saida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_chegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(181, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jText_valor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jText_valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jText_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jText_chegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jText_saida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCpf2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCpf3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCpf4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCpf5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCpf6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jText_embarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblCpf7, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jText_desembarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addComponent(lblCpf1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jText_embarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jText_embarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCpf7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jText_desembarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jText_desembarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCpf1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jText_saida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jText_saida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCpf2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jText_chegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jText_chegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCpf3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jText_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jText_valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jText_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCpf4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jText_valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCpf5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jText_valor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCpf6))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         jText_FormasPgt.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
-        jText_FormasPgt.setForeground(new java.awt.Color(255, 255, 255));
+        jText_FormasPgt.setForeground(new java.awt.Color(0, 0, 0));
         jText_FormasPgt.setText("Formas de pagamento");
         jText_FormasPgt.setBorder(null);
         jText_FormasPgt.addActionListener(new java.awt.event.ActionListener() {
@@ -323,7 +458,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         });
 
         jButton_Confirmaepagar.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        jButton_Confirmaepagar.setForeground(new java.awt.Color(255, 255, 255));
+        jButton_Confirmaepagar.setForeground(new java.awt.Color(0, 0, 0));
         jButton_Confirmaepagar.setText("Confirma e pagar");
         jButton_Confirmaepagar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -342,15 +477,15 @@ public class formConfirmarPag extends javax.swing.JFrame {
                     .addComponent(jText_dadopassageiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jText_inf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jText_inf2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_inf3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jText_inf4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_Confirmaepagar))
-                .addGap(74, 74, 74))
+                    .addComponent(jButton_Confirmaepagar)
+                    .addComponent(jText_inf3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,7 +516,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                         .addComponent(jText_inf4, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton_Confirmaepagar)))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -473,6 +608,10 @@ public class formConfirmarPag extends javax.swing.JFrame {
         cartao.setVisible(true); 
     }//GEN-LAST:event_jButton_ConfirmaepagarMouseClicked
 
+    private void jText_valor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jText_valor1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jText_valor1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -506,14 +645,18 @@ public class formConfirmarPag extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new formConfirmarPag().setVisible(true);
-
+                int RotaId = 0;
+                int PassageiroId = 0;
+                
+                new formConfirmarPag(RotaId, PassageiroId).setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Confirmaepagar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -537,5 +680,17 @@ public class formConfirmarPag extends javax.swing.JFrame {
     private javax.swing.JTextField jText_saida;
     private javax.swing.JTextField jText_telefone;
     private javax.swing.JTextField jText_valor;
+    private javax.swing.JTextField jText_valor1;
+    private javax.swing.JLabel lblCpf;
+    private javax.swing.JLabel lblCpf1;
+    private javax.swing.JLabel lblCpf2;
+    private javax.swing.JLabel lblCpf3;
+    private javax.swing.JLabel lblCpf4;
+    private javax.swing.JLabel lblCpf5;
+    private javax.swing.JLabel lblCpf6;
+    private javax.swing.JLabel lblCpf7;
+    private javax.swing.JLabel lblTelefone;
+    private javax.swing.JLabel lnlNome;
+    private javax.swing.JLabel lxlEmail;
     // End of variables declaration//GEN-END:variables
 }
