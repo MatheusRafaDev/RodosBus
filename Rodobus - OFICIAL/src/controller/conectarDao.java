@@ -13,6 +13,9 @@ import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Reserva;
 
 public class conectarDao {
 
@@ -95,16 +98,33 @@ public class conectarDao {
                     + ");";
             ps = mycon.prepareStatement(sql);
             ps.execute();
-            inserirDados();
+
+            try {
+                String contar = "SELECT CAST(COUNT(*) AS VARCHAR(30)) AS CONTAR FROM TB_PASSAGEIRO;";
+                ps = mycon.prepareStatement(contar);
+                ResultSet resultSet = ps.executeQuery();
+                resultSet.next();  // Move para a primeira linha do resultado
+
+                int contador = Integer.parseInt(resultSet.getString("CONTAR"));
+
+                if (contador == 0) {
+                    // Se não houver registros, chama o método inserirDados()
+                    inserirDados();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(conectarDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
             ps.close();
             mycon.close();
             JOptionPane.showMessageDialog(null, "Banco criado com sucesso...");
         } catch (SQLException err) {
-           
+
         }
     }
 
     public void inserirDados() {
+
         try {
             sql = "INSERT INTO TB_PASSAGEIRO (ds_nome, nr_idade, ds_CPF, ds_TELEFONE, ds_email, ds_SENHA) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement psPassageiro = mycon.prepareStatement(sql);
@@ -198,7 +218,7 @@ public class conectarDao {
             psReservas.close();
 
             JOptionPane.showMessageDialog(null, "Dados inseridos com sucesso...");
-        }  catch (SQLException err) {
+        } catch (SQLException err) {
             err.printStackTrace();
             JOptionPane.showMessageDialog(null, "Erro ao inserir dados " + err.getMessage());
         }
