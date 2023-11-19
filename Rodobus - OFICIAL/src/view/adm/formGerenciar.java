@@ -300,6 +300,7 @@ public class formGerenciar extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Consulta de motorista");
 
+        tblMOTORISTAS.setAutoCreateRowSorter(true);
         tblMOTORISTAS.setForeground(new java.awt.Color(60, 63, 65));
         tblMOTORISTAS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1511,27 +1512,21 @@ public class formGerenciar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnALTERAR4;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnAlterar1;
     private javax.swing.JButton btnAlterarbus;
-    private javax.swing.JButton btnBUSCAR4;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnBuscarbus;
-    private javax.swing.JButton btnCADASTRAR4;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCadastrar1;
     private javax.swing.JButton btnCadastrar2;
     private javax.swing.JButton btnCadastrarbus;
-    private javax.swing.JButton btnDELETAR4;
     private javax.swing.JButton btnDeletar;
     private javax.swing.JButton btnDeletar1;
     private javax.swing.JButton btnDeletarbus;
     private javax.swing.JButton btnNOVO;
     private javax.swing.JButton btnNOVO1;
-    private javax.swing.JButton btnNOVO4;
-    private javax.swing.JComboBox<String> cmbMOTORISTA4;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1553,15 +1548,7 @@ public class formGerenciar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1574,7 +1561,6 @@ public class formGerenciar extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1586,7 +1572,6 @@ public class formGerenciar extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
@@ -1601,7 +1586,6 @@ public class formGerenciar extends javax.swing.JFrame {
     private javax.swing.JTable tblMOTORISTAS;
     private javax.swing.JTable tblOnibus;
     private javax.swing.JTable tblPASSAGEIRO;
-    private javax.swing.JTable tblROTA;
     private javax.swing.JTextField textAnofabricacao;
     private javax.swing.JTextField textCPF;
     private javax.swing.JTextField textCPF1;
@@ -1616,10 +1600,5 @@ public class formGerenciar extends javax.swing.JFrame {
     private javax.swing.JTextField textSENHA1;
     private javax.swing.JTextField textTELEFONE1;
     private javax.swing.JTextField textTelefone;
-    private javax.swing.JFormattedTextField txtCHEGADA4;
-    private javax.swing.JTextField txtDESTINO4;
-    private javax.swing.JTextField txtORIGEM4;
-    private javax.swing.JFormattedTextField txtSAIDA4;
-    private javax.swing.JFormattedTextField txtVALOR4;
     // End of variables declaration//GEN-END:variables
 }

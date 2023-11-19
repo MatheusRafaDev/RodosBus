@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFormattedTextField;
+import javax.swing.JFormattedTextField.AbstractFormatterFactory;
 import javax.swing.JFrame;
 import javax.swing.text.MaskFormatter;
 import javax.swing.JOptionPane;
@@ -28,25 +29,25 @@ public class formCadastroRotas extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
         try {
-            String inputText = txtSAIDA4.getText().trim();
-            sdf.setLenient(false);
-            Date date = sdf.parse(inputText);
-            txtSAIDA4.setValue(sdf.format(date));
-        } catch (ParseException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Formato de data de saída é inválido. Use o formato dd/MM/yyyy HH:mm:ss", "Erro", JOptionPane.ERROR_MESSAGE);
-            txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
-        }
-
-        try {
             String inputText = txtCHEGADA4.getText().trim();
             sdf.setLenient(false);
             Date date = sdf.parse(inputText);
             txtCHEGADA4.setValue(sdf.format(date));
         } catch (ParseException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Formato de data de chegada é inválido. Use o formato dd/MM/yyyy HH:mm:ss", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Formato de data de saída é inválido. Use o formato dd/MM/yyyy HH:mm:ss", "Erro", JOptionPane.ERROR_MESSAGE);
             txtCHEGADA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+        }
+
+        try {
+            String inputText = txtSAIDA4.getText().trim();
+            sdf.setLenient(false);
+            Date date = sdf.parse(inputText);
+            txtSAIDA4.setValue(sdf.format(date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Formato de data de chegada é inválido. Use o formato dd/MM/yyyy HH:mm:ss", "Erro", JOptionPane.ERROR_MESSAGE);
+            txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
         }
     }
 
@@ -59,26 +60,11 @@ public class formCadastroRotas extends javax.swing.JFrame {
         model.setRowCount(0);
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         for (Rota rota2 : rotas) {
-            model.addRow(new Object[]{rota2.getIdRota(), rota2.getIdMotorista(), rota2.getVlPreco(), rota2.getOrigem(), rota2.getDestino(), sdf.format(rota2.getDtSaida()), sdf.format(rota2.getDtChegada())});
+            model.addRow(new Object[]{rota2.getIdRota(), rota2.getIdMotorista() + " - " + rota2.getNomeMotorista(), rota2.getVlPreco(), rota2.getOrigem(), rota2.getDestino(), sdf.format(rota2.getDtSaida()), sdf.format(rota2.getDtChegada())});
         }
     }
 
-    MaskFormatter mascara;
-    MaskFormatter mascaraValor;
-
-    public formCadastroRotas() {
-
-        try {
-            mascara = new MaskFormatter("##/##/#### ##:##:##");
-            mascaraValor = new MaskFormatter("###,###.00");
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        initComponents();
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        CarregarRotas();
-
+    public void CarregarMotoristas() {
         DefaultComboBoxModel<String> mymodel = (DefaultComboBoxModel<String>) this.cmbMOTORISTA4.getModel();
 
         if (mymodel != null) {
@@ -93,6 +79,26 @@ public class formCadastroRotas extends javax.swing.JFrame {
         for (Motorista motorista : motoristas) {
             mymodel.addElement(motorista.getIdMotorista() + " - " + motorista.getNome());
         }
+    }
+
+    MaskFormatter mascara;
+ 
+    
+    MaskFormatter mascaraValor;
+
+    public formCadastroRotas() {
+
+        try {
+            mascara  = new MaskFormatter("##/##/#### ##:##:##");
+            mascaraValor = new MaskFormatter("###,###.00");
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        CarregarRotas();
+        CarregarMotoristas();
 
     }
 
@@ -117,13 +123,13 @@ public class formCadastroRotas extends javax.swing.JFrame {
         txtDESTINO4 = new javax.swing.JTextField();
         txtORIGEM4 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        txtSAIDA4 = new javax.swing.JFormattedTextField(mascara);
         txtCHEGADA4 = new javax.swing.JFormattedTextField(mascara);
         cmbMOTORISTA4 = new javax.swing.JComboBox<>();
         btnDELETAR4 = new javax.swing.JButton();
         txtVALOR4 = new javax.swing.JFormattedTextField(mascaraValor);
         btnBUSCAR4 = new javax.swing.JButton();
         lbID4 = new javax.swing.JLabel();
+        txtSAIDA4 = new javax.swing.JFormattedTextField(mascara);
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -131,6 +137,7 @@ public class formCadastroRotas extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(142, 157, 204));
 
+        tblROTA.setForeground(new java.awt.Color(60, 63, 65));
         tblROTA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -147,6 +154,8 @@ public class formCadastroRotas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblROTA.setSelectionBackground(new java.awt.Color(204, 204, 204));
+        tblROTA.setSelectionForeground(new java.awt.Color(60, 63, 65));
         tblROTA.getTableHeader().setReorderingAllowed(false);
         tblROTA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -201,7 +210,7 @@ public class formCadastroRotas extends javax.swing.JFrame {
         btnNOVO4.setBackground(new java.awt.Color(69, 73, 74));
         btnNOVO4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         btnNOVO4.setForeground(new java.awt.Color(255, 255, 255));
-        btnNOVO4.setText("Buscar");
+        btnNOVO4.setText("Novo Cadastro");
         btnNOVO4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnNOVO4MouseClicked(evt);
@@ -227,20 +236,9 @@ public class formCadastroRotas extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Cadastro de rotas");
 
-        txtSAIDA4.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtSAIDA4FocusLost(evt);
-            }
-        });
-
         txtCHEGADA4.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtCHEGADA4FocusLost(evt);
-            }
-        });
-        txtCHEGADA4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCHEGADA4ActionPerformed(evt);
             }
         });
 
@@ -281,10 +279,26 @@ public class formCadastroRotas extends javax.swing.JFrame {
                 btnBUSCAR4MouseClicked(evt);
             }
         });
+        btnBUSCAR4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBUSCAR4ActionPerformed(evt);
+            }
+        });
 
         lbID4.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         lbID4.setForeground(new java.awt.Color(255, 255, 255));
         lbID4.setText("0");
+
+        txtSAIDA4.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSAIDA4FocusLost(evt);
+            }
+        });
+        txtSAIDA4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSAIDA4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -298,23 +312,23 @@ public class formCadastroRotas extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
                             .addComponent(cmbMOTORISTA4, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCADASTRAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10)
                             .addComponent(txtORIGEM4, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9)
-                            .addComponent(txtDESTINO4, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDESTINO4, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCADASTRAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(62, 62, 62)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnALTERAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel14)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel13)
-                                .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(txtSAIDA4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCHEGADA4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtVALOR4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnNOVO4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbID4))
+                                .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtCHEGADA4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtVALOR4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnALTERAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSAIDA4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lbID4)
+                    .addComponent(btnNOVO4))
                 .addGap(57, 57, 57)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -351,16 +365,16 @@ public class formCadastroRotas extends javax.swing.JFrame {
                             .addComponent(jLabel10))
                         .addGap(5, 5, 5)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtSAIDA4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtORIGEM4))
+                            .addComponent(txtORIGEM4)
+                            .addComponent(txtSAIDA4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(1, 1, 1)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(jLabel12))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCHEGADA4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDESTINO4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDESTINO4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCHEGADA4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14)
@@ -374,9 +388,9 @@ public class formCadastroRotas extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnALTERAR4)
                             .addComponent(btnCADASTRAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnNOVO4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                         .addComponent(lbID4)
                         .addContainerGap())))
         );
@@ -427,7 +441,13 @@ public class formCadastroRotas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCADASTRAR4MouseClicked
 
     private void btnNOVO4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNOVO4MouseClicked
-
+        lbID4.setText("0");
+        txtORIGEM4.setText("");
+        txtDESTINO4.setText("");
+        txtCHEGADA4.setText("");
+        txtCHEGADA4.setText("");
+        txtVALOR4.setText("");
+        cmbMOTORISTA4.setSelectedIndex(0);
 
     }//GEN-LAST:event_btnNOVO4MouseClicked
 
@@ -435,12 +455,8 @@ public class formCadastroRotas extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnALTERAR4MouseClicked
 
-    private void txtSAIDA4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSAIDA4FocusLost
-
-
-    }//GEN-LAST:event_txtSAIDA4FocusLost
-
     private void txtCHEGADA4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCHEGADA4FocusLost
+
 
     }//GEN-LAST:event_txtCHEGADA4FocusLost
 
@@ -464,12 +480,9 @@ public class formCadastroRotas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtVALOR4ActionPerformed
 
-    private void txtCHEGADA4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCHEGADA4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCHEGADA4ActionPerformed
-
     private void btnBUSCAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBUSCAR4MouseClicked
-        // TODO add your handling code here:
+        CarregarRotas();
+        CarregarMotoristas();
     }//GEN-LAST:event_btnBUSCAR4MouseClicked
 
     private void btnNOVO4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNOVO4ActionPerformed
@@ -483,19 +496,40 @@ public class formCadastroRotas extends javax.swing.JFrame {
 
         if (selectedRow != -1) {
             lbID4.setText(model.getValueAt(selectedRow, 0).toString());
+
             txtVALOR4.setText(model.getValueAt(selectedRow, 2).toString());
             txtORIGEM4.setText(model.getValueAt(selectedRow, 3).toString());
             txtDESTINO4.setText(model.getValueAt(selectedRow, 4).toString());
-            txtSAIDA4.setText(model.getValueAt(selectedRow, 5).toString());
-            txtCHEGADA4.setText(model.getValueAt(selectedRow, 6).toString());
 
-            String motoristaSelecionado = cmbMOTORISTA4.getSelectedItem().toString();
-
-            String[] partes = motoristaSelecionado.split(" - ");
-            if (partes.length == 2) {
-                String idMotorista = partes[0];
+            String MOTORISTA = model.getValueAt(selectedRow, 1).toString();
+            int index = -1;
+            for (int i = 0; i < cmbMOTORISTA4.getItemCount(); i++) {
+                if (MOTORISTA.equals(cmbMOTORISTA4.getItemAt(i))) {
+                    index = i;
+                    break;
+                }
             }
 
+            if (index != -1) {
+                cmbMOTORISTA4.setSelectedIndex(index);
+            } else {
+                cmbMOTORISTA4.setSelectedIndex(0);
+            }
+            
+            
+            
+            txtSAIDA4.setFormatterFactory(null);
+            txtSAIDA4.setText(model.getValueAt(selectedRow, 5).toString());
+                
+            AbstractFormatterFactory formatterFactory = new DefaultFormatterFactory( mascara );
+            txtSAIDA4.setFormatterFactory(formatterFactory);
+
+  
+  
+           // txtCHEGADA4.setFormatterFactory(null);
+            txtCHEGADA4.setText(model.getValueAt(selectedRow, 6).toString());
+
+                    
         } else {
             lbID4.setText("0");
             txtORIGEM4.setText("");
@@ -507,6 +541,18 @@ public class formCadastroRotas extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_tblROTAMouseClicked
+
+    private void btnBUSCAR4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBUSCAR4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBUSCAR4ActionPerformed
+
+    private void txtSAIDA4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSAIDA4FocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSAIDA4FocusLost
+
+    private void txtSAIDA4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSAIDA4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSAIDA4ActionPerformed
 
     /**
      * @param args the command line arguments

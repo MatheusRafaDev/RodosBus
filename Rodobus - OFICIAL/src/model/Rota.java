@@ -13,7 +13,17 @@ public class Rota {
     private Date dtSaida;
     private Date dtChegada;
     private int idMotorista;
+    private String NomeMotorista;
+         
+    public String getNomeMotorista() {
+        return NomeMotorista;
+    }
 
+    public void setNomeMotorista(String NomeMotorista) {
+        this.NomeMotorista = NomeMotorista;
+    }
+    
+    
     public int getIdRota() {
         return idRota;
     }

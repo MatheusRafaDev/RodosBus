@@ -23,7 +23,8 @@ public class rotaDao extends conectarDao {
     public ArrayList<Rota> selecionarRotas() {
         ArrayList<Rota> rotas = new ArrayList<>();
 
-        String sql = "SELECT ID_ROTA, DS_ORIGEM, DS_DESTINO, VL_DISTANCIA, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA, ID_MOTORISTA FROM TB_ROTA";
+        String sql = "SELECT ID_ROTA, DS_ORIGEM, DS_DESTINO, VL_DISTANCIA, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA, "+
+                    "MOT.ID_MOTORISTA,MOT.DS_NOME FROM TB_ROTA ROT LEFT JOIN TB_MOTORISTA MOT ON ROT.ID_MOTORISTA = MOT.ID_MOTORISTA";
 
         try {
             ps = mycon.prepareStatement(sql);
@@ -42,17 +43,20 @@ public class rotaDao extends conectarDao {
 
                 Double preco = resultSet.getDouble("VL_PRECO");
                 int idMotorista = resultSet.getInt("ID_MOTORISTA");
-
+                String NomeMotorista = resultSet.getString("DS_NOME");
+                
                 Rota rota = new Rota();
 
+                
                 rota.setIdRota(id);
                 rota.setDestino(destino);
                 rota.setOrigem(origem);
                 rota.setDtChegada(chegada);
                 rota.setDtSaida(saida);
+                
                 rota.setVlPreco(preco);
                 rota.setIdMotorista(idMotorista);
-
+                rota.setNomeMotorista(NomeMotorista);
                 rotas.add(rota);
             }
 

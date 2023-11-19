@@ -58,27 +58,27 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                               <Component id="cmbMOTORISTA4" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
-                              <Component id="btnCADASTRAR4" min="-2" pref="102" max="-2" attributes="0"/>
                               <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="txtORIGEM4" min="-2" pref="157" max="-2" attributes="0"/>
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                               <Component id="txtDESTINO4" min="-2" pref="157" max="-2" attributes="0"/>
+                              <Component id="btnCADASTRAR4" min="-2" pref="112" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnALTERAR4" min="-2" pref="102" max="-2" attributes="0"/>
                               <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                                   <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel12" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtCHEGADA4" alignment="1" min="-2" pref="135" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="txtSAIDA4" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
-                              <Component id="txtCHEGADA4" min="-2" pref="135" max="-2" attributes="0"/>
                               <Component id="txtVALOR4" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                              <Component id="btnALTERAR4" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                              <Component id="txtSAIDA4" min="-2" pref="135" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="btnNOVO4" min="-2" pref="102" max="-2" attributes="0"/>
                       <Component id="lbID4" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnNOVO4" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -126,8 +126,8 @@
                           </Group>
                           <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtSAIDA4" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                               <Component id="txtORIGEM4" alignment="3" max="32767" attributes="0"/>
+                              <Component id="txtSAIDA4" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -136,8 +136,8 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtCHEGADA4" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                               <Component id="txtDESTINO4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCHEGADA4" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -156,9 +156,9 @@
                               <Component id="btnALTERAR4" min="-2" max="-2" attributes="0"/>
                               <Component id="btnCADASTRAR4" min="-2" pref="26" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnNOVO4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="129" max="32767" attributes="0"/>
+                          <EmptySpace pref="141" max="32767" attributes="0"/>
                           <Component id="lbID4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -177,6 +177,9 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="tblROTA">
               <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="41" green="3f" red="3c" type="rgb"/>
+                </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="7" rowCount="0">
                     <Column editable="false" title="C&#xf3;digo" type="java.lang.Object"/>
@@ -226,6 +229,12 @@
                       <Renderer/>
                     </Column>
                   </TableColumnModel>
+                </Property>
+                <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                </Property>
+                <Property name="selectionForeground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="41" green="3f" red="3c" type="rgb"/>
                 </Property>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
@@ -343,7 +352,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Buscar"/>
+            <Property name="text" type="java.lang.String" value="Novo Cadastro"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnNOVO4MouseClicked"/>
@@ -382,18 +391,9 @@
             <Property name="text" type="java.lang.String" value="Cadastro de rotas"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="txtSAIDA4">
-          <Events>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtSAIDA4FocusLost"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(mascara);"/>
-          </AuxValues>
-        </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtCHEGADA4">
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCHEGADA4FocusLost"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCHEGADA4ActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(mascara);"/>
@@ -458,6 +458,7 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnBUSCAR4MouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBUSCAR4ActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbID4">
@@ -470,6 +471,15 @@
             </Property>
             <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="txtSAIDA4">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtSAIDA4FocusLost"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSAIDA4ActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(mascara);"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
