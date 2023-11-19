@@ -45,6 +45,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         this.mnNOME.setText(obj.getNome());
         this.mnID.setText("Id: " + obj.getIdPassageiro());
         carregarRota();
+                this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         pass = obj;
     }
@@ -215,6 +216,11 @@ public class formConsultaPassagem extends javax.swing.JFrame {
 
         mnPERFIL.setText("Perfil");
         mnPERFIL.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        mnPERFIL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnPERFILMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(mnPERFIL);
 
         mnSAIR.setText("Sair");
@@ -275,9 +281,12 @@ public class formConsultaPassagem extends javax.swing.JFrame {
 
     }//GEN-LAST:event_mnNOMEMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+    private void mnPERFILMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPERFILMouseClicked
+        this.setVisible(false);
+        formInfoPassageiro info = new formInfoPassageiro(pass);
+        info.setVisible(true);     
+    }//GEN-LAST:event_mnPERFILMouseClicked
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

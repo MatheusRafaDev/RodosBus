@@ -79,6 +79,11 @@ public class formPedidoRealizado extends javax.swing.JFrame {
 
         mnPERFIL.setText("Perfil");
         mnPERFIL.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        mnPERFIL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnPERFILMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(mnPERFIL);
 
         mnPedido.setText("Pedido");
@@ -138,6 +143,12 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         formPedidoRealizado pedido = new formPedidoRealizado(pass);
         pedido.setVisible(true);
     }//GEN-LAST:event_mnPedidoMouseClicked
+
+    private void mnPERFILMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPERFILMouseClicked
+        this.setVisible(false);
+        formInfoPassageiro info = new formInfoPassageiro(pass);
+        info.setVisible(true); 
+    }//GEN-LAST:event_mnPERFILMouseClicked
 
     /**
      * @param args the command line arguments
