@@ -6,6 +6,7 @@ package view.clientes;
 
 import controller.rotaDao;
 import controller.reservaDao;
+import javax.swing.JFrame;
 import model.Passageiro;
 
 public class formPedidoRealizado extends javax.swing.JFrame {
@@ -19,7 +20,8 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         this.mnID.setText("Id: " + obj.getIdPassageiro());
 
         pass = obj;
-
+        
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     @SuppressWarnings("unchecked")
