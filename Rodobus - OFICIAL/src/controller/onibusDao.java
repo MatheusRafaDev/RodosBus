@@ -15,10 +15,7 @@ import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import model.Onibus;
 
-/**
- *
- * @author thiag
- */
+
 
 public class onibusDao extends conectarDao {
 
@@ -79,7 +76,7 @@ public class onibusDao extends conectarDao {
             ps.close();
             resultSet.close();
         } catch (SQLException err) {
-            JOptionPane.showMessageDialog(null, "Erro ao selecionar Motoristas! " + err.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao selecionar Onibus! " + err.getMessage());
         }
 
         return selecionarOnibus;

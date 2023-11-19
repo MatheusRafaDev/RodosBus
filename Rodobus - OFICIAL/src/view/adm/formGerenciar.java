@@ -50,13 +50,12 @@ public class formGerenciar extends javax.swing.JFrame {
     
     public void CaregarOnibus() {
         onibusDao onibusDao = new onibusDao();
-        onibusDao.criarBanco();
         ArrayList<Onibus> onibuss = onibusDao.selecionarOnibus();
         DefaultTableModel onibusModel = (DefaultTableModel) tblOnibus.getModel();
         onibusModel.setRowCount(0);
 
         for (Onibus onibus : onibuss) {
-            onibusModel.addRow(new Object[]{onibus.getIdOnibus(), onibus.getModelo(), onibus.getPlaca(), onibus.getCapacidade(), onibus.getAnoFabricacao(),});
+            onibusModel.addRow(new Object[]{onibus.getIdOnibus(), onibus.getModelo(), onibus.getPlaca(), onibus.getCapacidade(), onibus.getAnoFabricacao()});
         }
     }
      
