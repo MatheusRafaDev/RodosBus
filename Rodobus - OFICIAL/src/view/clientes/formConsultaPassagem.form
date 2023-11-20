@@ -179,10 +179,19 @@
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="Txtdtchegada" max="32767" attributes="0"/>
-                                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Txtvalor" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" pref="368" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="Txtdtchegada" max="32767" attributes="0"/>
+                                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                                          <Component id="Txtvalor" max="32767" attributes="0"/>
+                                          <EmptySpace min="-2" pref="368" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="lblidpass" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="185" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                                   <Component id="RESERVAR" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -224,16 +233,25 @@
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Txtembarque" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Txtdesembarque" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Txtdtsaida" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Txtdtchegada" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Txtvalor" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="RESERVAR" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Txtembarque" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Txtdesembarque" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Txtdtsaida" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Txtdtchegada" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Txtvalor" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="RESERVAR" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="34" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="lblidpass" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="34" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -435,6 +453,11 @@
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="text" type="java.lang.String" value="Valor"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblidpass">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jLabel7"/>
           </Properties>
         </Component>
       </SubComponents>
