@@ -476,8 +476,8 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     private void RESERVARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RESERVARMouseClicked
         
                          JOptionPane.showMessageDialog(null,pass.getIdPassageiro());
-                           JOptionPane.showMessageDialog(null,rt.getIdRota());                       
-        carregarInfo(pass.getIdPassageiro(),Integer.parseInt(lblID.getText()));
+                          JOptionPane.showMessageDialog(null,rt.getIdRota());                       
+                            carregarInfo(pass.getIdPassageiro(),rt.getIdRota());
     }//GEN-LAST:event_RESERVARMouseClicked
 
     public static void main(String args[]) {
