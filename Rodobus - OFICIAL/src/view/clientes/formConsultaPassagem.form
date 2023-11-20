@@ -38,6 +38,11 @@
         </Menu>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="lblID">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Embarque"/>
+      </Properties>
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu7">
@@ -157,10 +162,6 @@
                                   <Component id="jLabel1" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblID" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
@@ -232,9 +233,7 @@
                       <Component id="Txtvalor" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="RESERVAR" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblID" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <EmptySpace pref="34" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -436,11 +435,6 @@
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="text" type="java.lang.String" value="Valor"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblID">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Embarque"/>
           </Properties>
         </Component>
       </SubComponents>

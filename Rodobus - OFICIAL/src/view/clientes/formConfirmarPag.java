@@ -12,10 +12,12 @@ import model.Rota;
 public class formConfirmarPag extends javax.swing.JFrame {
     int RotaId = 0;
     int PassageiroId = 0;
+
     
     public formConfirmarPag(int passageiroId2,int rotaId2) {
+
         initComponents();
-                
+        carregarInfo();        
         RotaId = rotaId2;
         PassageiroId = passageiroId2;
         lblteste.setText(Integer.toString(rotaId2));
@@ -31,6 +33,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
         rota = rt.selecionarUmaRota(RotaId);
         passageiro = pass.selecionarUmPassageiro(PassageiroId);  
         lblteste.setText(Integer.toString(RotaId));
+        lnlNome.setText(rota.getOrigem());
+        lblCpf.setText(passageiro.getNome());
+
 
     }
 
@@ -137,7 +142,6 @@ public class formConfirmarPag extends javax.swing.JFrame {
 
         lnlNome.setBackground(new java.awt.Color(51, 255, 204));
         lnlNome.setForeground(new java.awt.Color(0, 0, 0));
-        lnlNome.setText("jLabel2");
         lnlNome.setToolTipText("");
 
         lxlEmail.setBackground(new java.awt.Color(51, 255, 204));
@@ -150,7 +154,6 @@ public class formConfirmarPag extends javax.swing.JFrame {
 
         lblCpf.setBackground(new java.awt.Color(51, 255, 204));
         lblCpf.setForeground(new java.awt.Color(0, 0, 0));
-        lblCpf.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -514,8 +517,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                         .addGap(17, 17, 17)
                         .addComponent(jText_dadopassagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(59, Short.MAX_VALUE))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jText_inf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -526,8 +528,8 @@ public class formConfirmarPag extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jText_inf4, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton_Confirmaepagar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jButton_Confirmaepagar)))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
