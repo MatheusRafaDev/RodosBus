@@ -24,8 +24,10 @@ import model.Rota;
 public class formConsultaPassagem extends javax.swing.JFrame {
     
     public void carregarInfo(int IdPassageiro, int IdRota) {
-        formConfirmarPag pag = new formConfirmarPag(IdPassageiro, IdRota);
         this.setVisible(false);
+        
+        formConfirmarPag pag = new formConfirmarPag(IdPassageiro, IdRota);
+         
         pag.setVisible(true);
     }
 

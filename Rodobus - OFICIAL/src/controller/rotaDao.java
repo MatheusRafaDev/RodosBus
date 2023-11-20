@@ -93,39 +93,44 @@ public class rotaDao extends conectarDao {
 
     public Rota selecionarUmaRota(int id) {
         String sql = "SELECT ID_ROTA, DS_ORIGEM, DS_DESTINO, VL_DISTANCIA, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA, "
-                + "MOT.ID_MOTORISTA,MOT.DS_NOME FROM TB_ROTA ROT LEFT JOIN TB_MOTORISTA MOT ON ROT.ID_MOTORISTA = MOT.ID_MOTORISTA" + id;
+                + "MOT.ID_MOTORISTA, MOT.DS_NOME FROM TB_ROTA ROT LEFT JOIN TB_MOTORISTA MOT ON ROT.ID_MOTORISTA = MOT.ID_MOTORISTA WHERE ID_ROTA =" + id;
 
         Rota rota = new Rota();
+
         try {
             PreparedStatement ps = mycon.prepareStatement(sql);
             ResultSet resultSet = ps.executeQuery();
 
-            int IdRota = resultSet.getInt("ID_ROTA");
-            String origem = resultSet.getString("DS_ORIGEM");
-            String destino = resultSet.getString("DS_DESTINO");
-            double vlDistancia = resultSet.getDouble("VL_DISTANCIA");
-            String dsDuracao = resultSet.getString("DS_DURACAO");
-            double vlpreco = resultSet.getDouble("VL_PRECO");
-            Date dtchegada = resultSet.getDate("DT_CHEGADA");
-            Date dtsaida = resultSet.getDate("DT_SAIDA");
+            if (resultSet.next()) { 
+                int IdRota = resultSet.getInt("ID_ROTA");
+                String origem = resultSet.getString("DS_ORIGEM");
+                String destino = resultSet.getString("DS_DESTINO");
+                double vlDistancia = resultSet.getDouble("VL_DISTANCIA");
+                String dsDuracao = resultSet.getString("DS_DURACAO");
+                double vlpreco = resultSet.getDouble("VL_PRECO");
+                Date dtchegada = resultSet.getDate("DT_CHEGADA");
+                Date dtsaida = resultSet.getDate("DT_SAIDA");
 
-            int Idmotorista = resultSet.getInt("ID_MOTORISTA");
-            String NomeMotorista = resultSet.getString("DS_NOME");
+                int Idmotorista = resultSet.getInt("ID_MOTORISTA");
+                String NomeMotorista = resultSet.getString("DS_NOME");
 
-            rota.setIdRota(id);
-            rota.setDestino(destino);
-            rota.setOrigem(origem);
-            rota.setDtChegada(dtchegada);
-            rota.setDtSaida(dtsaida);
+                rota.setIdRota(IdRota); 
+                rota.setDestino(destino);
+                rota.setOrigem(origem);
+                rota.setDtChegada(dtchegada);
+                rota.setDtSaida(dtsaida);
 
-            rota.setVlPreco(vlpreco);
-            rota.setIdMotorista(Idmotorista);
-            rota.setNomeMotorista(NomeMotorista);
+                rota.setVlPreco(vlpreco);
+                rota.setIdMotorista(Idmotorista);
+                rota.setNomeMotorista(NomeMotorista);
+            } else {
+                System.out.println("Rota not found for ID: " + id);
+            }
 
             ps.close();
             resultSet.close();
         } catch (SQLException err) {
-
+            err.printStackTrace();
         }
 
         return rota;

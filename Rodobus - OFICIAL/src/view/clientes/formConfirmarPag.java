@@ -1,4 +1,3 @@
-
 package view.clientes;
 
 import controller.passageiroDao;
@@ -7,27 +6,28 @@ import javax.swing.JOptionPane;
 import model.Passageiro;
 import model.Rota;
 
-
-
-
 public class formConfirmarPag extends javax.swing.JFrame {
+
+    Rota rota = new Rota();
+    Passageiro pass = new Passageiro();
     
-    public formConfirmarPag(int passageiroId2,int rotaId2) {
-        
-        passageiroDao p = new  passageiroDao();
-        rotaDao       r = new rotaDao();
-        
-        Rota rota = r.selecionarUmaRota(rotaId2);
-        Passageiro pass = p.selecionarUmPassageiro(passageiroId2);
-        
-        JOptionPane.showMessageDialog(null,pass.getNome()); 
-                
-        this.lblNOME.setText(pass.getNome());
-        
+    public formConfirmarPag(int passageiroId2, int rotaId2) {
         initComponents();
-     
+
+        passageiroDao p = new passageiroDao();
+        rotaDao r = new rotaDao();
+
+        rota = r.selecionarUmaRota(passageiroId2);
+        pass = p.selecionarUmPassageiro(rotaId2);
+
+        this.lblNOME.setText(pass.getNome());
+        this.lblNOME.setText(pass.getCpf());
+        this.lblEMAIL.setText(pass.getEmail());
+        this.lblTELEFONE.setText(pass.getTelefone());
+          
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -608,7 +608,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         // TODO add your handling code here:
         formPagCartao cartao = new formPagCartao();
         this.setVisible(false);
-        cartao.setVisible(true); 
+        cartao.setVisible(true);
     }//GEN-LAST:event_jButton_ConfirmaepagarMouseClicked
 
     private void jText_valor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jText_valor1ActionPerformed
@@ -621,7 +621,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
             public void run() {
                 int passageiroId2 = 0;
                 int rotaId2 = 0;
-                new formConfirmarPag(passageiroId2,rotaId2).setVisible(true);
+                new formConfirmarPag(passageiroId2, rotaId2).setVisible(true);
             }
         });
     }
