@@ -531,16 +531,10 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     
     
     private void RESERVARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RESERVARMouseClicked
-        
-<<<<<<< HEAD
+
         JOptionPane.showMessageDialog(null,pass.getIdPassageiro());
         JOptionPane.showMessageDialog(null,rt.getIdRota());                       
         carregarInfo(pass.getIdPassageiro(),rt.getIdRota());
-=======
-                         JOptionPane.showMessageDialog(null,pass.getIdPassageiro());
-                          JOptionPane.showMessageDialog(null,rt.getIdRota());                       
-                            carregarInfo(pass.getIdPassageiro(),rt.getIdRota());
->>>>>>> 2c20db46a3c6417e22ca1cb9a3d51688b670f764
     }//GEN-LAST:event_RESERVARMouseClicked
 
     private void txtDATAVOLTAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDATAVOLTAMouseClicked
