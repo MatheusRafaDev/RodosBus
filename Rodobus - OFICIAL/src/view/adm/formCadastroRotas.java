@@ -25,30 +25,52 @@ import model.Motorista;
 
 public class formCadastroRotas extends javax.swing.JFrame {
 
-    public void VerificarData() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+    public void verificarData() {
+        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
-        try {
-            String inputText = txtCHEGADA4.getText().trim();
-            sdf.setLenient(false);
-            Date date = sdf.parse(inputText);
-            txtCHEGADA4.setValue(sdf.format(date));
-        } catch (ParseException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Formato de data de saída é inválido. Use o formato dd/MM/yyyy HH:mm:ss", "Erro", JOptionPane.ERROR_MESSAGE);
+        String inputText = txtCHEGADA4.getText().trim();
+        Date date = parseDate(inputText, sdf1);
+
+        if (date == null) {
+            date = parseDate(inputText, sdf2);
+        }
+
+        if (date != null) {
+            txtCHEGADA4.setValue(sdf1.format(date));
+        } else {
+            showError("Formato de data de saída é inválido. Use o formato dd/MM/yyyy HH:mm:ss");
             txtCHEGADA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
         }
 
-        try {
-            String inputText = txtSAIDA4.getText().trim();
-            sdf.setLenient(false);
-            Date date = sdf.parse(inputText);
-            txtSAIDA4.setValue(sdf.format(date));
-        } catch (ParseException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Formato de data de chegada é inválido. Use o formato dd/MM/yyyy HH:mm:ss", "Erro", JOptionPane.ERROR_MESSAGE);
+        String inputText2 = txtSAIDA4.getText().trim();
+        Date date2 = parseDate(inputText2, sdf2);
+
+        if (date2 == null) {
+            date = parseDate(inputText, sdf2);
+        }
+
+        if (date2 != null) {
+            txtSAIDA4.setValue(sdf1.format(date2));
+            txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+        } else {
+            showError("Formato de data de saída é inválido. Use o formato dd/MM/yyyy HH:mm:ss");
             txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
         }
+    }
+
+    private Date parseDate(String input, SimpleDateFormat sdf) {
+        try {
+            sdf.setLenient(false);
+            return sdf.parse(input);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
+    private void showError(String errorMessage) {
+        System.err.println(errorMessage);
+        JOptionPane.showMessageDialog(null, errorMessage, "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
     public void CarregarRotas() {
@@ -58,7 +80,7 @@ public class formCadastroRotas extends javax.swing.JFrame {
         ArrayList<Rota> rotas = rota.selecionarRotas();
         DefaultTableModel model = (DefaultTableModel) tblROTA.getModel();
         model.setRowCount(0);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         for (Rota rota2 : rotas) {
             model.addRow(new Object[]{rota2.getIdRota(), rota2.getIdMotorista() + " - " + rota2.getNomeMotorista(), rota2.getVlPreco(), rota2.getOrigem(), rota2.getDestino(), sdf.format(rota2.getDtSaida()), sdf.format(rota2.getDtChegada())});
         }
@@ -82,15 +104,14 @@ public class formCadastroRotas extends javax.swing.JFrame {
     }
 
     MaskFormatter mascara;
- 
-    
+
     MaskFormatter mascaraValor;
 
     public formCadastroRotas() {
 
         try {
-            mascara  = new MaskFormatter("##/##/#### ##:##:##");
-            mascaraValor = new MaskFormatter("###,###.00");
+            mascara = new MaskFormatter("##/##/#### ##:##:##");
+            mascaraValor = new MaskFormatter("###,###.##");
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -410,14 +431,28 @@ public class formCadastroRotas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCADASTRAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCADASTRAR4MouseClicked
-        VerificarData();
+        verificarData();
 
         rotaDao r = new rotaDao();
         Rota rota = new Rota();
 
         String origem = txtORIGEM4.getText();
         String destino = txtDESTINO4.getText();
-        Double valor = Double.parseDouble(txtVALOR4.getText());
+
+        String textFromTextField = txtVALOR4.getText();
+        
+        
+        String IdMoto = (String)cmbMOTORISTA4.getSelectedItem();
+        String numeroComoString = IdMoto.replaceAll("\\D+", "");
+        int motorista = Integer.parseInt(numeroComoString);
+
+                
+        double valor = 0;
+        String cleanedText = textFromTextField.replaceAll("[^0-9.]", "");
+        if (!cleanedText.isEmpty() && !cleanedText.equals(".")) {
+            valor = Double.parseDouble(cleanedText);
+        } else {
+        }
 
         String saidaText = txtSAIDA4.getText();
         String chegadaText = txtCHEGADA4.getText();
@@ -426,8 +461,8 @@ public class formCadastroRotas extends javax.swing.JFrame {
         Date chegada = null;
 
         try {
-            saida = (Date) new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(saidaText);
-            chegada = (Date) new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(chegadaText);
+            saida = (Date) new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(saidaText);
+            chegada = (Date) new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(chegadaText);
         } catch (ParseException ex) {
 
         }
@@ -437,7 +472,13 @@ public class formCadastroRotas extends javax.swing.JFrame {
         rota.setDtChegada(chegada);
         rota.setDtSaida(saida);
         rota.setVlPreco(valor);
+        rota.setIdMotorista(motorista);
         r.incluirRota(rota);
+
+        txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+        txtCHEGADA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+
+        CarregarRotas();
     }//GEN-LAST:event_btnCADASTRAR4MouseClicked
 
     private void btnNOVO4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNOVO4MouseClicked
@@ -445,7 +486,11 @@ public class formCadastroRotas extends javax.swing.JFrame {
         txtORIGEM4.setText("");
         txtDESTINO4.setText("");
         txtCHEGADA4.setText("");
-        txtCHEGADA4.setText("");
+        txtSAIDA4.setText("");
+
+        txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+        txtCHEGADA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+
         txtVALOR4.setText("");
         cmbMOTORISTA4.setSelectedIndex(0);
 
@@ -469,7 +514,9 @@ public class formCadastroRotas extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbMOTORISTA4ActionPerformed
 
     private void btnDELETAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDELETAR4MouseClicked
-        // TODO add your handling code here:
+        rotaDao rota = new rotaDao();
+        rota.excluir(Integer.parseInt(this.lbID4.getText(), 0));
+        CarregarRotas();
     }//GEN-LAST:event_btnDELETAR4MouseClicked
 
     private void btnDELETAR4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDELETAR4ActionPerformed
@@ -515,21 +562,16 @@ public class formCadastroRotas extends javax.swing.JFrame {
             } else {
                 cmbMOTORISTA4.setSelectedIndex(0);
             }
-            
-            
-            
+
             txtSAIDA4.setFormatterFactory(null);
             txtSAIDA4.setText(model.getValueAt(selectedRow, 5).toString());
-                
-            AbstractFormatterFactory formatterFactory = new DefaultFormatterFactory( mascara );
+
+            AbstractFormatterFactory formatterFactory = new DefaultFormatterFactory(mascara);
             txtSAIDA4.setFormatterFactory(formatterFactory);
 
-  
-  
-           // txtCHEGADA4.setFormatterFactory(null);
+            // txtCHEGADA4.setFormatterFactory(null);
             txtCHEGADA4.setText(model.getValueAt(selectedRow, 6).toString());
 
-                    
         } else {
             lbID4.setText("0");
             txtORIGEM4.setText("");
@@ -539,6 +581,9 @@ public class formCadastroRotas extends javax.swing.JFrame {
             txtVALOR4.setText("");
             cmbMOTORISTA4.setSelectedIndex(0);
         }
+
+        txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+        txtCHEGADA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
 
     }//GEN-LAST:event_tblROTAMouseClicked
 

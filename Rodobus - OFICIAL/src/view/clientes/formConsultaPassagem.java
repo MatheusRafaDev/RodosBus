@@ -9,26 +9,75 @@ import model.Passageiro;
 import view.clientes.formLogin;
 import view.clientes.formConfirmarPag;
 import controller.rotaDao;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Set;
+import javax.swing.JFormattedTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
 import model.Rota;
-
 
 public class formConsultaPassagem extends javax.swing.JFrame {
 
+    public void VerificarData() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
-    
-    public void carregarInfo(int IdPassageiro, int IdRota){
+        try {
+            String inputTextVolta = txtDATAVOLTA.getText().trim();
+            if (!inputTextVolta.equals("/  /       :  :")) {
+                sdf.setLenient(false);
+                Date dateVolta = sdf.parse(inputTextVolta);
+                txtDATAVOLTA.setValue(sdf.format(dateVolta));
+            } else {
 
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Formato de data de saída é inválido. Use o formato dd/MM/yyyy HH:mm:ss", "Erro", JOptionPane.ERROR_MESSAGE);
+            txtDATAVOLTA.setFocusLostBehavior(JFormattedTextField.PERSIST);
+        }
+
+        try {
+            String inputTextSaida = txtDATASAIDA.getText().trim();
+            if (!inputTextSaida.equals("/  /       :  :")) {
+                sdf.setLenient(false);
+                Date dateSaida = sdf.parse(inputTextSaida);
+                txtDATASAIDA.setValue(sdf.format(dateSaida));
+            } else {
+
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Formato de data de chegada é inválido. Use o formato dd/MM/yyyy HH:mm:ss", "Erro", JOptionPane.ERROR_MESSAGE);
+            txtDATASAIDA.setFocusLostBehavior(JFormattedTextField.PERSIST);
+        }
+
+    }
+
+    public void carregarInfo(int IdPassageiro, int IdRota) {
         this.setVisible(false);
-        formConfirmarPag pag = new formConfirmarPag(IdPassageiro,IdRota);
+        formConfirmarPag pag = new formConfirmarPag(IdPassageiro, IdRota);
         pag.setVisible(true);
     }
-    
+
     public void carregarRota() {
+        rotaDao rota = new rotaDao();
+        rota.criarBanco();
+        ArrayList<Rota> rotas = rota.selecionarRotas();
+
+        DefaultTableModel model = (DefaultTableModel) tblROTAS.getModel();
+        model.setRowCount(0);
+
+        for (Rota rota2 : rotas) {
+            model.addRow(new Object[]{rota2.getIdRota(), rota2.getOrigem(), rota2.getDestino(), rota2.getDtSaida(), rota2.getDtChegada(), rota2.getVlPreco()});
+        }
+    }
+
+    public void carregarRota2(Date DATASAIDA,Date DATAVOLTA,String saida,String volta) {
         rotaDao rota = new rotaDao();
         rota.criarBanco();
         ArrayList<Rota> rotas = rota.selecionarRotas();
@@ -43,16 +92,27 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     
     Passageiro pass = new Passageiro();
     Rota rt = new Rota();
-    
+
+    MaskFormatter mascara;
+    MaskFormatter mascaraValor;
+
     public formConsultaPassagem(Passageiro obj) {
+
+        try {
+            mascara = new MaskFormatter("##/##/#### ##:##:##");
+            mascaraValor = new MaskFormatter("###,###.00");
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         initComponents();
         this.mnNOME.setText(obj.getNome());
         this.mnID.setText("Id: " + obj.getIdPassageiro());
         lblidpass.setText(Integer.toString(obj.getIdPassageiro()));
         carregarRota();
-        
+
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
+
         pass = obj;
     }
 
@@ -71,8 +131,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtSAIDA = new javax.swing.JTextField();
         txtDESTINO = new javax.swing.JTextField();
-        txtDATAIDA = new javax.swing.JTextField();
-        btnComprar = new javax.swing.JButton();
+        btnBUSCAR = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblROTAS = new javax.swing.JTable();
         RESERVAR = new javax.swing.JButton();
@@ -87,11 +146,12 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         lblidpass = new javax.swing.JLabel();
-        txtDATAVOLTA = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        txtDATAVOLTA = new javax.swing.JFormattedTextField(mascara);
+        txtDATASAIDA = new javax.swing.JFormattedTextField(mascara);
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
         mnNOME = new javax.swing.JMenu();
@@ -145,31 +205,18 @@ public class formConsultaPassagem extends javax.swing.JFrame {
             }
         });
 
-        txtDATAIDA.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        txtDATAIDA.setForeground(new java.awt.Color(123, 123, 123));
-        txtDATAIDA.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnBUSCAR.setBackground(new java.awt.Color(69, 73, 74));
+        btnBUSCAR.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        btnBUSCAR.setForeground(new java.awt.Color(255, 255, 255));
+        btnBUSCAR.setText("BUSCAR");
+        btnBUSCAR.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtDATAIDAMouseClicked(evt);
+                btnBUSCARMouseClicked(evt);
             }
         });
-        txtDATAIDA.addActionListener(new java.awt.event.ActionListener() {
+        btnBUSCAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDATAIDAActionPerformed(evt);
-            }
-        });
-
-        btnComprar.setBackground(new java.awt.Color(69, 73, 74));
-        btnComprar.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        btnComprar.setForeground(new java.awt.Color(255, 255, 255));
-        btnComprar.setText("BUSCAR");
-        btnComprar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnComprarMouseClicked(evt);
-            }
-        });
-        btnComprar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnComprarActionPerformed(evt);
+                btnBUSCARActionPerformed(evt);
             }
         });
 
@@ -244,19 +291,6 @@ public class formConsultaPassagem extends javax.swing.JFrame {
 
         lblidpass.setText("jLabel7");
 
-        txtDATAVOLTA.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        txtDATAVOLTA.setForeground(new java.awt.Color(123, 123, 123));
-        txtDATAVOLTA.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtDATAVOLTAMouseClicked(evt);
-            }
-        });
-        txtDATAVOLTA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDATAVOLTAActionPerformed(evt);
-            }
-        });
-
         jLabel7.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Data volta:");
@@ -278,67 +312,65 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Txtembarque)
-                                .addGap(18, 18, 18))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(28, 28, 28)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Txtdesembarque)
-                                .addGap(18, 18, 18)
-                                .addComponent(Txtdtsaida)
-                                .addGap(18, 18, 18))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(36, 36, 36)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Txtdtchegada)
-                                .addGap(18, 18, 18)
-                                .addComponent(Txtvalor))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(39, 39, 39)))
-                        .addGap(52, 52, 52)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(RESERVAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel8)
-                                                .addComponent(jLabel7))
-                                            .addGap(26, 26, 26)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtDATAVOLTA, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtDESTINO, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel9)
-                                                .addComponent(jLabel10))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtDATAIDA, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtSAIDA, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 873, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel10))
+                                .addGap(26, 26, 26)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtDESTINO, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                                    .addComponent(txtDATASAIDA))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel7))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtDATAVOLTA, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtSAIDA, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnBUSCAR, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel2)
+                            .addComponent(jScrollPane1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(Txtembarque)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(28, 28, 28)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(Txtdesembarque)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Txtdtsaida)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(36, 36, 36)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(Txtdtchegada)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Txtvalor))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(39, 39, 39)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(lblidpass)
                 .addGap(264, 264, 264))
         );
@@ -347,32 +379,29 @@ public class formConsultaPassagem extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDESTINO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDATAVOLTA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSAIDA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDATAIDA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addComponent(btnComprar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblidpass)
-                        .addGap(20, 20, 20))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSAIDA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBUSCAR))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDATAVOLTA, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDESTINO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDATASAIDA, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -385,13 +414,18 @@ public class formConsultaPassagem extends javax.swing.JFrame {
                                     .addComponent(Txtdesembarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Txtdtsaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Txtdtchegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Txtvalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(RESERVAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(Txtvalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(10, 10, 10)
                                 .addComponent(Txtembarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(6, 6, 6))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(RESERVAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblidpass)
+                        .addGap(20, 20, 20))))
         );
 
         jMenuBar1.add(jMenu7);
@@ -442,23 +476,23 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 4, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtSAIDAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSAIDAActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtSAIDAActionPerformed
 
-    private void txtDATAIDAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDATAIDAActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDATAIDAActionPerformed
-
-    private void btnComprarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnComprarMouseClicked
+    private void btnBUSCARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBUSCARMouseClicked
         carregarRota();
-    }//GEN-LAST:event_btnComprarMouseClicked
+
+        VerificarData();
+    }//GEN-LAST:event_btnBUSCARMouseClicked
 
     private void mnSAIRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnSAIRMouseClicked
         formLogin login = new formLogin();
@@ -468,32 +502,32 @@ public class formConsultaPassagem extends javax.swing.JFrame {
 
     private void tblROTASMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblROTASMouseClicked
 
-        int selectedRow =   tblROTAS.getSelectedRow();        
-        if(selectedRow != -1){
+        int selectedRow = tblROTAS.getSelectedRow();
+        if (selectedRow != -1) {
             Txtembarque.setText(tblROTAS.getValueAt(selectedRow, 1).toString());
             lblID.setText(tblROTAS.getValueAt(selectedRow, 0).toString());
             Txtdesembarque.setText(tblROTAS.getValueAt(selectedRow, 2).toString());
             Txtdtsaida.setText(tblROTAS.getValueAt(selectedRow, 3).toString());
-            Txtdtchegada.setText(tblROTAS.getValueAt(selectedRow,4).toString());
-            Txtvalor.setText(tblROTAS.getValueAt(selectedRow,5).toString());
-            
+            Txtdtchegada.setText(tblROTAS.getValueAt(selectedRow, 4).toString());
+            Txtvalor.setText(tblROTAS.getValueAt(selectedRow, 5).toString());
+
             rotaDao r = new rotaDao();
-            
+
             rt = r.selecionarUmaRota(Integer.parseInt(lblID.getText()));
             rt.setIdRota(Integer.parseInt(lblID.getText()));
             pass.setIdPassageiro(Integer.parseInt(lblidpass.getText()));
-            
+
         }
-        
+
     }//GEN-LAST:event_tblROTASMouseClicked
 
     private void mnPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPedidoMouseClicked
         this.setVisible(false);
         formPedidoRealizado pedido = new formPedidoRealizado(pass);
-        pedido.setVisible(true);      
+        pedido.setVisible(true);
     }//GEN-LAST:event_mnPedidoMouseClicked
 
-    
+
     private void mnNOMEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnNOMEMouseClicked
 
     }//GEN-LAST:event_mnNOMEMouseClicked
@@ -501,24 +535,20 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     private void mnPERFILMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPERFILMouseClicked
         this.setVisible(false);
         formInfoPassageiro info = new formInfoPassageiro(pass);
-        info.setVisible(true);     
+        info.setVisible(true);
     }//GEN-LAST:event_mnPERFILMouseClicked
 
     private void txtSAIDAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSAIDAMouseClicked
-        
+
     }//GEN-LAST:event_txtSAIDAMouseClicked
 
     private void txtDESTINOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDESTINOMouseClicked
-       
+
     }//GEN-LAST:event_txtDESTINOMouseClicked
 
-    private void txtDATAIDAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDATAIDAMouseClicked
-   
-    }//GEN-LAST:event_txtDATAIDAMouseClicked
-
-    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
+    private void btnBUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBUSCARActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnComprarActionPerformed
+    }//GEN-LAST:event_btnBUSCARActionPerformed
 
     private void RESERVARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RESERVARActionPerformed
         // TODO add your handling code here:
@@ -528,55 +558,20 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtembarqueActionPerformed
 
-    
-    
+
     private void RESERVARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RESERVARMouseClicked
 
-        JOptionPane.showMessageDialog(null,pass.getIdPassageiro());
-        JOptionPane.showMessageDialog(null,rt.getIdRota());                       
-        carregarInfo(pass.getIdPassageiro(),rt.getIdRota());
+        JOptionPane.showMessageDialog(null, pass.getIdPassageiro());
+        JOptionPane.showMessageDialog(null, rt.getIdRota());
+        carregarInfo(pass.getIdPassageiro(), rt.getIdRota());
     }//GEN-LAST:event_RESERVARMouseClicked
 
-    private void txtDATAVOLTAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDATAVOLTAMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDATAVOLTAMouseClicked
-
-    private void txtDATAVOLTAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDATAVOLTAActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDATAVOLTAActionPerformed
-
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(formConsultaPassagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(formConsultaPassagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(formConsultaPassagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(formConsultaPassagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Passageiro passageiro = new Passageiro();
                 new formConsultaPassagem(passageiro).setVisible(true);
 
-                
             }
         });
     }
@@ -588,7 +583,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     private javax.swing.JTextField Txtdtsaida;
     private javax.swing.JTextField Txtembarque;
     private javax.swing.JTextField Txtvalor;
-    private javax.swing.JButton btnComprar;
+    private javax.swing.JButton btnBUSCAR;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -617,8 +612,8 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     private javax.swing.JMenu mnPedido;
     private javax.swing.JMenu mnSAIR;
     private javax.swing.JTable tblROTAS;
-    private javax.swing.JTextField txtDATAIDA;
-    private javax.swing.JTextField txtDATAVOLTA;
+    private javax.swing.JFormattedTextField txtDATASAIDA;
+    private javax.swing.JFormattedTextField txtDATAVOLTA;
     private javax.swing.JTextField txtDESTINO;
     private javax.swing.JTextField txtSAIDA;
     // End of variables declaration//GEN-END:variables

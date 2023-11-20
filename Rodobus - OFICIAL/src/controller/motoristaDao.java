@@ -105,7 +105,7 @@ public class motoristaDao extends conectarDao {
         
         ps.close();
     } catch (SQLException err) {
-        // Lide com as exceções SQL, por exemplo, exibindo uma mensagem de erro.
+        
         err.printStackTrace();
     }
     }
