@@ -10,13 +10,15 @@ import model.Rota;
 
 
 public class formConfirmarPag extends javax.swing.JFrame {
-
-        
-    public formConfirmarPag(int rotaId2, int passageiroId2) {
-        RotaId= rotaId2;
-        PassageiroId = passageiroId2;
+    int RotaId = 0;
+    int PassageiroId = 0;
+    
+    public formConfirmarPag(int passageiroId2,int rotaId2) {
         initComponents();
-        lblteste.setText(Integer.toString(RotaId));
+                
+        RotaId = rotaId2;
+        PassageiroId = passageiroId2;
+        lblteste.setText(Integer.toString(rotaId2));
 
     }
     
@@ -628,7 +630,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                 int RotaId = 0;
                 int PassageiroId = 0;
                 
-                new formConfirmarPag(RotaId, PassageiroId).setVisible(true);
+                new formConfirmarPag(PassageiroId,RotaId).setVisible(true);
                 
             }
         });

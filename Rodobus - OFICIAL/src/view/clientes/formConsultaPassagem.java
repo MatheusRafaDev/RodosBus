@@ -25,11 +25,12 @@ public class formConsultaPassagem extends javax.swing.JFrame {
 
     
     public void carregarInfo(int IdPassageiro, int IdRota){
-        IdPassageiro = pass.getIdPassageiro();
-        IdRota = rt.getIdRota();
+        
+        JOptionPane.showMessageDialog(null,IdPassageiro);
+        JOptionPane.showMessageDialog(null,IdRota);
         
         this.setVisible(false);
-        formConfirmarPag pag = new formConfirmarPag(IdRota,IdPassageiro);
+        formConfirmarPag pag = new formConfirmarPag(IdPassageiro,IdRota);
         pag.setVisible(true);
     }
     
@@ -54,7 +55,8 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         this.mnNOME.setText(obj.getNome());
         this.mnID.setText("Id: " + obj.getIdPassageiro());
         carregarRota();
-                this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         pass = obj;
     }
@@ -88,6 +90,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        lblID = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
         mnNOME = new javax.swing.JMenu();
@@ -228,6 +231,8 @@ public class formConsultaPassagem extends javax.swing.JFrame {
 
         jLabel6.setText("Valor");
 
+        lblID.setText("Embarque");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -255,7 +260,10 @@ public class formConsultaPassagem extends javax.swing.JFrame {
                                 .addGap(18, 18, 18))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(28, 28, 28)))
+                                .addGap(28, 28, 28))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(Txtdesembarque)
@@ -272,14 +280,14 @@ public class formConsultaPassagem extends javax.swing.JFrame {
                                 .addComponent(Txtdtchegada)
                                 .addGap(18, 18, 18)
                                 .addComponent(Txtvalor)
-                                .addGap(323, 323, 323))
+                                .addGap(368, 368, 368)
+                                .addComponent(RESERVAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(362, 362, 362)))
-                        .addComponent(RESERVAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51))
+                                .addGap(497, 497, 497))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
                         .addContainerGap())))
@@ -298,23 +306,23 @@ public class formConsultaPassagem extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(RESERVAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Txtembarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Txtdesembarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Txtdtsaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Txtdtchegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Txtvalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Txtembarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Txtdesembarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Txtdtsaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Txtdtchegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Txtvalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RESERVAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblID)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jMenuBar1.add(jMenu7);
@@ -390,16 +398,19 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     }//GEN-LAST:event_mnSAIRMouseClicked
 
     private void tblROTASMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblROTASMouseClicked
-        //formConfirmarPag pagamento = new formConfirmarPag();
-        // this.setVisible(false);
-        //pagamento.setVisible(true); 
+
         int selectedRow =   tblROTAS.getSelectedRow();        
         if(selectedRow != -1){
             Txtembarque.setText(tblROTAS.getValueAt(selectedRow, 1).toString());
+            lblID.setText(tblROTAS.getValueAt(selectedRow, 0).toString());
             Txtdesembarque.setText(tblROTAS.getValueAt(selectedRow, 2).toString());
             Txtdtsaida.setText(tblROTAS.getValueAt(selectedRow, 3).toString());
             Txtdtchegada.setText(tblROTAS.getValueAt(selectedRow,4).toString());
             Txtvalor.setText(tblROTAS.getValueAt(selectedRow,5).toString());
+            
+            rotaDao r = new rotaDao();
+            
+            rt = r.selecionarUmaRota(Integer.parseInt(lblID.getText()));
 
         }
         
@@ -452,9 +463,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     
     
     private void RESERVARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RESERVARMouseClicked
-
-        carregarInfo(pass.getIdPassageiro(),rt.getIdRota());
-
+        carregarInfo(pass.getIdPassageiro(),Integer.parseInt(lblID.getText()));
     }//GEN-LAST:event_RESERVARMouseClicked
 
     public static void main(String args[]) {
@@ -519,6 +528,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblID;
     private javax.swing.JMenu mnID;
     private javax.swing.JMenu mnNOME;
     private javax.swing.JMenu mnPERFIL;
