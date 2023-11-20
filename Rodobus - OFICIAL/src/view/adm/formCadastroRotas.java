@@ -515,7 +515,7 @@ public class formCadastroRotas extends javax.swing.JFrame {
 
     private void btnDELETAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDELETAR4MouseClicked
         rotaDao rota = new rotaDao();
-        rota.excluir(Integer.parseInt(this.lbID4.getText(), 0));
+        rota.excluir(Integer.parseInt(this.lbID4.getText()));
         CarregarRotas();
     }//GEN-LAST:event_btnDELETAR4MouseClicked
 
