@@ -58,16 +58,25 @@
                       <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
                       <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="104" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                      <Component id="jText_inf1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jText_inf2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jText_inf4" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton_Confirmaepagar" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jText_inf3" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace pref="104" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                              <Component id="jText_inf1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jText_inf2" min="-2" max="-2" attributes="0"/>
+                              <Component id="jText_inf4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButton_Confirmaepagar" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jText_inf3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="19" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="lblteste" min="-2" pref="148" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="19" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -84,17 +93,20 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="lblteste" min="-2" pref="43" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           <Component id="jText_dadopassagem" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="59" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="jText_inf1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jText_inf2" min="-2" max="-2" attributes="0"/>
@@ -104,9 +116,9 @@
                           <Component id="jText_inf4" min="-2" pref="13" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jButton_Confirmaepagar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="59" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -825,6 +837,16 @@
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton_ConfirmaepagarMouseClicked"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblteste">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
