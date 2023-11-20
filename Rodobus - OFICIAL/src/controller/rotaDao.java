@@ -93,7 +93,7 @@ public class rotaDao extends conectarDao {
     
         public  Rota selecionarUmaRota(int id) {
         String sql = "SELECT ID_ROTA, DS_ORIGEM, DS_DESTINO, VL_DISTANCIA, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA, "+
-                    "MOT.ID_MOTORISTA,MOT.DS_NOME FROM TB_ROTA ROT LEFT JOIN TB_MOTORISTA MOT ON ROT.ID_MOTORISTA = MOT.ID_MOTORISTA";
+                    "MOT.ID_MOTORISTA,MOT.DS_NOME FROM TB_ROTA ROT LEFT JOIN TB_MOTORISTA MOT ON ROT.ID_MOTORISTA = MOT.ID_MOTORISTA" + id;
 
              Rota rota = new Rota();
         try {

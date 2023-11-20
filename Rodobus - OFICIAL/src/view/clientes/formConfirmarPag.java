@@ -10,24 +10,26 @@ import model.Rota;
 
 
 public class formConfirmarPag extends javax.swing.JFrame {
-    int RotaId = 0;
-    int PassageiroId=0;
+
         
-    public formConfirmarPag(int RotaId, int PassageiroId) {
-        RotaId= RotaId;
-        PassageiroId = PassageiroId;
+    public formConfirmarPag(int rotaId2, int passageiroId2) {
+        RotaId= rotaId2;
+        PassageiroId = passageiroId2;
         initComponents();
         lblteste.setText(Integer.toString(RotaId));
+
     }
     
     public void carregarInfo(){
         rotaDao rt = new rotaDao();
         passageiroDao pass = new passageiroDao();
+
         Rota rota = new Rota();
         Passageiro passageiro = new Passageiro();
         rota = rt.selecionarUmaRota(RotaId);
         passageiro = pass.selecionarUmPassageiro(PassageiroId);  
-                lblteste.setText(Integer.toString(RotaId));
+        lblteste.setText(Integer.toString(RotaId));
+
     }
 
 

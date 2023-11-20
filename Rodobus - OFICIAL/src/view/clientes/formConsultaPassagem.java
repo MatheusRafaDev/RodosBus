@@ -22,9 +22,7 @@ import model.Rota;
  */
 public class formConsultaPassagem extends javax.swing.JFrame {
 
-    formConsultaPassagem(formConsultaPassagem pass) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
     
     public void carregarInfo(int IdPassageiro, int IdRota){
         IdPassageiro = pass.getIdPassageiro();
