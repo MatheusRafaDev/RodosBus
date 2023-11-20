@@ -17,11 +17,13 @@ public class formCadastroPassageiro extends javax.swing.JFrame {
      */
     public formCadastroPassageiro() {
         initComponents();
-        
+
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 
     }
 
+        
+    
   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

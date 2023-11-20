@@ -11,35 +11,15 @@ import model.Rota;
 
 
 public class formConfirmarPag extends javax.swing.JFrame {
-    int RotaId = 0;
-    int PassageiroId = 0;
 
-    
+
     public formConfirmarPag(int passageiroId2,int rotaId2) {
 
         initComponents();
-        carregarInfo();        
-        RotaId = rotaId2;  
-
+     
     }
     
-    public void carregarInfo(){
-        rotaDao rt = new rotaDao();
-        passageiroDao pass = new passageiroDao();
 
-        Rota rota = new Rota();
-        Passageiro passageiro = new Passageiro();
-
-        
-        
-        rota = rt.selecionarUmaRota(RotaId);
-        
-        lblteste.setText(rota.getDestino());
-        
-        passageiro = pass.selecionarUmPassageiro(PassageiroId);  
-     
-        
-    }
 
 
     @SuppressWarnings("unchecked")
@@ -633,10 +613,10 @@ public class formConfirmarPag extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                int RotaId = 0;
-                int PassageiroId = 0;
+
                 
-                new formConfirmarPag(PassageiroId,RotaId).setVisible(true);
+                
+
                 
             }
         });
