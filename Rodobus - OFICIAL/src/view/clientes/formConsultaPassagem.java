@@ -17,10 +17,6 @@ import javax.swing.table.DefaultTableModel;
 import model.Rota;
 
 
-/**
- *
- * @author alesandro.rsjunior
- */
 public class formConsultaPassagem extends javax.swing.JFrame {
 
 
@@ -73,9 +69,9 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         lblID = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        Txtsaida = new javax.swing.JTextField();
-        Txtdestino = new javax.swing.JTextField();
-        Txtdata = new javax.swing.JTextField();
+        txtSAIDA = new javax.swing.JTextField();
+        txtDESTINO = new javax.swing.JTextField();
+        txtDATAIDA = new javax.swing.JTextField();
         btnComprar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblROTAS = new javax.swing.JTable();
@@ -91,6 +87,11 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         lblidpass = new javax.swing.JLabel();
+        txtDATAVOLTA = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
         mnNOME = new javax.swing.JMenu();
@@ -117,45 +118,43 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         setBackground(new java.awt.Color(142, 157, 204));
 
         jPanel1.setBackground(new java.awt.Color(142, 157, 204));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Busque a sua passagem");
 
-        Txtsaida.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        Txtsaida.setForeground(new java.awt.Color(123, 123, 123));
-        Txtsaida.setText("De onde você vai sair?");
-        Txtsaida.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtSAIDA.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        txtSAIDA.setForeground(new java.awt.Color(123, 123, 123));
+        txtSAIDA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TxtsaidaMouseClicked(evt);
+                txtSAIDAMouseClicked(evt);
             }
         });
-        Txtsaida.addActionListener(new java.awt.event.ActionListener() {
+        txtSAIDA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtsaidaActionPerformed(evt);
+                txtSAIDAActionPerformed(evt);
             }
         });
 
-        Txtdestino.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        Txtdestino.setForeground(new java.awt.Color(123, 123, 123));
-        Txtdestino.setText("Para onde você vai?");
-        Txtdestino.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtDESTINO.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        txtDESTINO.setForeground(new java.awt.Color(123, 123, 123));
+        txtDESTINO.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TxtdestinoMouseClicked(evt);
+                txtDESTINOMouseClicked(evt);
             }
         });
 
-        Txtdata.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        Txtdata.setForeground(new java.awt.Color(123, 123, 123));
-        Txtdata.setText("Data ida");
-        Txtdata.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtDATAIDA.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        txtDATAIDA.setForeground(new java.awt.Color(123, 123, 123));
+        txtDATAIDA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TxtdataMouseClicked(evt);
+                txtDATAIDAMouseClicked(evt);
             }
         });
-        Txtdata.addActionListener(new java.awt.event.ActionListener() {
+        txtDATAIDA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtdataActionPerformed(evt);
+                txtDATAIDAActionPerformed(evt);
             }
         });
 
@@ -223,39 +222,65 @@ public class formConsultaPassagem extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Embarque");
 
+        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Desembarque");
 
+        jLabel4.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Dt.Saída");
 
+        jLabel5.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Dt.Chegada");
 
+        jLabel6.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Valor");
 
         lblidpass.setText("jLabel7");
+
+        txtDATAVOLTA.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        txtDATAVOLTA.setForeground(new java.awt.Color(123, 123, 123));
+        txtDATAVOLTA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDATAVOLTAMouseClicked(evt);
+            }
+        });
+        txtDATAVOLTA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDATAVOLTAActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Data volta:");
+
+        jLabel8.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Para onde você vai?");
+
+        jLabel9.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("De onde você vai sair?");
+
+        jLabel10.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Data saída:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Txtsaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Txtdestino, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(Txtembarque)
@@ -276,62 +301,97 @@ public class formConsultaPassagem extends javax.swing.JFrame {
                                 .addGap(36, 36, 36)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(Txtdtchegada)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(Txtvalor)
-                                        .addGap(368, 368, 368))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblidpass)
-                                        .addGap(185, 185, 185)))
-                                .addComponent(RESERVAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
+                                .addComponent(Txtdtchegada)
+                                .addGap(18, 18, 18)
+                                .addComponent(Txtvalor))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(497, 497, 497))))
+                                .addGap(39, 39, 39)))
+                        .addGap(52, 52, 52)
+                        .addComponent(RESERVAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())))
+                        .addGap(2, 2, 2)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel8)
+                                                .addComponent(jLabel7))
+                                            .addGap(26, 26, 26)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(txtDATAVOLTA, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtDESTINO, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel9)
+                                                .addComponent(jLabel10))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(txtDATAIDA, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtSAIDA, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 873, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(lblidpass)
+                .addGap(264, 264, 264))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDESTINO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Txtsaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnComprar)
-                    .addComponent(Txtdestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDATAVOLTA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSAIDA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDATAIDA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addComponent(btnComprar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Txtembarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Txtdesembarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Txtdtsaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Txtdtchegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Txtvalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(RESERVAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(34, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblidpass)
-                        .addGap(20, 20, 20))))
+                        .addGap(20, 20, 20))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Txtdesembarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Txtdtsaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Txtdtchegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Txtvalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(RESERVAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(10, 10, 10)
+                                .addComponent(Txtembarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(6, 6, 6))))
         );
 
         jMenuBar1.add(jMenu7);
@@ -378,23 +438,23 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 948, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TxtsaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtsaidaActionPerformed
+    private void txtSAIDAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSAIDAActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TxtsaidaActionPerformed
+    }//GEN-LAST:event_txtSAIDAActionPerformed
 
-    private void TxtdataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtdataActionPerformed
+    private void txtDATAIDAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDATAIDAActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TxtdataActionPerformed
+    }//GEN-LAST:event_txtDATAIDAActionPerformed
 
     private void btnComprarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnComprarMouseClicked
         carregarRota();
@@ -444,20 +504,17 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         info.setVisible(true);     
     }//GEN-LAST:event_mnPERFILMouseClicked
 
-    private void TxtsaidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TxtsaidaMouseClicked
-        // TODO add your handling code here:
-                this.Txtsaida.setText("");
-    }//GEN-LAST:event_TxtsaidaMouseClicked
+    private void txtSAIDAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSAIDAMouseClicked
+        
+    }//GEN-LAST:event_txtSAIDAMouseClicked
 
-    private void TxtdestinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TxtdestinoMouseClicked
-        // TODO add your handling code here:
-                this.Txtdestino.setText("");
-    }//GEN-LAST:event_TxtdestinoMouseClicked
+    private void txtDESTINOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDESTINOMouseClicked
+       
+    }//GEN-LAST:event_txtDESTINOMouseClicked
 
-    private void TxtdataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TxtdataMouseClicked
-        // TODO add your handling code here:
-                this.Txtdata.setText("");
-    }//GEN-LAST:event_TxtdataMouseClicked
+    private void txtDATAIDAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDATAIDAMouseClicked
+   
+    }//GEN-LAST:event_txtDATAIDAMouseClicked
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         // TODO add your handling code here:
@@ -475,10 +532,18 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     
     private void RESERVARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RESERVARMouseClicked
         
-                         JOptionPane.showMessageDialog(null,pass.getIdPassageiro());
-                           JOptionPane.showMessageDialog(null,rt.getIdRota());                       
-        carregarInfo(pass.getIdPassageiro(),Integer.parseInt(lblID.getText()));
+        JOptionPane.showMessageDialog(null,pass.getIdPassageiro());
+        JOptionPane.showMessageDialog(null,rt.getIdRota());                       
+        carregarInfo(pass.getIdPassageiro(),rt.getIdRota());
     }//GEN-LAST:event_RESERVARMouseClicked
+
+    private void txtDATAVOLTAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDATAVOLTAMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDATAVOLTAMouseClicked
+
+    private void txtDATAVOLTAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDATAVOLTAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDATAVOLTAActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -518,21 +583,22 @@ public class formConsultaPassagem extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RESERVAR;
-    private javax.swing.JTextField Txtdata;
     private javax.swing.JTextField Txtdesembarque;
-    private javax.swing.JTextField Txtdestino;
     private javax.swing.JTextField Txtdtchegada;
     private javax.swing.JTextField Txtdtsaida;
     private javax.swing.JTextField Txtembarque;
-    private javax.swing.JTextField Txtsaida;
     private javax.swing.JTextField Txtvalor;
     private javax.swing.JButton btnComprar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -551,5 +617,9 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     private javax.swing.JMenu mnPedido;
     private javax.swing.JMenu mnSAIR;
     private javax.swing.JTable tblROTAS;
+    private javax.swing.JTextField txtDATAIDA;
+    private javax.swing.JTextField txtDATAVOLTA;
+    private javax.swing.JTextField txtDESTINO;
+    private javax.swing.JTextField txtSAIDA;
     // End of variables declaration//GEN-END:variables
 }
