@@ -35,6 +35,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         lblteste.setText(Integer.toString(RotaId));
         lnlNome.setText(rota.getOrigem());
         lblCpf.setText(passageiro.getNome());
+       lxlEmail.setText(passageiro.getEmail());
 
 
     }
