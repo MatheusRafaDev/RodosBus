@@ -163,10 +163,10 @@
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblEmail" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
-                          <Component id="lblTelefone" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
-                          <Component id="lblCpf" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
-                          <Component id="lnlNome" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
+                          <Component id="lblEMAIL" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
+                          <Component id="lblTELEFONE" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
+                          <Component id="lblCPF" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
+                          <Component id="lblNOME" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
@@ -178,22 +178,22 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jText_nome" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lnlNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNOME" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jText_cpf" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCpf" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCPF" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jText_email" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblEMAIL" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jText_telefone" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTELEFONE" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="15" max="32767" attributes="0"/>
                   </Group>
@@ -281,7 +281,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jText_telefoneActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="lnlNome">
+            <Component class="javax.swing.JLabel" name="lblNOME">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="ff" red="33" type="rgb"/>
@@ -289,11 +289,11 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="jLabel2"/>
+                <Property name="text" type="java.lang.String" value="Nome"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblEmail">
+            <Component class="javax.swing.JLabel" name="lblEMAIL">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="ff" red="33" type="rgb"/>
@@ -301,10 +301,10 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="jLabel2"/>
+                <Property name="text" type="java.lang.String" value="Email"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblTelefone">
+            <Component class="javax.swing.JLabel" name="lblTELEFONE">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="ff" red="33" type="rgb"/>
@@ -312,10 +312,10 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="jLabel2"/>
+                <Property name="text" type="java.lang.String" value="Telefone"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblCpf">
+            <Component class="javax.swing.JLabel" name="lblCPF">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="ff" red="33" type="rgb"/>
@@ -323,7 +323,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="jLabel2"/>
+                <Property name="text" type="java.lang.String" value="CPF"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -379,9 +379,9 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jText_embarque" min="-2" max="-2" attributes="0"/>
+                              <Component id="jText_embarque" min="-2" pref="109" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="lblCpf7" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="lblEMBARQUE" min="-2" pref="160" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jText_desembarque" min="-2" max="-2" attributes="0"/>
@@ -399,7 +399,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jText_embarque" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCpf7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblEMBARQUE" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -643,7 +643,7 @@
                 <Property name="text" type="java.lang.String" value="jLabel2"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblCpf7">
+            <Component class="javax.swing.JLabel" name="lblEMBARQUE">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="ff" red="33" type="rgb"/>
@@ -651,7 +651,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="jLabel2"/>
+                <Property name="text" type="java.lang.String" value="Embarque"/>
               </Properties>
             </Component>
           </SubComponents>
