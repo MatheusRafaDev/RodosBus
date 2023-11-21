@@ -430,6 +430,71 @@ public class formCadastroRotas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtSAIDA4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSAIDA4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSAIDA4ActionPerformed
+
+    private void txtSAIDA4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSAIDA4FocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSAIDA4FocusLost
+
+    private void btnBUSCAR4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBUSCAR4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBUSCAR4ActionPerformed
+
+    private void btnBUSCAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBUSCAR4MouseClicked
+        CarregarRotas();
+        CarregarMotoristas();
+    }//GEN-LAST:event_btnBUSCAR4MouseClicked
+
+    private void txtVALOR4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVALOR4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVALOR4ActionPerformed
+
+    private void btnDELETAR4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDELETAR4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDELETAR4ActionPerformed
+
+    private void btnDELETAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDELETAR4MouseClicked
+        rotaDao rota = new rotaDao();
+        rota.excluir(Integer.parseInt(this.lbID4.getText()));
+        CarregarRotas();
+    }//GEN-LAST:event_btnDELETAR4MouseClicked
+
+    private void cmbMOTORISTA4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMOTORISTA4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbMOTORISTA4ActionPerformed
+
+    private void txtCHEGADA4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCHEGADA4FocusLost
+
+    }//GEN-LAST:event_txtCHEGADA4FocusLost
+
+    private void btnALTERAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnALTERAR4MouseClicked
+
+    }//GEN-LAST:event_btnALTERAR4MouseClicked
+
+    private void btnNOVO4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNOVO4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNOVO4ActionPerformed
+
+    private void btnNOVO4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNOVO4MouseClicked
+        lbID4.setText("0");
+        txtORIGEM4.setText("");
+        txtDESTINO4.setText("");
+        txtCHEGADA4.setText("");
+        txtSAIDA4.setText("");
+
+        txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+        txtCHEGADA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+
+        txtVALOR4.setText("");
+        cmbMOTORISTA4.setSelectedIndex(0);
+    }//GEN-LAST:event_btnNOVO4MouseClicked
+
+    private void btnCADASTRAR4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCADASTRAR4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCADASTRAR4ActionPerformed
+
     private void btnCADASTRAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCADASTRAR4MouseClicked
         verificarData();
 
@@ -440,13 +505,11 @@ public class formCadastroRotas extends javax.swing.JFrame {
         String destino = txtDESTINO4.getText();
 
         String textFromTextField = txtVALOR4.getText();
-        
-        
+
         String IdMoto = (String)cmbMOTORISTA4.getSelectedItem();
         String numeroComoString = IdMoto.replaceAll("\\D+", "");
         int motorista = Integer.parseInt(numeroComoString);
 
-                
         double valor = 0;
         String cleanedText = textFromTextField.replaceAll("[^0-9.]", "");
         if (!cleanedText.isEmpty() && !cleanedText.equals(".")) {
@@ -480,61 +543,6 @@ public class formCadastroRotas extends javax.swing.JFrame {
 
         CarregarRotas();
     }//GEN-LAST:event_btnCADASTRAR4MouseClicked
-
-    private void btnNOVO4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNOVO4MouseClicked
-        lbID4.setText("0");
-        txtORIGEM4.setText("");
-        txtDESTINO4.setText("");
-        txtCHEGADA4.setText("");
-        txtSAIDA4.setText("");
-
-        txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
-        txtCHEGADA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
-
-        txtVALOR4.setText("");
-        cmbMOTORISTA4.setSelectedIndex(0);
-
-    }//GEN-LAST:event_btnNOVO4MouseClicked
-
-    private void btnALTERAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnALTERAR4MouseClicked
-
-    }//GEN-LAST:event_btnALTERAR4MouseClicked
-
-    private void txtCHEGADA4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCHEGADA4FocusLost
-
-
-    }//GEN-LAST:event_txtCHEGADA4FocusLost
-
-    private void btnCADASTRAR4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCADASTRAR4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCADASTRAR4ActionPerformed
-
-    private void cmbMOTORISTA4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMOTORISTA4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbMOTORISTA4ActionPerformed
-
-    private void btnDELETAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDELETAR4MouseClicked
-        rotaDao rota = new rotaDao();
-        rota.excluir(Integer.parseInt(this.lbID4.getText()));
-        CarregarRotas();
-    }//GEN-LAST:event_btnDELETAR4MouseClicked
-
-    private void btnDELETAR4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDELETAR4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDELETAR4ActionPerformed
-
-    private void txtVALOR4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVALOR4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtVALOR4ActionPerformed
-
-    private void btnBUSCAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBUSCAR4MouseClicked
-        CarregarRotas();
-        CarregarMotoristas();
-    }//GEN-LAST:event_btnBUSCAR4MouseClicked
-
-    private void btnNOVO4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNOVO4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNOVO4ActionPerformed
 
     private void tblROTAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblROTAMouseClicked
         DefaultTableModel model = (DefaultTableModel) tblROTA.getModel();
@@ -584,20 +592,7 @@ public class formCadastroRotas extends javax.swing.JFrame {
 
         txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
         txtCHEGADA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
-
     }//GEN-LAST:event_tblROTAMouseClicked
-
-    private void btnBUSCAR4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBUSCAR4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBUSCAR4ActionPerformed
-
-    private void txtSAIDA4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSAIDA4FocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSAIDA4FocusLost
-
-    private void txtSAIDA4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSAIDA4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSAIDA4ActionPerformed
 
     /**
      * @param args the command line arguments

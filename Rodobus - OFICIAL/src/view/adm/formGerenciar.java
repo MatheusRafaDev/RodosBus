@@ -9,12 +9,34 @@ import controller.motoristaDao;
 import controller.passageiroDao;
 import controller.onibusDao;
 import java.util.ArrayList;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import model.Motorista;
 import model.Passageiro;
 import model.Onibus;
-
+import controller.rotaDao;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Rota;
+import java.util.ArrayList;
+import controller.conectarDao;
+import controller.motoristaDao;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFormattedTextField.AbstractFormatterFactory;
+import javax.swing.JFrame;
+import javax.swing.text.MaskFormatter;
+import javax.swing.JOptionPane;
+import javax.swing.text.DefaultFormatterFactory;
+import model.Motorista;
 import view.clientes.formCadastroPassageiro;
 import view.clientes.formLogin;
 
@@ -58,16 +80,82 @@ public class formGerenciar extends javax.swing.JFrame {
             onibusModel.addRow(new Object[]{onibus.getIdOnibus(), onibus.getModelo(), onibus.getPlaca(), onibus.getCapacidade(), onibus.getAnoFabricacao()});
         }
     }
-     
+     MaskFormatter mascara;
+
+    MaskFormatter mascaraValor;
     public formGerenciar() {
         initComponents();
-        
+        try {
+            mascara = new MaskFormatter("##/##/#### ##:##:##");
+            mascaraValor = new MaskFormatter("###,###.##");
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         conectarDao oDao = new conectarDao();
         CaregarMotorista();
         CaregarOnibus();
         CaregarPassageiro();
+    }
+public void CarregarRotas() {
+
+        rotaDao rota = new rotaDao();
+        rota.criarBanco();
+        ArrayList<Rota> rotas = rota.selecionarRotas();
+        DefaultTableModel model = (DefaultTableModel) tblROTA.getModel();
+        model.setRowCount(0);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        for (Rota rota2 : rotas) {
+            model.addRow(new Object[]{rota2.getIdRota(), rota2.getIdMotorista() + " - " + rota2.getNomeMotorista(), rota2.getVlPreco(), rota2.getOrigem(), rota2.getDestino(), sdf.format(rota2.getDtSaida()), sdf.format(rota2.getDtChegada())});
+        }
+    }
+  public void verificarData() {
+        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+        String inputText = txtCHEGADA4.getText().trim();
+        Date date = parseDate(inputText, sdf1);
+
+        if (date == null) {
+            date = parseDate(inputText, sdf2);
+        }
+
+        if (date != null) {
+            txtCHEGADA4.setValue(sdf1.format(date));
+        } else {
+            showError("Formato de data de saída é inválido. Use o formato dd/MM/yyyy HH:mm:ss");
+            txtCHEGADA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+        }
+
+        String inputText2 = txtSAIDA4.getText().trim();
+        Date date2 = parseDate(inputText2, sdf2);
+
+        if (date2 == null) {
+            date = parseDate(inputText, sdf2);
+        }
+
+        if (date2 != null) {
+            txtSAIDA4.setValue(sdf1.format(date2));
+            txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+        } else {
+            showError("Formato de data de saída é inválido. Use o formato dd/MM/yyyy HH:mm:ss");
+            txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+        }
+    }
+
+    private Date parseDate(String input, SimpleDateFormat sdf) {
+        try {
+            sdf.setLenient(false);
+            return sdf.parse(input);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
+    private void showError(String errorMessage) {
+        System.err.println(errorMessage);
+        JOptionPane.showMessageDialog(null, errorMessage, "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -162,8 +250,30 @@ public class formGerenciar extends javax.swing.JFrame {
         tblOnibus = new javax.swing.JTable();
         jLabel27 = new javax.swing.JLabel();
         lblbusID = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblROTA = new javax.swing.JTable();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        btnCADASTRAR4 = new javax.swing.JButton();
+        btnNOVO4 = new javax.swing.JButton();
+        btnALTERAR4 = new javax.swing.JButton();
+        txtDESTINO4 = new javax.swing.JTextField();
+        txtORIGEM4 = new javax.swing.JTextField();
+        jLabel35 = new javax.swing.JLabel();
+        txtCHEGADA4 = new javax.swing.JFormattedTextField(mascara);
+        cmbMOTORISTA4 = new javax.swing.JComboBox<>();
+        btnDELETAR4 = new javax.swing.JButton();
+        txtVALOR4 = new javax.swing.JFormattedTextField(mascaraValor);
+        btnBUSCAR4 = new javax.swing.JButton();
+        lbID4 = new javax.swing.JLabel();
+        txtSAIDA4 = new javax.swing.JFormattedTextField(mascara);
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         mnSAIR = new javax.swing.JMenu();
@@ -288,7 +398,7 @@ public class formGerenciar extends javax.swing.JFrame {
 
         pgROTAS.setPreferredSize(new java.awt.Dimension(1100, 462));
 
-        jPanel2.setBackground(new java.awt.Color(142, 157, 204));
+        jPanel2.setBackground(new java.awt.Color(242, 147, 4));
         jPanel2.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentMoved(java.awt.event.ComponentEvent evt) {
                 jPanel2ComponentMoved(evt);
@@ -476,7 +586,7 @@ public class formGerenciar extends javax.swing.JFrame {
                         .addComponent(textCPF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnNOVO, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblID))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -525,8 +635,8 @@ public class formGerenciar extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDeletar)
                             .addComponent(btnBuscar))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(lblID, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(lblID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -543,7 +653,7 @@ public class formGerenciar extends javax.swing.JFrame {
 
         pgROTAS.addTab("Motorista", jPanel1);
 
-        jPanel4.setBackground(new java.awt.Color(142, 157, 204));
+        jPanel4.setBackground(new java.awt.Color(242, 147, 4));
 
         jLabel9.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -703,7 +813,7 @@ public class formGerenciar extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(lblID1)
-                        .addContainerGap(984, Short.MAX_VALUE))
+                        .addContainerGap(969, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -729,7 +839,7 @@ public class formGerenciar extends javax.swing.JFrame {
                                     .addGap(95, 95, 95)
                                     .addComponent(btnAlterar1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(btnNOVO1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
@@ -806,9 +916,7 @@ public class formGerenciar extends javax.swing.JFrame {
 
         pgROTAS.addTab("Passageiro", jPanel3);
 
-        jPanel8.setBackground(new java.awt.Color(142, 157, 204));
-
-        textModelobus.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel8.setBackground(new java.awt.Color(242, 147, 4));
 
         jLabel8.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -822,14 +930,11 @@ public class formGerenciar extends javax.swing.JFrame {
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Placa");
 
-        textPlacabus.setBackground(new java.awt.Color(255, 255, 255));
         textPlacabus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textPlacabusActionPerformed(evt);
             }
         });
-
-        textCapacidadebus.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel25.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
@@ -839,7 +944,6 @@ public class formGerenciar extends javax.swing.JFrame {
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("Ano Fabricação");
 
-        textAnofabricacao.setBackground(new java.awt.Color(255, 255, 255));
         textAnofabricacao.setInheritsPopupMenu(true);
         textAnofabricacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -994,7 +1098,7 @@ public class formGerenciar extends javax.swing.JFrame {
                                 .addGap(51, 51, 51)
                                 .addComponent(btnAlterarbus, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(27, 27, 27)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                         .addComponent(btnDeletarbus, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1044,7 +1148,7 @@ public class formGerenciar extends javax.swing.JFrame {
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDeletarbus)
                             .addComponent(btnBuscarbus))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(lblbusID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -1065,31 +1169,280 @@ public class formGerenciar extends javax.swing.JFrame {
 
         pgROTAS.addTab("Ônibus", jPanel7);
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1020, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
-        );
-
-        pgROTAS.addTab("Rotas", jPanel6);
-
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1020, Short.MAX_VALUE)
+            .addGap(0, 1005, Short.MAX_VALUE)
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGap(0, 488, Short.MAX_VALUE)
         );
 
         pgROTAS.addTab("Reservas", jPanel9);
+
+        jPanel10.setBackground(new java.awt.Color(242, 147, 4));
+
+        tblROTA.setForeground(new java.awt.Color(60, 63, 65));
+        tblROTA.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Motorista", "Valor", "Filial Saida", "Filial Chegada", "Data saída", "Data chegada"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblROTA.setSelectionBackground(new java.awt.Color(204, 204, 204));
+        tblROTA.setSelectionForeground(new java.awt.Color(60, 63, 65));
+        tblROTA.getTableHeader().setReorderingAllowed(false);
+        tblROTA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblROTAMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tblROTA);
+
+        jLabel28.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setText("Cadastro de rotas");
+
+        jLabel29.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel29.setText("Filial de destino");
+
+        jLabel30.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel30.setText("Filial de origem");
+
+        jLabel31.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel31.setText("Data chegada");
+
+        jLabel32.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel32.setText("Data saída");
+
+        jLabel33.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel33.setText("Valor");
+
+        jLabel34.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel34.setText("Motorista");
+
+        btnCADASTRAR4.setBackground(new java.awt.Color(69, 73, 74));
+        btnCADASTRAR4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        btnCADASTRAR4.setForeground(new java.awt.Color(255, 255, 255));
+        btnCADASTRAR4.setText("Cadastro");
+        btnCADASTRAR4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCADASTRAR4MouseClicked(evt);
+            }
+        });
+        btnCADASTRAR4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCADASTRAR4ActionPerformed(evt);
+            }
+        });
+
+        btnNOVO4.setBackground(new java.awt.Color(69, 73, 74));
+        btnNOVO4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        btnNOVO4.setForeground(new java.awt.Color(255, 255, 255));
+        btnNOVO4.setText("Novo Cadastro");
+        btnNOVO4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNOVO4MouseClicked(evt);
+            }
+        });
+        btnNOVO4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNOVO4ActionPerformed(evt);
+            }
+        });
+
+        btnALTERAR4.setBackground(new java.awt.Color(69, 73, 74));
+        btnALTERAR4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        btnALTERAR4.setForeground(new java.awt.Color(255, 255, 255));
+        btnALTERAR4.setText("Alterar");
+        btnALTERAR4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnALTERAR4MouseClicked(evt);
+            }
+        });
+
+        jLabel35.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel35.setText("Cadastro de rotas");
+
+        txtCHEGADA4.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCHEGADA4FocusLost(evt);
+            }
+        });
+
+        cmbMOTORISTA4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbMOTORISTA4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbMOTORISTA4ActionPerformed(evt);
+            }
+        });
+
+        btnDELETAR4.setBackground(new java.awt.Color(69, 73, 74));
+        btnDELETAR4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        btnDELETAR4.setForeground(new java.awt.Color(255, 255, 255));
+        btnDELETAR4.setText("Deletar");
+        btnDELETAR4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDELETAR4MouseClicked(evt);
+            }
+        });
+        btnDELETAR4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDELETAR4ActionPerformed(evt);
+            }
+        });
+
+        txtVALOR4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtVALOR4ActionPerformed(evt);
+            }
+        });
+
+        btnBUSCAR4.setBackground(new java.awt.Color(69, 73, 74));
+        btnBUSCAR4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        btnBUSCAR4.setForeground(new java.awt.Color(255, 255, 255));
+        btnBUSCAR4.setText("Buscar");
+        btnBUSCAR4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBUSCAR4MouseClicked(evt);
+            }
+        });
+        btnBUSCAR4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBUSCAR4ActionPerformed(evt);
+            }
+        });
+
+        lbID4.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        lbID4.setForeground(new java.awt.Color(255, 255, 255));
+        lbID4.setText("0");
+
+        txtSAIDA4.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSAIDA4FocusLost(evt);
+            }
+        });
+        txtSAIDA4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSAIDA4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel28)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel34)
+                            .addComponent(cmbMOTORISTA4, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel30)
+                            .addComponent(txtORIGEM4, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel29)
+                            .addComponent(txtDESTINO4, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCADASTRAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(62, 62, 62)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel33)
+                            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel32)
+                                .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtCHEGADA4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtVALOR4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnALTERAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSAIDA4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lbID4)
+                    .addComponent(btnNOVO4))
+                .addGap(57, 57, 57)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jLabel35)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addComponent(btnDELETAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnBUSCAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE))
+                        .addGap(20, 20, 20))))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jLabel35)
+                        .addGap(22, 22, 22)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnDELETAR4)
+                            .addComponent(btnBUSCAR4))
+                        .addGap(26, 26, 26))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jLabel28)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel32)
+                            .addComponent(jLabel30))
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtORIGEM4)
+                            .addComponent(txtSAIDA4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel29)
+                            .addComponent(jLabel31))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtDESTINO4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCHEGADA4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel33)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addComponent(jLabel34)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cmbMOTORISTA4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtVALOR4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnALTERAR4)
+                            .addComponent(btnCADASTRAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnNOVO4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                        .addComponent(lbID4)
+                        .addContainerGap())))
+        );
+
+        pgROTAS.addTab("Rotas", jPanel10);
 
         jMenu3.setText("RodoBus");
         jMenuBar2.add(jMenu3);
@@ -1110,12 +1463,12 @@ public class formGerenciar extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pgROTAS, javax.swing.GroupLayout.DEFAULT_SIZE, 1022, Short.MAX_VALUE)
-                .addGap(15, 15, 15))
+                .addComponent(pgROTAS, javax.swing.GroupLayout.DEFAULT_SIZE, 1005, Short.MAX_VALUE)
+                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pgROTAS, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+            .addComponent(pgROTAS, javax.swing.GroupLayout.PREFERRED_SIZE, 516, Short.MAX_VALUE)
         );
 
         pack();
@@ -1131,6 +1484,170 @@ public class formGerenciar extends javax.swing.JFrame {
         this.setVisible(false);
         login.setVisible(true);
     }//GEN-LAST:event_mnSAIRMouseClicked
+
+    private void txtSAIDA4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSAIDA4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSAIDA4ActionPerformed
+
+    private void txtSAIDA4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSAIDA4FocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSAIDA4FocusLost
+
+    private void btnBUSCAR4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBUSCAR4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBUSCAR4ActionPerformed
+
+    private void btnBUSCAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBUSCAR4MouseClicked
+        CarregarRotas();
+        CaregarMotorista();
+    }//GEN-LAST:event_btnBUSCAR4MouseClicked
+
+    private void txtVALOR4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVALOR4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVALOR4ActionPerformed
+
+    private void btnDELETAR4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDELETAR4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDELETAR4ActionPerformed
+
+    private void btnDELETAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDELETAR4MouseClicked
+        rotaDao rota = new rotaDao();
+        rota.excluir(Integer.parseInt(this.lbID4.getText()));
+        CarregarRotas();
+    }//GEN-LAST:event_btnDELETAR4MouseClicked
+
+    private void cmbMOTORISTA4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMOTORISTA4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbMOTORISTA4ActionPerformed
+
+    private void txtCHEGADA4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCHEGADA4FocusLost
+
+    }//GEN-LAST:event_txtCHEGADA4FocusLost
+
+    private void btnALTERAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnALTERAR4MouseClicked
+
+    }//GEN-LAST:event_btnALTERAR4MouseClicked
+
+    private void btnNOVO4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNOVO4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNOVO4ActionPerformed
+
+    private void btnNOVO4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNOVO4MouseClicked
+        lbID4.setText("0");
+        txtORIGEM4.setText("");
+        txtDESTINO4.setText("");
+        txtCHEGADA4.setText("");
+        txtSAIDA4.setText("");
+
+        txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+        txtCHEGADA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+
+        txtVALOR4.setText("");
+        cmbMOTORISTA4.setSelectedIndex(0);
+    }//GEN-LAST:event_btnNOVO4MouseClicked
+
+    private void btnCADASTRAR4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCADASTRAR4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCADASTRAR4ActionPerformed
+
+    private void btnCADASTRAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCADASTRAR4MouseClicked
+        verificarData();
+
+        rotaDao r = new rotaDao();
+        Rota rota = new Rota();
+
+        String origem = txtORIGEM4.getText();
+        String destino = txtDESTINO4.getText();
+
+        String textFromTextField = txtVALOR4.getText();
+
+        String IdMoto = (String)cmbMOTORISTA4.getSelectedItem();
+        String numeroComoString = IdMoto.replaceAll("\\D+", "");
+        int motorista = Integer.parseInt(numeroComoString);
+
+        double valor = 0;
+        String cleanedText = textFromTextField.replaceAll("[^0-9.]", "");
+        if (!cleanedText.isEmpty() && !cleanedText.equals(".")) {
+            valor = Double.parseDouble(cleanedText);
+        } else {
+        }
+
+        String saidaText = txtSAIDA4.getText();
+        String chegadaText = txtCHEGADA4.getText();
+
+        Date saida = null;
+        Date chegada = null;
+
+        try {
+            saida = (Date) new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(saidaText);
+            chegada = (Date) new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(chegadaText);
+        } catch (ParseException ex) {
+
+        }
+
+        rota.setDestino(destino);
+        rota.setOrigem(origem);
+        rota.setDtChegada(chegada);
+        rota.setDtSaida(saida);
+        rota.setVlPreco(valor);
+        rota.setIdMotorista(motorista);
+        r.incluirRota(rota);
+
+        txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+        txtCHEGADA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+
+        CarregarRotas();
+    }//GEN-LAST:event_btnCADASTRAR4MouseClicked
+
+    private void tblROTAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblROTAMouseClicked
+        DefaultTableModel model = (DefaultTableModel) tblROTA.getModel();
+
+        int selectedRow = tblROTA.getSelectedRow();
+
+        if (selectedRow != -1) {
+            lbID4.setText(model.getValueAt(selectedRow, 0).toString());
+
+            txtVALOR4.setText(model.getValueAt(selectedRow, 2).toString());
+            txtORIGEM4.setText(model.getValueAt(selectedRow, 3).toString());
+            txtDESTINO4.setText(model.getValueAt(selectedRow, 4).toString());
+
+            String MOTORISTA = model.getValueAt(selectedRow, 1).toString();
+            int index = -1;
+            for (int i = 0; i < cmbMOTORISTA4.getItemCount(); i++) {
+                if (MOTORISTA.equals(cmbMOTORISTA4.getItemAt(i))) {
+                    index = i;
+                    break;
+                }
+            }
+
+            if (index != -1) {
+                cmbMOTORISTA4.setSelectedIndex(index);
+            } else {
+                cmbMOTORISTA4.setSelectedIndex(0);
+            }
+
+            txtSAIDA4.setFormatterFactory(null);
+            txtSAIDA4.setText(model.getValueAt(selectedRow, 5).toString());
+
+            AbstractFormatterFactory formatterFactory = new DefaultFormatterFactory(mascara);
+            txtSAIDA4.setFormatterFactory(formatterFactory);
+
+            // txtCHEGADA4.setFormatterFactory(null);
+            txtCHEGADA4.setText(model.getValueAt(selectedRow, 6).toString());
+
+        } else {
+            lbID4.setText("0");
+            txtORIGEM4.setText("");
+            txtDESTINO4.setText("");
+            txtSAIDA4.setText("");
+            txtCHEGADA4.setText("");
+            txtVALOR4.setText("");
+            cmbMOTORISTA4.setSelectedIndex(0);
+        }
+
+        txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+        txtCHEGADA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+    }//GEN-LAST:event_tblROTAMouseClicked
 
     private void tblOnibusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOnibusMouseClicked
         DefaultTableModel model = (DefaultTableModel) tblOnibus.getModel();
@@ -1514,21 +2031,27 @@ public class formGerenciar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnALTERAR4;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnAlterar1;
     private javax.swing.JButton btnAlterarbus;
+    private javax.swing.JButton btnBUSCAR4;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnBuscarbus;
+    private javax.swing.JButton btnCADASTRAR4;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCadastrar1;
     private javax.swing.JButton btnCadastrar2;
     private javax.swing.JButton btnCadastrarbus;
+    private javax.swing.JButton btnDELETAR4;
     private javax.swing.JButton btnDeletar;
     private javax.swing.JButton btnDeletar1;
     private javax.swing.JButton btnDeletarbus;
     private javax.swing.JButton btnNOVO;
     private javax.swing.JButton btnNOVO1;
+    private javax.swing.JButton btnNOVO4;
+    private javax.swing.JComboBox<String> cmbMOTORISTA4;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1550,7 +2073,15 @@ public class formGerenciar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1563,23 +2094,25 @@ public class formGerenciar extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel lbID4;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblID1;
     private javax.swing.JLabel lblbusID;
@@ -1588,6 +2121,7 @@ public class formGerenciar extends javax.swing.JFrame {
     private javax.swing.JTable tblMOTORISTAS;
     private javax.swing.JTable tblOnibus;
     private javax.swing.JTable tblPASSAGEIRO;
+    private javax.swing.JTable tblROTA;
     private javax.swing.JTextField textAnofabricacao;
     private javax.swing.JTextField textCPF;
     private javax.swing.JTextField textCPF1;
@@ -1602,5 +2136,10 @@ public class formGerenciar extends javax.swing.JFrame {
     private javax.swing.JTextField textSENHA1;
     private javax.swing.JTextField textTELEFONE1;
     private javax.swing.JTextField textTelefone;
+    private javax.swing.JFormattedTextField txtCHEGADA4;
+    private javax.swing.JTextField txtDESTINO4;
+    private javax.swing.JTextField txtORIGEM4;
+    private javax.swing.JFormattedTextField txtSAIDA4;
+    private javax.swing.JFormattedTextField txtVALOR4;
     // End of variables declaration//GEN-END:variables
 }
