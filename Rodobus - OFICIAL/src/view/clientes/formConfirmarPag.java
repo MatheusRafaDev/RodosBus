@@ -92,9 +92,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(125, 132, 178));
+        jPanel1.setBackground(new java.awt.Color(242, 147, 4));
 
-        jText_dadopassageiro.setBackground(new java.awt.Color(125, 132, 178));
+        jText_dadopassageiro.setBackground(new java.awt.Color(242, 147, 4));
         jText_dadopassageiro.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
         jText_dadopassageiro.setForeground(new java.awt.Color(255, 255, 255));
         jText_dadopassageiro.setText("Dado do (a) Passageiro(a)");
@@ -105,8 +105,12 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
+        jPanel2.setBackground(new java.awt.Color(50, 54, 66));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+
+        jText_nome.setBackground(new java.awt.Color(50, 54, 66));
         jText_nome.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_nome.setForeground(new java.awt.Color(0, 0, 0));
+        jText_nome.setForeground(new java.awt.Color(255, 255, 255));
         jText_nome.setText("Nome");
         jText_nome.setBorder(null);
         jText_nome.addActionListener(new java.awt.event.ActionListener() {
@@ -115,8 +119,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
+        jText_cpf.setBackground(new java.awt.Color(50, 54, 66));
         jText_cpf.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_cpf.setForeground(new java.awt.Color(0, 0, 0));
+        jText_cpf.setForeground(new java.awt.Color(255, 255, 255));
         jText_cpf.setText("CPF");
         jText_cpf.setBorder(null);
         jText_cpf.addActionListener(new java.awt.event.ActionListener() {
@@ -125,8 +130,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
+        jText_email.setBackground(new java.awt.Color(50, 54, 66));
         jText_email.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_email.setForeground(new java.awt.Color(0, 0, 0));
+        jText_email.setForeground(new java.awt.Color(255, 255, 255));
         jText_email.setText("E-mail");
         jText_email.setBorder(null);
         jText_email.addActionListener(new java.awt.event.ActionListener() {
@@ -135,8 +141,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
+        jText_telefone.setBackground(new java.awt.Color(50, 54, 66));
         jText_telefone.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_telefone.setForeground(new java.awt.Color(0, 0, 0));
+        jText_telefone.setForeground(new java.awt.Color(255, 255, 255));
         jText_telefone.setText("Telefone");
         jText_telefone.setBorder(null);
         jText_telefone.addActionListener(new java.awt.event.ActionListener() {
@@ -146,20 +153,20 @@ public class formConfirmarPag extends javax.swing.JFrame {
         });
 
         lblNOME.setBackground(new java.awt.Color(51, 255, 204));
-        lblNOME.setForeground(new java.awt.Color(0, 0, 0));
+        lblNOME.setForeground(new java.awt.Color(255, 255, 255));
         lblNOME.setText("Nome");
         lblNOME.setToolTipText("");
 
         lblEMAIL.setBackground(new java.awt.Color(51, 255, 204));
-        lblEMAIL.setForeground(new java.awt.Color(0, 0, 0));
+        lblEMAIL.setForeground(new java.awt.Color(255, 255, 255));
         lblEMAIL.setText("Email");
 
         lblTELEFONE.setBackground(new java.awt.Color(51, 255, 204));
-        lblTELEFONE.setForeground(new java.awt.Color(0, 0, 0));
+        lblTELEFONE.setForeground(new java.awt.Color(255, 255, 255));
         lblTELEFONE.setText("Telefone");
 
         lblCPF.setBackground(new java.awt.Color(51, 255, 204));
-        lblCPF.setForeground(new java.awt.Color(0, 0, 0));
+        lblCPF.setForeground(new java.awt.Color(255, 255, 255));
         lblCPF.setText("CPF");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -203,7 +210,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jText_dadopassagem.setBackground(new java.awt.Color(125, 132, 178));
+        jText_dadopassagem.setBackground(new java.awt.Color(242, 147, 4));
         jText_dadopassagem.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
         jText_dadopassagem.setForeground(new java.awt.Color(255, 255, 255));
         jText_dadopassagem.setText("Dados da Passagem de Ônibus");
@@ -214,8 +221,12 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
+        jPanel3.setBackground(new java.awt.Color(50, 54, 66));
+        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
+
+        jText_embarque.setBackground(new java.awt.Color(50, 54, 66));
         jText_embarque.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_embarque.setForeground(new java.awt.Color(0, 0, 0));
+        jText_embarque.setForeground(new java.awt.Color(255, 255, 255));
         jText_embarque.setText("Embarque");
         jText_embarque.setBorder(null);
         jText_embarque.addActionListener(new java.awt.event.ActionListener() {
@@ -224,8 +235,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
+        jText_desembarque.setBackground(new java.awt.Color(50, 54, 66));
         jText_desembarque.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_desembarque.setForeground(new java.awt.Color(0, 0, 0));
+        jText_desembarque.setForeground(new java.awt.Color(255, 255, 255));
         jText_desembarque.setText("Desembarque");
         jText_desembarque.setBorder(null);
         jText_desembarque.addActionListener(new java.awt.event.ActionListener() {
@@ -234,8 +246,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
+        jText_saida.setBackground(new java.awt.Color(50, 54, 66));
         jText_saida.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_saida.setForeground(new java.awt.Color(0, 0, 0));
+        jText_saida.setForeground(new java.awt.Color(255, 255, 255));
         jText_saida.setText("Dt.Saída");
         jText_saida.setBorder(null);
         jText_saida.addActionListener(new java.awt.event.ActionListener() {
@@ -244,8 +257,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
+        jText_chegada.setBackground(new java.awt.Color(50, 54, 66));
         jText_chegada.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_chegada.setForeground(new java.awt.Color(0, 0, 0));
+        jText_chegada.setForeground(new java.awt.Color(255, 255, 255));
         jText_chegada.setText("Dt.Chegada");
         jText_chegada.setBorder(null);
         jText_chegada.addActionListener(new java.awt.event.ActionListener() {
@@ -254,8 +268,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
+        jText_data.setBackground(new java.awt.Color(50, 54, 66));
         jText_data.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_data.setForeground(new java.awt.Color(0, 0, 0));
+        jText_data.setForeground(new java.awt.Color(255, 255, 255));
         jText_data.setText("Distância");
         jText_data.setBorder(null);
         jText_data.addActionListener(new java.awt.event.ActionListener() {
@@ -264,8 +279,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
+        jText_valor.setBackground(new java.awt.Color(50, 54, 66));
         jText_valor.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_valor.setForeground(new java.awt.Color(0, 0, 0));
+        jText_valor.setForeground(new java.awt.Color(255, 255, 255));
         jText_valor.setText("Valor");
         jText_valor.setBorder(null);
         jText_valor.addActionListener(new java.awt.event.ActionListener() {
@@ -274,8 +290,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
+        jText_valor1.setBackground(new java.awt.Color(50, 54, 66));
         jText_valor1.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_valor1.setForeground(new java.awt.Color(0, 0, 0));
+        jText_valor1.setForeground(new java.awt.Color(255, 255, 255));
         jText_valor1.setText("Motorista");
         jText_valor1.setBorder(null);
         jText_valor1.addActionListener(new java.awt.event.ActionListener() {
@@ -285,35 +302,36 @@ public class formConfirmarPag extends javax.swing.JFrame {
         });
 
         lblDesembarque.setBackground(new java.awt.Color(51, 255, 204));
-        lblDesembarque.setForeground(new java.awt.Color(0, 0, 0));
+        lblDesembarque.setForeground(new java.awt.Color(255, 255, 255));
         lblDesembarque.setText("Desembarque");
 
         lblSaida.setBackground(new java.awt.Color(51, 255, 204));
-        lblSaida.setForeground(new java.awt.Color(0, 0, 0));
+        lblSaida.setForeground(new java.awt.Color(255, 255, 255));
         lblSaida.setText("Saída");
 
         lblchegada.setBackground(new java.awt.Color(51, 255, 204));
-        lblchegada.setForeground(new java.awt.Color(0, 0, 0));
+        lblchegada.setForeground(new java.awt.Color(255, 255, 255));
         lblchegada.setText("Chegada");
 
         lbldistancia.setBackground(new java.awt.Color(51, 255, 204));
-        lbldistancia.setForeground(new java.awt.Color(0, 0, 0));
+        lbldistancia.setForeground(new java.awt.Color(255, 255, 255));
         lbldistancia.setText("Distância");
 
         lblvalor.setBackground(new java.awt.Color(51, 255, 204));
-        lblvalor.setForeground(new java.awt.Color(0, 0, 0));
+        lblvalor.setForeground(new java.awt.Color(255, 255, 255));
         lblvalor.setText("Valor");
 
         lblmotorista.setBackground(new java.awt.Color(51, 255, 204));
-        lblmotorista.setForeground(new java.awt.Color(0, 0, 0));
+        lblmotorista.setForeground(new java.awt.Color(255, 255, 255));
         lblmotorista.setText("Motorista");
 
         lblEMBARQUE.setBackground(new java.awt.Color(51, 255, 204));
-        lblEMBARQUE.setForeground(new java.awt.Color(0, 0, 0));
+        lblEMBARQUE.setForeground(new java.awt.Color(255, 255, 255));
         lblEMBARQUE.setText("Embarque");
 
+        jText_valor2.setBackground(new java.awt.Color(50, 54, 66));
         jText_valor2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jText_valor2.setForeground(new java.awt.Color(0, 0, 0));
+        jText_valor2.setForeground(new java.awt.Color(255, 255, 255));
         jText_valor2.setText("Duração");
         jText_valor2.setBorder(null);
         jText_valor2.addActionListener(new java.awt.event.ActionListener() {
@@ -323,7 +341,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         });
 
         lblduracao.setBackground(new java.awt.Color(51, 255, 204));
-        lblduracao.setForeground(new java.awt.Color(0, 0, 0));
+        lblduracao.setForeground(new java.awt.Color(255, 255, 255));
         lblduracao.setText("Duração");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -405,8 +423,11 @@ public class formConfirmarPag extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
+        jPanel4.setBackground(new java.awt.Color(50, 54, 66));
+
+        jText_FormasPgt.setBackground(new java.awt.Color(50, 54, 66));
         jText_FormasPgt.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
-        jText_FormasPgt.setForeground(new java.awt.Color(0, 0, 0));
+        jText_FormasPgt.setForeground(new java.awt.Color(255, 255, 255));
         jText_FormasPgt.setText("Formas de pagamento");
         jText_FormasPgt.setBorder(null);
         jText_FormasPgt.addActionListener(new java.awt.event.ActionListener() {
@@ -450,7 +471,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jText_inf1.setBackground(new java.awt.Color(125, 132, 178));
+        jText_inf1.setBackground(new java.awt.Color(242, 147, 4));
         jText_inf1.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jText_inf1.setForeground(new java.awt.Color(255, 255, 255));
         jText_inf1.setText("- Embarque apenas com documento");
@@ -461,7 +482,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
-        jText_inf2.setBackground(new java.awt.Color(125, 132, 178));
+        jText_inf2.setBackground(new java.awt.Color(242, 147, 4));
         jText_inf2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jText_inf2.setForeground(new java.awt.Color(255, 255, 255));
         jText_inf2.setText("- Apresente o comprovante na hora do embarque.");
@@ -472,7 +493,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
-        jText_inf3.setBackground(new java.awt.Color(125, 132, 178));
+        jText_inf3.setBackground(new java.awt.Color(242, 147, 4));
         jText_inf3.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jText_inf3.setForeground(new java.awt.Color(255, 255, 255));
         jText_inf3.setText("- Reembolso de 100% do valor em viagens canceladas");
@@ -483,7 +504,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
-        jText_inf4.setBackground(new java.awt.Color(125, 132, 178));
+        jText_inf4.setBackground(new java.awt.Color(242, 147, 4));
         jText_inf4.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jText_inf4.setForeground(new java.awt.Color(255, 255, 255));
         jText_inf4.setText("em até 1 hora antes do embarque");
@@ -494,8 +515,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
+        jButton_Confirmaepagar.setBackground(new java.awt.Color(50, 54, 66));
         jButton_Confirmaepagar.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        jButton_Confirmaepagar.setForeground(new java.awt.Color(0, 0, 0));
+        jButton_Confirmaepagar.setForeground(new java.awt.Color(255, 255, 255));
         jButton_Confirmaepagar.setText("Confirma e pagar");
         jButton_Confirmaepagar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -504,7 +526,6 @@ public class formConfirmarPag extends javax.swing.JFrame {
         });
 
         lblteste.setBackground(new java.awt.Color(255, 255, 255));
-        lblteste.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

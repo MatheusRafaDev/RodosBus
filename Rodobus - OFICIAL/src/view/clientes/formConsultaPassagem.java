@@ -139,7 +139,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(142, 157, 204));
 
-        jPanel1.setBackground(new java.awt.Color(142, 157, 204));
+        jPanel1.setBackground(new java.awt.Color(242, 147, 4));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N

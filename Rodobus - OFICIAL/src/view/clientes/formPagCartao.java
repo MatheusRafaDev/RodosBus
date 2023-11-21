@@ -46,9 +46,9 @@ public class formPagCartao extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 204, 255));
 
-        jPanel1.setBackground(new java.awt.Color(142, 157, 204));
+        jPanel1.setBackground(new java.awt.Color(242, 147, 4));
 
-        jPanel2.setBackground(new java.awt.Color(125, 132, 178));
+        jPanel2.setBackground(new java.awt.Color(50, 54, 66));
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -77,7 +77,7 @@ public class formPagCartao extends javax.swing.JFrame {
             }
         });
 
-        btnFinalizar.setBackground(new java.awt.Color(69, 73, 74));
+        btnFinalizar.setBackground(new java.awt.Color(242, 147, 4));
         btnFinalizar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         btnFinalizar.setForeground(new java.awt.Color(255, 255, 255));
         btnFinalizar.setText("FINALIZAR COMPRA");
@@ -126,14 +126,15 @@ public class formPagCartao extends javax.swing.JFrame {
                                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(98, 98, 98))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(231, 231, 231)
-                                .addComponent(jLabel5))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(270, 270, 270))
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(231, 231, 231)
+                                        .addComponent(jLabel5))
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGap(151, 151, 151)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
