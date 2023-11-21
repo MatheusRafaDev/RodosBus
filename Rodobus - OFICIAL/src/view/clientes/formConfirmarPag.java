@@ -2,6 +2,8 @@ package view.clientes;
 
 import controller.passageiroDao;
 import controller.rotaDao;
+import static java.lang.System.in;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import model.Passageiro;
 import model.Rota;
@@ -17,14 +19,27 @@ public class formConfirmarPag extends javax.swing.JFrame {
         passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
 
-        rota = r.selecionarUmaRota(passageiroId2);
-        pass = p.selecionarUmPassageiro(rotaId2);
+        rota = r.selecionarUmaRota(rotaId2);
+        pass = p.selecionarUmPassageiro(passageiroId2);
 
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
         this.lblNOME.setText(pass.getNome());
-        this.lblNOME.setText(pass.getCpf());
+        this.lblCPF.setText(pass.getCpf());
         this.lblEMAIL.setText(pass.getEmail());
         this.lblTELEFONE.setText(pass.getTelefone());
-          
+        this.lblEMBARQUE.setText(rota.getOrigem());
+        this.lblDesembarque.setText(rota.getDestino());
+        this.lblSaida.setText(formato.format(rota.getDtSaida()));
+        this.lblchegada.setText(formato.format(rota.getDtChegada()));
+        this.lbldistancia.setText(String.valueOf(rota.getVlDistancia()));
+        this.lblvalor.setText(String.valueOf(rota.getVlPreco()));
+        this.lblduracao.setText(rota.getDsDuracao());
+        this.lblmotorista.setText(rota.getNomeMotorista());
+
+
+
+
+        
 
     }
 
@@ -53,13 +68,15 @@ public class formConfirmarPag extends javax.swing.JFrame {
         jText_data = new javax.swing.JTextField();
         jText_valor = new javax.swing.JTextField();
         jText_valor1 = new javax.swing.JTextField();
-        lblCpf1 = new javax.swing.JLabel();
-        lblCpf2 = new javax.swing.JLabel();
-        lblCpf3 = new javax.swing.JLabel();
-        lblCpf4 = new javax.swing.JLabel();
-        lblCpf5 = new javax.swing.JLabel();
-        lblCpf6 = new javax.swing.JLabel();
+        lblDesembarque = new javax.swing.JLabel();
+        lblSaida = new javax.swing.JLabel();
+        lblchegada = new javax.swing.JLabel();
+        lbldistancia = new javax.swing.JLabel();
+        lblvalor = new javax.swing.JLabel();
+        lblmotorista = new javax.swing.JLabel();
         lblEMBARQUE = new javax.swing.JLabel();
+        jText_valor2 = new javax.swing.JTextField();
+        lblduracao = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jText_FormasPgt = new javax.swing.JTextField();
         jRadioButton_pix = new javax.swing.JRadioButton();
@@ -219,7 +236,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
 
         jText_saida.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jText_saida.setForeground(new java.awt.Color(0, 0, 0));
-        jText_saida.setText("Saída");
+        jText_saida.setText("Dt.Saída");
         jText_saida.setBorder(null);
         jText_saida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -229,7 +246,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
 
         jText_chegada.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jText_chegada.setForeground(new java.awt.Color(0, 0, 0));
-        jText_chegada.setText("Chegada");
+        jText_chegada.setText("Dt.Chegada");
         jText_chegada.setBorder(null);
         jText_chegada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,7 +256,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
 
         jText_data.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jText_data.setForeground(new java.awt.Color(0, 0, 0));
-        jText_data.setText("Data");
+        jText_data.setText("Distância");
         jText_data.setBorder(null);
         jText_data.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,33 +284,47 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
-        lblCpf1.setBackground(new java.awt.Color(51, 255, 204));
-        lblCpf1.setForeground(new java.awt.Color(0, 0, 0));
-        lblCpf1.setText("jLabel2");
+        lblDesembarque.setBackground(new java.awt.Color(51, 255, 204));
+        lblDesembarque.setForeground(new java.awt.Color(0, 0, 0));
+        lblDesembarque.setText("Desembarque");
 
-        lblCpf2.setBackground(new java.awt.Color(51, 255, 204));
-        lblCpf2.setForeground(new java.awt.Color(0, 0, 0));
-        lblCpf2.setText("jLabel2");
+        lblSaida.setBackground(new java.awt.Color(51, 255, 204));
+        lblSaida.setForeground(new java.awt.Color(0, 0, 0));
+        lblSaida.setText("Saída");
 
-        lblCpf3.setBackground(new java.awt.Color(51, 255, 204));
-        lblCpf3.setForeground(new java.awt.Color(0, 0, 0));
-        lblCpf3.setText("jLabel2");
+        lblchegada.setBackground(new java.awt.Color(51, 255, 204));
+        lblchegada.setForeground(new java.awt.Color(0, 0, 0));
+        lblchegada.setText("Chegada");
 
-        lblCpf4.setBackground(new java.awt.Color(51, 255, 204));
-        lblCpf4.setForeground(new java.awt.Color(0, 0, 0));
-        lblCpf4.setText("jLabel2");
+        lbldistancia.setBackground(new java.awt.Color(51, 255, 204));
+        lbldistancia.setForeground(new java.awt.Color(0, 0, 0));
+        lbldistancia.setText("Distância");
 
-        lblCpf5.setBackground(new java.awt.Color(51, 255, 204));
-        lblCpf5.setForeground(new java.awt.Color(0, 0, 0));
-        lblCpf5.setText("jLabel2");
+        lblvalor.setBackground(new java.awt.Color(51, 255, 204));
+        lblvalor.setForeground(new java.awt.Color(0, 0, 0));
+        lblvalor.setText("Valor");
 
-        lblCpf6.setBackground(new java.awt.Color(51, 255, 204));
-        lblCpf6.setForeground(new java.awt.Color(0, 0, 0));
-        lblCpf6.setText("jLabel2");
+        lblmotorista.setBackground(new java.awt.Color(51, 255, 204));
+        lblmotorista.setForeground(new java.awt.Color(0, 0, 0));
+        lblmotorista.setText("Motorista");
 
         lblEMBARQUE.setBackground(new java.awt.Color(51, 255, 204));
         lblEMBARQUE.setForeground(new java.awt.Color(0, 0, 0));
         lblEMBARQUE.setText("Embarque");
+
+        jText_valor2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jText_valor2.setForeground(new java.awt.Color(0, 0, 0));
+        jText_valor2.setText("Duração");
+        jText_valor2.setBorder(null);
+        jText_valor2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jText_valor2ActionPerformed(evt);
+            }
+        });
+
+        lblduracao.setBackground(new java.awt.Color(51, 255, 204));
+        lblduracao.setForeground(new java.awt.Color(0, 0, 0));
+        lblduracao.setText("Duração");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -304,18 +335,20 @@ public class formConfirmarPag extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jText_valor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jText_valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jText_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jText_chegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jText_saida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jText_valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jText_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jText_saida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jText_chegada)
+                                .addGap(49, 49, 49)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCpf2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCpf3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCpf4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCpf5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCpf6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblSaida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblchegada, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbldistancia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblvalor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jText_embarque, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -323,7 +356,15 @@ public class formConfirmarPag extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jText_desembarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                        .addComponent(lblCpf1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblDesembarque, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jText_valor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                        .addComponent(lblmotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jText_valor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblduracao, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -336,28 +377,32 @@ public class formConfirmarPag extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jText_desembarque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCpf1))
+                    .addComponent(lblDesembarque))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jText_saida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCpf2))
+                    .addComponent(lblSaida))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jText_chegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCpf3))
+                    .addComponent(lblchegada))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jText_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCpf4))
+                    .addComponent(lbldistancia))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jText_valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCpf5))
+                    .addComponent(lblvalor))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jText_valor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblduracao))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jText_valor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCpf6))
-                .addContainerGap(8, Short.MAX_VALUE))
+                    .addComponent(lblmotorista))
+                .addGap(14, 14, 14))
         );
 
         jText_FormasPgt.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
@@ -501,15 +546,14 @@ public class formConfirmarPag extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
+                        .addGap(37, 37, 37)
                         .addComponent(jText_dadopassagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addGap(50, 50, 50)
                         .addComponent(jText_inf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jText_inf2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -519,7 +563,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                         .addComponent(jText_inf4, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton_Confirmaepagar)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -615,6 +659,10 @@ public class formConfirmarPag extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jText_valor1ActionPerformed
 
+    private void jText_valor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jText_valor2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jText_valor2ActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -622,6 +670,8 @@ public class formConfirmarPag extends javax.swing.JFrame {
                 int passageiroId2 = 0;
                 int rotaId2 = 0;
                 new formConfirmarPag(passageiroId2, rotaId2).setVisible(true);
+                         //JOptionPane.showMessageDialog(null, passageiroId2);
+                         //JOptionPane.showMessageDialog(null, rotaId2);
             }
         });
     }
@@ -653,17 +703,19 @@ public class formConfirmarPag extends javax.swing.JFrame {
     private javax.swing.JTextField jText_telefone;
     private javax.swing.JTextField jText_valor;
     private javax.swing.JTextField jText_valor1;
+    private javax.swing.JTextField jText_valor2;
     private javax.swing.JLabel lblCPF;
-    private javax.swing.JLabel lblCpf1;
-    private javax.swing.JLabel lblCpf2;
-    private javax.swing.JLabel lblCpf3;
-    private javax.swing.JLabel lblCpf4;
-    private javax.swing.JLabel lblCpf5;
-    private javax.swing.JLabel lblCpf6;
+    private javax.swing.JLabel lblDesembarque;
     private javax.swing.JLabel lblEMAIL;
     private javax.swing.JLabel lblEMBARQUE;
     private javax.swing.JLabel lblNOME;
+    private javax.swing.JLabel lblSaida;
     private javax.swing.JLabel lblTELEFONE;
+    private javax.swing.JLabel lblchegada;
+    private javax.swing.JLabel lbldistancia;
+    private javax.swing.JLabel lblduracao;
+    private javax.swing.JLabel lblmotorista;
     private javax.swing.JLabel lblteste;
+    private javax.swing.JLabel lblvalor;
     // End of variables declaration//GEN-END:variables
 }

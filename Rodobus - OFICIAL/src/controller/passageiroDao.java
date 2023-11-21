@@ -140,15 +140,15 @@ public class passageiroDao extends conectarDao {
     }
 
     public Passageiro selecionarUmPassageiro(int id) {
-        String sql = "SELECT ID_PASSAGEIRO, DS_NOME, DS_EMAIL, NR_IDADE, DS_CPF, DS_TELEFONE, DS_SENHA FROM TB_PASSAGEIRO WHERE ID_PASSAGEIRO =" + id;
+        String sql = "SELECT ID_PASSAGEIRO, DS_NOME,  NR_IDADE, DS_CPF, DS_TELEFONE, DS_EMAIL, DS_SENHA FROM TB_PASSAGEIRO WHERE ID_PASSAGEIRO =" + id;
 
-        Passageiro passageiro = null; 
+        Passageiro passageiro = null;
 
         try {
             PreparedStatement ps = mycon.prepareStatement(sql);
             ResultSet resultSet = ps.executeQuery();
 
-            if (resultSet.next()) { 
+            if (resultSet.next()) {
                 passageiro = new Passageiro();
 
                 int idPassageiro = resultSet.getInt("ID_PASSAGEIRO");
@@ -156,16 +156,18 @@ public class passageiroDao extends conectarDao {
                 int idade = resultSet.getInt("NR_IDADE");
                 String cpf = resultSet.getString("DS_CPF");
                 String telefone = resultSet.getString("DS_TELEFONE");
+                String email = resultSet.getString("DS_EMAIL");                
                 String senha = resultSet.getString("DS_SENHA");
-                String email = resultSet.getString("DS_EMAIL");
+
 
                 passageiro.setIdPassageiro(idPassageiro);
-                passageiro.setCpf(cpf);
-                passageiro.setIdade(idade);
                 passageiro.setNome(nome);
+                passageiro.setIdade(idade);
+                passageiro.setCpf(cpf);
                 passageiro.setTelefone(telefone);
-                passageiro.setSenha(senha);
                 passageiro.setEmail(email);
+                passageiro.setSenha(senha);
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Passageiro not found for ID: " + id);
             }
