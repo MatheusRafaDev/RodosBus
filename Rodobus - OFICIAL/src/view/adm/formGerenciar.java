@@ -73,7 +73,22 @@ public class formGerenciar extends javax.swing.JFrame {
     }
     
 
-    
+    public void CarregarMotoristas() {
+        DefaultComboBoxModel<String> mymodel = (DefaultComboBoxModel<String>) this.cmbMOTORISTA4.getModel();
+
+        if (mymodel != null) {
+            mymodel.removeAllElements();
+        }
+
+        motoristaDao motoristaDao = new motoristaDao();
+        motoristaDao.criarBanco();
+        ArrayList<Motorista> motoristas = motoristaDao.selecionarMotoristas();
+
+        mymodel.addElement("");
+        for (Motorista motorista : motoristas) {
+            mymodel.addElement(motorista.getIdMotorista() + " - " + motorista.getNome());
+        }
+    }
     public void CarregarReservas(){
         reservaDao reservaDao = new reservaDao();
        ArrayList<Reserva> reservas = reservaDao.selecionarReservas();
@@ -115,6 +130,7 @@ public class formGerenciar extends javax.swing.JFrame {
         CaregarOnibus();
         CaregarPassageiro();
         CarregarReservas();
+        CarregarMotoristas();
     }
 public void CarregarRotas() {
 
@@ -1667,7 +1683,36 @@ public void CarregarRotas() {
     }//GEN-LAST:event_txtCHEGADA4FocusLost
 
     private void btnALTERAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnALTERAR4MouseClicked
+        rotaDao rota = new rotaDao();
+    
+        String IdMoto = (String)cmbMOTORISTA4.getSelectedItem();
+        String numeroComoString = IdMoto.replaceAll("\\D+", "");
+        int motorista = Integer.parseInt(numeroComoString);
+     verificarData(); 
+       String saidaText = txtSAIDA4.getText();
+        String chegadaText = txtCHEGADA4.getText();
+        Date saida = null;
+        Date chegada = null;
 
+        try {
+            saida = (Date) new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(saidaText);
+            chegada = (Date) new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(chegadaText);
+        } catch (ParseException ex) {
+
+        }
+        DefaultTableModel model = (DefaultTableModel) tblROTA.getModel();
+        Rota rotass = new Rota();
+        rotass.setOrigem(this.txtORIGEM4.getText());
+        rotass.setDestino(this.txtDESTINO4.getText());
+        rotass.setDtChegada(chegada);
+        rotass.setDtSaida(saida);
+        rotass.setIdMotorista(motorista);
+        rotass.setIdRota(Integer.parseInt(this.lbID4.getText()));
+     
+        rota.alterar(rotass);
+            txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+        txtCHEGADA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+        CarregarRotas();
     }//GEN-LAST:event_btnALTERAR4MouseClicked
 
     private void btnNOVO4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNOVO4ActionPerformed
@@ -2149,7 +2194,8 @@ public void CarregarRotas() {
     }//GEN-LAST:event_btnReservaActionPerformed
 
     private void btnBuscareservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscareservaMouseClicked
-        // TODO add your handling code here:
+         CarregarRotas();
+        CaregarMotorista();
     }//GEN-LAST:event_btnBuscareservaMouseClicked
 
     private void btnBuscareservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscareservaActionPerformed
