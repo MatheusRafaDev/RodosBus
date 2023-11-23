@@ -21,7 +21,7 @@ public class reservaDao extends conectarDao {
     }
 
     public void incluir(Reserva obj) {
-        sql = "INSERT INTO TB_RESERVA (ID_ROTA, ID_ONIBUS, ID_MOTORISTA, ID_PASSAGEIRO, DT_RESERVA, DS_STATUS) VALUES (?, ?, ?, ?, ?, ?)";
+        sql = "INSERT INTO TB_RESERVAS (ID_ROTA, ID_ONIBUS, ID_MOTORISTA, ID_PASSAGEIRO, DT_RESERVA, DS_STATUS) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             ps = mycon.prepareStatement(sql);
 
@@ -42,7 +42,7 @@ public class reservaDao extends conectarDao {
     }
 
     public Reserva selecionarUmaReserva(int id) {
-        String sql = "SELECT ID_RESERVA, ID_ROTA, ID_ONIBUS, ID_MOTORISTA, ID_PASSAGEIRO, DT_RESERVA, DS_STATUS FROM TB_RESERVA WHERE ID_RESERVA = ?";
+        String sql = "SELECT ID_RESERVA, ID_ROTA, ID_ONIBUS, ID_MOTORISTA, ID_PASSAGEIRO, DT_RESERVA, DS_STATUS FROM TB_RESERVAS WHERE ID_RESERVA = '" + id + "'";
         Reserva reserva = new Reserva();
 
         try {
@@ -67,21 +67,21 @@ public class reservaDao extends conectarDao {
     }
 
     public void excluirReserva(int id) {    
-        String sql = "DELETE FROM TB_RESERVA WHERE ID_RESERVA = ?";
+        String sql = "DELETE FROM TB_RESERVAS WHERE ID_RESERVA = '" + id + "'";
 
         try {
-            PreparedStatement ps = mycon.prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.executeUpdate();
+            ps = mycon.prepareStatement(sql);
+            ps.execute();
             ps.close();
+            JOptionPane.showMessageDialog(null, "Registro excluido com sucesso!");
 
         } catch (SQLException err) {
-            JOptionPane.showMessageDialog(null, "Erro ao Excluir Reserva! " + err.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao excluir usuário!" + err.getMessage());
         }
     }
 
     public void alterarReserva(Reserva obj) {
-        String sql = "UPDATE TB_RESERVA SET ID_ROTA = ?, ID_ONIBUS = ?, ID_MOTORISTA = ?, ID_PASSAGEIRO = ?, DT_RESERVA = ?, DS_STATUS = ? WHERE ID_RESERVA = ?";
+        String sql = "UPDATE TB_RESERVAS SET ID_ROTA = ?, ID_ONIBUS = ?, ID_MOTORISTA = ?, ID_PASSAGEIRO = ?, DT_RESERVA = ?, DS_STATUS = ? WHERE ID_RESERVA = ?";
 
         try {
             ps = mycon.prepareStatement(sql);

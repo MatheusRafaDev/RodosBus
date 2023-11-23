@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import model.Passageiro;
 
 public class rotaDao extends conectarDao {
 
@@ -237,5 +238,31 @@ public class rotaDao extends conectarDao {
 
         return rotas;
     }
+  public void alterar(Rota obj) {
+    String sql = "UPDATE TB_ROTA SET DS_ORIGEM = ?, DS_DESTINO = ?, VL_PRECO= ?, DT_CHEGADA = ?, DT_SAIDA = ?, ID_MOTORISTA = ?  WHERE ID_ROTA = ?";
+    try {
+        PreparedStatement ps = mycon.prepareStatement(sql);
 
-}
+        ps.setString(1, obj.getDestino());
+        ps.setString(2, obj.getOrigem());
+                      ps.setDouble(3, obj.getVlPreco());
+        ps.setDate(4,  new java.sql.Date(obj.getDtChegada().getTime()));
+        ps.setDate(5,  new java.sql.Date(obj.getDtSaida().getTime())); // Você deve fornecer o ID do motorista a ser atualizado
+        ps.setInt(6,obj.getIdMotorista());
+        ps.setInt(7, obj.getIdRota());
+        int rowsUpdated = ps.executeUpdate();
+        if (rowsUpdated > 0) {
+            JOptionPane.showMessageDialog(null, "Registro Alterado com Sucesso !");
+        } else {
+            
+        }
+        
+        ps.close();
+    } catch (SQLException err) {
+        
+        err.printStackTrace();
+    }
+    }
+    }
+
+
