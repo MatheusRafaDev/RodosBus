@@ -114,6 +114,7 @@ public class formGerenciar extends javax.swing.JFrame {
         CaregarMotorista();
         CaregarOnibus();
         CaregarPassageiro();
+        CarregarReservas();
     }
 public void CarregarRotas() {
 
@@ -1299,7 +1300,7 @@ public void CarregarRotas() {
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnReserva)
                     .addComponent(btnBuscareserva))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)

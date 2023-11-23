@@ -1524,9 +1524,9 @@
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           <Component id="jScrollPane5" min="-2" pref="320" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btnReserva" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnBuscareserva" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnBuscareserva" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="34" max="32767" attributes="0"/>
                           <Component id="lblreservaid" max="32767" attributes="0"/>
