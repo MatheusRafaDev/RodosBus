@@ -48,7 +48,6 @@ public class formConfirmarPag extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jText_dadopassageiro = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
@@ -86,9 +85,8 @@ public class formConfirmarPag extends javax.swing.JFrame {
         jText_inf2 = new javax.swing.JTextField();
         jText_inf3 = new javax.swing.JTextField();
         jText_inf4 = new javax.swing.JTextField();
-        btnConfirmaepagar = new javax.swing.JButton();
+        jButton_Confirmaepagar = new javax.swing.JButton();
         lblteste = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -438,12 +436,10 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(rbPix);
         rbPix.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         rbPix.setForeground(new java.awt.Color(255, 255, 255));
         rbPix.setText("Pagamaneto no pix");
 
-        buttonGroup1.add(rbCartao);
         rbCartao.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         rbCartao.setForeground(new java.awt.Color(255, 255, 255));
         rbCartao.setText("Pagar com Cartão de Crédito");
@@ -519,20 +515,17 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
-        btnConfirmaepagar.setBackground(new java.awt.Color(50, 54, 66));
-        btnConfirmaepagar.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        btnConfirmaepagar.setForeground(new java.awt.Color(255, 255, 255));
-        btnConfirmaepagar.setText("Confirma e pagar");
-        btnConfirmaepagar.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButton_Confirmaepagar.setBackground(new java.awt.Color(50, 54, 66));
+        jButton_Confirmaepagar.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        jButton_Confirmaepagar.setForeground(new java.awt.Color(255, 255, 255));
+        jButton_Confirmaepagar.setText("Confirma e pagar");
+        jButton_Confirmaepagar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnConfirmaepagarMouseClicked(evt);
+                jButton_ConfirmaepagarMouseClicked(evt);
             }
         });
 
         lblteste.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/image 2.png"))); // NOI18N
-        jLabel3.setText("jLabel3");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -556,10 +549,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                             .addComponent(jText_inf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jText_inf2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jText_inf4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnConfirmaepagar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton_Confirmaepagar)
                             .addComponent(jText_inf3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(19, Short.MAX_VALUE))))
         );
@@ -593,9 +583,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jText_inf4, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnConfirmaepagar)
-                            .addComponent(jLabel3))))
+                        .addComponent(jButton_Confirmaepagar)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -681,18 +669,18 @@ public class formConfirmarPag extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jText_inf4ActionPerformed
 
-    private void btnConfirmaepagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmaepagarMouseClicked
-        if(rbPix.isSelected()){
-            formPix pix = new formPix();
+    private void jButton_ConfirmaepagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_ConfirmaepagarMouseClicked
+ if(rbPix.isSelected()){
+            formPix pix = new formPix(pass.getIdPassageiro(), rota.getIdRota());
             this.setVisible(false);
             pix.setVisible(true);
         }
-        else if(rbCartao.isSelected()) {
-            formPagCartao cartao = new formPagCartao();
-            this.setVisible(false);
-            cartao.setVisible(true);
-        }
-    }//GEN-LAST:event_btnConfirmaepagarMouseClicked
+ else if (rbCartao.isSelected()){
+        formPagCartao cartao = new formPagCartao(pass.getIdPassageiro(), rota.getIdRota());
+        this.setVisible(false);
+        cartao.setVisible(true);
+ }
+    }//GEN-LAST:event_jButton_ConfirmaepagarMouseClicked
 
     private void jText_valor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jText_valor1ActionPerformed
         // TODO add your handling code here:
@@ -716,10 +704,8 @@ public class formConfirmarPag extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConfirmaepagar;
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton_Confirmaepagar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

@@ -4,7 +4,11 @@
  */
 package view.clientes;
 
+import controller.passageiroDao;
+import controller.rotaDao;
 import javax.swing.JFrame;
+import model.Passageiro;
+import model.Rota;
 
 /**
  *
@@ -12,12 +16,22 @@ import javax.swing.JFrame;
  */
 public class formPagCartao extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ViewTela
-     */
-    public formPagCartao() {
-        initComponents();
+     Rota rota = new Rota();
+    Passageiro pass = new Passageiro();
+    public void carregarBil(int IdPassageiro, int IdRota) {
+        this.setVisible(false);
         
+        formPassagemBilhete pas = new formPassagemBilhete(IdPassageiro, IdRota);
+         this.setVisible(false);
+        pas.setVisible(true);
+    }
+    public formPagCartao( int passageiroId2, int rotaId2) {
+        initComponents();
+        passageiroDao p = new passageiroDao();
+        rotaDao r = new rotaDao();
+
+        rota = r.selecionarUmaRota(rotaId2);
+        pass = p.selecionarUmPassageiro(passageiroId2);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
@@ -224,10 +238,9 @@ public class formPagCartao extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnFinalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFinalizarMouseClicked
-        // TODO add your handling code here:
-        formPassagemBilhete bilhete = new formPassagemBilhete();
-        this.setVisible(false);
-        bilhete.setVisible(true); 
+        // TODO add your handling code here:carregarInfo(pass.getIdPassageiro(), rt.getIdRota());
+           carregarBil(pass.getIdPassageiro(), rota.getIdRota());
+ 
     }//GEN-LAST:event_btnFinalizarMouseClicked
 
     /**
@@ -263,7 +276,11 @@ public class formPagCartao extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new formPagCartao().setVisible(true);
+          int passageiroId2 = 0;
+                int rotaId2 = 0;
+                new formPagCartao(passageiroId2, rotaId2).setVisible(true);
+                         //JOptionPane.showMessageDialog(null, passageiroId2);
+                         //JOptionPane.showMessageDialog(null, rotaId2);
             }
         });
     }
