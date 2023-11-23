@@ -7,6 +7,8 @@
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -71,7 +73,7 @@
                               <Component id="jText_inf2" min="-2" max="-2" attributes="0"/>
                               <Component id="jText_inf4" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jButton_Confirmaepagar" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnConfirmaepagar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel3" min="-2" pref="72" max="-2" attributes="0"/>
                               </Group>
@@ -118,7 +120,7 @@
                           <Component id="jText_inf4" min="-2" pref="13" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButton_Confirmaepagar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnConfirmaepagar" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -731,9 +733,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jRadioButton_pix" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbPix" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jRadioButton_credito" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbCartao" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -750,8 +752,8 @@
                       <Component id="jText_FormasPgt" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jRadioButton_pix" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jRadioButton_credito" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rbPix" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rbCartao" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -779,8 +781,11 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jText_FormasPgtActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton_pix">
+            <Component class="javax.swing.JRadioButton" name="rbPix">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI Black" size="12" style="0"/>
                 </Property>
@@ -790,8 +795,11 @@
                 <Property name="text" type="java.lang.String" value="Pagamaneto no pix"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton_credito">
+            <Component class="javax.swing.JRadioButton" name="rbCartao">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI Black" size="12" style="0"/>
                 </Property>
@@ -883,7 +891,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jText_inf4ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton_Confirmaepagar">
+        <Component class="javax.swing.JButton" name="btnConfirmaepagar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="42" green="36" red="32" type="rgb"/>
@@ -897,7 +905,7 @@
             <Property name="text" type="java.lang.String" value="Confirma e pagar"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton_ConfirmaepagarMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnConfirmaepagarMouseClicked"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblteste">
