@@ -103,4 +103,49 @@ public class reservaDao extends conectarDao {
     }
     
     
+        public ArrayList<Reserva> selecionarReservas() {
+        ArrayList<Reserva> reservas = new ArrayList<Reserva>();
+
+        String sql = "SELECT ID_RESERVA, ID_ROTA, ID_ONIBUS, ID_MOTORISTA, ID_PASSAGEIRO, DT_RESERVA, DS_STATUS FROM TB_RESERVAS";
+
+        try {
+            PreparedStatement ps = mycon.prepareStatement(sql);
+            ResultSet resultSet = ps.executeQuery();
+
+                while (resultSet.next()) {
+                int idReser = resultSet.getInt("ID_RESERVA");
+                int idRot = resultSet.getInt("ID_ROTA");
+                 int idOnib = resultSet.getInt("ID_ONIBUS");
+                int idMotorist = resultSet.getInt("ID_MOTORISTA");
+                int idPassageir = resultSet.getInt("ID_PASSAGEIRO");
+                                    java.sql.Timestamp reserTimestamp = resultSet.getTimestamp("DT_RESERVA");
+                                Date reser = new Date(reserTimestamp.getTime());
+                                String statu = resultSet.getString("DS_STATUS");
+
+
+
+                Reserva reserva = new Reserva();
+
+                reserva.setIdReserva(idReser);
+                reserva.setIdRota(idRot);
+                reserva.setIdOnibus(idOnib);
+                reserva.setIdMotorista(idMotorist);
+                reserva.setIdPassageiro(idPassageir);
+                reserva.setDataReserva(reser);
+                reserva.setStatus(statu);
+                
+                
+                reservas.add(reserva);
+            }
+
+            ps.close();
+            resultSet.close();
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, "Erro ao selecionar reserva! " + err.getMessage());
+        }
+
+        return reservas;
+    }
+
+    
 }
