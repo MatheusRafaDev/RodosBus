@@ -87,7 +87,7 @@ public class formLogin extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("EMAIL");
+        jLabel5.setText("USUÁRIO");
 
         txtSenha.setName("txtSenha"); // NOI18N
         txtSenha.addMouseListener(new java.awt.event.MouseAdapter() {

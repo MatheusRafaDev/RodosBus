@@ -25,15 +25,20 @@ public class rotaDao extends conectarDao {
         ArrayList<Rota> rotas = new ArrayList<>();
 
         String sql = "SELECT ID_ROTA, DS_ORIGEM, DS_DESTINO, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA, "
-                + "MOT.ID_MOTORISTA,MOT.DS_NOME FROM TB_ROTA ROT LEFT JOIN TB_MOTORISTA MOT ON ROT.ID_MOTORISTA = MOT.ID_MOTORISTA";
+                + "MOT.ID_MOTORISTA, MOT.DS_NOME, ONI.ID_ONIBUS, ONI.DS_MODELO "
+                + "FROM TB_ROTA ROT "
+                + "LEFT JOIN TB_MOTORISTA MOT ON ROT.ID_MOTORISTA = MOT.ID_MOTORISTA "
+                + "LEFT JOIN TB_ONIBUS ONI ON ROT.ID_ONIBUS = ONI.ID_ONIBUS";
 
         try {
             ps = mycon.prepareStatement(sql);
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
+                        
                 int id = resultSet.getInt("ID_ROTA");
-                String destino = resultSet.getString("DS_DESTINO");
+                
+                String destino = resultSet.getString("DS_DESTINO");               
                 String origem = resultSet.getString("DS_ORIGEM");
 
                 java.sql.Timestamp saidaTimestamp = resultSet.getTimestamp("DT_SAIDA");
@@ -43,9 +48,13 @@ public class rotaDao extends conectarDao {
                 Date chegada = new Date(chegadaTimestamp.getTime());
 
                 Double preco = resultSet.getDouble("VL_PRECO");
-                int idMotorista = resultSet.getInt("ID_MOTORISTA");
-                String NomeMotorista = resultSet.getString("DS_NOME");
 
+                int idMotorista = resultSet.getInt("ID_MOTORISTA");
+                String nomeMotorista = resultSet.getString("DS_NOME");
+
+                int idOnibus = resultSet.getInt("ID_ONIBUS");
+                String modeloOnibus = resultSet.getString("DS_MODELO");
+                
                 Rota rota = new Rota();
 
                 rota.setIdRota(id);
@@ -56,21 +65,26 @@ public class rotaDao extends conectarDao {
 
                 rota.setVlPreco(preco);
                 rota.setIdMotorista(idMotorista);
-                rota.setNomeMotorista(NomeMotorista);
+                rota.setNomeMotorista(nomeMotorista);
+
+                rota.setIdOnibus(idOnibus);
+                rota.setModeloOnibus(modeloOnibus);
+                
                 rotas.add(rota);
             }
 
             ps.close();
             resultSet.close();
+            
         } catch (SQLException err) {
             JOptionPane.showMessageDialog(null, "Erro ao selecionar Rotas! " + err.getMessage());
         }
-
+       
         return rotas;
     }
 
     public void incluirRota(Rota rota) {
-        String sql = "INSERT INTO TB_ROTA (DS_ORIGEM, DS_DESTINO, VL_PRECO, DT_SAIDA, DT_CHEGADA, ID_MOTORISTA, ID_ONIBUS) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO TB_ROTA (DS_ORIGEM, DS_DESTINO, VL_PRECO, DT_SAIDA, DT_CHEGADA, ID_MOTORISTA, ID_ONIBUS) VALUES (?,?,?,?,?,?,?)";
 
         try {
             ps = mycon.prepareStatement(sql);
@@ -81,19 +95,17 @@ public class rotaDao extends conectarDao {
             ps.setTimestamp(4, new java.sql.Timestamp(rota.getDtSaida().getTime()));
             ps.setTimestamp(5, new java.sql.Timestamp(rota.getDtChegada().getTime()));
             ps.setInt(6, rota.getIdMotorista());
-            ps.setInt(7, rota.getIdOnibus()); 
-
+            ps.setInt(7, rota.getIdOnibus());
+            
             ps.execute();
             ps.close();
             JOptionPane.showMessageDialog(null, "Cadastro concluído com Sucesso!");
         } catch (SQLException err) {
-            err.printStackTrace(); 
+            err.printStackTrace();
             JOptionPane.showMessageDialog(null, "Erro ao Cadastrar!" + err.getMessage());
-        }       
-               
-    }
+        }
 
-    
+    }
 
     public Rota selecionarUmaRota(int id) {
         String sql = "SELECT ID_ROTA, DS_ORIGEM, DS_DESTINO, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA, "
@@ -149,15 +161,14 @@ public class rotaDao extends conectarDao {
             JOptionPane.showMessageDialog(null, "Registro excluido com sucesso!");
 
         } catch (SQLException err) {
-            JOptionPane.showMessageDialog(null, "Erro ao excluir usuário!" + err.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao excluir Rota!" + err.getMessage());
         }
     }
 
     public ArrayList<Rota> selecionarRotasFiltro(Date DATASAIDA, Date DATAVOLTA, String ORIGEM, String DESTINO) {
         ArrayList<Rota> rotas = new ArrayList<>();
 
-        // Monta a cláusula WHERE da consulta com base nos parâmetros fornecidos
-        String whereClause = " WHERE 1 = 1"; // Condição sempre verdadeira para facilitar a concatenação
+        String whereClause = " WHERE 1 = 1";
 
         if (DATASAIDA != null) {
             whereClause += " AND DT_SAIDA >= ?";
@@ -241,7 +252,7 @@ public class rotaDao extends conectarDao {
     }
 
     public void alterar(Rota obj) {
-        String sql = "UPDATE TB_ROTA SET DS_ORIGEM = ?, DS_DESTINO = ?, VL_PRECO= ?, DT_CHEGADA = ?, DT_SAIDA = ?, ID_MOTORISTA = ?  WHERE ID_ROTA = ?";
+        String sql = "UPDATE TB_ROTA SET DS_ORIGEM = ?, DS_DESTINO = ?, VL_PRECO= ?, DT_CHEGADA = ?, DT_SAIDA = ?, ID_MOTORISTA = ?,ID_ONIBUS = ?  WHERE ID_ROTA = ?";
         try {
             PreparedStatement ps = mycon.prepareStatement(sql);
 
@@ -251,7 +262,8 @@ public class rotaDao extends conectarDao {
             ps.setDate(4, new java.sql.Date(obj.getDtChegada().getTime()));
             ps.setDate(5, new java.sql.Date(obj.getDtSaida().getTime())); // Você deve fornecer o ID do motorista a ser atualizado
             ps.setInt(6, obj.getIdMotorista());
-            ps.setInt(7, obj.getIdRota());
+            ps.setInt(7, obj.getIdOnibus());
+            ps.setInt(8, obj.getIdRota());
             int rowsUpdated = ps.executeUpdate();
             if (rowsUpdated > 0) {
                 JOptionPane.showMessageDialog(null, "Registro Alterado com Sucesso !");

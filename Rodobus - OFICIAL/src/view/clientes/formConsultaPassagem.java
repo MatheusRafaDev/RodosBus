@@ -22,32 +22,30 @@ import javax.swing.text.MaskFormatter;
 import model.Rota;
 
 public class formConsultaPassagem extends javax.swing.JFrame {
-    
+
     public void carregarInfo(int IdPassageiro, int IdRota) {
         this.setVisible(false);
-        
+
         formConfirmarPag pag = new formConfirmarPag(IdPassageiro, IdRota);
-         
+
         pag.setVisible(true);
     }
 
     public void carregarRota() {
         rotaDao rota = new rotaDao();
-        rota.criarBanco();
         ArrayList<Rota> rotas = rota.selecionarRotas();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         DefaultTableModel model = (DefaultTableModel) tblROTAS.getModel();
-        model.setRowCount(0);
-
+                
         for (Rota rota2 : rotas) {
             model.addRow(new Object[]{rota2.getIdRota(), rota2.getOrigem(), rota2.getDestino(), sdf.format(rota2.getDtSaida()), sdf.format(rota2.getDtChegada()), rota2.getVlPreco()});
         }
     }
 
-    public void carregarRota2(Date DATASAIDA,Date DATAVOLTA,String ORIGEM,String DESTINO) {
+    public void carregarRotaFiltro(Date DATASAIDA, Date DATAVOLTA, String ORIGEM, String DESTINO) {
         rotaDao rota = new rotaDao();
-        ArrayList<Rota> rotas = rota.selecionarRotasFiltro(DATASAIDA,DATAVOLTA,ORIGEM,DESTINO);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
+        ArrayList<Rota> rotas = rota.selecionarRotasFiltro(DATASAIDA, DATAVOLTA, ORIGEM, DESTINO);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         DefaultTableModel model = (DefaultTableModel) tblROTAS.getModel();
         model.setRowCount(0);
 
@@ -55,10 +53,9 @@ public class formConsultaPassagem extends javax.swing.JFrame {
             model.addRow(new Object[]{rota2.getIdRota(), rota2.getOrigem(), rota2.getDestino(), sdf.format(rota2.getDtSaida()), sdf.format(rota2.getDtChegada()), rota2.getVlPreco()});
         }
     }
-    
+
     Passageiro pass = new Passageiro();
     Rota rt = new Rota();
-
     MaskFormatter mascara;
 
     public formConsultaPassagem(Passageiro obj) {
@@ -70,13 +67,14 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         }
 
         initComponents();
+        carregarRota();
         this.mnNOME.setText(obj.getNome());
         this.mnID.setText("Id: " + obj.getIdPassageiro());
-        carregarRota();
 
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         pass = obj;
+
     }
 
     @SuppressWarnings("unchecked")
@@ -184,10 +182,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
 
         tblROTAS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Código", "Embarque", "Desembarque", "Dt.Saída", "Dt.Chegada", "Valor"
@@ -455,11 +450,12 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         } catch (ParseException ex) {
 
         }
-        
-        carregarRota2(saida,volta,this.txtDESTINO.getText(),this.txtSAIDA.getText());
-        
+
+        carregarRotaFiltro(saida, volta, this.txtDESTINO.getText(), this.txtSAIDA.getText());
+
         txtDATASAIDA.setFocusLostBehavior(JFormattedTextField.PERSIST);
         txtDATAVOLTA.setFocusLostBehavior(JFormattedTextField.PERSIST);
+
 
     }//GEN-LAST:event_btnBUSCARMouseClicked
 
@@ -529,7 +525,6 @@ public class formConsultaPassagem extends javax.swing.JFrame {
 
 
     private void RESERVARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RESERVARMouseClicked
-
         carregarInfo(pass.getIdPassageiro(), rt.getIdRota());
     }//GEN-LAST:event_RESERVARMouseClicked
 

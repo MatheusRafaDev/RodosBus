@@ -4,8 +4,6 @@ import java.util.Date;
 
 public class Rota {
 
- 
-
     private int idRota;
     private String origem;
     private String destino;
@@ -14,9 +12,10 @@ public class Rota {
     private Date dtSaida;
     private Date dtChegada;
     private int idMotorista;
+    private String ModeloOnibus;
     private int idOnibus;
     private String NomeMotorista;
-    
+
     public int getIdOnibus() {
         return idOnibus;
     }
@@ -24,7 +23,7 @@ public class Rota {
     public void setIdOnibus(int idOnibus) {
         this.idOnibus = idOnibus;
     }
-    
+
     public String getNomeMotorista() {
         return NomeMotorista;
     }
@@ -32,8 +31,7 @@ public class Rota {
     public void setNomeMotorista(String NomeMotorista) {
         this.NomeMotorista = NomeMotorista;
     }
-    
-    
+
     public int getIdRota() {
         return idRota;
     }
@@ -96,5 +94,13 @@ public class Rota {
 
     public void setIdMotorista(int idMotorista) {
         this.idMotorista = idMotorista;
+    }
+
+    public String getModeloOnibus() {
+        return ModeloOnibus;
+    }
+
+    public void setModeloOnibus(String Modelo) {
+        this.ModeloOnibus = Modelo;
     }
 }

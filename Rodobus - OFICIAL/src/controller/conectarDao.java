@@ -73,8 +73,8 @@ public class conectarDao {
                     + "dt_chegada DATETIME,"
                     + "id_motorista INT(5),"
                     + "id_onibus INT(5),"
-                    + "FOREIGN KEY (id_motorista) REFERENCES TB_MOTORISTA(id_motorista),"
-                    + "FOREIGN KEY (id_onibus) REFERENCES TB_ONIBUS(id_onibus)"
+                    + "CONSTRAINT FOREIGN KEY (id_motorista) REFERENCES TB_MOTORISTA(id_motorista),"
+                    + "CONSTRAINT FOREIGN KEY (id_onibus) REFERENCES TB_ONIBUS(id_onibus)"
                     + ");";
 
             ps = mycon.prepareStatement(sql);

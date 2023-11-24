@@ -264,16 +264,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="pgROTAS" pref="1005" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Component id="pgROTAS" pref="1037" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="pgROTAS" alignment="0" pref="516" max="32767" attributes="0"/>
+          <Component id="pgROTAS" alignment="1" pref="519" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -356,27 +355,27 @@
                               <Component id="btnNOVO" min="-2" pref="123" max="-2" attributes="0"/>
                               <Component id="lblID" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="111" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="btnDeletar" min="-2" pref="90" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="352" max="-2" attributes="0"/>
-                                  <Component id="btnBuscar" min="-2" pref="90" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane1" min="-2" pref="532" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="btnDeletar" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="btnBuscar" min="-2" pref="90" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jScrollPane1" pref="672" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   <Component id="jLabel5" min="-2" pref="26" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -404,21 +403,21 @@
                                   </Group>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Component id="btnNOVO" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <EmptySpace pref="143" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane1" min="-2" pref="320" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="btnDeletar" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="48" max="32767" attributes="0"/>
-                          <Component id="lblID" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblID" alignment="3" max="32767" attributes="0"/>
+                              <Component id="btnDeletar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -685,11 +684,11 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblID1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="969" max="32767" attributes="0"/>
+                                  <EmptySpace pref="999" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -722,22 +721,19 @@
                                       </Group>
                                       <Component id="btnNOVO1" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
                                               <Component id="btnDeletar1" min="-2" pref="90" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="352" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
                                               <Component id="btnBuscar1" min="-2" pref="90" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="290" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="jScrollPane2" pref="601" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="jScrollPane2" min="-2" pref="549" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -787,18 +783,17 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" min="-2" pref="320" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="btnDeletar1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnBuscar1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane2" pref="393" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace type="separate" max="32767" attributes="0"/>
-                          <Component id="lblID1" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblID1" alignment="3" max="32767" attributes="0"/>
+                              <Component id="btnBuscar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnDeletar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1155,19 +1150,22 @@
                                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="82" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
+                              <Group type="102" attributes="0">
                                   <Component id="btnDeletarbus" min="-2" pref="90" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="352" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnBuscarbus" min="-2" pref="90" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane3" alignment="0" min="-2" pref="532" max="-2" attributes="0"/>
-                                  <Component id="jLabel27" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane3" pref="630" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1175,7 +1173,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   <Component id="jLabel23" min="-2" pref="26" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -1205,21 +1203,24 @@
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="btnCadastrarbus" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <EmptySpace pref="141" max="32767" attributes="0"/>
+                                  <Component id="lblbusID" pref="29" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane3" min="-2" pref="320" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="btnDeletarbus" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnBuscarbus" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane3" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="btnDeletarbus" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="btnBuscarbus" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="37" max="32767" attributes="0"/>
-                          <Component id="lblbusID" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1488,49 +1489,37 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
-                          <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Component id="lblreservaid" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="388" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                                          <Component id="lblreservaid" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="btnReserva" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="btnReserva" min="-2" pref="90" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnBuscareserva" min="-2" pref="90" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jScrollPane5" min="-2" pref="811" max="-2" attributes="0"/>
-                                  <EmptySpace pref="136" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="jLabel41" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane5" alignment="0" pref="602" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Component id="jScrollPane5" min="-2" pref="320" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnReserva" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnBuscareserva" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="34" max="32767" attributes="0"/>
-                          <Component id="lblreservaid" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane5" pref="376" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblreservaid" alignment="3" pref="27" max="32767" attributes="0"/>
+                              <Component id="btnReserva" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnBuscareserva" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1585,17 +1574,41 @@
                           <Color blue="41" green="3f" red="3c" type="rgb"/>
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="6" rowCount="4">
-                            <Column editable="false" title="ID reserva" type="java.lang.Object"/>
-                            <Column editable="false" title="Destino rota" type="java.lang.Object"/>
-                            <Column editable="false" title="Modelo bus" type="java.lang.Object"/>
+                          <Table columnCount="10" rowCount="4">
+                            <Column editable="false" title="ID.reserva" type="java.lang.Object"/>
+                            <Column editable="false" title="Data Reserva" type="java.lang.Object"/>
+                            <Column editable="false" title="Status" type="java.lang.Object"/>
                             <Column editable="false" title="Motorista" type="java.lang.Object"/>
-                            <Column editable="false" title="Dt reserva" type="java.lang.Object"/>
-                            <Column editable="true" title="Status reserva" type="java.lang.Object"/>
+                            <Column editable="false" title="Passageiro" type="java.lang.Object"/>
+                            <Column editable="false" title="Origem" type="java.lang.Object"/>
+                            <Column editable="false" title="Destino" type="java.lang.Object"/>
+                            <Column editable="false" title="Dt.Sa&#xed;da" type="java.lang.Object"/>
+                            <Column editable="false" title="Dt.Chegada" type="java.lang.Object"/>
+                            <Column editable="false" title="Modelo &#xd4;nibus" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
@@ -1692,50 +1705,48 @@
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel28" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbID4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btnCADASTRAR4" min="-2" pref="112" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                              <Component id="btnALTERAR4" min="-2" pref="112" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="btnNOVO4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel33" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel34" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cmbMOTORISTA4" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
                                   <Component id="jLabel30" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtORIGEM4" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
                                   <Component id="jLabel29" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtDESTINO4" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
-                                  <Component id="btnCADASTRAR4" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                                  <Component id="cmbMOTORISTA4" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel33" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel32" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel31" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtCHEGADA4" alignment="1" min="-2" pref="135" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="txtVALOR4" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
-                                  <Component id="btnALTERAR4" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabel36" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel32" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel31" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtCHEGADA4" alignment="1" min="-2" pref="135" max="-2" attributes="0"/>
                                   <Component id="txtSAIDA4" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
+                                  <Component id="cmbONIBUS4" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="lbID4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnNOVO4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtVALOR4" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel35" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="btnDELETAR4" min="-2" pref="102" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="btnBUSCAR4" min="-2" pref="102" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jScrollPane4" alignment="1" pref="538" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="btnDELETAR4" min="-2" pref="102" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="btnBUSCAR4" min="-2" pref="102" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jScrollPane4" alignment="1" pref="663" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="jLabel35" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1745,13 +1756,14 @@
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Component id="jLabel35" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="jScrollPane4" pref="0" max="32767" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnDELETAR4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnBUSCAR4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane4" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnBUSCAR4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnDELETAR4" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           </Group>
@@ -1779,24 +1791,33 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel33" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Component id="jLabel34" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="cmbMOTORISTA4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtVALOR4" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="cmbMOTORISTA4" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="cmbONIBUS4" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel33" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
+                                      <Component id="txtVALOR4" min="-2" pref="26" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="btnALTERAR4" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnCADASTRAR4" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnNOVO4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="145" max="32767" attributes="0"/>
+                              <EmptySpace pref="73" max="32767" attributes="0"/>
                               <Component id="lbID4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -1819,15 +1840,60 @@
                       <Color blue="41" green="3f" red="3c" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="7" rowCount="0">
+                      <Table columnCount="8" rowCount="0">
                         <Column editable="false" title="C&#xf3;digo" type="java.lang.Object"/>
                         <Column editable="false" title="Motorista" type="java.lang.Object"/>
+                        <Column editable="false" title="&#xd4;nibus" type="java.lang.Object"/>
                         <Column editable="false" title="Valor" type="java.lang.Object"/>
                         <Column editable="false" title="Filial Saida" type="java.lang.Object"/>
                         <Column editable="false" title="Filial Chegada" type="java.lang.Object"/>
                         <Column editable="false" title="Data sa&#xed;da" type="java.lang.Object"/>
                         <Column editable="false" title="Data chegada" type="java.lang.Object"/>
                       </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
                     </Property>
                     <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -1994,9 +2060,6 @@
               <Events>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCHEGADA4FocusLost"/>
               </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(mascara);"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JComboBox" name="cmbMOTORISTA4">
               <Properties>
@@ -2076,9 +2139,35 @@
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtSAIDA4FocusLost"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSAIDA4ActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cmbONIBUS4">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="Item 1"/>
+                    <StringItem index="1" value="Item 2"/>
+                    <StringItem index="2" value="Item 3"/>
+                    <StringItem index="3" value="Item 4"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbONIBUS4ActionPerformed"/>
+              </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(mascara);"/>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel36">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Black" size="18" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#xd4;nibus"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

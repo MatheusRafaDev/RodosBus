@@ -39,6 +39,7 @@ import javax.swing.JOptionPane;
 import javax.swing.text.DefaultFormatterFactory;
 import model.Motorista;
 import model.Reserva;
+import model.ReservaInfo;
 import view.clientes.formCadastroPassageiro;
 import view.clientes.formLogin;
 
@@ -48,22 +49,22 @@ import view.clientes.formLogin;
  */
 public class formGerenciar extends javax.swing.JFrame {
 
-    public void CaregarPassageiro(){
+    public void CaregarPassageiro() {
         passageiroDao passageiroDao = new passageiroDao();
         ArrayList<Passageiro> passageiros = passageiroDao.selecionarPassageiros();
         DefaultTableModel passageiroModel = (DefaultTableModel) tblPASSAGEIRO.getModel();
         passageiroModel.setRowCount(0);
 
         for (Passageiro passageiro : passageiros) {
-            passageiroModel.addRow(new Object[]{passageiro.getIdPassageiro(), passageiro.getNome(), passageiro.getEmail(), passageiro.getCpf(), passageiro.getIdade(),passageiro.getTelefone(),passageiro.getSenha()});
+            passageiroModel.addRow(new Object[]{passageiro.getIdPassageiro(), passageiro.getNome(), passageiro.getEmail(), passageiro.getCpf(), passageiro.getIdade(), passageiro.getTelefone(), passageiro.getSenha()});
         }
 
     }
-    
-    public void CaregarMotorista(){
+
+    public void CaregarMotorista() {
         motoristaDao motoristaDao = new motoristaDao();
         ArrayList<Motorista> motoristas = motoristaDao.selecionarMotoristas();
-        
+
         DefaultTableModel motoristaModel = (DefaultTableModel) tblMOTORISTAS.getModel();
         motoristaModel.setRowCount(0);
 
@@ -71,9 +72,8 @@ public class formGerenciar extends javax.swing.JFrame {
             motoristaModel.addRow(new Object[]{motorista.getIdMotorista(), motorista.getNome(), motorista.getIdade(), motorista.getCpf(), motorista.getTelefone()});
         }
     }
-    
 
-    public void CarregarMotoristas() {
+    public void carregarComboBoxMotoristas() {
         DefaultComboBoxModel<String> mymodel = (DefaultComboBoxModel<String>) this.cmbMOTORISTA4.getModel();
 
         if (mymodel != null) {
@@ -84,25 +84,46 @@ public class formGerenciar extends javax.swing.JFrame {
         motoristaDao.criarBanco();
         ArrayList<Motorista> motoristas = motoristaDao.selecionarMotoristas();
 
-        mymodel.addElement("");
+        mymodel.addElement("Selecione um motorista");
+
         for (Motorista motorista : motoristas) {
             mymodel.addElement(motorista.getIdMotorista() + " - " + motorista.getNome());
         }
     }
-    public void CarregarReservas(){
+
+    public void carregarOnibusComboBox() {
+        onibusDao onibusDao = new onibusDao();
+        DefaultTableModel onibusModel = (DefaultTableModel) tblOnibus.getModel();
+        onibusModel.setRowCount(0);
+
+        DefaultComboBoxModel<String> cmbOnibusModel = (DefaultComboBoxModel<String>) this.cmbONIBUS4.getModel();
+
+        if (cmbOnibusModel != null) {
+            cmbOnibusModel.removeAllElements();
+        }
+
+        ArrayList<Onibus> onibuss = onibusDao.selecionarOnibus();
+
+        cmbOnibusModel.addElement("Selecione um ônibus");
+
+        for (Onibus onibus : onibuss) {
+            cmbOnibusModel.addElement(onibus.getIdOnibus() + " - " + onibus.getModelo());
+        }
+    }
+
+    public void CarregarReservas() {
         reservaDao reservaDao = new reservaDao();
-       ArrayList<Reserva> reservas = reservaDao.selecionarReservas();
-        
+        ArrayList<Reserva> reservas = reservaDao.selecionarReservas();
+
         DefaultTableModel reservaModel = (DefaultTableModel) tblRESERVAS.getModel();
         reservaModel.setRowCount(0);
 
-        for (Reserva reserva: reservas) {
+        for (Reserva reserva : reservas) {
             reservaModel.addRow(new Object[]{reserva.getIdReserva(), reserva.getIdRota(), reserva.getIdOnibus(), reserva.getIdMotorista(), reserva.getIdPassageiro(), reserva.getDataReserva(), reserva.getStatus()});
         }
     }
-    
-    
-    public void CaregarOnibus() {
+
+    public void CarregarOnibus() {
         onibusDao onibusDao = new onibusDao();
         ArrayList<Onibus> onibuss = onibusDao.selecionarOnibus();
         DefaultTableModel onibusModel = (DefaultTableModel) tblOnibus.getModel();
@@ -112,28 +133,8 @@ public class formGerenciar extends javax.swing.JFrame {
             onibusModel.addRow(new Object[]{onibus.getIdOnibus(), onibus.getModelo(), onibus.getPlaca(), onibus.getCapacidade(), onibus.getAnoFabricacao()});
         }
     }
-     MaskFormatter mascara;
 
-    MaskFormatter mascaraValor;
-    public formGerenciar() {
-        initComponents();
-        try {
-            mascara = new MaskFormatter("##/##/#### ##:##:##");
-            mascaraValor = new MaskFormatter("###,###.##");
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
-        conectarDao oDao = new conectarDao();
-        CaregarMotorista();
-        CaregarOnibus();
-        CaregarPassageiro();
-        CarregarReservas();
-        CarregarMotoristas();
-    }
-public void CarregarRotas() {
-
+    public void CarregarRotas() {
         rotaDao rota = new rotaDao();
         rota.criarBanco();
         ArrayList<Rota> rotas = rota.selecionarRotas();
@@ -141,10 +142,54 @@ public void CarregarRotas() {
         model.setRowCount(0);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         for (Rota rota2 : rotas) {
-            model.addRow(new Object[]{rota2.getIdRota(), rota2.getIdMotorista() + " - " + rota2.getNomeMotorista(), rota2.getVlPreco(), rota2.getOrigem(), rota2.getDestino(), sdf.format(rota2.getDtSaida()), sdf.format(rota2.getDtChegada())});
+            model.addRow(new Object[]{rota2.getIdRota(), rota2.getIdMotorista() + " - " + rota2.getNomeMotorista(), rota2.getIdOnibus() + " - " + rota2.getModeloOnibus(), rota2.getVlPreco(), rota2.getOrigem(), rota2.getDestino(), sdf.format(rota2.getDtSaida()), sdf.format(rota2.getDtChegada())});
         }
     }
-  public void verificarData() {
+
+    public void CarregarReservasInfo() {
+        reservaDao reservaDao = new reservaDao();
+        ArrayList<ReservaInfo> reservas = reservaDao.obterReservasComDetalhes();
+
+        DefaultTableModel reservaModel = (DefaultTableModel) tblRESERVAS.getModel();
+        reservaModel.setRowCount(0);
+
+        for (ReservaInfo reserva : reservas) {
+            reservaModel.addRow(new Object[]{
+                reserva.getIdReserva(),
+                reserva.getDataReserva(),
+                reserva.getStatus(),
+                reserva.getNomeMotorista(),
+                reserva.getNomePassageiro(),
+                reserva.getOrigem(),
+                reserva.getDestino(),
+                reserva.getDtSaida(),
+                reserva.getDtChegada(),
+                reserva.getModeloOnibus()
+            });
+        }
+    }
+
+    MaskFormatter mascara;
+    MaskFormatter mascaraValor;
+
+    public formGerenciar() {
+        initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        conectarDao oDao = new conectarDao();
+        CaregarMotorista();
+        CarregarOnibus();
+        CarregarOnibus();
+        CaregarPassageiro();
+        CarregarReservasInfo();
+        carregarOnibusComboBox();
+        carregarComboBoxMotoristas();
+        CarregarRotas();
+
+        CarregarOnibus();
+    }
+
+    public void verificarData() {
         SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
@@ -192,11 +237,6 @@ public void CarregarRotas() {
         JOptionPane.showMessageDialog(null, errorMessage, "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -308,13 +348,15 @@ public void CarregarRotas() {
         txtDESTINO4 = new javax.swing.JTextField();
         txtORIGEM4 = new javax.swing.JTextField();
         jLabel35 = new javax.swing.JLabel();
-        txtCHEGADA4 = new javax.swing.JFormattedTextField(mascara);
+        txtCHEGADA4 = new javax.swing.JFormattedTextField();
         cmbMOTORISTA4 = new javax.swing.JComboBox<>();
         btnDELETAR4 = new javax.swing.JButton();
         txtVALOR4 = new javax.swing.JFormattedTextField(mascaraValor);
         btnBUSCAR4 = new javax.swing.JButton();
         lbID4 = new javax.swing.JLabel();
-        txtSAIDA4 = new javax.swing.JFormattedTextField(mascara);
+        txtSAIDA4 = new javax.swing.JFormattedTextField();
+        cmbONIBUS4 = new javax.swing.JComboBox<>();
+        jLabel36 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         mnSAIR = new javax.swing.JMenu();
@@ -627,21 +669,21 @@ public void CarregarRotas() {
                         .addComponent(textCPF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnNOVO, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblID))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(352, 352, 352)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)))
-                .addGap(33, 33, 33))
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)))
+                .addGap(22, 22, 22))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -666,18 +708,18 @@ public void CarregarRotas() {
                             .addComponent(btnAlterar)
                             .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnNOVO, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnNOVO, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(12, 12, 12)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnDeletar)
-                            .addComponent(btnBuscar))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(lblID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDeletar)
+                    .addComponent(btnBuscar))
                 .addContainerGap())
         );
 
@@ -854,7 +896,7 @@ public void CarregarRotas() {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(lblID1)
-                        .addContainerGap(969, Short.MAX_VALUE))
+                        .addContainerGap(999, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -880,18 +922,16 @@ public void CarregarRotas() {
                                     .addGap(95, 95, 95)
                                     .addComponent(btnAlterar1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(btnNOVO1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addGap(24, 24, 24)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel4Layout.createSequentialGroup()
                                     .addComponent(btnDeletar1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(352, 352, 352)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(290, 290, 290)))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37))))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)))
+                        .addGap(17, 17, 17))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -934,14 +974,13 @@ public void CarregarRotas() {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnDeletar1)
-                            .addComponent(btnBuscar1))))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(lblID1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblID1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBuscar1)
+                    .addComponent(btnDeletar1))
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -1139,16 +1178,18 @@ public void CarregarRotas() {
                                 .addGap(51, 51, 51)
                                 .addComponent(btnAlterarbus, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(27, 27, 27)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                    .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(btnDeletarbus, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(352, 352, 352)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBuscarbus, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel27)))
-                .addGap(33, 33, 33))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel27)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE))))
+                .addGap(23, 23, 23))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1179,18 +1220,20 @@ public void CarregarRotas() {
                             .addComponent(btnCadastrar2)
                             .addComponent(btnAlterarbus))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCadastrarbus, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(btnCadastrarbus, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                        .addComponent(lblbusID, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel27)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnDeletarbus)
-                            .addComponent(btnBuscarbus))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(lblbusID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                                .addComponent(btnDeletarbus)
+                                .addGap(9, 9, 9))
+                            .addComponent(btnBuscarbus, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
 
@@ -1245,17 +1288,17 @@ public void CarregarRotas() {
         tblRESERVAS.setForeground(new java.awt.Color(60, 63, 65));
         tblRESERVAS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID reserva", "Destino rota", "Modelo bus", "Motorista", "Dt reserva", "Status reserva"
+                "ID.reserva", "Data Reserva", "Status", "Motorista", "Passageiro", "Origem", "Destino", "Dt.Saída", "Dt.Chegada", "Modelo Ônibus"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1288,40 +1331,32 @@ public void CarregarRotas() {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addComponent(jLabel41)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblreservaid)
+                .addGap(388, 388, 388)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(lblreservaid))
-                            .addComponent(btnReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBuscareserva, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 811, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(136, Short.MAX_VALUE))))
+                        .addComponent(btnBuscareserva, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel41, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel41)
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblreservaid, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
                     .addComponent(btnReserva)
                     .addComponent(btnBuscareserva))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(lblreservaid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(9, 9, 9))
         );
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -1348,11 +1383,11 @@ public void CarregarRotas() {
 
             },
             new String [] {
-                "Código", "Motorista", "Valor", "Filial Saida", "Filial Chegada", "Data saída", "Data chegada"
+                "Código", "Motorista", "Ônibus", "Valor", "Filial Saida", "Filial Chegada", "Data saída", "Data chegada"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1505,6 +1540,17 @@ public void CarregarRotas() {
             }
         });
 
+        cmbONIBUS4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbONIBUS4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbONIBUS4ActionPerformed(evt);
+            }
+        });
+
+        jLabel36.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel36.setText("Ônibus");
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
@@ -1513,40 +1559,40 @@ public void CarregarRotas() {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel28)
+                    .addComponent(lbID4)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(btnCADASTRAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
+                        .addComponent(btnALTERAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnNOVO4)
+                    .addComponent(jLabel33)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel34)
-                            .addComponent(cmbMOTORISTA4, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel30)
                             .addComponent(txtORIGEM4, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel29)
                             .addComponent(txtDESTINO4, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCADASTRAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(62, 62, 62)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel33)
-                            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel32)
-                                .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtCHEGADA4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtVALOR4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnALTERAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSAIDA4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(lbID4)
-                    .addComponent(btnNOVO4))
-                .addGap(57, 57, 57)
+                            .addComponent(cmbMOTORISTA4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel36)
+                            .addComponent(jLabel32)
+                            .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCHEGADA4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSAIDA4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbONIBUS4, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtVALOR4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jLabel35)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addComponent(btnDELETAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnBUSCAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE))
-                        .addGap(20, 20, 20))))
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel10Layout.createSequentialGroup()
+                            .addComponent(btnDELETAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBUSCAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE))
+                    .addComponent(jLabel35))
+                .addGap(20, 20, 20))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1554,13 +1600,14 @@ public void CarregarRotas() {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
                         .addComponent(jLabel35)
-                        .addGap(22, 22, 22)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnDELETAR4)
-                            .addComponent(btnBUSCAR4))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnBUSCAR4)
+                            .addComponent(btnDELETAR4))
                         .addGap(26, 26, 26))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jLabel28)
@@ -1582,20 +1629,27 @@ public void CarregarRotas() {
                             .addComponent(txtCHEGADA4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel33)
                             .addGroup(jPanel10Layout.createSequentialGroup()
                                 .addComponent(jLabel34)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cmbMOTORISTA4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtVALOR4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
+                                .addComponent(cmbMOTORISTA4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addComponent(jLabel36)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbONIBUS4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel33)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(txtVALOR4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnALTERAR4)
                             .addComponent(btnCADASTRAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnNOVO4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                         .addComponent(lbID4)
                         .addContainerGap())))
         );
@@ -1621,12 +1675,11 @@ public void CarregarRotas() {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pgROTAS, javax.swing.GroupLayout.DEFAULT_SIZE, 1005, Short.MAX_VALUE)
-                .addGap(32, 32, 32))
+                .addComponent(pgROTAS, javax.swing.GroupLayout.DEFAULT_SIZE, 1037, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pgROTAS, javax.swing.GroupLayout.PREFERRED_SIZE, 516, Short.MAX_VALUE)
+            .addComponent(pgROTAS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
         );
 
         pack();
@@ -1665,17 +1718,26 @@ public void CarregarRotas() {
     }//GEN-LAST:event_txtVALOR4ActionPerformed
 
     private void btnDELETAR4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDELETAR4ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnDELETAR4ActionPerformed
 
     private void btnDELETAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDELETAR4MouseClicked
         rotaDao rota = new rotaDao();
         rota.excluir(Integer.parseInt(this.lbID4.getText()));
         CarregarRotas();
+        lbID4.setText("0");
+        txtORIGEM4.setText("");
+        txtDESTINO4.setText("");
+
+        txtSAIDA4.setText("");
+        txtCHEGADA4.setText("");
+
+        txtVALOR4.setText("");
+        cmbMOTORISTA4.setSelectedIndex(0);
     }//GEN-LAST:event_btnDELETAR4MouseClicked
 
     private void cmbMOTORISTA4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMOTORISTA4ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_cmbMOTORISTA4ActionPerformed
 
     private void txtCHEGADA4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCHEGADA4FocusLost
@@ -1684,12 +1746,17 @@ public void CarregarRotas() {
 
     private void btnALTERAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnALTERAR4MouseClicked
         rotaDao rota = new rotaDao();
-    
-        String IdMoto = (String)cmbMOTORISTA4.getSelectedItem();
+
+        String IdMoto = (String) cmbMOTORISTA4.getSelectedItem();
         String numeroComoString = IdMoto.replaceAll("\\D+", "");
         int motorista = Integer.parseInt(numeroComoString);
-     verificarData(); 
-       String saidaText = txtSAIDA4.getText();
+        
+        String IdBus = (String) cmbMOTORISTA4.getSelectedItem();
+        String numeroComoString2 = IdBus.replaceAll("\\D+", "");
+        int bus = Integer.parseInt(numeroComoString2);
+        
+        verificarData();
+        String saidaText = txtSAIDA4.getText();
         String chegadaText = txtCHEGADA4.getText();
         Date saida = null;
         Date chegada = null;
@@ -1707,10 +1774,13 @@ public void CarregarRotas() {
         rotass.setDtChegada(chegada);
         rotass.setDtSaida(saida);
         rotass.setIdMotorista(motorista);
+        rotass.setIdOnibus(bus);
+        rotass.setVlPreco(Double.parseDouble(this.txtVALOR4.getText()));
+        
         rotass.setIdRota(Integer.parseInt(this.lbID4.getText()));
-     
+
         rota.alterar(rotass);
-            txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+        txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
         txtCHEGADA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
         CarregarRotas();
     }//GEN-LAST:event_btnALTERAR4MouseClicked
@@ -1723,11 +1793,9 @@ public void CarregarRotas() {
         lbID4.setText("0");
         txtORIGEM4.setText("");
         txtDESTINO4.setText("");
-        txtCHEGADA4.setText("");
-        txtSAIDA4.setText("");
 
-        txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
-        txtCHEGADA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+        txtSAIDA4.setText("");
+        txtCHEGADA4.setText("");
 
         txtVALOR4.setText("");
         cmbMOTORISTA4.setSelectedIndex(0);
@@ -1748,16 +1816,21 @@ public void CarregarRotas() {
 
         String textFromTextField = txtVALOR4.getText();
 
-        String IdMoto = (String)cmbMOTORISTA4.getSelectedItem();
+        String IdMoto = (String) cmbMOTORISTA4.getSelectedItem();
         String numeroComoString = IdMoto.replaceAll("\\D+", "");
         int motorista = Integer.parseInt(numeroComoString);
 
+        String IdBus = (String) cmbMOTORISTA4.getSelectedItem();
+        String numeroComoString2 =  IdBus.replaceAll("\\D+", "");
+        int bus = Integer.parseInt(numeroComoString2);
+        
         double valor = 0;
         String cleanedText = textFromTextField.replaceAll("[^0-9.]", "");
         if (!cleanedText.isEmpty() && !cleanedText.equals(".")) {
             valor = Double.parseDouble(cleanedText);
         } else {
         }
+        
 
         String saidaText = txtSAIDA4.getText();
         String chegadaText = txtCHEGADA4.getText();
@@ -1778,10 +1851,8 @@ public void CarregarRotas() {
         rota.setDtSaida(saida);
         rota.setVlPreco(valor);
         rota.setIdMotorista(motorista);
+        rota.setIdOnibus(bus);
         r.incluirRota(rota);
-
-        txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
-        txtCHEGADA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
 
         CarregarRotas();
     }//GEN-LAST:event_btnCADASTRAR4MouseClicked
@@ -1794,9 +1865,9 @@ public void CarregarRotas() {
         if (selectedRow != -1) {
             lbID4.setText(model.getValueAt(selectedRow, 0).toString());
 
-            txtVALOR4.setText(model.getValueAt(selectedRow, 2).toString());
-            txtORIGEM4.setText(model.getValueAt(selectedRow, 3).toString());
-            txtDESTINO4.setText(model.getValueAt(selectedRow, 4).toString());
+            txtVALOR4.setText(model.getValueAt(selectedRow, 3).toString());
+            txtORIGEM4.setText(model.getValueAt(selectedRow, 4).toString());
+            txtDESTINO4.setText(model.getValueAt(selectedRow, 5).toString());
 
             String MOTORISTA = model.getValueAt(selectedRow, 1).toString();
             int index = -1;
@@ -1813,14 +1884,43 @@ public void CarregarRotas() {
                 cmbMOTORISTA4.setSelectedIndex(0);
             }
 
-            txtSAIDA4.setFormatterFactory(null);
-            txtSAIDA4.setText(model.getValueAt(selectedRow, 5).toString());
+            String ONIBUS = model.getValueAt(selectedRow, 2).toString();
+            int index2 = -1;
+            for (int a = 0; a < cmbONIBUS4.getItemCount(); a++) {
+                if (ONIBUS.equals(cmbONIBUS4.getItemAt(a))) {
+                    index2 = a;
+                    break;
+                }
+            }
 
-            AbstractFormatterFactory formatterFactory = new DefaultFormatterFactory(mascara);
-            txtSAIDA4.setFormatterFactory(formatterFactory);
+            if (index2 != -1) {
+                cmbONIBUS4.setSelectedIndex(index2);
+            } else {
+                cmbONIBUS4.setSelectedIndex(0);
+            }
 
-            // txtCHEGADA4.setFormatterFactory(null);
-            txtCHEGADA4.setText(model.getValueAt(selectedRow, 6).toString());
+            String textoSaida = model.getValueAt(selectedRow, 6).toString().trim();
+            String textoChegada = model.getValueAt(selectedRow, 7).toString().trim();
+
+            try {
+
+                SimpleDateFormat formatoDesejado = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+                Date dataSaida = formatoDesejado.parse(textoSaida);
+                Date dataChegada = formatoDesejado.parse(textoChegada);
+
+                String saidaFormatada = formatoDesejado.format(dataSaida);
+                String chegadaFormatada = formatoDesejado.format(dataChegada);
+
+                txtSAIDA4.setText(saidaFormatada);
+                txtCHEGADA4.setText(chegadaFormatada);
+
+                txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+                txtCHEGADA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
         } else {
             lbID4.setText("0");
@@ -1830,6 +1930,7 @@ public void CarregarRotas() {
             txtCHEGADA4.setText("");
             txtVALOR4.setText("");
             cmbMOTORISTA4.setSelectedIndex(0);
+            cmbONIBUS4.setSelectedIndex(0);
         }
 
         txtSAIDA4.setFocusLostBehavior(JFormattedTextField.PERSIST);
@@ -1866,7 +1967,7 @@ public void CarregarRotas() {
     }//GEN-LAST:event_btnBuscarbusActionPerformed
 
     private void btnBuscarbusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarbusMouseClicked
-        CaregarOnibus();
+        CarregarOnibus();
     }//GEN-LAST:event_btnBuscarbusMouseClicked
 
     private void btnDeletarbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarbusActionPerformed
@@ -1877,7 +1978,7 @@ public void CarregarRotas() {
         onibusDao bus = new onibusDao();
         bus.excluir(Integer.parseInt(this.lblbusID.getText()));
 
-        CaregarOnibus();
+        CarregarOnibus();
 
         this.textCapacidadebus.setText("");
         this.textModelobus.setText("");
@@ -1905,7 +2006,7 @@ public void CarregarRotas() {
 
         bus.alterar(Cadbus);
 
-        CaregarOnibus();
+        CarregarOnibus();
     }//GEN-LAST:event_btnAlterarbusMouseClicked
 
     private void btnCadastrarbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarbusActionPerformed
@@ -2183,9 +2284,9 @@ public void CarregarRotas() {
 
     private void btnReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReservaMouseClicked
         // TODO add your handling code here:
-        
-       reservaDao reservaDao = new reservaDao();
-       reservaDao.excluirReserva(Integer.parseInt(this.lblreservaid.getText()));
+
+        reservaDao reservaDao = new reservaDao();
+        reservaDao.excluirReserva(Integer.parseInt(this.lblreservaid.getText()));
 
     }//GEN-LAST:event_btnReservaMouseClicked
 
@@ -2194,7 +2295,7 @@ public void CarregarRotas() {
     }//GEN-LAST:event_btnReservaActionPerformed
 
     private void btnBuscareservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscareservaMouseClicked
-         CarregarRotas();
+        CarregarRotas();
         CaregarMotorista();
     }//GEN-LAST:event_btnBuscareservaMouseClicked
 
@@ -2208,11 +2309,15 @@ public void CarregarRotas() {
 
     private void tblRESERVASMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRESERVASMouseClicked
         // TODO add your handling code here:
-                DefaultTableModel model = (DefaultTableModel) tblRESERVAS.getModel();
-                        int selectedRow = tblRESERVAS.getSelectedRow();
-             lblreservaid.setText(tblRESERVAS.getValueAt(selectedRow, 0).toString());  
-        
+        DefaultTableModel model = (DefaultTableModel) tblRESERVAS.getModel();
+        int selectedRow = tblRESERVAS.getSelectedRow();
+        lblreservaid.setText(tblRESERVAS.getValueAt(selectedRow, 0).toString());
+
     }//GEN-LAST:event_tblRESERVASMouseClicked
+
+    private void cmbONIBUS4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbONIBUS4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbONIBUS4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2274,6 +2379,7 @@ public void CarregarRotas() {
     private javax.swing.JButton btnNOVO4;
     private javax.swing.JButton btnReserva;
     private javax.swing.JComboBox<String> cmbMOTORISTA4;
+    private javax.swing.JComboBox<String> cmbONIBUS4;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2304,6 +2410,7 @@ public void CarregarRotas() {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel5;
