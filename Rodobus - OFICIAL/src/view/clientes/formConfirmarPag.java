@@ -31,14 +31,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
         this.lblDesembarque.setText(rota.getDestino());
         this.lblSaida.setText(formato.format(rota.getDtSaida()));
         this.lblchegada.setText(formato.format(rota.getDtChegada()));
-        this.lbldistancia.setText(String.valueOf(rota.getVlDistancia()));
         this.lblvalor.setText(String.valueOf(rota.getVlPreco()));
         this.lblduracao.setText(rota.getDsDuracao());
         this.lblmotorista.setText(rota.getNomeMotorista());
-
-
-
-
         
 
     }

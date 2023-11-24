@@ -24,7 +24,7 @@ public class rotaDao extends conectarDao {
     public ArrayList<Rota> selecionarRotas() {
         ArrayList<Rota> rotas = new ArrayList<>();
 
-        String sql = "SELECT ID_ROTA, DS_ORIGEM, DS_DESTINO, VL_DISTANCIA, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA, "
+        String sql = "SELECT ID_ROTA, DS_ORIGEM, DS_DESTINO, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA, "
                 + "MOT.ID_MOTORISTA,MOT.DS_NOME FROM TB_ROTA ROT LEFT JOIN TB_MOTORISTA MOT ON ROT.ID_MOTORISTA = MOT.ID_MOTORISTA";
 
         try {
@@ -70,30 +70,33 @@ public class rotaDao extends conectarDao {
     }
 
     public void incluirRota(Rota rota) {
-        String sql = "INSERT INTO TB_ROTA (DS_ORIGEM, DS_DESTINO, VL_DISTANCIA, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA, ID_MOTORISTA) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO TB_ROTA (DS_ORIGEM, DS_DESTINO, VL_PRECO, DT_SAIDA, DT_CHEGADA, ID_MOTORISTA, ID_ONIBUS) VALUES (?,?,?,?,?,?,?,?)";
 
         try {
             ps = mycon.prepareStatement(sql);
 
             ps.setString(1, rota.getOrigem());
             ps.setString(2, rota.getDestino());
-            ps.setDouble(3, rota.getVlDistancia());
-            ps.setString(4, rota.getDsDuracao());
-            ps.setDouble(5, rota.getVlPreco());
-            ps.setDate(6, new java.sql.Date(rota.getDtSaida().getTime()));
-            ps.setDate(7, new java.sql.Date(rota.getDtChegada().getTime()));
-            ps.setInt(8, rota.getIdMotorista());
+            ps.setDouble(3, rota.getVlPreco());
+            ps.setTimestamp(4, new java.sql.Timestamp(rota.getDtSaida().getTime()));
+            ps.setTimestamp(5, new java.sql.Timestamp(rota.getDtChegada().getTime()));
+            ps.setInt(6, rota.getIdMotorista());
+            ps.setInt(7, rota.getIdOnibus()); 
 
             ps.execute();
             ps.close();
             JOptionPane.showMessageDialog(null, "Cadastro concluído com Sucesso!");
         } catch (SQLException err) {
+            err.printStackTrace(); 
             JOptionPane.showMessageDialog(null, "Erro ao Cadastrar!" + err.getMessage());
-        }
+        }       
+               
     }
 
+    
+
     public Rota selecionarUmaRota(int id) {
-        String sql = "SELECT ID_ROTA, DS_ORIGEM, DS_DESTINO, VL_DISTANCIA, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA, "
+        String sql = "SELECT ID_ROTA, DS_ORIGEM, DS_DESTINO, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA, "
                 + "MOT.ID_MOTORISTA, MOT.DS_NOME FROM TB_ROTA ROT LEFT JOIN TB_MOTORISTA MOT ON ROT.ID_MOTORISTA = MOT.ID_MOTORISTA WHERE ID_ROTA =" + id;
 
         Rota rota = new Rota();
@@ -102,11 +105,10 @@ public class rotaDao extends conectarDao {
             PreparedStatement ps = mycon.prepareStatement(sql);
             ResultSet resultSet = ps.executeQuery();
 
-            if (resultSet.next()) { 
+            if (resultSet.next()) {
                 int IdRota = resultSet.getInt("ID_ROTA");
                 String origem = resultSet.getString("DS_ORIGEM");
                 String destino = resultSet.getString("DS_DESTINO");
-                double vlDistancia = resultSet.getDouble("VL_DISTANCIA");
                 String dsDuracao = resultSet.getString("DS_DURACAO");
                 double vlpreco = resultSet.getDouble("VL_PRECO");
                 Date dtchegada = resultSet.getDate("DT_CHEGADA");
@@ -115,7 +117,7 @@ public class rotaDao extends conectarDao {
                 int Idmotorista = resultSet.getInt("ID_MOTORISTA");
                 String NomeMotorista = resultSet.getString("DS_NOME");
 
-                rota.setIdRota(IdRota); 
+                rota.setIdRota(IdRota);
                 rota.setDestino(destino);
                 rota.setOrigem(origem);
                 rota.setDtChegada(dtchegada);
@@ -173,14 +175,13 @@ public class rotaDao extends conectarDao {
             whereClause += " AND DS_DESTINO LIKE ?";
         }
 
-        String sql = "SELECT ID_ROTA, DS_ORIGEM, DS_DESTINO, VL_DISTANCIA, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA, "
+        String sql = "SELECT ID_ROTA, DS_ORIGEM, DS_DESTINO, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA, "
                 + "MOT.ID_MOTORISTA, MOT.DS_NOME FROM TB_ROTA ROT LEFT JOIN TB_MOTORISTA MOT ON ROT.ID_MOTORISTA = MOT.ID_MOTORISTA"
                 + whereClause;
 
         try {
             ps = mycon.prepareStatement(sql);
 
-            // Define os parâmetros da consulta com base nos filtros fornecidos
             int parameterIndex = 1;
 
             if (DATASAIDA != null) {
@@ -238,31 +239,30 @@ public class rotaDao extends conectarDao {
 
         return rotas;
     }
-  public void alterar(Rota obj) {
-    String sql = "UPDATE TB_ROTA SET DS_ORIGEM = ?, DS_DESTINO = ?, VL_PRECO= ?, DT_CHEGADA = ?, DT_SAIDA = ?, ID_MOTORISTA = ?  WHERE ID_ROTA = ?";
-    try {
-        PreparedStatement ps = mycon.prepareStatement(sql);
 
-        ps.setString(1, obj.getDestino());
-        ps.setString(2, obj.getOrigem());
-                      ps.setDouble(3, obj.getVlPreco());
-        ps.setDate(4,  new java.sql.Date(obj.getDtChegada().getTime()));
-        ps.setDate(5,  new java.sql.Date(obj.getDtSaida().getTime())); // Você deve fornecer o ID do motorista a ser atualizado
-        ps.setInt(6,obj.getIdMotorista());
-        ps.setInt(7, obj.getIdRota());
-        int rowsUpdated = ps.executeUpdate();
-        if (rowsUpdated > 0) {
-            JOptionPane.showMessageDialog(null, "Registro Alterado com Sucesso !");
-        } else {
-            
+    public void alterar(Rota obj) {
+        String sql = "UPDATE TB_ROTA SET DS_ORIGEM = ?, DS_DESTINO = ?, VL_PRECO= ?, DT_CHEGADA = ?, DT_SAIDA = ?, ID_MOTORISTA = ?  WHERE ID_ROTA = ?";
+        try {
+            PreparedStatement ps = mycon.prepareStatement(sql);
+
+            ps.setString(1, obj.getDestino());
+            ps.setString(2, obj.getOrigem());
+            ps.setDouble(3, obj.getVlPreco());
+            ps.setDate(4, new java.sql.Date(obj.getDtChegada().getTime()));
+            ps.setDate(5, new java.sql.Date(obj.getDtSaida().getTime())); // Você deve fornecer o ID do motorista a ser atualizado
+            ps.setInt(6, obj.getIdMotorista());
+            ps.setInt(7, obj.getIdRota());
+            int rowsUpdated = ps.executeUpdate();
+            if (rowsUpdated > 0) {
+                JOptionPane.showMessageDialog(null, "Registro Alterado com Sucesso !");
+            } else {
+
+            }
+
+            ps.close();
+        } catch (SQLException err) {
+
+            err.printStackTrace();
         }
-        
-        ps.close();
-    } catch (SQLException err) {
-        
-        err.printStackTrace();
     }
-    }
-    }
-
-
+}

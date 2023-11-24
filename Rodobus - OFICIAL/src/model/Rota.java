@@ -4,17 +4,27 @@ import java.util.Date;
 
 public class Rota {
 
+ 
+
     private int idRota;
     private String origem;
     private String destino;
-    private double vlDistancia;
     private String dsDuracao;
     private double vlPreco;
     private Date dtSaida;
     private Date dtChegada;
     private int idMotorista;
+    private int idOnibus;
     private String NomeMotorista;
-         
+    
+    public int getIdOnibus() {
+        return idOnibus;
+    }
+
+    public void setIdOnibus(int idOnibus) {
+        this.idOnibus = idOnibus;
+    }
+    
     public String getNomeMotorista() {
         return NomeMotorista;
     }
@@ -46,14 +56,6 @@ public class Rota {
 
     public void setDestino(String destino) {
         this.destino = destino;
-    }
-
-    public double getVlDistancia() {
-        return vlDistancia;
-    }
-
-    public void setVlDistancia(double vlDistancia) {
-        this.vlDistancia = vlDistancia;
     }
 
     public String getDsDuracao() {
