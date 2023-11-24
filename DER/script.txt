@@ -34,7 +34,11 @@ CREATE TABLE TB_ROTA (
   	ds_duracao	 	VARCHAR(100),
   	vl_preco 		DECIMAL(10,2),
 	dt_saida		datetime,
-	dt_chegada		datetime
+	dt_chegada		datetime,
+	id_motorista 		INT(5),
+	id_onibus		INT(5),
+                FOREIGN KEY (id_onibus) REFERENCES TB_MOTORISTA(id_motorista),
+ 	FOREIGN KEY (id_onibus) REFERENCES TB_ONIBUS(id_onibus)
 );
 
 CREATE TABLE TB_RESERVAS (
