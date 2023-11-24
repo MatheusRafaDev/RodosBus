@@ -470,7 +470,7 @@ public class formCadastroRotas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCHEGADA4FocusLost
 
     private void btnALTERAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnALTERAR4MouseClicked
-
+    
     }//GEN-LAST:event_btnALTERAR4MouseClicked
 
     private void btnNOVO4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNOVO4ActionPerformed
