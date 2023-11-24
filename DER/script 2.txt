@@ -1,0 +1,58 @@
+CREATE TABLE TB_ONIBUS (
+	id_onibus  		INT(5) PRIMARY KEY AUTO_INCREMENT,
+  	ds_modelo		VARCHAR(100),
+  	ds_placa			VARCHAR(10),
+  	ds_ano_fabricacao	YEAR,
+ 	nr_capacidade		INT(10)
+);
+
+
+CREATE TABLE TB_MOTORISTA (
+  id_motorista  			INT(5) PRIMARY KEY AUTO_INCREMENT,
+  ds_nome 			VARCHAR(100) ,
+  nr_idade 			INT(3),
+  ds_cpf 				VARCHAR(12),
+  ds_telefone 			VARCHAR(20)
+);
+
+
+CREATE TABLE TB_PASSAGEIRO (
+	id_passageiro		INT(5) PRIMARY KEY AUTO_INCREMENT,
+  	ds_nome			VARCHAR(100),
+  	nr_idade			INT(3),
+  	ds_CPF			varchar(14),
+  	ds_TELEFONE		varchar(13),
+  	ds_email			varchar(100),
+  	ds_SENHA		varchar(30)
+ );
+
+
+CREATE TABLE TB_ROTA (
+  	id_rota			Int(5) PRIMARY KEY AUTO_INCREMENT,
+    	ds_origem  		varchar(100),
+  	ds_destino 		VARCHAR(100) ,
+  	vl_distancia 		DECIMAL(10,2),
+  	vl_preco 			DECIMAL(10,2),
+	dt_saida			datetime,
+	dt_chegada		datetime+
+	id_motorista 		INT(5),
+	id_onibus		INT(5),
+                FOREIGN KEY (id_onibus) REFERENCES TB_MOTORISTA(id_motorista),
+ 	FOREIGN KEY (id_onibus) REFERENCES TB_MOTORISTA(id_onibus)
+
+);
+
+CREATE TABLE TB_RESERVAS (
+  	id_reserva 		INT (5) PRIMARY KEY AUTO_INCREMENT,
+   	id_rota 			INT (5)  NOT NULL ,
+   	id_onibus 		INT (5)  NOT NULL ,
+    	id_motorista 		INT (5)  NOT NULL ,
+    	id_passageiro 		INT (5)  NOT NULL ,
+    	dt_reserva 		DATETIME,
+   	ds_status 		VARCHAR (20),
+  	CONSTRAINT FOREIGN KEY (id_onibus) 	REFERENCES TB_ONIBUS(id_onibus),
+  	CONSTRAINT FOREIGN KEY (id_motorista) 	REFERENCES TB_MOTORISTA(id_motorista),
+  	CONSTRAINT FOREIGN KEY (id_passageiro) REFERENCES TB_PASSAGEIRO(id_passageiro),
+   	 CONSTRAINT FOREIGN KEY (id_rota) 		REFERENCES TB_ROTA(id_rota)
+  );
+  
