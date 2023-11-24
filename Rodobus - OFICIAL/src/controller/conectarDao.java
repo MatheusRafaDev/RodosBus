@@ -67,10 +67,10 @@ public class conectarDao {
                     + "id_rota INT(5) PRIMARY KEY AUTO_INCREMENT,"
                     + "ds_origem VARCHAR(100),"
                     + "ds_destino VARCHAR(100),"
-                    + "ds_duração VARCHAR(100),"
+                    + "ds_duracao VARCHAR(100),"
                     + "vl_preco DECIMAL(10,2),"
                     + "dt_saida DATETIME,"
-                    + "dt_chegada DATETIME"
+                    + "dt_chegada DATETIME,"
                     + "id_motorista INT(5),"
                     + "id_onibus INT(5),"
                     + "FOREIGN KEY (id_motorista) REFERENCES TB_MOTORISTA(id_motorista),"
@@ -157,6 +157,23 @@ public class conectarDao {
             psMotorista.executeUpdate();
             psMotorista.close();
 
+
+            sql = "INSERT INTO TB_ONIBUS (ds_modelo, ds_placa, ds_ano_fabricacao, nr_capacidade) VALUES (?, ?, ?, ?)";
+            PreparedStatement psOnibus = mycon.prepareStatement(sql);
+            psOnibus.setString(1, "Scania 344");
+            psOnibus.setString(2, "GHI789");
+            psOnibus.setInt(3, 2018);
+            psOnibus.setInt(4, 35);
+            psOnibus.executeUpdate();
+
+            psOnibus.setString(1, "Mercedes R23");
+            psOnibus.setString(2, "JKL012");
+            psOnibus.setInt(3, 2017);
+            psOnibus.setInt(4, 45);
+            psOnibus.executeUpdate();
+            psOnibus.close();
+            
+            
             String sql = "INSERT INTO TB_ROTA (ds_origem, ds_destino, ds_duracao, vl_preco, dt_saida, dt_chegada, id_motorista, id_onibus) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement psRota = mycon.prepareStatement(sql);
 
@@ -181,21 +198,6 @@ public class conectarDao {
             psRota.executeUpdate();
 
             psRota.close();
-
-            sql = "INSERT INTO TB_ONIBUS (ds_modelo, ds_placa, ds_ano_fabricacao, nr_capacidade) VALUES (?, ?, ?, ?)";
-            PreparedStatement psOnibus = mycon.prepareStatement(sql);
-            psOnibus.setString(1, "Scania 344");
-            psOnibus.setString(2, "GHI789");
-            psOnibus.setInt(3, 2018);
-            psOnibus.setInt(4, 35);
-            psOnibus.executeUpdate();
-
-            psOnibus.setString(1, "Mercedes R23");
-            psOnibus.setString(2, "JKL012");
-            psOnibus.setInt(3, 2017);
-            psOnibus.setInt(4, 45);
-            psOnibus.executeUpdate();
-            psOnibus.close();
 
             sql = "INSERT INTO TB_RESERVAS (id_rota, id_onibus, id_motorista, id_passageiro, dt_reserva, ds_status, qtd_reserva, vl_total) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement psReservas = mycon.prepareStatement(sql);
