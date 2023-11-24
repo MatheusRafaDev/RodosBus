@@ -29,10 +29,9 @@ CREATE TABLE TB_PASSAGEIRO (
 
 CREATE TABLE TB_ROTA (
   	id_rota			Int(5) PRIMARY KEY AUTO_INCREMENT,
-    ds_origem  		varchar(100),
+    	ds_origem  		varchar(100),
   	ds_destino 		VARCHAR(100) ,
   	vl_distancia 	DECIMAL(10,2),
-  	ds_duracao		VARCHAR(10),
   	vl_preco 		DECIMAL(10,2),
 	dt_saida		datetime,
 	dt_chegada		datetime
@@ -40,12 +39,14 @@ CREATE TABLE TB_ROTA (
 
 CREATE TABLE TB_RESERVAS (
   	id_reserva 		INT (5) PRIMARY KEY AUTO_INCREMENT,
-    id_rota 		INT (5)  NOT NULL ,
-    id_onibus 		INT (5)  NOT NULL ,
-    id_motorista 	INT (5)  NOT NULL ,
-    id_passageiro 	INT (5)  NOT NULL ,
-    dt_reserva 		DATETIME,
-    ds_status 		VARCHAR (20),
+   	 id_rota 		INT (5)  NOT NULL ,
+    	id_onibus 		INT (5)  NOT NULL ,
+    	id_motorista 	INT (5)  NOT NULL ,
+    	id_passageiro 	INT (5)  NOT NULL ,
+    	dt_reserva 		DATETIME,
+   	 ds_status 		VARCHAR (20),
+	qtd_reserva		int,
+	vl_total			decimal(10,2),
   	FOREIGN KEY (id_onibus) 	REFERENCES TB_ONIBUS(id_onibus),
   	FOREIGN KEY (id_motorista) 	REFERENCES TB_MOTORISTA(id_motorista),
   	FOREIGN KEY (id_passageiro) REFERENCES TB_PASSAGEIRO(id_passageiro),
