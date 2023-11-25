@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package controller;
 
 import java.sql.PreparedStatement;
@@ -22,38 +19,45 @@ public class reservaDao extends conectarDao {
     }
 
     public void incluir(Reserva obj) {
-        sql = "INSERT INTO TB_RESERVAS (ID_ROTA, ID_ONIBUS, ID_MOTORISTA, ID_PASSAGEIRO, DT_RESERVA, DS_STATUS) VALUES (?, ?, ?, ?, ?, ?)";
+        sql = "INSERT INTO tb_reservas (id_rota, id_passageiro, dt_reserva, ds_status, qtd_reserva, vl_total) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             ps = mycon.prepareStatement(sql);
 
             ps.setInt(1, obj.getIdRota());
-            ps.setInt(2, obj.getIdOnibus());
-            ps.setInt(3, obj.getIdMotorista());
-            ps.setInt(4, obj.getIdReserva());
-            ps.setDate(5, (java.sql.Date) obj.getDataReserva());
-            ps.setString(6, obj.getStatus());
+            ps.setInt(2, obj.getIdPassageiro());
+            ps.setDate(3, new java.sql.Date(obj.getDataReserva().getTime()));
+            ps.setString(4, obj.getStatus());
+            ps.setInt(5, obj.getQuantidadeReserva());
+            ps.setDouble(6, obj.getValorTotal());
 
             ps.execute();
             ps.close();
             JOptionPane.showMessageDialog(null, "Reserva Cadastrada com Sucesso !");
         } catch (SQLException err) {
-            // Lide com as exceções SQL, por exemplo, exibindo uma mensagem de erro.
             err.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar reserva! " + err.getMessage());
         }
     }
 
     public Reserva selecionarUmaReserva(int id) {
-        String sql = "SELECT ID_RESERVA, ID_ROTA, ID_ONIBUS, ID_MOTORISTA, ID_PASSAGEIRO, DT_RESERVA, DS_STATUS FROM TB_RESERVAS WHERE ID_RESERVA = '" + id + "'";
+        String sql = "SELECT id_reserva, id_rota, id_passageiro, dt_reserva, ds_status, qtd_reserva, vl_total FROM tb_reservas WHERE id_reserva = ?";
         Reserva reserva = new Reserva();
 
         try {
-            PreparedStatement ps = mycon.prepareStatement(sql);
+            ps = mycon.prepareStatement(sql);
             ps.setInt(1, id);
 
             ResultSet resultSet = ps.executeQuery();
 
             if (resultSet.next()) {
-                // ... (código existente para obter dados do ResultSet)
+                reserva.setIdReserva(resultSet.getInt("id_reserva"));
+                reserva.setIdRota(resultSet.getInt("id_rota"));
+                reserva.setIdPassageiro(resultSet.getInt("id_passageiro"));
+                java.sql.Timestamp reserTimestamp = resultSet.getTimestamp("dt_reserva");
+                reserva.setDataReserva(new Date(reserTimestamp.getTime()));
+                reserva.setStatus(resultSet.getString("ds_status"));
+                reserva.setQuantidadeReserva(resultSet.getInt("qtd_reserva"));
+                reserva.setValorTotal(resultSet.getDouble("vl_total"));
             } else {
                 reserva.setIdReserva(0);
             }
@@ -68,31 +72,32 @@ public class reservaDao extends conectarDao {
     }
 
     public void excluirReserva(int id) {
-        String sql = "DELETE FROM TB_RESERVAS WHERE ID_RESERVA = '" + id + "'";
+        String sql = "DELETE FROM tb_reservas WHERE id_reserva = ?";
 
         try {
             ps = mycon.prepareStatement(sql);
+            ps.setInt(1, id);
             ps.execute();
             ps.close();
-            JOptionPane.showMessageDialog(null, "Registro excluido com sucesso!");
+            JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
 
         } catch (SQLException err) {
-            JOptionPane.showMessageDialog(null, "Erro ao excluir usuário!" + err.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao excluir reserva! " + err.getMessage());
         }
     }
 
     public void alterarReserva(Reserva obj) {
-        String sql = "UPDATE TB_RESERVAS SET ID_ROTA = ?, ID_ONIBUS = ?, ID_MOTORISTA = ?, ID_PASSAGEIRO = ?, DT_RESERVA = ?, DS_STATUS = ? WHERE ID_RESERVA = ?";
+        String sql = "UPDATE tb_reservas SET id_rota = ?, id_passageiro = ?, dt_reserva = ?, ds_status = ?, qtd_reserva = ?, vl_total = ? WHERE id_reserva = ?";
 
         try {
             ps = mycon.prepareStatement(sql);
 
             ps.setInt(1, obj.getIdRota());
-            ps.setInt(2, obj.getIdOnibus());
-            ps.setInt(3, obj.getIdMotorista());
-            ps.setInt(4, obj.getIdPassageiro());
-            ps.setDate(5, new java.sql.Date(obj.getDataReserva().getTime()));
-            ps.setString(6, obj.getStatus());
+            ps.setInt(2, obj.getIdPassageiro());
+            ps.setDate(3, new java.sql.Date(obj.getDataReserva().getTime()));
+            ps.setString(4, obj.getStatus());
+            ps.setInt(5, obj.getQuantidadeReserva());
+            ps.setDouble(6, obj.getValorTotal());
             ps.setInt(7, obj.getIdReserva());
 
             ps.executeUpdate();
@@ -106,31 +111,30 @@ public class reservaDao extends conectarDao {
     public ArrayList<Reserva> selecionarReservas() {
         ArrayList<Reserva> reservas = new ArrayList<Reserva>();
 
-        String sql = "SELECT ID_RESERVA, ID_ROTA, ID_ONIBUS, ID_MOTORISTA, ID_PASSAGEIRO, DT_RESERVA, DS_STATUS FROM TB_RESERVAS";
+        String sql = "SELECT id_reserva, id_rota, id_passageiro, dt_reserva, ds_status, qtd_reserva, vl_total FROM tb_reservas";
 
         try {
-            PreparedStatement ps = mycon.prepareStatement(sql);
+            ps = mycon.prepareStatement(sql);
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
-                int idReser = resultSet.getInt("ID_RESERVA");
-                int idRot = resultSet.getInt("ID_ROTA");
-                int idOnib = resultSet.getInt("ID_ONIBUS");
-                int idMotorist = resultSet.getInt("ID_MOTORISTA");
-                int idPassageir = resultSet.getInt("ID_PASSAGEIRO");
-                java.sql.Timestamp reserTimestamp = resultSet.getTimestamp("DT_RESERVA");
-                Date reser = new Date(reserTimestamp.getTime());
-                String statu = resultSet.getString("DS_STATUS");
+                int idReserva = resultSet.getInt("id_reserva");
+                int idRota = resultSet.getInt("id_rota");
+                int idPassageiro = resultSet.getInt("id_passageiro");
+                java.sql.Timestamp reserTimestamp = resultSet.getTimestamp("dt_reserva");
+                Date dataReserva = new Date(reserTimestamp.getTime());
+                String status = resultSet.getString("ds_status");
+                int quantidadeReserva = resultSet.getInt("qtd_reserva");
+                double valorTotal = resultSet.getDouble("vl_total");
 
                 Reserva reserva = new Reserva();
-
-                reserva.setIdReserva(idReser);
-                reserva.setIdRota(idRot);
-                reserva.setIdOnibus(idOnib);
-                reserva.setIdMotorista(idMotorist);
-                reserva.setIdPassageiro(idPassageir);
-                reserva.setDataReserva(reser);
-                reserva.setStatus(statu);
+                reserva.setIdReserva(idReserva);
+                reserva.setIdRota(idRota);
+                reserva.setIdPassageiro(idPassageiro);
+                reserva.setDataReserva(dataReserva);
+                reserva.setStatus(status);
+                reserva.setQuantidadeReserva(quantidadeReserva);
+                reserva.setValorTotal(valorTotal);
 
                 reservas.add(reserva);
             }
@@ -152,10 +156,10 @@ public class reservaDao extends conectarDao {
                 + "m.ds_nome AS nome_motorista, p.ds_nome AS nome_passageiro, ro.ds_origem, ro.ds_destino, ro.dt_saida, "
                 + "ro.dt_chegada, o.ds_modelo AS modelo_onibus "
                 + "FROM tb_reservas r "
-                + "LEFT JOIN tb_motorista m ON r.id_motorista = m.id_motorista "
                 + "LEFT JOIN tb_passageiro p ON r.id_passageiro = p.id_passageiro "
                 + "LEFT JOIN tb_rota ro ON r.id_rota = ro.id_rota "
-                + "LEFT JOIN tb_onibus o ON r.id_onibus = o.id_onibus ";
+                + "LEFT JOIN tb_onibus o ON ro.id_onibus = o.id_onibus "
+                + "LEFT JOIN tb_motorista m ON ro.id_motorista = m.id_motorista ";
 
         try (PreparedStatement ps = mycon.prepareStatement(sql)) {
             try (ResultSet resultSet = ps.executeQuery()) {
@@ -181,5 +185,4 @@ public class reservaDao extends conectarDao {
 
         return reservas;
     }
-
 }

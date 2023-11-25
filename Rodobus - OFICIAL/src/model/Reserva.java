@@ -3,25 +3,20 @@ package model;
 import java.util.Date;
 
 public class Reserva {
+
     private int idReserva;
     private int idRota;
-    private int idOnibus;
-    private int idMotorista;
     private int idPassageiro;
     private Date dataReserva;
     private String status;
+    private int QuantidadeReserva;
+    private Double ValorTotal;
 
     public int getIdReserva() { return idReserva; }
     public void setIdReserva(int idReserva) { this.idReserva = idReserva; }
 
     public int getIdRota() { return idRota; }
     public void setIdRota(int idRota) { this.idRota = idRota; }
-
-    public int getIdOnibus() { return idOnibus; }
-    public void setIdOnibus(int idOnibus) { this.idOnibus = idOnibus; }
-
-    public int getIdMotorista() { return idMotorista; }
-    public void setIdMotorista(int idMotorista) { this.idMotorista = idMotorista; }
 
     public int getIdPassageiro() { return idPassageiro; }
     public void setIdPassageiro(int idPassageiro) { this.idPassageiro = idPassageiro; }
@@ -31,4 +26,22 @@ public class Reserva {
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+    
+    
+    public int getQuantidadeReserva() {
+        return QuantidadeReserva;
+    }
+
+    public void setQuantidadeReserva(int QuantidadeReserva) {
+        this.QuantidadeReserva = QuantidadeReserva;
+    }
+
+    public Double getValorTotal() {
+        return ValorTotal;
+    }
+
+    public void setValorTotal(Double ValorTotal) {
+        this.ValorTotal = ValorTotal;
+    }
+    
 }

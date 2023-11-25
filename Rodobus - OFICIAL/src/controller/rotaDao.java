@@ -121,7 +121,7 @@ public class rotaDao extends conectarDao {
                 int IdRota = resultSet.getInt("ID_ROTA");
                 String origem = resultSet.getString("DS_ORIGEM");
                 String destino = resultSet.getString("DS_DESTINO");
-                String dsDuracao = resultSet.getString("DS_DURACAO");
+                String duracao = resultSet.getString("DS_DURACAO");
                 double vlpreco = resultSet.getDouble("VL_PRECO");
                 Date dtchegada = resultSet.getDate("DT_CHEGADA");
                 Date dtsaida = resultSet.getDate("DT_SAIDA");
@@ -138,6 +138,7 @@ public class rotaDao extends conectarDao {
                 rota.setVlPreco(vlpreco);
                 rota.setIdMotorista(Idmotorista);
                 rota.setNomeMotorista(NomeMotorista);
+                rota.setDsDuracao(duracao);
             } else {
                 System.out.println("Rota not found for ID: " + id);
             }

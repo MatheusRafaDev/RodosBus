@@ -11,6 +11,8 @@ public class formInfoPassageiro extends javax.swing.JFrame {
     public formInfoPassageiro(Passageiro obj) {
         initComponents();
         
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+         
         this.mnNOME.setText(obj.getNome());
         this.mnID.setText("Id: " + obj.getIdPassageiro());
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);

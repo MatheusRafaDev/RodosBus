@@ -83,15 +83,11 @@ public class conectarDao {
             sql = "CREATE TABLE IF NOT EXISTS TB_RESERVAS ("
                     + "id_reserva INT(5) PRIMARY KEY AUTO_INCREMENT,"
                     + "id_rota INT(5) NOT NULL,"
-                    + "id_onibus INT(5) NOT NULL,"
-                    + "id_motorista INT(5) NOT NULL,"
                     + "id_passageiro INT(5) NOT NULL,"
                     + "dt_reserva DATETIME,"
                     + "ds_status VARCHAR(20),"
                     + "qtd_reserva INT,"
                     + "vl_total DECIMAL(10,2),"
-                    + "CONSTRAINT FOREIGN KEY (id_onibus) REFERENCES TB_ONIBUS(id_onibus),"
-                    + "CONSTRAINT FOREIGN KEY (id_motorista) REFERENCES TB_MOTORISTA(id_motorista),"
                     + "CONSTRAINT FOREIGN KEY (id_passageiro) REFERENCES TB_PASSAGEIRO(id_passageiro),"
                     + "CONSTRAINT FOREIGN KEY (id_rota) REFERENCES TB_ROTA(id_rota)"
                     + ");";
@@ -199,26 +195,22 @@ public class conectarDao {
 
             psRota.close();
 
-            sql = "INSERT INTO TB_RESERVAS (id_rota, id_onibus, id_motorista, id_passageiro, dt_reserva, ds_status, qtd_reserva, vl_total) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO TB_RESERVAS (id_rota, id_passageiro, dt_reserva, ds_status, qtd_reserva, vl_total) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement psReservas = mycon.prepareStatement(sql);
             psReservas.setInt(1, 1);
             psReservas.setInt(2, 1);
-            psReservas.setInt(3, 1);
-            psReservas.setInt(4, 1);
-            psReservas.setTimestamp(5, Timestamp.valueOf(LocalDateTime.now()));
-            psReservas.setString(6, "Reservado");
-            psReservas.setInt(7, 1);
-            psReservas.setBigDecimal(8, new BigDecimal("50.00"));
+            psReservas.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+            psReservas.setString(4, "Reservado");
+            psReservas.setInt(5, 1);
+            psReservas.setBigDecimal(6, new BigDecimal("50.00"));
             psReservas.executeUpdate();
 
             psReservas.setInt(1, 2);
             psReservas.setInt(2, 2);
-            psReservas.setInt(3, 2);
-            psReservas.setInt(4, 2);
-            psReservas.setTimestamp(5, Timestamp.valueOf(LocalDateTime.now()));
-            psReservas.setString(6, "Reservado");
-            psReservas.setInt(7, 1);
-            psReservas.setBigDecimal(8, new BigDecimal("75.00"));
+            psReservas.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+            psReservas.setString(4, "Reservado");
+            psReservas.setInt(5, 1);
+            psReservas.setBigDecimal(6, new BigDecimal("75.00"));
             psReservas.executeUpdate();
             psReservas.close();
 

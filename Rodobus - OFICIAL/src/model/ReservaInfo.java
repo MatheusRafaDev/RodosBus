@@ -6,8 +6,6 @@ public class ReservaInfo {
 
     private int idReserva;
     private int idRota;
-    private int idOnibus;
-    private int idMotorista;
     private int idPassageiro;
     private Date dataReserva;
     private String status;
@@ -33,22 +31,6 @@ public class ReservaInfo {
 
     public void setIdRota(int idRota) {
         this.idRota = idRota;
-    }
-
-    public int getIdOnibus() {
-        return idOnibus;
-    }
-
-    public void setIdOnibus(int idOnibus) {
-        this.idOnibus = idOnibus;
-    }
-
-    public int getIdMotorista() {
-        return idMotorista;
-    }
-
-    public void setIdMotorista(int idMotorista) {
-        this.idMotorista = idMotorista;
     }
 
     public int getIdPassageiro() {

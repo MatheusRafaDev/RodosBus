@@ -69,7 +69,13 @@ public class formGerenciar extends javax.swing.JFrame {
         motoristaModel.setRowCount(0);
 
         for (Motorista motorista : motoristas) {
-            motoristaModel.addRow(new Object[]{motorista.getIdMotorista(), motorista.getNome(), motorista.getIdade(), motorista.getCpf(), motorista.getTelefone()});
+            motoristaModel.addRow(new Object[]{
+                motorista.getIdMotorista(),
+                motorista.getNome(),
+                motorista.getIdade(),
+                motorista.getCpf(),
+                motorista.getTelefone()
+            });
         }
     }
 
@@ -119,7 +125,13 @@ public class formGerenciar extends javax.swing.JFrame {
         reservaModel.setRowCount(0);
 
         for (Reserva reserva : reservas) {
-            reservaModel.addRow(new Object[]{reserva.getIdReserva(), reserva.getIdRota(), reserva.getIdOnibus(), reserva.getIdMotorista(), reserva.getIdPassageiro(), reserva.getDataReserva(), reserva.getStatus()});
+            reservaModel.addRow(new Object[]{
+                reserva.getIdReserva(),
+                reserva.getIdRota(),
+                reserva.getIdPassageiro(),
+                reserva.getDataReserva(),
+                reserva.getStatus()
+            });
         }
     }
 
@@ -130,7 +142,13 @@ public class formGerenciar extends javax.swing.JFrame {
         onibusModel.setRowCount(0);
 
         for (Onibus onibus : onibuss) {
-            onibusModel.addRow(new Object[]{onibus.getIdOnibus(), onibus.getModelo(), onibus.getPlaca(), onibus.getCapacidade(), onibus.getAnoFabricacao()});
+            onibusModel.addRow(new Object[]{
+                onibus.getIdOnibus(),
+                onibus.getModelo(),
+                onibus.getPlaca(),
+                onibus.getCapacidade(),
+                onibus.getAnoFabricacao()
+            });
         }
     }
 
@@ -142,7 +160,15 @@ public class formGerenciar extends javax.swing.JFrame {
         model.setRowCount(0);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         for (Rota rota2 : rotas) {
-            model.addRow(new Object[]{rota2.getIdRota(), rota2.getIdMotorista() + " - " + rota2.getNomeMotorista(), rota2.getIdOnibus() + " - " + rota2.getModeloOnibus(), rota2.getVlPreco(), rota2.getOrigem(), rota2.getDestino(), sdf.format(rota2.getDtSaida()), sdf.format(rota2.getDtChegada())});
+            model.addRow(new Object[]{
+                rota2.getIdRota(),
+                rota2.getIdMotorista() + " - " + rota2.getNomeMotorista(),
+                rota2.getIdOnibus() + " - " + rota2.getModeloOnibus(),
+                rota2.getVlPreco(), rota2.getOrigem(),
+                rota2.getDestino(), 
+                sdf.format(rota2.getDtSaida()),
+                sdf.format(rota2.getDtChegada())
+            });
         }
     }
 
@@ -1294,7 +1320,7 @@ public class formGerenciar extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID.reserva", "Data Reserva", "Status", "Motorista", "Passageiro", "Origem", "Destino", "Dt.Saída", "Dt.Chegada", "Modelo Ônibus"
+                "ID.Reserva", "Data Reserva", "Status", "Motorista", "Passageiro", "Origem", "Destino", "Dt.Saída", "Dt.Chegada", "Modelo Ônibus"
             }
         ) {
             boolean[] canEdit = new boolean [] {
