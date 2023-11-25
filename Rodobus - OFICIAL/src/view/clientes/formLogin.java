@@ -9,6 +9,12 @@ import javax.swing.JOptionPane;
 import model.Passageiro;
 import view.adm.formGerenciar;
 import controller.conectarDao;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class formLogin extends javax.swing.JFrame {
@@ -19,7 +25,9 @@ public class formLogin extends javax.swing.JFrame {
         conectarDao c = new conectarDao();
         c.criarBanco();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
 
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -110,7 +118,7 @@ public class formLogin extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -123,7 +131,7 @@ public class formLogin extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnCadastro1))
                     .addComponent(txtSenha1))
-                .addGap(88, 88, 88))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,7 +162,6 @@ public class formLogin extends javax.swing.JFrame {
         jPanel1.setBounds(320, 70, 450, 230);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/image 3.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 790, 440);
 
