@@ -6,11 +6,40 @@ package view.clientes;
 
 import controller.rotaDao;
 import controller.reservaDao;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 import model.Passageiro;
+import model.Reserva;
 
 public class formPedidoRealizado extends javax.swing.JFrame {
+    
+    public void carregarReserva() {
+        reservaDao reserva = new reservaDao();
+        reserva.criarBanco();
+        ArrayList<Reserva> rotas = reserva.selecionarRotas();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
+        DefaultTableModel model = (DefaultTableModel) tblROTAS.getModel();
+        model.setRowCount(0);
 
+        for (Rota rota2 : rotas) {
+            model.addRow(new Object[]{rota2.getIdRota(), rota2.getOrigem(), rota2.getDestino(), sdf.format(rota2.getDtSaida()), sdf.format(rota2.getDtChegada()), rota2.getVlPreco()});
+        }
+    }
+
+    public void carregarRota2(Date DATASAIDA,Date DATAVOLTA,String ORIGEM,String DESTINO) {
+        rotaDao rota = new rotaDao();
+        ArrayList<Rota> rotas = rota.selecionarRotasFiltro(DATASAIDA,DATAVOLTA,ORIGEM,DESTINO);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
+        DefaultTableModel model = (DefaultTableModel) tblROTAS.getModel();
+        model.setRowCount(0);
+
+        for (Rota rota2 : rotas) {
+            model.addRow(new Object[]{rota2.getIdRota(), rota2.getOrigem(), rota2.getDestino(), sdf.format(rota2.getDtSaida()), sdf.format(rota2.getDtChegada()), rota2.getVlPreco()});
+        }
+    }
     Passageiro pass = new Passageiro();
 
     public formPedidoRealizado(Passageiro obj) {
@@ -31,6 +60,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPedido = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        Buscar = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
         mnRODOBUS = new javax.swing.JMenu();
@@ -64,9 +94,15 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblPedido);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 48)); // NOI18N
-        jLabel1.setText("Estas são suas reservas");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel1.setText("Meus pedidos");
 
+        Buscar.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        Buscar.setText("Digite para pesquisar sua reserva");
+
+        jMenuBar1.setBackground(new java.awt.Color(255, 102, 0));
+        jMenuBar1.setForeground(new java.awt.Color(255, 102, 0));
         jMenuBar1.add(jMenu7);
 
         mnRODOBUS.setText("RodoBus");
@@ -117,23 +153,25 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(153, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(171, 171, 171))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(150, 150, 150))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(40, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(323, 323, 323))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -200,6 +238,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Buscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
