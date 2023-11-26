@@ -1,5 +1,7 @@
 package view.clientes;
 
+import controller.motoristaDao;
+import controller.onibusDao;
 import controller.passageiroDao;
 import controller.rotaDao;
 import static java.lang.System.in;
@@ -7,6 +9,8 @@ import java.text.SimpleDateFormat;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.Motorista;
+import model.Onibus;
 import model.Passageiro;
 import model.Rota;
 
@@ -14,7 +18,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
 
     Rota rota = new Rota();
     Passageiro pass = new Passageiro();
-        
+    Onibus onibus = new Onibus();   
+    Motorista moto = new Motorista();
+    
     public formConfirmarPag(int passageiroId2, int rotaId2) {
         initComponents();
 
@@ -22,9 +28,13 @@ public class formConfirmarPag extends javax.swing.JFrame {
 
         passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
-
+        onibusDao o = new onibusDao();
+        motoristaDao m = new motoristaDao();
+        
         rota = r.selecionarUmaRota(rotaId2);
         pass = p.selecionarUmPassageiro(passageiroId2);
+        onibus = o.selecionarUmOnibus(rota.getIdOnibus());
+        moto = m.selecionarUmMotorista(rota.getIdMotorista());
         
         add(this.optCARTAO);
         add(this.optPIX);
@@ -43,7 +53,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         this.lblCHEGADA.setText(formato.format(rota.getDtChegada()));
         this.lbVALOR.setText(String.valueOf((char) rota.getVlPreco()));
         this.lblDURACAO.setText(rota.getDsDuracao());
-        this.lblMOTORISTA.setText(rota.getNomeMotorista());
+        this.lblMOTORISTA.setText(moto.getNome());
 
     }
 
