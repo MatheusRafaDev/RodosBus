@@ -12,9 +12,7 @@ public class Rota {
     private Date dtSaida;
     private Date dtChegada;
     private int idMotorista;
-    private String ModeloOnibus;
     private int idOnibus;
-    private String NomeMotorista;
 
     public int getIdOnibus() {
         return idOnibus;
@@ -22,14 +20,6 @@ public class Rota {
 
     public void setIdOnibus(int idOnibus) {
         this.idOnibus = idOnibus;
-    }
-
-    public String getNomeMotorista() {
-        return NomeMotorista;
-    }
-
-    public void setNomeMotorista(String NomeMotorista) {
-        this.NomeMotorista = NomeMotorista;
     }
 
     public int getIdRota() {
@@ -96,11 +86,4 @@ public class Rota {
         this.idMotorista = idMotorista;
     }
 
-    public String getModeloOnibus() {
-        return ModeloOnibus;
-    }
-
-    public void setModeloOnibus(String Modelo) {
-        this.ModeloOnibus = Modelo;
-    }
 }

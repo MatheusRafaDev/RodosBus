@@ -78,6 +78,35 @@ public class onibusDao extends conectarDao {
         return selecionarOnibus;
     }
 
+    public Onibus selecionarUmOnibus(int idOnibus) {
+        String sql = "SELECT ID_ONIBUS, DS_MODELO, DS_PLACA, DS_ANO_FABRICACAO, NR_CAPACIDADE FROM TB_ONIBUS WHERE ID_ONIBUS = ?";
+        Onibus onibus = new Onibus();
+        
+        try {
+            PreparedStatement ps = mycon.prepareStatement(sql);
+            ps.setInt(1, idOnibus);
+
+            ResultSet resultSet = ps.executeQuery();
+
+            if (resultSet.next()) {
+                onibus.setIdOnibus(resultSet.getInt("ID_ONIBUS"));
+                onibus.setModelo(resultSet.getString("DS_MODELO"));
+                onibus.setPlaca(resultSet.getString("DS_PLACA"));
+                onibus.setAnoFabricacao(resultSet.getInt("DS_ANO_FABRICACAO"));
+                onibus.setCapacidade(resultSet.getInt("NR_CAPACIDADE"));
+            } else {
+                onibus.setIdOnibus(0);
+            }
+
+            ps.close();
+            resultSet.close();
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, "Erro ao selecionar Ônibus! " + err.getMessage());
+        }
+
+        return onibus;
+    }
+
     public void excluir(int id) {
 
         sql = "DELETE FROM ID_ONIBUS WHERE ID_ONIBUS = '" + id + "'";

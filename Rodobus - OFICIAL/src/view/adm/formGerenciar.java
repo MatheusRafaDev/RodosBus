@@ -39,7 +39,6 @@ import javax.swing.JOptionPane;
 import javax.swing.text.DefaultFormatterFactory;
 import model.Motorista;
 import model.Reserva;
-import model.ReservaInfo;
 import view.clientes.formCadastroPassageiro;
 import view.clientes.formLogin;
 
@@ -49,19 +48,27 @@ import view.clientes.formLogin;
  */
 public class formGerenciar extends javax.swing.JFrame {
 
-    public void CaregarPassageiro() {
+    public void CarregarPassageiro() {
         passageiroDao passageiroDao = new passageiroDao();
         ArrayList<Passageiro> passageiros = passageiroDao.selecionarPassageiros();
         DefaultTableModel passageiroModel = (DefaultTableModel) tblPASSAGEIRO.getModel();
         passageiroModel.setRowCount(0);
 
         for (Passageiro passageiro : passageiros) {
-            passageiroModel.addRow(new Object[]{passageiro.getIdPassageiro(), passageiro.getNome(), passageiro.getEmail(), passageiro.getCpf(), passageiro.getIdade(), passageiro.getTelefone(), passageiro.getSenha()});
+
+            passageiroModel.addRow(new Object[]{
+                passageiro.getIdPassageiro(),
+                passageiro.getNome(),
+                passageiro.getEmail(),
+                passageiro.getCpf(),
+                passageiro.getIdade(),
+                passageiro.getTelefone(),
+                passageiro.getSenha()});
         }
 
     }
 
-    public void CaregarMotorista() {
+    public void CarregarMotorista() {
         motoristaDao motoristaDao = new motoristaDao();
         ArrayList<Motorista> motoristas = motoristaDao.selecionarMotoristas();
 
@@ -153,45 +160,124 @@ public class formGerenciar extends javax.swing.JFrame {
     }
 
     public void CarregarRotas() {
-        rotaDao rota = new rotaDao();
-        rota.criarBanco();
-        ArrayList<Rota> rotas = rota.selecionarRotas();
+        rotaDao rotaDao = new rotaDao();
+        onibusDao onibusDao = new onibusDao();
+        motoristaDao motoristaDao = new motoristaDao();
+
+        rotaDao.criarBanco();
+        ArrayList<Rota> rotas = rotaDao.selecionarRotas();
         DefaultTableModel model = (DefaultTableModel) tblROTA.getModel();
-        model.setRowCount(0);
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        for (Rota rota2 : rotas) {
+        for (Rota rota : rotas) {
+
+            Onibus onibus = onibusDao.selecionarUmOnibus(rota.getIdOnibus());
+            Motorista motorista = motoristaDao.selecionarUmMotorista(rota.getIdMotorista());
+
             model.addRow(new Object[]{
-                rota2.getIdRota(),
-                rota2.getIdMotorista() + " - " + rota2.getNomeMotorista(),
-                rota2.getIdOnibus() + " - " + rota2.getModeloOnibus(),
-                rota2.getVlPreco(), rota2.getOrigem(),
-                rota2.getDestino(), 
-                sdf.format(rota2.getDtSaida()),
-                sdf.format(rota2.getDtChegada())
+                rota.getIdRota(),
+                rota.getIdMotorista() + " - " + motorista.getNome(),
+                rota.getIdOnibus() + " - " + onibus.getModelo(),
+                rota.getVlPreco(), rota.getOrigem(),
+                rota.getDestino(),
+                sdf.format(rota.getDtSaida()),
+                sdf.format(rota.getDtChegada())
             });
         }
     }
 
     public void CarregarReservasInfo() {
         reservaDao reservaDao = new reservaDao();
-        ArrayList<ReservaInfo> reservas = reservaDao.obterReservasComDetalhes();
+        rotaDao rotaDao = new rotaDao();
+        onibusDao onibusDao = new onibusDao();
+        motoristaDao motoristaDao = new motoristaDao();
+        passageiroDao passageiroDao = new passageiroDao();
+
+        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+        ArrayList<Reserva> reservas = reservaDao.selecionarReservas();
 
         DefaultTableModel reservaModel = (DefaultTableModel) tblRESERVAS.getModel();
         reservaModel.setRowCount(0);
 
-        for (ReservaInfo reserva : reservas) {
+        for (Reserva reserva : reservas) {
+
+            Rota rota = rotaDao.selecionarUmaRota(reserva.getIdRota());
+            Onibus onibus = onibusDao.selecionarUmOnibus(rota.getIdOnibus());
+            Motorista motorista = motoristaDao.selecionarUmMotorista(rota.getIdMotorista());
+            Passageiro passageiro = passageiroDao.selecionarUmPassageiro(reserva.getIdPassageiro());
+
             reservaModel.addRow(new Object[]{
                 reserva.getIdReserva(),
-                reserva.getDataReserva(),
+                reserva.getIdRota(),
+                sdf1.format(reserva.getDataReserva()),
                 reserva.getStatus(),
-                reserva.getNomeMotorista(),
-                reserva.getNomePassageiro(),
-                reserva.getOrigem(),
-                reserva.getDestino(),
-                reserva.getDtSaida(),
-                reserva.getDtChegada(),
-                reserva.getModeloOnibus()
+                motorista.getIdMotorista() + " - " + motorista.getNome(),
+                passageiro.getIdPassageiro() + " - " + passageiro.getNome(),
+                reserva.getQuantidadeReserva(),
+                reserva.getValorTotal(),
+                rota.getOrigem(),
+                rota.getDestino(),
+                rota.getDtSaida(),
+                rota.getDtChegada(),
+                onibus.getIdOnibus() + " - " + onibus.getModelo()
             });
+        }
+    }
+
+    public void CarregarRotasComboBox() {
+        rotaDao rotaDao = new rotaDao();
+        DefaultTableModel rotaModel = (DefaultTableModel) tblROTA.getModel();
+        rotaModel.setRowCount(0);
+
+        DefaultComboBoxModel<String> cmbRotaModel = (DefaultComboBoxModel<String>) this.cmbROTAS5.getModel();
+
+        if (cmbRotaModel != null) {
+            cmbRotaModel.removeAllElements();
+        }
+
+        ArrayList<Rota> rotas = rotaDao.selecionarRotas();
+
+        cmbRotaModel.addElement("Selecione uma rota");
+
+        for (Rota rota : rotas) {
+            cmbRotaModel.addElement(rota.getIdRota() + " - " + rota.getOrigem() + " - " + rota.getDestino());
+        }
+    }
+
+    public void CarregarPassageirosComboBox() {
+        passageiroDao passageiroDao = new passageiroDao();
+        DefaultTableModel passageiroModel = (DefaultTableModel) tblPASSAGEIRO.getModel();
+        passageiroModel.setRowCount(0);
+
+        DefaultComboBoxModel<String> cmbPassageiroModel = (DefaultComboBoxModel<String>) this.cmbPASSAGEIRO5.getModel();
+
+        if (cmbPassageiroModel != null) {
+            cmbPassageiroModel.removeAllElements();
+        }
+
+        ArrayList<Passageiro> passageiros = passageiroDao.selecionarPassageiros();
+
+        cmbPassageiroModel.addElement("Selecione um passageiro");
+
+        for (Passageiro passageiro : passageiros) {
+            cmbPassageiroModel.addElement(passageiro.getIdPassageiro() + " - " + passageiro.getNome());
+        }
+    }
+
+    public void CarregarStatusReservaComboBox() {
+        String[] statusReserva = {"Pendente", "Reservado", "Cancelada"};
+
+        DefaultComboBoxModel<String> cmbStatusModel = (DefaultComboBoxModel<String>) this.cmbSTATUS.getModel();
+
+        if (cmbStatusModel != null) {
+            cmbStatusModel.removeAllElements();
+        }
+
+        cmbStatusModel.addElement("Selecione um status");
+
+        for (String status : statusReserva) {
+            cmbStatusModel.addElement(status);
         }
     }
 
@@ -203,16 +289,20 @@ public class formGerenciar extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         conectarDao oDao = new conectarDao();
-        CaregarMotorista();
-        CarregarOnibus();
-        CarregarOnibus();
-        CaregarPassageiro();
+
         CarregarReservasInfo();
+
         carregarOnibusComboBox();
         carregarComboBoxMotoristas();
-        CarregarRotas();
 
+        CarregarRotasComboBox();
+        CarregarPassageirosComboBox();
+        CarregarStatusReservaComboBox();
+        CarregarPassageiro();
+        CarregarRotas();
+        CarregarMotorista();
         CarregarOnibus();
+
     }
 
     public void verificarData() {
@@ -352,12 +442,25 @@ public class formGerenciar extends javax.swing.JFrame {
         lblbusID = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
-        btnReserva = new javax.swing.JButton();
-        btnBuscareserva = new javax.swing.JButton();
+        btnDELETAR = new javax.swing.JButton();
+        btnBUSCARRESERVAS = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         tblRESERVAS = new javax.swing.JTable();
         jLabel41 = new javax.swing.JLabel();
         lblreservaid = new javax.swing.JLabel();
+        cmbPASSAGEIRO5 = new javax.swing.JComboBox<>();
+        jLabel37 = new javax.swing.JLabel();
+        cmbROTAS5 = new javax.swing.JComboBox<>();
+        jLabel38 = new javax.swing.JLabel();
+        cmbSTATUS = new javax.swing.JComboBox<>();
+        jLabel39 = new javax.swing.JLabel();
+        txtQTD5 = new javax.swing.JFormattedTextField(mascaraValor);
+        jLabel40 = new javax.swing.JLabel();
+        txtVALOR5 = new javax.swing.JFormattedTextField(mascaraValor);
+        jLabel42 = new javax.swing.JLabel();
+        btnCADASTRARESERVA = new javax.swing.JButton();
+        btnNOVARESERVA = new javax.swing.JButton();
+        btnALTERARRESERVA = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblROTA = new javax.swing.JTable();
@@ -522,10 +625,7 @@ public class formGerenciar extends javax.swing.JFrame {
         tblMOTORISTAS.setForeground(new java.awt.Color(60, 63, 65));
         tblMOTORISTAS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Código", "Nome", "Idade", "CPF", "Telefone"
@@ -703,7 +803,7 @@ public class formGerenciar extends javax.swing.JFrame {
                             .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)))
                 .addGap(22, 22, 22))
         );
         jPanel2Layout.setVerticalGroup(
@@ -805,10 +905,7 @@ public class formGerenciar extends javax.swing.JFrame {
         tblPASSAGEIRO.setForeground(new java.awt.Color(69, 73, 74));
         tblPASSAGEIRO.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Código", "Nome", "Email", "CPF", "Idade", "Telefone", "Senha"
@@ -922,7 +1019,7 @@ public class formGerenciar extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(lblID1)
-                        .addContainerGap(999, Short.MAX_VALUE))
+                        .addContainerGap(1138, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -956,7 +1053,7 @@ public class formGerenciar extends javax.swing.JFrame {
                                     .addComponent(btnDeletar1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)))
                         .addGap(17, 17, 17))))
         );
         jPanel4Layout.setVerticalGroup(
@@ -1135,10 +1232,7 @@ public class formGerenciar extends javax.swing.JFrame {
         tblOnibus.setForeground(new java.awt.Color(60, 63, 65));
         tblOnibus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Modelo", "Placa", "Capacidade", "Ano Fabr"
@@ -1214,7 +1308,7 @@ public class formGerenciar extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel27)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE))))
                 .addGap(23, 23, 23))
         );
         jPanel8Layout.setVerticalGroup(
@@ -1281,50 +1375,47 @@ public class formGerenciar extends javax.swing.JFrame {
 
         jPanel11.setBackground(new java.awt.Color(242, 147, 4));
 
-        btnReserva.setBackground(new java.awt.Color(69, 73, 74));
-        btnReserva.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        btnReserva.setForeground(new java.awt.Color(255, 255, 255));
-        btnReserva.setText("Deletar");
-        btnReserva.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnDELETAR.setBackground(new java.awt.Color(69, 73, 74));
+        btnDELETAR.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        btnDELETAR.setForeground(new java.awt.Color(255, 255, 255));
+        btnDELETAR.setText("Deletar");
+        btnDELETAR.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnReservaMouseClicked(evt);
+                btnDELETARMouseClicked(evt);
             }
         });
-        btnReserva.addActionListener(new java.awt.event.ActionListener() {
+        btnDELETAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReservaActionPerformed(evt);
+                btnDELETARActionPerformed(evt);
             }
         });
 
-        btnBuscareserva.setBackground(new java.awt.Color(69, 73, 74));
-        btnBuscareserva.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        btnBuscareserva.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscareserva.setText("Buscar");
-        btnBuscareserva.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnBUSCARRESERVAS.setBackground(new java.awt.Color(69, 73, 74));
+        btnBUSCARRESERVAS.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        btnBUSCARRESERVAS.setForeground(new java.awt.Color(255, 255, 255));
+        btnBUSCARRESERVAS.setText("Buscar");
+        btnBUSCARRESERVAS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBuscareservaMouseClicked(evt);
+                btnBUSCARRESERVASMouseClicked(evt);
             }
         });
-        btnBuscareserva.addActionListener(new java.awt.event.ActionListener() {
+        btnBUSCARRESERVAS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscareservaActionPerformed(evt);
+                btnBUSCARRESERVASActionPerformed(evt);
             }
         });
 
         tblRESERVAS.setForeground(new java.awt.Color(60, 63, 65));
         tblRESERVAS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "ID.Reserva", "Data Reserva", "Status", "Motorista", "Passageiro", "Origem", "Destino", "Dt.Saída", "Dt.Chegada", "Modelo Ônibus"
+                "Id.Reserva", "Id.Rota", "Data Reserva", "Status", "Motorista", "Passageiro", "Qtd.Resevas", "Vl.Total", "Origem", "Destino", "Dt.Saída", "Dt.Chegada", "Modelo Ônibus"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1353,35 +1444,179 @@ public class formGerenciar extends javax.swing.JFrame {
         lblreservaid.setForeground(new java.awt.Color(255, 255, 255));
         lblreservaid.setText("0");
 
+        cmbPASSAGEIRO5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbPASSAGEIRO5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPASSAGEIRO5ActionPerformed(evt);
+            }
+        });
+
+        jLabel37.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel37.setText("Passageiro");
+
+        cmbROTAS5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbROTAS5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbROTAS5ActionPerformed(evt);
+            }
+        });
+
+        jLabel38.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel38.setText("Rota");
+
+        cmbSTATUS.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbSTATUS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbSTATUSActionPerformed(evt);
+            }
+        });
+
+        jLabel39.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel39.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel39.setText("Status");
+
+        txtQTD5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQTD5ActionPerformed(evt);
+            }
+        });
+
+        jLabel40.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel40.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel40.setText("Vl.total");
+
+        txtVALOR5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtVALOR5ActionPerformed(evt);
+            }
+        });
+
+        jLabel42.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel42.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel42.setText("Qtd.reservas");
+
+        btnCADASTRARESERVA.setBackground(new java.awt.Color(69, 73, 74));
+        btnCADASTRARESERVA.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        btnCADASTRARESERVA.setForeground(new java.awt.Color(255, 255, 255));
+        btnCADASTRARESERVA.setText("Cadastrar");
+        btnCADASTRARESERVA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCADASTRARESERVAMouseClicked(evt);
+            }
+        });
+        btnCADASTRARESERVA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCADASTRARESERVAActionPerformed(evt);
+            }
+        });
+
+        btnNOVARESERVA.setBackground(new java.awt.Color(69, 73, 74));
+        btnNOVARESERVA.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        btnNOVARESERVA.setForeground(new java.awt.Color(255, 255, 255));
+        btnNOVARESERVA.setText("Novo Cadastro");
+        btnNOVARESERVA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNOVARESERVAMouseClicked(evt);
+            }
+        });
+        btnNOVARESERVA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNOVARESERVAActionPerformed(evt);
+            }
+        });
+
+        btnALTERARRESERVA.setBackground(new java.awt.Color(69, 73, 74));
+        btnALTERARRESERVA.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        btnALTERARRESERVA.setForeground(new java.awt.Color(255, 255, 255));
+        btnALTERARRESERVA.setText("Alterar");
+        btnALTERARRESERVA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnALTERARRESERVAMouseClicked(evt);
+            }
+        });
+        btnALTERARRESERVA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnALTERARRESERVAActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblreservaid)
-                .addGap(388, 388, 388)
+                .addGap(17, 17, 17)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbPASSAGEIRO5, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel37)
+                    .addComponent(jLabel38)
+                    .addComponent(cmbROTAS5, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel39)
+                    .addComponent(cmbSTATUS, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel40)
+                    .addComponent(jLabel42)
+                    .addComponent(lblreservaid)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnNOVARESERVA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCADASTRARESERVA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(43, 43, 43)
+                        .addComponent(btnALTERARRESERVA, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtQTD5, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtVALOR5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)))
+                .addGap(56, 56, 56)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(btnReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDELETAR, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBuscareserva, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnBUSCARRESERVAS, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel41, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE))
                 .addGap(27, 27, 27))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel41)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel41)
+                    .addComponent(jLabel37))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(cmbPASSAGEIRO5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel38)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbROTAS5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel39)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbSTATUS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel40)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtVALOR5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel42)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtQTD5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCADASTRARESERVA)
+                            .addComponent(btnALTERARRESERVA))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnNOVARESERVA, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 15, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblreservaid, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                    .addComponent(btnReserva)
-                    .addComponent(btnBuscareserva))
+                    .addComponent(btnDELETAR)
+                    .addComponent(btnBUSCARRESERVAS))
                 .addGap(9, 9, 9))
         );
 
@@ -1393,10 +1628,9 @@ public class formGerenciar extends javax.swing.JFrame {
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+            .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pgROTAS.addTab("Reservas", jPanel9);
@@ -1507,6 +1741,11 @@ public class formGerenciar extends javax.swing.JFrame {
                 txtCHEGADA4FocusLost(evt);
             }
         });
+        txtCHEGADA4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCHEGADA4ActionPerformed(evt);
+            }
+        });
 
         cmbMOTORISTA4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbMOTORISTA4.addActionListener(new java.awt.event.ActionListener() {
@@ -1594,30 +1833,36 @@ public class formGerenciar extends javax.swing.JFrame {
                     .addComponent(jLabel33)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel34)
-                            .addComponent(jLabel30)
-                            .addComponent(txtORIGEM4, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel29)
-                            .addComponent(txtDESTINO4, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbMOTORISTA4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel36)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel34)
+                                    .addComponent(jLabel30)
+                                    .addComponent(jLabel29)
+                                    .addComponent(cmbMOTORISTA4, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 22, Short.MAX_VALUE))
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtORIGEM4, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtDESTINO4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel36)
+                                .addComponent(cmbONIBUS4, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCHEGADA4, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSAIDA4, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel32)
-                            .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtCHEGADA4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSAIDA4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbONIBUS4, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel31)))
                     .addComponent(txtVALOR4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel10Layout.createSequentialGroup()
+                    .addComponent(jLabel35)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                             .addComponent(btnDELETAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnBUSCAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE))
-                    .addComponent(jLabel35))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
         );
         jPanel10Layout.setVerticalGroup(
@@ -1626,12 +1871,12 @@ public class formGerenciar extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
+                        .addGap(10, 10, 10)
                         .addComponent(jLabel35)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnBUSCAR4)
                             .addComponent(btnDELETAR4))
                         .addGap(26, 26, 26))
@@ -1653,15 +1898,15 @@ public class formGerenciar extends javax.swing.JFrame {
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtDESTINO4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCHEGADA4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addComponent(jLabel34)
+                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel34)
+                                    .addComponent(jLabel36))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cmbMOTORISTA4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addComponent(jLabel36)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(32, 32, 32)
                                 .addComponent(cmbONIBUS4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1675,7 +1920,7 @@ public class formGerenciar extends javax.swing.JFrame {
                             .addComponent(btnCADASTRAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnNOVO4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                         .addComponent(lbID4)
                         .addContainerGap())))
         );
@@ -1701,7 +1946,7 @@ public class formGerenciar extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pgROTAS, javax.swing.GroupLayout.DEFAULT_SIZE, 1037, Short.MAX_VALUE))
+                .addComponent(pgROTAS, javax.swing.GroupLayout.DEFAULT_SIZE, 1176, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1736,7 +1981,8 @@ public class formGerenciar extends javax.swing.JFrame {
 
     private void btnBUSCAR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBUSCAR4MouseClicked
         CarregarRotas();
-        CaregarMotorista();
+        CarregarMotorista();
+        CarregarOnibus();
     }//GEN-LAST:event_btnBUSCAR4MouseClicked
 
     private void txtVALOR4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVALOR4ActionPerformed
@@ -1776,11 +2022,11 @@ public class formGerenciar extends javax.swing.JFrame {
         String IdMoto = (String) cmbMOTORISTA4.getSelectedItem();
         String numeroComoString = IdMoto.replaceAll("\\D+", "");
         int motorista = Integer.parseInt(numeroComoString);
-        
+
         String IdBus = (String) cmbMOTORISTA4.getSelectedItem();
         String numeroComoString2 = IdBus.replaceAll("\\D+", "");
         int bus = Integer.parseInt(numeroComoString2);
-        
+
         verificarData();
         String saidaText = txtSAIDA4.getText();
         String chegadaText = txtCHEGADA4.getText();
@@ -1802,7 +2048,7 @@ public class formGerenciar extends javax.swing.JFrame {
         rotass.setIdMotorista(motorista);
         rotass.setIdOnibus(bus);
         rotass.setVlPreco(Double.parseDouble(this.txtVALOR4.getText()));
-        
+
         rotass.setIdRota(Integer.parseInt(this.lbID4.getText()));
 
         rota.alterar(rotass);
@@ -1847,16 +2093,15 @@ public class formGerenciar extends javax.swing.JFrame {
         int motorista = Integer.parseInt(numeroComoString);
 
         String IdBus = (String) cmbMOTORISTA4.getSelectedItem();
-        String numeroComoString2 =  IdBus.replaceAll("\\D+", "");
+        String numeroComoString2 = IdBus.replaceAll("\\D+", "");
         int bus = Integer.parseInt(numeroComoString2);
-        
+
         double valor = 0;
         String cleanedText = textFromTextField.replaceAll("[^0-9.]", "");
         if (!cleanedText.isEmpty() && !cleanedText.equals(".")) {
             valor = Double.parseDouble(cleanedText);
         } else {
         }
-        
 
         String saidaText = txtSAIDA4.getText();
         String chegadaText = txtCHEGADA4.getText();
@@ -2108,7 +2353,7 @@ public class formGerenciar extends javax.swing.JFrame {
         passageiroDao passageiroDao = new passageiroDao();
         passageiroDao.Incluir(novoPassageiro);
 
-        CaregarPassageiro();
+        CarregarPassageiro();
     }//GEN-LAST:event_btnCadastrar1MouseClicked
 
     private void btnAlterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterar1ActionPerformed
@@ -2129,7 +2374,7 @@ public class formGerenciar extends javax.swing.JFrame {
         passageiroDao passageiroDao = new passageiroDao();
         passageiroDao.Alterar(passageiroParaAtualizar);
 
-        CaregarPassageiro();
+        CarregarPassageiro();
     }//GEN-LAST:event_btnAlterar1MouseClicked
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
@@ -2137,7 +2382,7 @@ public class formGerenciar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
     private void btnBuscar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscar1MouseClicked
-        CaregarPassageiro();
+        CarregarPassageiro();
     }//GEN-LAST:event_btnBuscar1MouseClicked
 
     private void btnDeletar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletar1ActionPerformed
@@ -2148,7 +2393,7 @@ public class formGerenciar extends javax.swing.JFrame {
         passageiroDao passageiroDao = new passageiroDao();
         passageiroDao.Excluir(Integer.parseInt(this.lblID1.getText()));
 
-        CaregarPassageiro();
+        CarregarPassageiro();
 
         this.textCPF1.setText("");
         this.textNOME1.setText("");
@@ -2215,7 +2460,7 @@ public class formGerenciar extends javax.swing.JFrame {
         motoristaDao m = new motoristaDao();
         m.excluir(Integer.parseInt(this.lblID.getText()));
 
-        CaregarMotorista();
+        CarregarMotorista();
 
         this.textCPF.setText("");
         this.textNome.setText("");
@@ -2229,7 +2474,7 @@ public class formGerenciar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
-        CaregarMotorista();
+        CarregarMotorista();
     }//GEN-LAST:event_btnBuscarMouseClicked
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
@@ -2251,7 +2496,7 @@ public class formGerenciar extends javax.swing.JFrame {
 
         m.alterar(Cadmoto);
 
-        CaregarMotorista();
+        CarregarMotorista();
     }//GEN-LAST:event_btnAlterarMouseClicked
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
@@ -2272,7 +2517,7 @@ public class formGerenciar extends javax.swing.JFrame {
 
         m.incluir(Cadmoto);
 
-        CaregarMotorista();
+        CarregarMotorista();
     }//GEN-LAST:event_btnCadastrarMouseClicked
 
     private void textIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textIdadeActionPerformed
@@ -2308,42 +2553,213 @@ public class formGerenciar extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblMOTORISTASFocusGained
 
-    private void btnReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReservaMouseClicked
-        // TODO add your handling code here:
+    private void btnDELETARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDELETARMouseClicked
 
         reservaDao reservaDao = new reservaDao();
         reservaDao.excluirReserva(Integer.parseInt(this.lblreservaid.getText()));
+        
+        CarregarRotasComboBox();
+        CarregarPassageirosComboBox();
+        CarregarStatusReservaComboBox();
+        CarregarReservasInfo();
 
-    }//GEN-LAST:event_btnReservaMouseClicked
+    }//GEN-LAST:event_btnDELETARMouseClicked
 
-    private void btnReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservaActionPerformed
+    private void btnDELETARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDELETARActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnReservaActionPerformed
+    }//GEN-LAST:event_btnDELETARActionPerformed
 
-    private void btnBuscareservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscareservaMouseClicked
-        CarregarRotas();
-        CaregarMotorista();
-    }//GEN-LAST:event_btnBuscareservaMouseClicked
+    private void btnBUSCARRESERVASMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBUSCARRESERVASMouseClicked
+        CarregarRotasComboBox();
+        CarregarPassageirosComboBox();
+        CarregarStatusReservaComboBox();
+        CarregarReservasInfo();
+    }//GEN-LAST:event_btnBUSCARRESERVASMouseClicked
 
-    private void btnBuscareservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscareservaActionPerformed
+    private void btnBUSCARRESERVASActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBUSCARRESERVASActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscareservaActionPerformed
+    }//GEN-LAST:event_btnBUSCARRESERVASActionPerformed
 
     private void tblRESERVASFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tblRESERVASFocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_tblRESERVASFocusGained
 
     private void tblRESERVASMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRESERVASMouseClicked
-        // TODO add your handling code here:
+
         DefaultTableModel model = (DefaultTableModel) tblRESERVAS.getModel();
         int selectedRow = tblRESERVAS.getSelectedRow();
         lblreservaid.setText(tblRESERVAS.getValueAt(selectedRow, 0).toString());
+
+        if (selectedRow != -1) {
+
+            lblreservaid.setText(tblRESERVAS.getValueAt(selectedRow, 0).toString());
+
+            String PASSAGEIRO = model.getValueAt(selectedRow, 5).toString();
+            int indexPassageiro = -1;
+            for (int i = 0; i < cmbPASSAGEIRO5.getItemCount(); i++) {
+                if (PASSAGEIRO.equals(cmbPASSAGEIRO5.getItemAt(i))) {
+                    indexPassageiro = i;
+                    break;
+                }
+            }
+
+            if (indexPassageiro != -1) {
+                cmbPASSAGEIRO5.setSelectedIndex(indexPassageiro);
+            } else {
+                cmbPASSAGEIRO5.setSelectedIndex(0);
+            }
+
+            String ROTA = model.getValueAt(selectedRow, 1).toString();
+            char primeiroCaracterRota = ROTA.charAt(0);
+            int indexRota = -1;
+
+            for (int a = 0; a < cmbROTAS5.getItemCount(); a++) {
+                String item = cmbROTAS5.getItemAt(a);
+                if (item.length() > 0 && primeiroCaracterRota == item.charAt(0)) {
+                    indexRota = a;
+                    break;
+                }
+            }
+
+            if (indexRota != -1) {
+                cmbROTAS5.setSelectedIndex(indexRota);
+            } else {
+                cmbROTAS5.setSelectedIndex(0);
+            }
+
+            String STATUS = model.getValueAt(selectedRow, 3).toString();
+            int indexStatus = -1;
+
+            for (int b = 0; b < cmbSTATUS.getItemCount(); b++) {
+                if (STATUS.equals(String.valueOf(cmbSTATUS.getItemAt(b)))) {
+                    indexStatus = b;
+                    break;
+                }
+            }
+
+            if (indexStatus != -1) {
+                cmbSTATUS.setSelectedIndex(indexStatus);
+            } else {
+                cmbSTATUS.setSelectedIndex(0);
+            }
+
+            txtVALOR5.setText(tblRESERVAS.getValueAt(selectedRow, 7).toString());
+            txtQTD5.setText(tblRESERVAS.getValueAt(selectedRow, 6).toString());
+
+        } else {
+            cmbPASSAGEIRO5.setSelectedIndex(0);
+            cmbROTAS5.setSelectedIndex(0);
+            cmbSTATUS.setSelectedIndex(0);
+            txtVALOR5.setText("");
+            txtQTD5.setText("");
+        }
 
     }//GEN-LAST:event_tblRESERVASMouseClicked
 
     private void cmbONIBUS4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbONIBUS4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbONIBUS4ActionPerformed
+
+    private void cmbPASSAGEIRO5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPASSAGEIRO5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbPASSAGEIRO5ActionPerformed
+
+    private void cmbROTAS5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbROTAS5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbROTAS5ActionPerformed
+
+    private void cmbSTATUSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSTATUSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbSTATUSActionPerformed
+
+    private void txtQTD5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQTD5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQTD5ActionPerformed
+
+    private void txtVALOR5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVALOR5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVALOR5ActionPerformed
+
+    private void txtCHEGADA4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCHEGADA4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCHEGADA4ActionPerformed
+
+    private void btnCADASTRARESERVAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCADASTRARESERVAMouseClicked
+        Reserva reserva = new Reserva();
+        reservaDao reservaDao = new reservaDao();
+         
+        char rotas = cmbROTAS5.getSelectedItem().toString().charAt(0);
+        reserva.setIdRota(Character.getNumericValue(rotas));
+              
+        char passageiro = cmbPASSAGEIRO5.getSelectedItem().toString().charAt(0);
+        reserva.setIdPassageiro(Character.getNumericValue(passageiro));
+        
+        
+        reserva.setQuantidadeReserva(Integer.parseInt(txtQTD5.getText()));
+        reserva.setStatus((String) cmbSTATUS.getSelectedItem());
+        reserva.setValorTotal(Double.parseDouble(txtVALOR5.getText()));
+        
+        reserva.setIdReserva(0);
+        Date dataAtual = new Date();
+        reserva.setDataReserva(dataAtual);
+        
+        reservaDao.incluir(reserva);
+
+        CarregarReservasInfo();
+        cmbPASSAGEIRO5.setSelectedIndex(0);
+        cmbROTAS5.setSelectedIndex(0);
+        cmbSTATUS.setSelectedIndex(0);
+        txtVALOR5.setText("");
+        txtQTD5.setText("");
+        
+        CarregarRotasComboBox();
+        CarregarPassageirosComboBox();
+        CarregarStatusReservaComboBox();
+    }//GEN-LAST:event_btnCADASTRARESERVAMouseClicked
+
+    private void btnCADASTRARESERVAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCADASTRARESERVAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCADASTRARESERVAActionPerformed
+
+    private void btnNOVARESERVAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNOVARESERVAMouseClicked
+        cmbPASSAGEIRO5.setSelectedIndex(0);
+        cmbROTAS5.setSelectedIndex(0);
+        cmbSTATUS.setSelectedIndex(0);
+        txtVALOR5.setText("");
+        txtQTD5.setText("");
+    }//GEN-LAST:event_btnNOVARESERVAMouseClicked
+
+    private void btnNOVARESERVAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNOVARESERVAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNOVARESERVAActionPerformed
+
+    private void btnALTERARRESERVAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnALTERARRESERVAMouseClicked
+        Reserva reserva = new Reserva();
+        reservaDao reservaDao = new reservaDao();
+         
+        reserva.setIdReserva(Integer.parseInt(this.lblreservaid.getText()));
+        char rotas = cmbROTAS5.getSelectedItem().toString().charAt(0);
+        reserva.setIdRota(Character.getNumericValue(rotas));
+              
+        char passageiro = cmbPASSAGEIRO5.getSelectedItem().toString().charAt(0);
+        reserva.setIdPassageiro(Character.getNumericValue(passageiro));
+        
+        
+        reserva.setQuantidadeReserva(Integer.parseInt(txtQTD5.getText()));
+        reserva.setStatus((String) cmbSTATUS.getSelectedItem());
+        reserva.setValorTotal(Double.parseDouble(txtVALOR5.getText()));
+        
+        Date dataAtual = new Date();
+        reserva.setDataReserva(dataAtual);
+        
+        reservaDao.alterarReserva(reserva);
+
+        CarregarReservasInfo();
+    }//GEN-LAST:event_btnALTERARRESERVAMouseClicked
+
+    private void btnALTERARRESERVAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnALTERARRESERVAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnALTERARRESERVAActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2383,29 +2799,35 @@ public class formGerenciar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnALTERAR4;
+    private javax.swing.JButton btnALTERARRESERVA;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnAlterar1;
     private javax.swing.JButton btnAlterarbus;
     private javax.swing.JButton btnBUSCAR4;
+    private javax.swing.JButton btnBUSCARRESERVAS;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnBuscarbus;
-    private javax.swing.JButton btnBuscareserva;
     private javax.swing.JButton btnCADASTRAR4;
+    private javax.swing.JButton btnCADASTRARESERVA;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCadastrar1;
     private javax.swing.JButton btnCadastrar2;
     private javax.swing.JButton btnCadastrarbus;
+    private javax.swing.JButton btnDELETAR;
     private javax.swing.JButton btnDELETAR4;
     private javax.swing.JButton btnDeletar;
     private javax.swing.JButton btnDeletar1;
     private javax.swing.JButton btnDeletarbus;
+    private javax.swing.JButton btnNOVARESERVA;
     private javax.swing.JButton btnNOVO;
     private javax.swing.JButton btnNOVO1;
     private javax.swing.JButton btnNOVO4;
-    private javax.swing.JButton btnReserva;
     private javax.swing.JComboBox<String> cmbMOTORISTA4;
     private javax.swing.JComboBox<String> cmbONIBUS4;
+    private javax.swing.JComboBox<String> cmbPASSAGEIRO5;
+    private javax.swing.JComboBox<String> cmbROTAS5;
+    private javax.swing.JComboBox<String> cmbSTATUS;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2437,8 +2859,13 @@ public class formGerenciar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2499,7 +2926,9 @@ public class formGerenciar extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtCHEGADA4;
     private javax.swing.JTextField txtDESTINO4;
     private javax.swing.JTextField txtORIGEM4;
+    private javax.swing.JFormattedTextField txtQTD5;
     private javax.swing.JFormattedTextField txtSAIDA4;
     private javax.swing.JFormattedTextField txtVALOR4;
+    private javax.swing.JFormattedTextField txtVALOR5;
     // End of variables declaration//GEN-END:variables
 }

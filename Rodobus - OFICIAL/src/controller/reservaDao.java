@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import model.Reserva;
 import java.util.Date;
 import java.util.ArrayList;
-import model.ReservaInfo;
+
 
 public class reservaDao extends conectarDao {
 
@@ -23,6 +23,8 @@ public class reservaDao extends conectarDao {
         try {
             ps = mycon.prepareStatement(sql);
 
+            //JOptionPane.showMessageDialog(null,obj.getIdRota());
+            
             ps.setInt(1, obj.getIdRota());
             ps.setInt(2, obj.getIdPassageiro());
             ps.setDate(3, new java.sql.Date(obj.getDataReserva().getTime()));
@@ -147,42 +149,6 @@ public class reservaDao extends conectarDao {
 
         return reservas;
     }
-
-    public ArrayList<ReservaInfo> obterReservasComDetalhes() {
-
-        ArrayList<ReservaInfo> reservas = new ArrayList<>();
-
-        String sql = "SELECT r.id_reserva, r.dt_reserva, r.ds_status, "
-                + "m.ds_nome AS nome_motorista, p.ds_nome AS nome_passageiro, ro.ds_origem, ro.ds_destino, ro.dt_saida, "
-                + "ro.dt_chegada, o.ds_modelo AS modelo_onibus "
-                + "FROM tb_reservas r "
-                + "LEFT JOIN tb_passageiro p ON r.id_passageiro = p.id_passageiro "
-                + "LEFT JOIN tb_rota ro ON r.id_rota = ro.id_rota "
-                + "LEFT JOIN tb_onibus o ON ro.id_onibus = o.id_onibus "
-                + "LEFT JOIN tb_motorista m ON ro.id_motorista = m.id_motorista ";
-
-        try (PreparedStatement ps = mycon.prepareStatement(sql)) {
-            try (ResultSet resultSet = ps.executeQuery()) {
-                while (resultSet.next()) {
-                    ReservaInfo reserva = new ReservaInfo();
-                    reserva.setIdReserva(resultSet.getInt("id_reserva"));
-                    reserva.setDataReserva(resultSet.getDate("dt_reserva"));
-                    reserva.setStatus(resultSet.getString("ds_status"));
-                    reserva.setNomeMotorista(resultSet.getString("nome_motorista"));
-                    reserva.setNomePassageiro(resultSet.getString("nome_passageiro"));
-                    reserva.setOrigem(resultSet.getString("ds_origem"));
-                    reserva.setDestino(resultSet.getString("ds_destino"));
-                    reserva.setDtSaida(resultSet.getDate("dt_saida"));
-                    reserva.setDtChegada(resultSet.getDate("dt_chegada"));
-                    reserva.setModeloOnibus(resultSet.getString("modelo_onibus"));
-
-                    reservas.add(reserva);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return reservas;
-    }
 }
+
+ 

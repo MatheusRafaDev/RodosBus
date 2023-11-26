@@ -24,11 +24,7 @@ public class rotaDao extends conectarDao {
     public ArrayList<Rota> selecionarRotas() {
         ArrayList<Rota> rotas = new ArrayList<>();
 
-        String sql = "SELECT ID_ROTA, DS_ORIGEM, DS_DESTINO, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA, "
-                + "MOT.ID_MOTORISTA, MOT.DS_NOME, ONI.ID_ONIBUS, ONI.DS_MODELO "
-                + "FROM TB_ROTA ROT "
-                + "LEFT JOIN TB_MOTORISTA MOT ON ROT.ID_MOTORISTA = MOT.ID_MOTORISTA "
-                + "LEFT JOIN TB_ONIBUS ONI ON ROT.ID_ONIBUS = ONI.ID_ONIBUS";
+        String sql = "SELECT ID_ROTA, DS_ORIGEM, DS_DESTINO, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA,ID_MOTORISTA,ID_ONIBUS FROM TB_ROTA ROT ";
 
         try {
             ps = mycon.prepareStatement(sql);
@@ -50,10 +46,8 @@ public class rotaDao extends conectarDao {
                 Double preco = resultSet.getDouble("VL_PRECO");
 
                 int idMotorista = resultSet.getInt("ID_MOTORISTA");
-                String nomeMotorista = resultSet.getString("DS_NOME");
 
                 int idOnibus = resultSet.getInt("ID_ONIBUS");
-                String modeloOnibus = resultSet.getString("DS_MODELO");
                 
                 Rota rota = new Rota();
 
@@ -65,10 +59,8 @@ public class rotaDao extends conectarDao {
 
                 rota.setVlPreco(preco);
                 rota.setIdMotorista(idMotorista);
-                rota.setNomeMotorista(nomeMotorista);
 
                 rota.setIdOnibus(idOnibus);
-                rota.setModeloOnibus(modeloOnibus);
                 
                 rotas.add(rota);
             }
@@ -108,8 +100,7 @@ public class rotaDao extends conectarDao {
     }
 
     public Rota selecionarUmaRota(int id) {
-        String sql = "SELECT ID_ROTA, DS_ORIGEM, DS_DESTINO, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA, "
-                + "MOT.ID_MOTORISTA, MOT.DS_NOME FROM TB_ROTA ROT LEFT JOIN TB_MOTORISTA MOT ON ROT.ID_MOTORISTA = MOT.ID_MOTORISTA WHERE ID_ROTA =" + id;
+        String sql = "SELECT ID_ROTA,ID_MOTORISTA,ID_ONIBUS, DS_ORIGEM, DS_DESTINO, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA FROM TB_ROTA WHERE ID_ROTA =" + id ;
 
         Rota rota = new Rota();
 
@@ -127,8 +118,8 @@ public class rotaDao extends conectarDao {
                 Date dtsaida = resultSet.getDate("DT_SAIDA");
 
                 int Idmotorista = resultSet.getInt("ID_MOTORISTA");
-                String NomeMotorista = resultSet.getString("DS_NOME");
-
+                int IdOnibus = resultSet.getInt("ID_ONIBUS");
+                
                 rota.setIdRota(IdRota);
                 rota.setDestino(destino);
                 rota.setOrigem(origem);
@@ -137,8 +128,9 @@ public class rotaDao extends conectarDao {
 
                 rota.setVlPreco(vlpreco);
                 rota.setIdMotorista(Idmotorista);
-                rota.setNomeMotorista(NomeMotorista);
+                rota.setIdOnibus(IdOnibus);
                 rota.setDsDuracao(duracao);
+                
             } else {
                 System.out.println("Rota not found for ID: " + id);
             }
@@ -239,7 +231,6 @@ public class rotaDao extends conectarDao {
 
                 rota.setVlPreco(preco);
                 rota.setIdMotorista(idMotorista);
-                rota.setNomeMotorista(NomeMotorista);
                 rotas.add(rota);
             }
 

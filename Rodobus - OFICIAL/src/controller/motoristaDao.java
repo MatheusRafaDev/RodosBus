@@ -30,9 +30,9 @@ public class motoristaDao extends conectarDao {
 
             ps.execute();
             ps.close();
-            JOptionPane.showMessageDialog(null,"Registro Cadastrado com Sucesso !");
+            JOptionPane.showMessageDialog(null, "Registro Cadastrado com Sucesso !");
         } catch (SQLException err) {
-            
+
         }
     }
 
@@ -59,7 +59,7 @@ public class motoristaDao extends conectarDao {
                 motorista.setIdade(idade);
                 motorista.setNome(nome);
                 motorista.setTelefone(cpf);
-                
+
                 motoristas.add(motorista);
             }
 
@@ -72,42 +72,71 @@ public class motoristaDao extends conectarDao {
         return motoristas;
     }
 
+    public Motorista selecionarUmMotorista(int idMotorista) {
+        String sql = "SELECT ID_MOTORISTA, DS_NOME, NR_IDADE, DS_CPF, DS_TELEFONE FROM TB_MOTORISTA WHERE ID_MOTORISTA = ?";
+        Motorista motorista = new Motorista();
+
+        try {
+            PreparedStatement ps = mycon.prepareStatement(sql);
+            ps.setInt(1, idMotorista);
+
+            ResultSet resultSet = ps.executeQuery();
+
+            if (resultSet.next()) {
+                motorista.setIdMotorista(resultSet.getInt("ID_MOTORISTA"));
+                motorista.setNome(resultSet.getString("DS_NOME"));
+                motorista.setIdade(resultSet.getInt("NR_IDADE"));
+                motorista.setCpf(resultSet.getString("DS_CPF"));
+                motorista.setTelefone(resultSet.getString("DS_TELEFONE"));
+            } else {
+                motorista.setIdMotorista(0);
+            }
+
+            ps.close();
+            resultSet.close();
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, "Erro ao selecionar Motorista! " + err.getMessage());
+        }
+
+        return motorista;
+    }
+
     public void excluir(int id) {
 
         sql = "DELETE FROM TB_MOTORISTA WHERE ID_MOTORISTA = '" + id + "'";
-        try { 
+        try {
             ps = mycon.prepareStatement(sql);
             ps.execute();
-            ps.close(); 
-            JOptionPane.showMessageDialog(null,"Registro Excluido com Sucesso !");
+            ps.close();
+            JOptionPane.showMessageDialog(null, "Registro Excluido com Sucesso !");
         } catch (SQLException err) {
-            JOptionPane.showMessageDialog(null, "Erro ao Excluir usuário!"+ err.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao Excluir usuário!" + err.getMessage());
         }
     }
-    
+
     public void alterar(Motorista obj) {
-    String sql = "UPDATE TB_MOTORISTA SET DS_NOME = ?, NR_IDADE = ?, DS_CPF = ?, DS_TELEFONE = ? WHERE ID_MOTORISTA = ?";
-    try {
-        PreparedStatement ps = mycon.prepareStatement(sql);
+        String sql = "UPDATE TB_MOTORISTA SET DS_NOME = ?, NR_IDADE = ?, DS_CPF = ?, DS_TELEFONE = ? WHERE ID_MOTORISTA = ?";
+        try {
+            PreparedStatement ps = mycon.prepareStatement(sql);
 
-        ps.setString(1, obj.getNome());
-        ps.setInt(2, obj.getIdade());
-        ps.setString(3, obj.getCpf());
-        ps.setString(4, obj.getTelefone());
-        ps.setInt(5, obj.getIdMotorista()); // Você deve fornecer o ID do motorista a ser atualizado
+            ps.setString(1, obj.getNome());
+            ps.setInt(2, obj.getIdade());
+            ps.setString(3, obj.getCpf());
+            ps.setString(4, obj.getTelefone());
+            ps.setInt(5, obj.getIdMotorista()); // Você deve fornecer o ID do motorista a ser atualizado
 
-        int rowsUpdated = ps.executeUpdate();
-        if (rowsUpdated > 0) {
-            JOptionPane.showMessageDialog(null, "Registro Alterado com Sucesso !");
-        } else {
-            
+            int rowsUpdated = ps.executeUpdate();
+            if (rowsUpdated > 0) {
+                JOptionPane.showMessageDialog(null, "Registro Alterado com Sucesso !");
+            } else {
+
+            }
+
+            ps.close();
+        } catch (SQLException err) {
+
+            err.printStackTrace();
         }
-        
-        ps.close();
-    } catch (SQLException err) {
-        
-        err.printStackTrace();
-    }
     }
 
 }

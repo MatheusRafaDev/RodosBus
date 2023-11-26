@@ -38,7 +38,7 @@ public class formPix extends javax.swing.JFrame {
         this.pixCPF.setText(pass.getCpf());
         this.pixEmail.setText(pass.getEmail());
         this.pixIDADE.setText(String.valueOf(pass.getIdade()));
-        
+         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
     }
 
@@ -141,6 +141,7 @@ public class formPix extends javax.swing.JFrame {
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(new javax.swing.border.LineBorder(java.awt.Color.orange, 5, true));
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(153, 153, 153));
@@ -174,7 +175,7 @@ public class formPix extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/SIMULAÇÃO PIX.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons 2/SIMULAÇÃO PIX.png"))); // NOI18N
         jLabel2.setText("jLabel2");
 
         jTextField7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -199,7 +200,7 @@ public class formPix extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/LOGO RODOBUS.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons 2/LOGO RODOBUS.png"))); // NOI18N
         jLabel1.setText("jLabel1");
 
         jTextField9.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
@@ -360,7 +361,7 @@ public class formPix extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(40, 0, 890, 860);
+        jPanel1.setBounds(30, 0, 890, 860);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
