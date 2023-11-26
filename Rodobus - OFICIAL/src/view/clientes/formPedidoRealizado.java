@@ -15,31 +15,6 @@ import model.Passageiro;
 import model.Reserva;
 
 public class formPedidoRealizado extends javax.swing.JFrame {
-    
-    public void carregarReserva() {
-        reservaDao reserva = new reservaDao();
-        reserva.criarBanco();
-        ArrayList<Reserva> rotas = reserva.selecionarRotas();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
-        DefaultTableModel model = (DefaultTableModel) tblROTAS.getModel();
-        model.setRowCount(0);
-
-        for (Rota rota2 : rotas) {
-            model.addRow(new Object[]{rota2.getIdRota(), rota2.getOrigem(), rota2.getDestino(), sdf.format(rota2.getDtSaida()), sdf.format(rota2.getDtChegada()), rota2.getVlPreco()});
-        }
-    }
-
-    public void carregarRota2(Date DATASAIDA,Date DATAVOLTA,String ORIGEM,String DESTINO) {
-        rotaDao rota = new rotaDao();
-        ArrayList<Rota> rotas = rota.selecionarRotasFiltro(DATASAIDA,DATAVOLTA,ORIGEM,DESTINO);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
-        DefaultTableModel model = (DefaultTableModel) tblROTAS.getModel();
-        model.setRowCount(0);
-
-        for (Rota rota2 : rotas) {
-            model.addRow(new Object[]{rota2.getIdRota(), rota2.getOrigem(), rota2.getDestino(), sdf.format(rota2.getDtSaida()), sdf.format(rota2.getDtChegada()), rota2.getVlPreco()});
-        }
-    }
     Passageiro pass = new Passageiro();
 
     public formPedidoRealizado(Passageiro obj) {
@@ -61,6 +36,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         tblPedido = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         Buscar = new javax.swing.JTextField();
+        btnBuscarReserva = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
         mnRODOBUS = new javax.swing.JMenu();
@@ -92,6 +68,11 @@ public class formPedidoRealizado extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tblPedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPedidoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblPedido);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
@@ -100,6 +81,8 @@ public class formPedidoRealizado extends javax.swing.JFrame {
 
         Buscar.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         Buscar.setText("Digite para pesquisar sua reserva");
+
+        btnBuscarReserva.setText("Buscar");
 
         jMenuBar1.setBackground(new java.awt.Color(255, 102, 0));
         jMenuBar1.setForeground(new java.awt.Color(255, 102, 0));
@@ -155,9 +138,14 @@ public class formPedidoRealizado extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(40, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBuscarReserva)
+                        .addGap(66, 66, 66))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -168,8 +156,10 @@ public class formPedidoRealizado extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarReserva))
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(52, Short.MAX_VALUE))
         );
@@ -200,6 +190,10 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         formInfoPassageiro info = new formInfoPassageiro(pass);
         info.setVisible(true); 
     }//GEN-LAST:event_mnPERFILMouseClicked
+
+    private void tblPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPedidoMouseClicked
+       Reserva rese = new Reserva();
+    }//GEN-LAST:event_tblPedidoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -239,6 +233,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Buscar;
+    private javax.swing.JButton btnBuscarReserva;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;

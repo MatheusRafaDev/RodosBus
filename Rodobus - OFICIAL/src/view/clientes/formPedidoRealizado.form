@@ -90,10 +90,17 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" min="-2" pref="690" max="-2" attributes="0"/>
-                  <Component id="Buscar" alignment="0" min="-2" pref="229" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="690" max="-2" attributes="0"/>
+                      <EmptySpace pref="40" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="Buscar" min="-2" pref="229" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnBuscarReserva" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="40" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
@@ -107,8 +114,11 @@
           <Group type="102" alignment="1" attributes="0">
               <Component id="jLabel1" min="-2" pref="46" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-              <Component id="Buscar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="Buscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnBuscarReserva" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="307" max="-2" attributes="0"/>
               <EmptySpace pref="52" max="32767" attributes="0"/>
           </Group>
@@ -173,6 +183,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblPedidoMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -193,6 +206,11 @@
           <Font name="Segoe UI" size="12" style="2"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Digite para pesquisar sua reserva"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnBuscarReserva">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
     </Component>
   </SubComponents>
