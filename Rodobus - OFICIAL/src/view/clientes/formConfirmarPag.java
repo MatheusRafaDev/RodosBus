@@ -36,11 +36,6 @@ public class formConfirmarPag extends javax.swing.JFrame {
         onibus = o.selecionarUmOnibus(rota.getIdOnibus());
         moto = m.selecionarUmMotorista(rota.getIdMotorista());
         
-        add(this.optCARTAO);
-        add(this.optPIX);
-        
-        grupo.add(this.optPIX);
-        grupo.add(this.optCARTAO);
           
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         this.lblNOME.setText(pass.getNome());
@@ -51,7 +46,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         this.lblDESEMBARQUE.setText(rota.getDestino());
         this.lblSAIDA.setText(formato.format(rota.getDtSaida()));
         this.lblCHEGADA.setText(formato.format(rota.getDtChegada()));
-        this.lbVALOR.setText(String.valueOf((char) rota.getVlPreco()));
+        this.lbVALOR.setText(String.valueOf( rota.getVlPreco()));
         this.lblDURACAO.setText(rota.getDsDuracao());
         this.lblMOTORISTA.setText(moto.getNome());
 
@@ -95,9 +90,8 @@ public class formConfirmarPag extends javax.swing.JFrame {
         lblNOME6 = new javax.swing.JLabel();
         lblNOME7 = new javax.swing.JLabel();
         lblNOME8 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
         optPIX = new javax.swing.JRadioButton();
-        optCARTAO = new javax.swing.JRadioButton();
+        optCARTAO1 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -377,85 +371,62 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
-        optCARTAO.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        optCARTAO.setForeground(new java.awt.Color(255, 255, 255));
-        optCARTAO.setText("Pagar com Cartão de Crédito");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(optPIX)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(optCARTAO)
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(optPIX)
-                    .addComponent(optCARTAO))
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
+        optCARTAO1.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        optCARTAO1.setForeground(new java.awt.Color(255, 255, 255));
+        optCARTAO1.setText("Pagar com Cartão de Crédito");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(117, 117, 117)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNOME1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblNOME4)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addGap(121, 121, 121)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNOME1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNOME5, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(optPIX)
+                        .addGap(18, 18, 18)
+                        .addComponent(optCARTAO1))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addComponent(lblNOME7)
                             .addGap(54, 54, 54))
                         .addComponent(lblNOME6, javax.swing.GroupLayout.Alignment.TRAILING))
                     .addComponent(lblNOME2)
-                    .addComponent(lblNOME5, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(lblNOME8))
-                    .addComponent(btnConfirmaPagar)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(84, Short.MAX_VALUE))
+                    .addComponent(btnConfirmaPagar))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(lblNOME1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblNOME5)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblNOME1)
                         .addGap(8, 8, 8)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(lblNOME4)
+                        .addGap(6, 6, 6)
+                        .addComponent(lblNOME5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(optPIX)
+                            .addComponent(optCARTAO1))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblNOME4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
                         .addComponent(lblNOME2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblNOME6)
@@ -465,7 +436,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                         .addComponent(lblNOME8)
                         .addGap(18, 18, 18)
                         .addComponent(btnConfirmaPagar)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGap(50, 50, 50))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -476,7 +447,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -486,8 +457,12 @@ public class formConfirmarPag extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_optPIXActionPerformed
 
+    private void btnConfirmaPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmaPagarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConfirmaPagarActionPerformed
+
     private void btnConfirmaPagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmaPagarMouseClicked
-        
+
         if(this.optPIX.isSelected()){
             this.setVisible(false);
             formPix pix = new formPix(pass.getIdPassageiro(),rota.getIdMotorista() );
@@ -497,12 +472,8 @@ public class formConfirmarPag extends javax.swing.JFrame {
             formPagCartao cartao = new formPagCartao(pass.getIdPassageiro(),rota.getIdMotorista());
             cartao.setVisible(true);
         }
-        
-    }//GEN-LAST:event_btnConfirmaPagarMouseClicked
 
-    private void btnConfirmaPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmaPagarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConfirmaPagarActionPerformed
+    }//GEN-LAST:event_btnConfirmaPagarMouseClicked
 
     public static void main(String args[]) {
 
@@ -521,7 +492,6 @@ public class formConfirmarPag extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lbVALOR;
     private javax.swing.JLabel lbVALOR1;
     private javax.swing.JLabel lblCHEGADA;
@@ -551,7 +521,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
     private javax.swing.JLabel lblSAIDA1;
     private javax.swing.JLabel lblTELEFONE;
     private javax.swing.JLabel lblTELEFONE1;
-    private javax.swing.JRadioButton optCARTAO;
+    private javax.swing.JRadioButton optCARTAO1;
     private javax.swing.JRadioButton optPIX;
     // End of variables declaration//GEN-END:variables
 }
