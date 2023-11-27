@@ -49,6 +49,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Meus pedidos");
 
         tblPedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -102,6 +102,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Perfil");
         setBackground(new java.awt.Color(242, 147, 4));
 
         jPanel2.setBackground(new java.awt.Color(242, 147, 4));

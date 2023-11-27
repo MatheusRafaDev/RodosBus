@@ -78,6 +78,7 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         mnQTD = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Bilhete");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(988, 494));

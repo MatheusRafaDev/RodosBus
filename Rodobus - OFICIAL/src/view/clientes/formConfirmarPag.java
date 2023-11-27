@@ -108,6 +108,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Comfirmar pagamento");
 
         jPanel1.setBackground(new java.awt.Color(242, 147, 4));
 
@@ -493,7 +494,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, Short.MAX_VALUE)
         );
 
         pack();

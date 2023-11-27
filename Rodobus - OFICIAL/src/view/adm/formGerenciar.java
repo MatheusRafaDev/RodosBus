@@ -607,6 +607,7 @@ public class formGerenciar extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gerenciamento");
 
         pgROTAS.setPreferredSize(new java.awt.Dimension(1100, 462));
 
