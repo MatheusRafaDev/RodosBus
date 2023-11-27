@@ -522,7 +522,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConfirmaPagarMouseClicked
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        pass.setLast(2);
+
         carregarInfo2(pass.getIdPassageiro(), rota.getIdRota());      // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2MouseClicked
 

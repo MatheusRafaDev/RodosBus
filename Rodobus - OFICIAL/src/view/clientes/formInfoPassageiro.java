@@ -23,7 +23,8 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);  
         passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
-
+        
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         rota = r.selecionarUmaRota(rotaId2);
         pass = p.selecionarUmPassageiro(passageiroId2);
@@ -67,9 +68,9 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         mnNOME = new javax.swing.JMenu();
         mnID = new javax.swing.JMenu();
         mnPERFIL = new javax.swing.JMenu();
+        mnPedido = new javax.swing.JMenu();
         mnSAIR = new javax.swing.JMenu();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        mnPedido = new javax.swing.JMenu();
 
         jTextField1.setBackground(new java.awt.Color(50, 54, 66));
         jTextField1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -159,7 +160,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
 
         btnSENHA.setBackground(new java.awt.Color(50, 54, 66));
         btnSENHA.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        btnSENHA.setForeground(new java.awt.Color(134, 134, 134));
+        btnSENHA.setForeground(new java.awt.Color(255, 255, 255));
         btnSENHA.setText("Alterar");
         btnSENHA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -175,7 +176,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
 
         btnTEL.setBackground(new java.awt.Color(50, 54, 66));
         btnTEL.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        btnTEL.setForeground(new java.awt.Color(134, 134, 134));
+        btnTEL.setForeground(new java.awt.Color(255, 255, 255));
         btnTEL.setText("Alterar");
         btnTEL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -185,7 +186,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
 
         btnCPF.setBackground(new java.awt.Color(50, 54, 66));
         btnCPF.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        btnCPF.setForeground(new java.awt.Color(134, 134, 134));
+        btnCPF.setForeground(new java.awt.Color(255, 255, 255));
         btnCPF.setText("Alterar");
         btnCPF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -195,7 +196,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
 
         btnNOME.setBackground(new java.awt.Color(50, 54, 66));
         btnNOME.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        btnNOME.setForeground(new java.awt.Color(134, 134, 134));
+        btnNOME.setForeground(new java.awt.Color(255, 255, 255));
         btnNOME.setText("Alterar");
         btnNOME.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -205,7 +206,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
 
         btnMAIL.setBackground(new java.awt.Color(50, 54, 66));
         btnMAIL.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        btnMAIL.setForeground(new java.awt.Color(134, 134, 134));
+        btnMAIL.setForeground(new java.awt.Color(255, 255, 255));
         btnMAIL.setText("Alterar");
         btnMAIL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -309,16 +310,16 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jMenuBar1.add(jMenu7);
@@ -346,6 +347,14 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         });
         jMenuBar1.add(mnPERFIL);
 
+        mnPedido.setText("Pedido");
+        mnPedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnPedidoMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(mnPedido);
+
         mnSAIR.setText("Sair");
         mnSAIR.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -356,23 +365,13 @@ public class formInfoPassageiro extends javax.swing.JFrame {
 
         jMenuBar1.add(mnSAIR);
 
-        mnPedido.setText("Pedido");
-        mnPedido.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mnPedidoMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(mnPedido);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -25,7 +25,6 @@ public class formConsultaPassagem extends javax.swing.JFrame {
 
     public void carregarInfo(int IdPassageiro, int IdRota) {
         this.setVisible(false);
-          pass.setLast(1);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     
         formConfirmarPag pag = new formConfirmarPag(IdPassageiro, IdRota);
