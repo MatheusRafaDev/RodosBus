@@ -66,9 +66,10 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         mnNOME = new javax.swing.JMenu();
         mnID = new javax.swing.JMenu();
         mnPERFIL = new javax.swing.JMenu();
-        mnPedido = new javax.swing.JMenu();
         mnSAIR = new javax.swing.JMenu();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        mnPedido = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
 
         jTextField1.setBackground(new java.awt.Color(50, 54, 66));
         jTextField1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -345,14 +346,6 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         });
         jMenuBar1.add(mnPERFIL);
 
-        mnPedido.setText("Pedido");
-        mnPedido.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mnPedidoMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(mnPedido);
-
         mnSAIR.setText("Sair");
         mnSAIR.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -362,6 +355,22 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         mnSAIR.add(jSeparator1);
 
         jMenuBar1.add(mnSAIR);
+
+        mnPedido.setText("Pedido");
+        mnPedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnPedidoMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(mnPedido);
+
+        jMenu1.setText("Voltar");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -447,6 +456,26 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         passageiro.Alterar(pass);
     }//GEN-LAST:event_btnMAILMouseClicked
 
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+      if (pass.getLast()==0){
+          this.setVisible(false);
+        formConsultaPassagem pedido = new formConsultaPassagem(pass);
+        pedido.setVisible(true);
+      }else if (pass.getLast()==1){
+          this.setVisible(false);
+        formConfirmarPag pag = new formConfirmarPag(pass.getIdPassageiro(), rota.getIdRota());
+        pag.setVisible(true);
+      }else if (pass.getLast()==2){
+          this.setVisible(false);
+           formPagCartao pag = new formPagCartao(pass.getIdPassageiro(), rota.getIdRota());
+           pag.setVisible(true);
+      }else if (pass.getLast()==3){
+          this.setVisible(false);
+           formPix pag = new formPix(pass.getIdPassageiro(), rota.getIdRota());
+           pag.setVisible(true);
+      }
+    }//GEN-LAST:event_jMenu1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -506,6 +535,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;

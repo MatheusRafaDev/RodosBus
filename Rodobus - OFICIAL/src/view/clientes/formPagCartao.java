@@ -19,6 +19,15 @@ public class formPagCartao extends javax.swing.JFrame {
     Rota rota = new Rota();
     Passageiro pass = new Passageiro();
     
+    public void carregarInfo2(int IdPassageiro, int IdRota) {
+        this.setVisible(false);
+        
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+         
+        formInfoPassageiro pag = new formInfoPassageiro(IdPassageiro, IdRota);
+
+        pag.setVisible(true);
+    }
     public void carregarBil(int IdPassageiro, int IdRota) {
         this.setVisible(false);
         
@@ -28,13 +37,21 @@ public class formPagCartao extends javax.swing.JFrame {
     }
     
     public formPagCartao( int passageiroId2, int rotaId2) {
+        
         initComponents();
+        pass.setLast(2);
         passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
 
         rota = r.selecionarUmaRota(rotaId2);
         pass = p.selecionarUmPassageiro(passageiroId2);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        
+    }
+    public formPagCartao(Passageiro obj){
+         this.mnNOME.setText(obj.getNome());
+        this.mnID.setText("Id: " + obj.getIdPassageiro());
     }
 
     /**
@@ -58,6 +75,12 @@ public class formPagCartao extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        mnNOME = new javax.swing.JMenu();
+        mnID = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 204, 255));
@@ -198,10 +221,42 @@ public class formPagCartao extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(117, Short.MAX_VALUE)
+                .addContainerGap(105, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
+
+        mnNOME.setText("Nome");
+        jMenuBar1.add(mnNOME);
+
+        mnID.setText("ID:");
+        jMenuBar1.add(mnID);
+
+        jMenu2.setText("Perfil");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu2);
+
+        jMenu5.setText("Sair");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu5);
+
+        jMenu4.setText("Pedido");
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu4);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -238,6 +293,22 @@ public class formPagCartao extends javax.swing.JFrame {
            carregarBil(pass.getIdPassageiro(), rota.getIdRota());
  
     }//GEN-LAST:event_btnFinalizarMouseClicked
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+carregarInfo2(pass.getIdPassageiro(), rota.getIdRota());        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+         formLogin login = new formLogin();
+        this.setVisible(false);
+        login.setVisible(true);
+    }//GEN-LAST:event_jMenu5MouseClicked
+
+    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+          this.setVisible(false);
+        formPedidoRealizado pedido = new formPedidoRealizado(pass);
+        pedido.setVisible(true);
+    }//GEN-LAST:event_jMenu4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -288,11 +359,17 @@ public class formPagCartao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JMenu mnID;
+    private javax.swing.JMenu mnNOME;
     // End of variables declaration//GEN-END:variables
 }

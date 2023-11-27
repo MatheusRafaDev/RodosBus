@@ -20,10 +20,18 @@ public class formConfirmarPag extends javax.swing.JFrame {
     Passageiro pass = new Passageiro();
     Onibus onibus = new Onibus();   
     Motorista moto = new Motorista();
-    
+     public void carregarInfo2(int IdPassageiro, int IdRota) {
+        this.setVisible(false);
+        
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+         
+        formInfoPassageiro pag = new formInfoPassageiro(IdPassageiro, IdRota);
+
+        pag.setVisible(true);
+    }
     public formConfirmarPag(int passageiroId2, int rotaId2) {
         initComponents();
-
+        pass.setLast(1);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         passageiroDao p = new passageiroDao();
@@ -92,6 +100,12 @@ public class formConfirmarPag extends javax.swing.JFrame {
         lblNOME8 = new javax.swing.JLabel();
         optPIX = new javax.swing.JRadioButton();
         optCARTAO1 = new javax.swing.JRadioButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        mnNOME = new javax.swing.JMenu();
+        mnID = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -439,6 +453,38 @@ public class formConfirmarPag extends javax.swing.JFrame {
                 .addGap(50, 50, 50))
         );
 
+        mnNOME.setText("Nome");
+        jMenuBar1.add(mnNOME);
+
+        mnID.setText("ID:");
+        jMenuBar1.add(mnID);
+
+        jMenu2.setText("Perfil");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu2);
+
+        jMenu5.setText("Sair");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu5);
+
+        jMenu4.setText("Pedido");
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu4);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -475,6 +521,22 @@ public class formConfirmarPag extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnConfirmaPagarMouseClicked
 
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        carregarInfo2(pass.getIdPassageiro(), rota.getIdRota());        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+        formLogin login = new formLogin();
+        this.setVisible(false);
+        login.setVisible(true);
+    }//GEN-LAST:event_jMenu5MouseClicked
+
+    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+        this.setVisible(false);
+        formPedidoRealizado pedido = new formPedidoRealizado(pass);
+        pedido.setVisible(true);
+    }//GEN-LAST:event_jMenu4MouseClicked
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -489,6 +551,10 @@ public class formConfirmarPag extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmaPagar;
     private javax.swing.ButtonGroup grupo;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -521,6 +587,8 @@ public class formConfirmarPag extends javax.swing.JFrame {
     private javax.swing.JLabel lblSAIDA1;
     private javax.swing.JLabel lblTELEFONE;
     private javax.swing.JLabel lblTELEFONE1;
+    private javax.swing.JMenu mnID;
+    private javax.swing.JMenu mnNOME;
     private javax.swing.JRadioButton optCARTAO1;
     private javax.swing.JRadioButton optPIX;
     // End of variables declaration//GEN-END:variables

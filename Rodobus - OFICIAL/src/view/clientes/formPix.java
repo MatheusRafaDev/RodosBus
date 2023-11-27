@@ -19,6 +19,15 @@ public class formPix extends javax.swing.JFrame {
    
      Rota rota = new Rota();
     Passageiro pass = new Passageiro();
+     public void carregarInfo2(int IdPassageiro, int IdRota) {
+        this.setVisible(false);
+        
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+         
+        formInfoPassageiro pag = new formInfoPassageiro(IdPassageiro, IdRota);
+
+        pag.setVisible(true);
+    }
     public void carregarBil(int IdPassageiro, int IdRota) {
         this.setVisible(false);
         
@@ -33,12 +42,15 @@ public class formPix extends javax.swing.JFrame {
         rota = r.selecionarUmaRota(rotaId2);
         pass = p.selecionarUmPassageiro(passageiroId2);
         initComponents();
+        pass.setLast(3);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.pixNOME.setText(pass.getNome());
         this.pixCPF.setText(pass.getCpf());
         this.pixEmail.setText(pass.getEmail());
         this.pixIDADE.setText(String.valueOf(pass.getIdade()));
          this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+         this.mnNOME.setText(pass.getNome());
+        this.mnID.setText("Id: " + pass.getIdPassageiro());
         
     }
 
@@ -73,6 +85,11 @@ public class formPix extends javax.swing.JFrame {
         pixCPF = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         pixIDADE = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        mnNOME = new javax.swing.JMenu();
+        mnID = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -363,6 +380,30 @@ public class formPix extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(30, 0, 890, 860);
 
+        mnNOME.setText("Nome");
+        jMenuBar1.add(mnNOME);
+
+        mnID.setText("ID");
+        jMenuBar1.add(mnID);
+
+        jMenu3.setText("Perfil");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Sair");
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu4);
+
+        setJMenuBar(jMenuBar1);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -411,6 +452,16 @@ public class formPix extends javax.swing.JFrame {
         carregarBil(pass.getIdPassageiro(), rota.getIdRota());
     }//GEN-LAST:event_btnPAGOMouseClicked
 
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+ carregarInfo2(pass.getIdPassageiro(), rota.getIdRota());        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+  formLogin login = new formLogin();
+        this.setVisible(false);
+        login.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu4MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -458,6 +509,9 @@ public class formPix extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -471,6 +525,8 @@ public class formPix extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JMenu mnID;
+    private javax.swing.JMenu mnNOME;
     private javax.swing.JLabel pixCPF;
     private javax.swing.JLabel pixEmail;
     private javax.swing.JLabel pixIDADE;

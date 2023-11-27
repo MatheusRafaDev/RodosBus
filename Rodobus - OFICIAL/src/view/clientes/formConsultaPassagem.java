@@ -78,6 +78,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         }
 
         initComponents();
+        pass.setLast(0);
         carregarRota();
         this.mnNOME.setText(obj.getNome());
         this.mnID.setText("Id: " + obj.getIdPassageiro());
