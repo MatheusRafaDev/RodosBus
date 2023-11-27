@@ -32,6 +32,15 @@ public class formConsultaPassagem extends javax.swing.JFrame {
 
         pag.setVisible(true);
     }
+    public void carregarInfo2(int IdPassageiro, int IdRota) {
+        this.setVisible(false);
+        
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+         
+        formInfoPassageiro pag = new formInfoPassageiro(IdPassageiro, IdRota);
+
+        pag.setVisible(true);
+    }
 
     public void carregarRota() {
         rotaDao rota = new rotaDao();
@@ -500,9 +509,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     }//GEN-LAST:event_mnNOMEMouseClicked
 
     private void mnPERFILMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPERFILMouseClicked
-        this.setVisible(false);
-        formInfoPassageiro info = new formInfoPassageiro(pass);
-        info.setVisible(true);
+        carregarInfo2(pass.getIdPassageiro(), rt.getIdRota());
     }//GEN-LAST:event_mnPERFILMouseClicked
 
     private void txtSAIDAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSAIDAMouseClicked

@@ -6,13 +6,18 @@ package view.clientes;
 
 import controller.rotaDao;
 import controller.reservaDao;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 import model.Passageiro;
+import model.Reserva;
+import model.Rota;
 
 public class formPedidoRealizado extends javax.swing.JFrame {
-
     Passageiro pass = new Passageiro();
-
+    Rota rt = new Rota();
     public formPedidoRealizado(Passageiro obj) {
         initComponents();
 
@@ -31,6 +36,8 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPedido = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        Buscar = new javax.swing.JTextField();
+        btnBuscarReserva = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
         mnRODOBUS = new javax.swing.JMenu();
@@ -62,11 +69,24 @@ public class formPedidoRealizado extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tblPedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPedidoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblPedido);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 48)); // NOI18N
-        jLabel1.setText("Estas são suas reservas");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel1.setText("Meus pedidos");
 
+        Buscar.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        Buscar.setText("Digite para pesquisar sua reserva");
+
+        btnBuscarReserva.setText("Buscar");
+
+        jMenuBar1.setBackground(new java.awt.Color(255, 102, 0));
+        jMenuBar1.setForeground(new java.awt.Color(255, 102, 0));
         jMenuBar1.add(jMenu7);
 
         mnRODOBUS.setText("RodoBus");
@@ -117,23 +137,32 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(153, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(171, 171, 171))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(150, 150, 150))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(40, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBuscarReserva)
+                        .addGap(66, 66, 66))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(323, 323, 323))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarReserva))
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -159,9 +188,13 @@ public class formPedidoRealizado extends javax.swing.JFrame {
 
     private void mnPERFILMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPERFILMouseClicked
         this.setVisible(false);
-        formInfoPassageiro info = new formInfoPassageiro(pass);
+        formInfoPassageiro info = new formInfoPassageiro(pass.getIdPassageiro(), rt.getIdRota());
         info.setVisible(true); 
     }//GEN-LAST:event_mnPERFILMouseClicked
+
+    private void tblPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPedidoMouseClicked
+       Reserva rese = new Reserva();
+    }//GEN-LAST:event_tblPedidoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -200,6 +233,8 @@ public class formPedidoRealizado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Buscar;
+    private javax.swing.JButton btnBuscarReserva;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;

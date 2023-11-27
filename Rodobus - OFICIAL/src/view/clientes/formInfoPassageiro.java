@@ -1,22 +1,35 @@
 package view.clientes;
 
+import controller.motoristaDao;
+import controller.onibusDao;
+import controller.passageiroDao;
+import controller.rotaDao;
 import javax.swing.JFrame;
+import model.Motorista;
+import model.Onibus;
 import model.Passageiro;
+import model.Rota;
 
 
 public class formInfoPassageiro extends javax.swing.JFrame {
 
     Passageiro pass = new Passageiro();
-    
-    public formInfoPassageiro(Passageiro obj) {
+     Rota rota = new Rota();
+
+    public formInfoPassageiro(int passageiroId2, int rotaId2) {
         initComponents();
         
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-         
-        this.mnNOME.setText(obj.getNome());
-        this.mnID.setText("Id: " + obj.getIdPassageiro());
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        pass = obj;
+        passageiroDao p = new passageiroDao();
+        rotaDao r = new rotaDao();
+
+        
+        rota = r.selecionarUmaRota(rotaId2);
+        pass = p.selecionarUmPassageiro(passageiroId2);
+        this.ifNOME.setText(pass.getNome());
+        this.ifCPF.setText(pass.getCpf());
+        this.ifMAIL.setText(pass.getEmail());
+        this.ifTEL.setText(pass.getTelefone());
     }
 
 
@@ -30,13 +43,13 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        ifNOME = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        ifMAIL = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        ifTEL = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        ifCPF = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -80,40 +93,40 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Nome");
 
-        jTextField2.setBackground(new java.awt.Color(217, 217, 217));
-        jTextField2.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(134, 134, 134));
-        jTextField2.setText("Gabriel Henrique dos Santos Pimenta");
+        ifNOME.setBackground(new java.awt.Color(217, 217, 217));
+        ifNOME.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        ifNOME.setForeground(new java.awt.Color(134, 134, 134));
+        ifNOME.setText("Gabriel Henrique dos Santos Pimenta");
 
         jLabel7.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("E-mail");
 
-        jTextField3.setBackground(new java.awt.Color(217, 217, 217));
-        jTextField3.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(134, 134, 134));
-        jTextField3.setText("ghsdev@gmail.com");
+        ifMAIL.setBackground(new java.awt.Color(217, 217, 217));
+        ifMAIL.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        ifMAIL.setForeground(new java.awt.Color(134, 134, 134));
+        ifMAIL.setText("ghsdev@gmail.com");
 
         jLabel8.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Telefone");
 
-        jTextField4.setBackground(new java.awt.Color(217, 217, 217));
-        jTextField4.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(134, 134, 134));
-        jTextField4.setText("(11)92349-0213");
+        ifTEL.setBackground(new java.awt.Color(217, 217, 217));
+        ifTEL.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        ifTEL.setForeground(new java.awt.Color(134, 134, 134));
+        ifTEL.setText("(11)92349-0213");
 
         jLabel9.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Tipo e número do documento");
 
-        jTextField6.setBackground(new java.awt.Color(217, 217, 217));
-        jTextField6.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(134, 134, 134));
-        jTextField6.setText("388.598.777-46");
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        ifCPF.setBackground(new java.awt.Color(217, 217, 217));
+        ifCPF.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        ifCPF.setForeground(new java.awt.Color(134, 134, 134));
+        ifCPF.setText("388.598.777-46");
+        ifCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                ifCPFActionPerformed(evt);
             }
         });
 
@@ -152,21 +165,21 @@ public class formInfoPassageiro extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel6)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ifNOME, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel8)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(ifTEL, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(84, 84, 84)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel9)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ifMAIL, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel7)))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(73, 73, 73)
                                     .addComponent(jButton4)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(ifCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel10)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -190,16 +203,16 @@ public class formInfoPassageiro extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ifNOME, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ifMAIL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ifTEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ifCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -325,9 +338,9 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void ifCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ifCPFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_ifCPFActionPerformed
 
     private void mnRODOBUSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnRODOBUSMouseClicked
         this.setVisible(false);
@@ -337,7 +350,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
 
     private void mnPERFILMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPERFILMouseClicked
         this.setVisible(false);
-        formInfoPassageiro info = new formInfoPassageiro(pass);
+        formInfoPassageiro info = new formInfoPassageiro(pass.getIdPassageiro(), rota.getIdRota());
         info.setVisible(true);
     }//GEN-LAST:event_mnPERFILMouseClicked
 
@@ -385,12 +398,18 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Passageiro passageiro = new Passageiro();
-                new formInfoPassageiro(passageiro).setVisible(true);
+                Passageiro pass = new Passageiro();
+    Rota rt = new Rota();
+                new formInfoPassageiro(pass.getIdPassageiro(), rt.getIdRota()).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField ifCPF;
+    private javax.swing.JTextField ifMAIL;
+    private javax.swing.JTextField ifNOME;
+    private javax.swing.JTextField ifTEL;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -411,10 +430,6 @@ public class formInfoPassageiro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JMenu mnID;
     private javax.swing.JMenu mnNOME;
     private javax.swing.JMenu mnPERFIL;
