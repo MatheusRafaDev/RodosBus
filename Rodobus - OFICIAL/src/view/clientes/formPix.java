@@ -42,7 +42,7 @@ public class formPix extends javax.swing.JFrame {
         rota = r.selecionarUmaRota(rotaId2);
         pass = p.selecionarUmPassageiro(passageiroId2);
         initComponents();
-        pass.setLast(3);
+        
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.pixNOME.setText(pass.getNome());
         this.pixCPF.setText(pass.getCpf());
@@ -453,7 +453,8 @@ public class formPix extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPAGOMouseClicked
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
- carregarInfo2(pass.getIdPassageiro(), rota.getIdRota());        // TODO add your handling code here:
+
+        carregarInfo2(pass.getIdPassageiro(), rota.getIdRota());        // TODO add your handling code here:
     }//GEN-LAST:event_jMenu3MouseClicked
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked

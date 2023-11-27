@@ -25,12 +25,13 @@ public class formConsultaPassagem extends javax.swing.JFrame {
 
     public void carregarInfo(int IdPassageiro, int IdRota) {
         this.setVisible(false);
-        
+          pass.setLast(1);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-         
+    
         formConfirmarPag pag = new formConfirmarPag(IdPassageiro, IdRota);
 
         pag.setVisible(true);
+       
     }
     public void carregarInfo2(int IdPassageiro, int IdRota) {
         this.setVisible(false);
@@ -78,7 +79,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         }
 
         initComponents();
-        pass.setLast(0);
+        
         carregarRota();
         this.mnNOME.setText(obj.getNome());
         this.mnID.setText("Id: " + obj.getIdPassageiro());
@@ -510,7 +511,9 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     }//GEN-LAST:event_mnNOMEMouseClicked
 
     private void mnPERFILMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPERFILMouseClicked
-        carregarInfo2(pass.getIdPassageiro(), rt.getIdRota());
+     
+
+        carregarInfo2(pass.getIdPassageiro(), rt.getIdRota());    
     }//GEN-LAST:event_mnPERFILMouseClicked
 
     private void txtSAIDAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSAIDAMouseClicked

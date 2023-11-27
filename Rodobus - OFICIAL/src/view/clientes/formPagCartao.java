@@ -18,7 +18,7 @@ public class formPagCartao extends javax.swing.JFrame {
 
     Rota rota = new Rota();
     Passageiro pass = new Passageiro();
-    
+    passageiroDao passageiro = new passageiroDao();
     public void carregarInfo2(int IdPassageiro, int IdRota) {
         this.setVisible(false);
         
@@ -39,7 +39,7 @@ public class formPagCartao extends javax.swing.JFrame {
     public formPagCartao( int passageiroId2, int rotaId2) {
         
         initComponents();
-        pass.setLast(2);
+       
         passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
 
@@ -295,7 +295,7 @@ public class formPagCartao extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFinalizarMouseClicked
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-carregarInfo2(pass.getIdPassageiro(), rota.getIdRota());        // TODO add your handling code here:
+
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked

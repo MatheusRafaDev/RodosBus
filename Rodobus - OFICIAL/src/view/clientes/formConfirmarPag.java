@@ -22,7 +22,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
     Motorista moto = new Motorista();
      public void carregarInfo2(int IdPassageiro, int IdRota) {
         this.setVisible(false);
-        
+
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
          
         formInfoPassageiro pag = new formInfoPassageiro(IdPassageiro, IdRota);
@@ -31,7 +31,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
     }
     public formConfirmarPag(int passageiroId2, int rotaId2) {
         initComponents();
-        pass.setLast(1);
+       
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         passageiroDao p = new passageiroDao();
@@ -522,7 +522,8 @@ public class formConfirmarPag extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConfirmaPagarMouseClicked
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        carregarInfo2(pass.getIdPassageiro(), rota.getIdRota());        // TODO add your handling code here:
+        pass.setLast(2);
+        carregarInfo2(pass.getIdPassageiro(), rota.getIdRota());      // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
@@ -543,6 +544,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
             public void run() {
                 int passageiroId2 = 0;
                 int rotaId2 = 0;
+                int last=1;
                 new formConfirmarPag(passageiroId2, rotaId2).setVisible(true);
             }
         });
