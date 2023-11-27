@@ -343,7 +343,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="86" green="86" red="86" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Gabriel Henrique dos Santos Pimenta"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
@@ -368,7 +367,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="86" green="86" red="86" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="ghsdev@gmail.com"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
@@ -393,7 +391,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="86" green="86" red="86" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="(11)92349-0213"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
@@ -418,7 +415,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="86" green="86" red="86" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="388.598.777-46"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ifCPFActionPerformed"/>

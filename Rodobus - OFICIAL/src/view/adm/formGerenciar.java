@@ -289,7 +289,7 @@ public class formGerenciar extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         conectarDao oDao = new conectarDao();
-
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         CarregarReservasInfo();
 
         carregarOnibusComboBox();

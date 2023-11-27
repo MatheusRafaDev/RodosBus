@@ -33,11 +33,10 @@ public class formPedidoRealizado extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPedido = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        Buscar = new javax.swing.JTextField();
-        btnBuscarReserva = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
         mnRODOBUS = new javax.swing.JMenu();
@@ -50,6 +49,13 @@ public class formPedidoRealizado extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Meus pedidos");
+        setBackground(new java.awt.Color(255, 102, 0));
+
+        jPanel1.setBackground(new java.awt.Color(242, 147, 4));
+
+        jLabel1.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Meus pedidos");
 
         tblPedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -70,24 +76,33 @@ public class formPedidoRealizado extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        tblPedido.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblPedidoMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(tblPedido);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 102, 0));
-        jLabel1.setText("Meus pedidos");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(177, 177, 177)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
 
-        Buscar.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        Buscar.setText("Digite para pesquisar sua reserva");
-
-        btnBuscarReserva.setText("Buscar");
-
-        jMenuBar1.setBackground(new java.awt.Color(255, 102, 0));
-        jMenuBar1.setForeground(new java.awt.Color(255, 102, 0));
+        jMenuBar1.setForeground(new java.awt.Color(60, 63, 65));
         jMenuBar1.add(jMenu7);
 
         mnRODOBUS.setText("RodoBus");
@@ -138,32 +153,12 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(40, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBuscarReserva)
-                        .addGap(66, 66, 66))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(323, 323, 323))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(6, 6, 6))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarReserva))
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -192,10 +187,6 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         formInfoPassageiro info = new formInfoPassageiro(pass.getIdPassageiro(), rt.getIdRota());
         info.setVisible(true); 
     }//GEN-LAST:event_mnPERFILMouseClicked
-
-    private void tblPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPedidoMouseClicked
-       Reserva rese = new Reserva();
-    }//GEN-LAST:event_tblPedidoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -234,11 +225,10 @@ public class formPedidoRealizado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Buscar;
-    private javax.swing.JButton btnBuscarReserva;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenu mnID;

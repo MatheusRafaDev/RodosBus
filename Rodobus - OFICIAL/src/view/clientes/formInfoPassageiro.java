@@ -24,6 +24,9 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
         
+        this.mnNOME.setText(pass.getNome());
+        this.mnID.setText("Id: " + pass.getIdPassageiro());
+        
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         rota = r.selecionarUmaRota(rotaId2);
@@ -121,7 +124,6 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         ifNOME.setBackground(new java.awt.Color(217, 217, 217));
         ifNOME.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         ifNOME.setForeground(new java.awt.Color(134, 134, 134));
-        ifNOME.setText("Gabriel Henrique dos Santos Pimenta");
 
         jLabel7.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -130,7 +132,6 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         ifMAIL.setBackground(new java.awt.Color(217, 217, 217));
         ifMAIL.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         ifMAIL.setForeground(new java.awt.Color(134, 134, 134));
-        ifMAIL.setText("ghsdev@gmail.com");
 
         jLabel8.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -139,7 +140,6 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         ifTEL.setBackground(new java.awt.Color(217, 217, 217));
         ifTEL.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         ifTEL.setForeground(new java.awt.Color(134, 134, 134));
-        ifTEL.setText("(11)92349-0213");
 
         jLabel9.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -148,7 +148,6 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         ifCPF.setBackground(new java.awt.Color(217, 217, 217));
         ifCPF.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         ifCPF.setForeground(new java.awt.Color(134, 134, 134));
-        ifCPF.setText("388.598.777-46");
         ifCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ifCPFActionPerformed(evt);

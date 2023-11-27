@@ -101,6 +101,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         optPIX = new javax.swing.JRadioButton();
         optCARTAO1 = new javax.swing.JRadioButton();
         jMenuBar1 = new javax.swing.JMenuBar();
+        mnRODOBUS = new javax.swing.JMenu();
         mnNOME = new javax.swing.JMenu();
         mnID = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -226,37 +227,37 @@ public class formConfirmarPag extends javax.swing.JFrame {
         lblEMBARQUE.setText("Embarque");
 
         lblMOTORISTA1.setBackground(new java.awt.Color(51, 255, 204));
-        lblMOTORISTA1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblMOTORISTA1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         lblMOTORISTA1.setForeground(new java.awt.Color(255, 255, 255));
         lblMOTORISTA1.setText("Motorista");
 
         lbVALOR1.setBackground(new java.awt.Color(51, 255, 204));
-        lbVALOR1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lbVALOR1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         lbVALOR1.setForeground(new java.awt.Color(255, 255, 255));
         lbVALOR1.setText("Valor");
 
         lblDURACAO1.setBackground(new java.awt.Color(51, 255, 204));
-        lblDURACAO1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblDURACAO1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         lblDURACAO1.setForeground(new java.awt.Color(255, 255, 255));
         lblDURACAO1.setText("Duração");
 
         lblCHEGADA1.setBackground(new java.awt.Color(51, 255, 204));
-        lblCHEGADA1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblCHEGADA1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         lblCHEGADA1.setForeground(new java.awt.Color(255, 255, 255));
         lblCHEGADA1.setText("Chegada");
 
         lblSAIDA1.setBackground(new java.awt.Color(51, 255, 204));
-        lblSAIDA1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblSAIDA1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         lblSAIDA1.setForeground(new java.awt.Color(255, 255, 255));
         lblSAIDA1.setText("Saída");
 
         lblDESEMBARQUE1.setBackground(new java.awt.Color(51, 255, 204));
-        lblDESEMBARQUE1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblDESEMBARQUE1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         lblDESEMBARQUE1.setForeground(new java.awt.Color(255, 255, 255));
         lblDESEMBARQUE1.setText("Desembarque");
 
         lblEMBARQUE1.setBackground(new java.awt.Color(51, 255, 204));
-        lblEMBARQUE1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblEMBARQUE1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         lblEMBARQUE1.setForeground(new java.awt.Color(255, 255, 255));
         lblEMBARQUE1.setText("Embarque");
 
@@ -401,7 +402,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblNOME1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNOME5, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -418,7 +419,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(lblNOME8))
                     .addComponent(btnConfirmaPagar))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -453,6 +454,14 @@ public class formConfirmarPag extends javax.swing.JFrame {
                         .addComponent(btnConfirmaPagar)))
                 .addGap(50, 50, 50))
         );
+
+        mnRODOBUS.setText("RodoBus");
+        mnRODOBUS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnRODOBUSMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(mnRODOBUS);
 
         mnNOME.setText("Nome");
         jMenuBar1.add(mnNOME);
@@ -494,7 +503,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 423, Short.MAX_VALUE)
         );
 
         pack();
@@ -538,6 +547,12 @@ public class formConfirmarPag extends javax.swing.JFrame {
         formPedidoRealizado pedido = new formPedidoRealizado(pass);
         pedido.setVisible(true);
     }//GEN-LAST:event_jMenu4MouseClicked
+
+    private void mnRODOBUSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnRODOBUSMouseClicked
+        this.setVisible(false);
+        formConsultaPassagem consulta = new formConsultaPassagem(pass);
+        consulta.setVisible(true);
+    }//GEN-LAST:event_mnRODOBUSMouseClicked
 
     public static void main(String args[]) {
 
@@ -592,6 +607,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
     private javax.swing.JLabel lblTELEFONE1;
     private javax.swing.JMenu mnID;
     private javax.swing.JMenu mnNOME;
+    private javax.swing.JMenu mnRODOBUS;
     private javax.swing.JRadioButton optCARTAO1;
     private javax.swing.JRadioButton optPIX;
     // End of variables declaration//GEN-END:variables

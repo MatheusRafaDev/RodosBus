@@ -234,6 +234,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         });
 
         Txtembarque.setForeground(new java.awt.Color(255, 255, 255));
+        Txtembarque.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         Txtembarque.setEnabled(false);
         Txtembarque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,15 +243,19 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         });
 
         Txtdesembarque.setForeground(new java.awt.Color(255, 255, 255));
+        Txtdesembarque.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         Txtdesembarque.setEnabled(false);
 
         Txtdtsaida.setForeground(new java.awt.Color(255, 255, 255));
+        Txtdtsaida.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         Txtdtsaida.setEnabled(false);
 
         Txtdtchegada.setForeground(new java.awt.Color(255, 255, 255));
+        Txtdtchegada.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         Txtdtchegada.setEnabled(false);
 
         Txtvalor.setForeground(new java.awt.Color(255, 255, 255));
+        Txtvalor.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         Txtvalor.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N

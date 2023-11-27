@@ -188,10 +188,9 @@ public class formLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastroMouseClicked
-        // TODO add your handling code here:
+        this.setVisible(false);
         formCadastroPassageiro cadastro = new formCadastroPassageiro();
         cadastro.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setVisible(false);
         cadastro.setVisible(true);
     }//GEN-LAST:event_btnCadastroMouseClicked
 
@@ -234,21 +233,19 @@ public class formLogin extends javax.swing.JFrame {
         formGerenciar gerenciar = new formGerenciar();
         Passageiro obj = new Passageiro();
 
+        Passageiro resul = p.validarLogin(login, senha);
+        formConsultaPassagem pass = new formConsultaPassagem(resul);
+         
         if(login.equals("admin") && senha.equals("1234")){
-            gerenciar.setExtendedState(JFrame.MAXIMIZED_BOTH);
             this.setVisible(false);
             gerenciar.setVisible(true);
         }
 
         else {
-            Passageiro resul = p.validarLogin(login, senha);
-            
+           
             if(resul.getIdPassageiro() > 0){
-                //JOptionPane.showMessageDialog(null, "Login realizado - seja bem-vindo " +login + " compre sua passagem e viaje com segurança", "Foi", JOptionPane.WARNING_MESSAGE);
                 
                 this.setVisible(false);
-                formConsultaPassagem pass = new formConsultaPassagem(resul);
-                pass.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 pass.setVisible(true);
             }
         }

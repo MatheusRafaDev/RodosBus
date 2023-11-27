@@ -76,11 +76,12 @@ public class formPagCartao extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
+        mnRODOBUS = new javax.swing.JMenu();
         mnNOME = new javax.swing.JMenu();
         mnID = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pagamento cartão");
@@ -227,6 +228,14 @@ public class formPagCartao extends javax.swing.JFrame {
                 .addContainerGap(65, Short.MAX_VALUE))
         );
 
+        mnRODOBUS.setText("RodoBus");
+        mnRODOBUS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnRODOBUSMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(mnRODOBUS);
+
         mnNOME.setText("Nome");
         jMenuBar1.add(mnNOME);
 
@@ -241,14 +250,6 @@ public class formPagCartao extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenu2);
 
-        jMenu5.setText("Sair");
-        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu5MouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(jMenu5);
-
         jMenu4.setText("Pedido");
         jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -256,6 +257,14 @@ public class formPagCartao extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(jMenu4);
+
+        jMenu5.setText("Sair");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
 
@@ -310,6 +319,12 @@ public class formPagCartao extends javax.swing.JFrame {
         formPedidoRealizado pedido = new formPedidoRealizado(pass);
         pedido.setVisible(true);
     }//GEN-LAST:event_jMenu4MouseClicked
+
+    private void mnRODOBUSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnRODOBUSMouseClicked
+        this.setVisible(false);
+        formConsultaPassagem consulta = new formConsultaPassagem(pass);
+        consulta.setVisible(true);
+    }//GEN-LAST:event_mnRODOBUSMouseClicked
 
     /**
      * @param args the command line arguments
@@ -372,5 +387,6 @@ public class formPagCartao extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JMenu mnID;
     private javax.swing.JMenu mnNOME;
+    private javax.swing.JMenu mnRODOBUS;
     // End of variables declaration//GEN-END:variables
 }
