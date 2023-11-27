@@ -8,7 +8,7 @@ public class Passageiro {
     private String telefone;
     private String email;
     private String senha;
-
+ private int last;
     public int getIdPassageiro() { return idPassageiro; }
     public void setIdPassageiro(int idPassageiro) { this.idPassageiro = idPassageiro; }
 
@@ -29,4 +29,6 @@ public class Passageiro {
 
     public String getSenha() { return senha; }
     public void setSenha(String senha) { this.senha = senha; }
+ public int getLast() { return last; }
+    public void setLast(int last) { this.last = last; }
 }
