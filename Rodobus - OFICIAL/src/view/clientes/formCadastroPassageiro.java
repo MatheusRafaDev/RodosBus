@@ -259,12 +259,16 @@ public class formCadastroPassageiro extends javax.swing.JFrame {
 
                 this.setVisible(false);
                 this.dispose();
+                
+                passageiro = u.validarLogin(email, senha);
+                        
+                        
                 formConsultaPassagem pass = new formConsultaPassagem(passageiro);
                 pass.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 pass.setVisible(true);
 
             }
-        }
+        } 
     }//GEN-LAST:event_btnCadastra1MouseClicked
 
     private void btnCadastra1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastra1ActionPerformed

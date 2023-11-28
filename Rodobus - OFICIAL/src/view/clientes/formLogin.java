@@ -15,6 +15,7 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 import utils.Validador;
+import utils.ValidarLetras;
 
 public class formLogin extends javax.swing.JFrame {
 
@@ -26,7 +27,7 @@ public class formLogin extends javax.swing.JFrame {
         c.criarBanco();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
-        txtLogin.setDocument(new Validador(20));
+        txtLogin.setDocument(new ValidarLetras(20));
         txtSenha.setDocument(new Validador(20));
             
     }
@@ -97,7 +98,7 @@ public class formLogin extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("EMAIL");
+        jLabel5.setText("USUÁRIO");
 
         txtSenha.setName("txtSenha"); // NOI18N
         txtSenha.addMouseListener(new java.awt.event.MouseAdapter() {
