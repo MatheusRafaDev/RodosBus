@@ -4,6 +4,7 @@
  */
 package view.clientes;
 
+import controller.passageiroDao;
 import controller.rotaDao;
 import controller.reservaDao;
 import java.text.SimpleDateFormat;
@@ -14,10 +15,10 @@ import javax.swing.table.DefaultTableModel;
 import model.Passageiro;
 import model.Reserva;
 import model.Rota;
-
 public class formPedidoRealizado extends javax.swing.JFrame {
     Passageiro pass = new Passageiro();
     Rota rt = new Rota();
+    Reserva res = new Reserva();
     public void carregarRota() {
         reservaDao reserva = new reservaDao();
         ArrayList<Reserva> reservas = reserva.FormPedidos(pass.getIdPassageiro());
@@ -25,7 +26,8 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tblPEDIDOS.getModel();
                 
         for (Reserva reserva2 : reservas) {
-            model.addRow(new Object[]{reserva2.getIdReserva(),sdf.format(reserva2.getDataReserva()), reserva2.getQuantidadeReserva(), reserva2.getValorTotal(),reserva2.getStatus()});
+            model.addRow(new Object[]{reserva2.getIdReserva(),reserva2.getIdRota(),sdf.format(reserva2.getDataReserva()), reserva2.getQuantidadeReserva(), reserva2.getValorTotal(),reserva2.getStatus()});
+        
         }
     }
     
@@ -50,6 +52,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPEDIDOS = new javax.swing.JTable();
+        pedidoBTN = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
         mnRODOBUS = new javax.swing.JMenu();
@@ -75,15 +78,20 @@ public class formPedidoRealizado extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Data Reserva", "Quantidade", "Valor Total", "Status"
+                "Id", "Id_Rota", "Data Reserva", "Quantidade", "Valor Total", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblPEDIDOS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPEDIDOSMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblPEDIDOS);
@@ -93,20 +101,34 @@ public class formPedidoRealizado extends javax.swing.JFrame {
             tblPEDIDOS.getColumnModel().getColumn(2).setResizable(false);
             tblPEDIDOS.getColumnModel().getColumn(3).setResizable(false);
             tblPEDIDOS.getColumnModel().getColumn(4).setResizable(false);
+            tblPEDIDOS.getColumnModel().getColumn(5).setResizable(false);
         }
+
+        pedidoBTN.setBackground(new java.awt.Color(0, 0, 0));
+        pedidoBTN.setForeground(new java.awt.Color(255, 255, 255));
+        pedidoBTN.setText("CONSULTAR BILHETE DO PEDIDO");
+        pedidoBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pedidoBTNMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(280, 280, 280)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pedidoBTN)
+                .addGap(38, 38, 38))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,8 +136,10 @@ public class formPedidoRealizado extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pedidoBTN)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jMenuBar1.setForeground(new java.awt.Color(60, 63, 65));
@@ -208,6 +232,48 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         info.setVisible(true); 
     }//GEN-LAST:event_mnPERFILMouseClicked
 
+    private void pedidoBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidoBTNMouseClicked
+         reservaDao rese = new reservaDao();
+        
+        this.setVisible(false);
+        this.dispose();
+        passageiroDao p = new passageiroDao();
+        rotaDao r = new rotaDao();  
+        res.setIdRota(res.getIdRota());
+        res.setIdPassageiro(pass.getIdPassageiro());
+        res.setIdReserva(res.getIdReserva());
+        res.setValorTotal(res.getVlPreco()*res.getQuantidadeReserva());
+        
+      
+        
+     
+        
+        formPassagemBilhete pas = new formPassagemBilhete(res);
+        pas.setVisible(true);
+    
+    }//GEN-LAST:event_pedidoBTNMouseClicked
+
+    private void tblPEDIDOSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPEDIDOSMouseClicked
+int selectedRow = tblPEDIDOS.getSelectedRow();
+String lblID;
+String rtID;
+String psID;
+if (selectedRow != -1) {
+            lblID =tblPEDIDOS.getValueAt(selectedRow, 0).toString();
+            rtID =(tblPEDIDOS.getValueAt(selectedRow, 1).toString());
+            tblPEDIDOS.getValueAt(selectedRow, 2).toString();
+            tblPEDIDOS.getValueAt(selectedRow, 3).toString();
+            tblPEDIDOS.getValueAt(selectedRow, 4).toString();
+            tblPEDIDOS.getValueAt(selectedRow, 5).toString();
+            reservaDao r = new reservaDao();
+            
+            res = r.selecionarUmaReserva(Integer.parseInt(lblID));
+            res.setIdReserva(Integer.parseInt(rtID));
+            res.setIdPassageiro(pass.getIdPassageiro());
+
+        }   
+    }//GEN-LAST:event_tblPEDIDOSMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -257,6 +323,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
     private javax.swing.JMenu mnPedido;
     private javax.swing.JMenu mnRODOBUS;
     private javax.swing.JMenu mnSAIR;
+    private javax.swing.JButton pedidoBTN;
     private javax.swing.JTable tblPEDIDOS;
     // End of variables declaration//GEN-END:variables
 }

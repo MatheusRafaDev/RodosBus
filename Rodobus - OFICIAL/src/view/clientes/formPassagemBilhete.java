@@ -19,7 +19,7 @@ public class formPassagemBilhete extends javax.swing.JFrame {
   
     Rota rota = new Rota();
     Passageiro pass = new Passageiro();
-    
+    Reserva res = new Reserva();
     public formPassagemBilhete(Reserva reserva) {
         initComponents();
  
@@ -37,6 +37,9 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         this.mnCHEGADA.setText(formato.format(rota.getDtChegada()));
         this.mnPRECO.setText(String.valueOf((float) rota.getVlPreco()));
         this.mnID.setText(String.valueOf(pass.getIdPassageiro()));
+        this.mnTOTAL.setText(String.valueOf(res.getValorTotal()));
+        this.mnQTD.setText(String.valueOf(res.getQuantidadeReserva()));
+
     }
     
     @SuppressWarnings("unchecked")
