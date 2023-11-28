@@ -57,6 +57,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
         this.lbVALOR.setText(String.valueOf( rota.getVlPreco()));
         this.lblDURACAO.setText(rota.getDsDuracao());
         this.lblMOTORISTA.setText(moto.getNome());
+        
+        this.mnNOME.setText(pass.getNome());
+        this.mnID.setText("Id: " + pass.getIdPassageiro());
 
     }
 
@@ -437,7 +440,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(optPIX)
                             .addComponent(optCARTAO1))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNOME4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

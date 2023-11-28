@@ -86,6 +86,7 @@ public class formPix extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         pixIDADE = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
+        mnRODOBUS = new javax.swing.JMenu();
         mnNOME = new javax.swing.JMenu();
         mnID = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -381,6 +382,14 @@ public class formPix extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 920, 860);
 
+        mnRODOBUS.setText("RodoBus");
+        mnRODOBUS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnRODOBUSMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(mnRODOBUS);
+
         mnNOME.setText("Nome");
         jMenuBar1.add(mnNOME);
 
@@ -464,6 +473,12 @@ public class formPix extends javax.swing.JFrame {
         login.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenu4MouseClicked
 
+    private void mnRODOBUSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnRODOBUSMouseClicked
+        this.setVisible(false);
+        formConsultaPassagem consulta = new formConsultaPassagem(pass);
+        consulta.setVisible(true);
+    }//GEN-LAST:event_mnRODOBUSMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -529,6 +544,7 @@ public class formPix extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JMenu mnID;
     private javax.swing.JMenu mnNOME;
+    private javax.swing.JMenu mnRODOBUS;
     private javax.swing.JLabel pixCPF;
     private javax.swing.JLabel pixEmail;
     private javax.swing.JLabel pixIDADE;

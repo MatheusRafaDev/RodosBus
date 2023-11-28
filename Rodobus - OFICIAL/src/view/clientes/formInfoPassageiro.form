@@ -334,14 +334,8 @@
             </Component>
             <Component class="javax.swing.JTextField" name="ifNOME">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="d9" green="d9" red="d9" type="rgb"/>
-                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Black" size="10" style="0"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="86" green="86" red="86" type="rgb"/>
                 </Property>
               </Properties>
             </Component>
@@ -358,14 +352,8 @@
             </Component>
             <Component class="javax.swing.JTextField" name="ifMAIL">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="d9" green="d9" red="d9" type="rgb"/>
-                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Black" size="10" style="0"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="86" green="86" red="86" type="rgb"/>
                 </Property>
               </Properties>
             </Component>
@@ -382,14 +370,8 @@
             </Component>
             <Component class="javax.swing.JTextField" name="ifTEL">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="d9" green="d9" red="d9" type="rgb"/>
-                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Black" size="10" style="0"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="86" green="86" red="86" type="rgb"/>
                 </Property>
               </Properties>
             </Component>
@@ -406,14 +388,8 @@
             </Component>
             <Component class="javax.swing.JTextField" name="ifCPF">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="d9" green="d9" red="d9" type="rgb"/>
-                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Black" size="10" style="0"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="86" green="86" red="86" type="rgb"/>
                 </Property>
               </Properties>
               <Events>

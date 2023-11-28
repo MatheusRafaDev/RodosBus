@@ -19,6 +19,7 @@ public class formPagCartao extends javax.swing.JFrame {
     Rota rota = new Rota();
     Passageiro pass = new Passageiro();
     passageiroDao passageiro = new passageiroDao();
+    
     public void carregarInfo2(int IdPassageiro, int IdRota) {
         this.setVisible(false);
         
@@ -50,7 +51,7 @@ public class formPagCartao extends javax.swing.JFrame {
         
     }
     public formPagCartao(Passageiro obj){
-         this.mnNOME.setText(obj.getNome());
+        this.mnNOME.setText(obj.getNome());
         this.mnID.setText("Id: " + obj.getIdPassageiro());
     }
 

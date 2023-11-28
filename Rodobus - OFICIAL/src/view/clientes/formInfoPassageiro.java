@@ -24,8 +24,8 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
         
-        this.mnNOME.setText(pass.getNome());
-        this.mnID.setText("Id: " + pass.getIdPassageiro());
+        
+
         
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
@@ -36,6 +36,9 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         this.ifMAIL.setText(pass.getEmail());
         this.ifTEL.setText(pass.getTelefone());
         this.ifSENHA.setText(pass.getSenha());
+        
+        this.mnNOME.setText(pass.getNome());
+        this.mnID.setText("Id: " + pass.getIdPassageiro());
     }
 
 
@@ -121,33 +124,25 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Nome");
 
-        ifNOME.setBackground(new java.awt.Color(217, 217, 217));
         ifNOME.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        ifNOME.setForeground(new java.awt.Color(134, 134, 134));
 
         jLabel7.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("E-mail");
 
-        ifMAIL.setBackground(new java.awt.Color(217, 217, 217));
         ifMAIL.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        ifMAIL.setForeground(new java.awt.Color(134, 134, 134));
 
         jLabel8.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Telefone");
 
-        ifTEL.setBackground(new java.awt.Color(217, 217, 217));
         ifTEL.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        ifTEL.setForeground(new java.awt.Color(134, 134, 134));
 
         jLabel9.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Documento");
 
-        ifCPF.setBackground(new java.awt.Color(217, 217, 217));
         ifCPF.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        ifCPF.setForeground(new java.awt.Color(134, 134, 134));
         ifCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ifCPFActionPerformed(evt);
