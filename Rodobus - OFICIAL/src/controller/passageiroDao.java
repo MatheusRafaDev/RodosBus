@@ -47,7 +47,7 @@ public class passageiroDao extends conectarDao {
         } catch (SQLException err) {
             JOptionPane.showMessageDialog(null, "Erro ao Cadastrar!" + err.getMessage());
         }
-        
+
         return true;
     }
 
@@ -82,7 +82,7 @@ public class passageiroDao extends conectarDao {
         } catch (SQLException err) {
             JOptionPane.showMessageDialog(null, "Erro ao Alterar!" + err.getMessage());
         }
-        
+
         return true;
     }
 
@@ -262,6 +262,57 @@ public class passageiroDao extends conectarDao {
         }
 
         return null;
+    }
+
+    public boolean alterarCpf(Passageiro obj) {
+        return alterarCampo("DS_CPF", obj.getCpf(), obj.getIdPassageiro());
+    }
+
+    public boolean alterarNome(Passageiro obj) {
+        String nomeVerificacao = nomeExiste(obj.getNome());
+        if (nomeVerificacao != null) {
+            JOptionPane.showMessageDialog(null, nomeVerificacao);
+            return false;
+        }
+
+        return alterarCampo("DS_NOME", obj.getNome(), obj.getIdPassageiro());
+    }
+
+    public boolean alterarEmail(Passageiro obj) {
+        String emailVerificacao = emailExiste(obj.getEmail());
+        if (emailVerificacao != null) {
+            JOptionPane.showMessageDialog(null, emailVerificacao);
+            return false;
+        }
+        return alterarCampo("DS_EMAIL", obj.getEmail(), obj.getIdPassageiro());
+    }
+
+    public boolean alterarTelefone(Passageiro obj) {
+        return alterarCampo("DS_TELEFONE", obj.getTelefone(), obj.getIdPassageiro());
+    }
+
+    public boolean alterarIdade(Passageiro obj) {
+        return alterarCampo("NR_IDADE", String.valueOf(obj.getIdade()), obj.getIdPassageiro());
+    }
+
+    public boolean alterarSenha(Passageiro obj) {
+        return alterarCampo("DS_SENHA", obj.getSenha(), obj.getIdPassageiro());
+    }
+
+    private boolean alterarCampo(String campo, String valor, int idPassageiro) {
+        sql = "UPDATE TB_PASSAGEIRO SET " + campo + " = ? WHERE ID_PASSAGEIRO = " + idPassageiro;
+
+        try {
+            ps = mycon.prepareStatement(sql);
+            ps.setString(1, valor);
+            ps.execute();
+            ps.close();
+            JOptionPane.showMessageDialog(null, "Alteração feita com Sucesso!");
+            return true;
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, "Erro ao Alterar! " + err.getMessage());
+            return false;
+        }
     }
 
 }

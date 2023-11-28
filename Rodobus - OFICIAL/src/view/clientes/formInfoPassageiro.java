@@ -10,6 +10,10 @@ import model.Motorista;
 import model.Onibus;
 import model.Passageiro;
 import model.Rota;
+import utils.Formatador;
+import utils.Validador;
+import utils.ValidarLetras;
+import utils.ValidarNumero;
 
 
 public class formInfoPassageiro extends javax.swing.JFrame {
@@ -20,6 +24,10 @@ public class formInfoPassageiro extends javax.swing.JFrame {
     public formInfoPassageiro(int passageiroId2, int rotaId2) {
         initComponents();
         
+        this.textEMAIL.setDocument(new Validador(30));
+        this.textNOME.setDocument(new ValidarLetras(20));
+        this.textSENHA.setDocument(new Validador(20));
+        
         this.setLocationRelativeTo(null);  
         passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
@@ -28,14 +36,17 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         
         rota = r.selecionarUmaRota(rotaId2);
         pass = p.selecionarUmPassageiro(passageiroId2);
-        this.ifNOME.setText(pass.getNome());
-        this.ifCPF.setText(pass.getCpf());
-        this.ifMAIL.setText(pass.getEmail());
-        this.ifTEL.setText(pass.getTelefone());
-        this.ifSENHA.setText(pass.getSenha());
+        
+        this.textNOME.setText(pass.getNome());
+        this.textTELEFONE.setText(pass.getCpf());
+        this.textEMAIL.setText(pass.getEmail());
+        this.textTELEFONE.setText(pass.getTelefone());
+        this.textSENHA.setText(pass.getSenha());
         
         this.mnNOME.setText(pass.getNome());
         this.mnID.setText("Id: " + pass.getIdPassageiro());
+        
+
     }
 
 
@@ -51,20 +62,20 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        ifNOME = new javax.swing.JTextField();
+        textNOME = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        ifMAIL = new javax.swing.JTextField();
+        textEMAIL = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        ifTEL = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        ifCPF = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         btnSENHA = new javax.swing.JButton();
-        ifSENHA = new javax.swing.JTextField();
+        textSENHA = new javax.swing.JTextField();
         btnTEL = new javax.swing.JButton();
         btnCPF = new javax.swing.JButton();
         btnNOME = new javax.swing.JButton();
-        btnMAIL = new javax.swing.JButton();
+        btnEMAIL = new javax.swing.JButton();
+        textTELEFONE = new javax.swing.JFormattedTextField();
+        textCPF = new javax.swing.JFormattedTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
         mnRODOBUS = new javax.swing.JMenu();
@@ -119,31 +130,22 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Nome");
 
-        ifNOME.setEditable(false);
-        ifNOME.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        textNOME.setEditable(false);
+        textNOME.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("E-mail");
 
-        ifMAIL.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        textEMAIL.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Telefone");
 
-        ifTEL.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-
         jLabel9.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("CPF");
-
-        ifCPF.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        ifCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ifCPFActionPerformed(evt);
-            }
-        });
 
         jLabel10.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -159,9 +161,9 @@ public class formInfoPassageiro extends javax.swing.JFrame {
             }
         });
 
-        ifSENHA.addActionListener(new java.awt.event.ActionListener() {
+        textSENHA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ifSENHAActionPerformed(evt);
+                textSENHAActionPerformed(evt);
             }
         });
 
@@ -200,15 +202,27 @@ public class formInfoPassageiro extends javax.swing.JFrame {
             }
         });
 
-        btnMAIL.setBackground(new java.awt.Color(50, 54, 66));
-        btnMAIL.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        btnMAIL.setForeground(new java.awt.Color(255, 255, 255));
-        btnMAIL.setText("Alterar");
-        btnMAIL.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnEMAIL.setBackground(new java.awt.Color(50, 54, 66));
+        btnEMAIL.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        btnEMAIL.setForeground(new java.awt.Color(255, 255, 255));
+        btnEMAIL.setText("Alterar");
+        btnEMAIL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMAILMouseClicked(evt);
+                btnEMAILMouseClicked(evt);
             }
         });
+
+        try {
+            textTELEFONE.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            textCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -227,16 +241,16 @@ public class formInfoPassageiro extends javax.swing.JFrame {
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel7)
-                                    .addComponent(ifMAIL, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                                    .addComponent(ifTEL)
-                                    .addComponent(ifNOME)
-                                    .addComponent(ifCPF)
-                                    .addComponent(ifSENHA))
+                                    .addComponent(textEMAIL, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                                    .addComponent(textNOME)
+                                    .addComponent(textSENHA)
+                                    .addComponent(textTELEFONE)
+                                    .addComponent(textCPF, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnCPF)
                                     .addComponent(btnSENHA)
-                                    .addComponent(btnMAIL)
+                                    .addComponent(btnEMAIL)
                                     .addComponent(btnTEL)
                                     .addComponent(btnNOME)))))
                     .addComponent(jLabel5))
@@ -251,31 +265,31 @@ public class formInfoPassageiro extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ifNOME, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textNOME, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNOME))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ifTEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTEL))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnTEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textTELEFONE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ifMAIL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMAIL))
+                    .addComponent(textEMAIL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEMAIL))
                 .addGap(12, 12, 12)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ifCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCPF))
+                    .addComponent(btnCPF)
+                    .addComponent(textCPF))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ifSENHA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textSENHA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSENHA))
                 .addGap(0, 32, Short.MAX_VALUE))
         );
@@ -393,43 +407,67 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSENHA5MouseClicked
 
-    private void btnMAILMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMAILMouseClicked
-        pass.setEmail(ifMAIL.getText());
-        passageiro.Alterar(pass);
-    }//GEN-LAST:event_btnMAILMouseClicked
+    private void btnEMAILMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEMAILMouseClicked
+        String email = textEMAIL.getText().trim();
+        pass.setEmail(email);
+        
+         if (email.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, preencha o Email.", "Campo Vazio", JOptionPane.WARNING_MESSAGE);
+        } else { 
+            passageiro.alterarEmail(pass);
+        }
+    }//GEN-LAST:event_btnEMAILMouseClicked
 
     private void btnNOMEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNOMEActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNOMEActionPerformed
 
     private void btnNOMEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNOMEMouseClicked
-        pass.setNome(ifNOME.getText());
-        passageiro.Alterar(pass);
+        String nome = textNOME.getText().trim();
+        pass.setNome(nome);
+        
+        if (nome.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, preencha o Nome.", "Campo Vazio", JOptionPane.WARNING_MESSAGE);
+        } else { 
+            passageiro.alterarNome(pass);
+        }
     }//GEN-LAST:event_btnNOMEMouseClicked
 
     private void btnCPFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCPFMouseClicked
-        pass.setCpf(ifCPF.getText());
-        passageiro.Alterar(pass);
+        String cpf = Formatador.limparFormatoCPF(textCPF.getText().trim());
+        pass.setCpf(cpf);
+        
+        if (cpf.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, preencha o CPF.", "Campo Vazio", JOptionPane.WARNING_MESSAGE);
+        } else { 
+            passageiro.alterarCpf(pass);
+        }
     }//GEN-LAST:event_btnCPFMouseClicked
 
     private void btnTELMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTELMouseClicked
-        pass.setTelefone(ifTEL.getText());
-        passageiro.Alterar(pass);
+        String telefone = Formatador.limparFormatoTelefone(textTELEFONE.getText().trim());
+        pass.setTelefone(telefone);
+        
+        if (telefone.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, preencha o Telefone.", "Campo Vazio", JOptionPane.WARNING_MESSAGE);
+        } else { 
+            passageiro.alterarTelefone(pass);
+        }
     }//GEN-LAST:event_btnTELMouseClicked
 
-    private void ifSENHAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ifSENHAActionPerformed
+    private void textSENHAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSENHAActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ifSENHAActionPerformed
+    }//GEN-LAST:event_textSENHAActionPerformed
 
     private void btnSENHAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSENHAMouseClicked
-
-        pass.setSenha(ifSENHA.getText());
-        passageiro.Alterar(pass);
+        String senha = textSENHA.getText().trim();
+        pass.setSenha(senha);
+        if (senha.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, preencha A Senha.", "Campo Vazio", JOptionPane.WARNING_MESSAGE);
+        } else { 
+            passageiro.alterarSenha(pass);
+        }
     }//GEN-LAST:event_btnSENHAMouseClicked
-
-    private void ifCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ifCPFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ifCPFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -472,17 +510,12 @@ public class formInfoPassageiro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCPF;
-    private javax.swing.JButton btnMAIL;
+    private javax.swing.JButton btnEMAIL;
     private javax.swing.JButton btnNOME;
     private javax.swing.JButton btnSENHA;
     private javax.swing.JButton btnSENHA2;
     private javax.swing.JButton btnSENHA5;
     private javax.swing.JButton btnTEL;
-    private javax.swing.JTextField ifCPF;
-    private javax.swing.JTextField ifMAIL;
-    private javax.swing.JTextField ifNOME;
-    private javax.swing.JTextField ifSENHA;
-    private javax.swing.JTextField ifTEL;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel5;
@@ -502,5 +535,10 @@ public class formInfoPassageiro extends javax.swing.JFrame {
     private javax.swing.JMenu mnPedido;
     private javax.swing.JMenu mnRODOBUS;
     private javax.swing.JMenu mnSAIR;
+    private javax.swing.JFormattedTextField textCPF;
+    private javax.swing.JTextField textEMAIL;
+    private javax.swing.JTextField textNOME;
+    private javax.swing.JTextField textSENHA;
+    private javax.swing.JFormattedTextField textTELEFONE;
     // End of variables declaration//GEN-END:variables
 }
