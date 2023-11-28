@@ -164,6 +164,43 @@ public class reservaDao extends conectarDao {
 
         return reservas;
     }
+    public ArrayList<Reserva> FormPedidos(int id) {
+         ArrayList<Reserva> reservas = new ArrayList<>();
+        String sql = "SELECT id_reserva,dt_reserva, ds_status, qtd_reserva, vl_total FROM TB_RESERVAS WHERE ID_PASSAGEIRO ='" + id + "'";
+       
+        Reserva reserva = new Reserva();
+
+        try {
+            PreparedStatement ps = mycon.prepareStatement(sql);
+            ResultSet resultSet = ps.executeQuery();
+
+            if (resultSet.next()) {
+                int IdReserva = resultSet.getInt("ID_RESERVA");
+                Date dtreserva = resultSet.getDate("DT_RESERVA");
+                int quantidadeReserva = resultSet.getInt("qtd_reserva");
+                String status = resultSet.getString("DS_STATUS");
+                double vl_total = resultSet.getDouble("vl_total");
+               reserva.setIdReserva(IdReserva);
+               reserva.setDataReserva(dtreserva);
+               reserva.setStatus(status);
+               reserva.setQuantidadeReserva(quantidadeReserva);
+               reserva.setValorTotal(vl_total);
+               reservas.add(reserva);
+                
+            } else {
+                System.out.println("Reserva not found for ID: " + id);
+            }
+
+            ps.close();
+            resultSet.close();
+        } catch (SQLException err) {
+            err.printStackTrace();
+        }
+
+        return reservas;
+    }
 }
+    
+
 
  
