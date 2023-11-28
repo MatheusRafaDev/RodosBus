@@ -11,7 +11,7 @@ public class Reserva {
     private String status;
     private int QuantidadeReserva;
     private Double ValorTotal;
-
+    private double vlPreco;
     public int getIdReserva() { return idReserva; }
     public void setIdReserva(int idReserva) { this.idReserva = idReserva; }
 
@@ -42,6 +42,13 @@ public class Reserva {
 
     public void setValorTotal(Double ValorTotal) {
         this.ValorTotal = ValorTotal;
+    }
+        public double getVlPreco() {
+        return vlPreco;
+    }
+
+    public void setVlPreco(double vlPreco) {
+        this.vlPreco = vlPreco;
     }
     
 }
