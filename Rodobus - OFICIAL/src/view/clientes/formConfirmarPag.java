@@ -32,6 +32,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
 
         pag.setVisible(true);
     }
+     
     public formConfirmarPag(int passageiroId2, int rotaId2) {
         initComponents();
        
@@ -70,7 +71,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupo = new javax.swing.ButtonGroup();
+        pag = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lblNOME = new javax.swing.JLabel();
@@ -105,7 +106,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         lblNOME7 = new javax.swing.JLabel();
         lblNOME8 = new javax.swing.JLabel();
         optPIX = new javax.swing.JRadioButton();
-        optCARTAO1 = new javax.swing.JRadioButton();
+        optCARTAO = new javax.swing.JRadioButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnRODOBUS = new javax.swing.JMenu();
         mnNOME = new javax.swing.JMenu();
@@ -383,9 +384,10 @@ public class formConfirmarPag extends javax.swing.JFrame {
         lblNOME8.setText("canceladas em até 1 hora antes do embarque");
         lblNOME8.setToolTipText("");
 
-        grupo.add(optPIX);
+        pag.add(optPIX);
         optPIX.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         optPIX.setForeground(new java.awt.Color(255, 255, 255));
+        optPIX.setSelected(true);
         optPIX.setText("Pagamaneto no pix");
         optPIX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -393,9 +395,10 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
-        optCARTAO1.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        optCARTAO1.setForeground(new java.awt.Color(255, 255, 255));
-        optCARTAO1.setText("Pagar com Cartão de Crédito");
+        pag.add(optCARTAO);
+        optCARTAO.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        optCARTAO.setForeground(new java.awt.Color(255, 255, 255));
+        optCARTAO.setText("Pagar com Cartão de Crédito");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -414,7 +417,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(optPIX)
                         .addGap(18, 18, 18)
-                        .addComponent(optCARTAO1))
+                        .addComponent(optCARTAO))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addComponent(lblNOME7)
@@ -442,7 +445,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(optPIX)
-                            .addComponent(optCARTAO1))))
+                            .addComponent(optCARTAO))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNOME4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -580,7 +583,6 @@ public class formConfirmarPag extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmaPagar;
-    private javax.swing.ButtonGroup grupo;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -620,7 +622,8 @@ public class formConfirmarPag extends javax.swing.JFrame {
     private javax.swing.JMenu mnID;
     private javax.swing.JMenu mnNOME;
     private javax.swing.JMenu mnRODOBUS;
-    private javax.swing.JRadioButton optCARTAO1;
+    private javax.swing.JRadioButton optCARTAO;
     private javax.swing.JRadioButton optPIX;
+    private javax.swing.ButtonGroup pag;
     // End of variables declaration//GEN-END:variables
 }
