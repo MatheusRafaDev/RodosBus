@@ -1,6 +1,7 @@
 
 package controller;
 
+import com.mysql.cj.xdevapi.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,13 +19,11 @@ public class reservaDao extends conectarDao {
         super();
     }
 
-    public void incluir(Reserva obj) {
+    public Reserva incluir(Reserva obj) {
         sql = "INSERT INTO tb_reservas (id_rota, id_passageiro, dt_reserva, ds_status, qtd_reserva, vl_total) VALUES (?, ?, ?, ?, ?, ?)";
         try {
-            ps = mycon.prepareStatement(sql);
+            ps = mycon.prepareStatement(sql, new String[] { "id_reserva" });
 
-            //JOptionPane.showMessageDialog(null,obj.getIdRota());
-            
             ps.setInt(1, obj.getIdRota());
             ps.setInt(2, obj.getIdPassageiro());
             ps.setDate(3, new java.sql.Date(obj.getDataReserva().getTime()));
@@ -32,14 +31,30 @@ public class reservaDao extends conectarDao {
             ps.setInt(5, obj.getQuantidadeReserva());
             ps.setDouble(6, obj.getValorTotal());
 
-            ps.execute();
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                // Obter o ID gerado
+                ResultSet generatedKeys = ps.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    int generatedId = generatedKeys.getInt(1);
+                    obj.setIdReserva(generatedId);
+                    JOptionPane.showMessageDialog(null, "Reserva Cadastrada com Sucesso !");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Falha ao obter o ID gerado.");
+                }
+                generatedKeys.close();
+            }
+
             ps.close();
-            JOptionPane.showMessageDialog(null, "Reserva Cadastrada com Sucesso !");
         } catch (SQLException err) {
             err.printStackTrace();
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar reserva! " + err.getMessage());
         }
+
+        return obj;
     }
+
 
     public Reserva selecionarUmaReserva(int id) {
         String sql = "SELECT id_reserva, id_rota, id_passageiro, dt_reserva, ds_status, qtd_reserva, vl_total FROM tb_reservas WHERE id_reserva = ?";
