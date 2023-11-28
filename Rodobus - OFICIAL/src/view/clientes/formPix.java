@@ -10,13 +10,10 @@ import javax.swing.JFrame;
 import model.Passageiro;
 import model.Rota;
 
-/**
- *
- * @author Igor_
- */
+
 public class formPix extends javax.swing.JFrame {
 
-    formLogin login = new formLogin();
+    
     Rota rota = new Rota();
     Passageiro pass = new Passageiro();
     
@@ -472,7 +469,8 @@ public class formPix extends javax.swing.JFrame {
 
         this.setVisible(false);
         this.dispose();
-        login.setVisible(true);        // TODO add your handling code here:
+        formLogin login = new formLogin();
+        login.setVisible(true);      
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void mnRODOBUSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnRODOBUSMouseClicked
