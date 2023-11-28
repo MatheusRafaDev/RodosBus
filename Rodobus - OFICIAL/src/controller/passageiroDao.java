@@ -16,7 +16,20 @@ public class passageiroDao extends conectarDao {
         super();
     }
 
-    public void Incluir(Passageiro obj) {
+    public boolean Incluir(Passageiro obj) {
+
+        String emailVerificacao = emailExiste(obj.getEmail());
+        if (emailVerificacao != null) {
+            JOptionPane.showMessageDialog(null, emailVerificacao);
+            return false;
+        }
+
+        String nomeVerificacao = nomeExiste(obj.getNome());
+        if (nomeVerificacao != null) {
+            JOptionPane.showMessageDialog(null, nomeVerificacao);
+            return false;
+        }
+
         sql = "INSERT INTO TB_PASSAGEIRO (DS_CPF, DS_NOME, DS_EMAIL, DS_TELEFONE, NR_IDADE, DS_SENHA) VALUES(?, ?, ?, ?, ?, ?)";
         try {
             ps = mycon.prepareStatement(sql);
@@ -34,10 +47,25 @@ public class passageiroDao extends conectarDao {
         } catch (SQLException err) {
             JOptionPane.showMessageDialog(null, "Erro ao Cadastrar!" + err.getMessage());
         }
+        
+        return true;
     }
 
-    public void Alterar(Passageiro obj) {
+    public boolean Alterar(Passageiro obj) {
         sql = " UPDATE TB_PASSAGEIRO SET DS_CPF = ?,DS_NOME  = ?,DS_EMAIL = ?, DS_TELEFONE = ?, NR_IDADE = ?,DS_SENHA = ? WHERE ID_PASSAGEIRO =  " + (obj.getIdPassageiro());
+
+        String emailVerificacao = emailExiste(obj.getEmail());
+        if (emailVerificacao != null) {
+            JOptionPane.showMessageDialog(null, emailVerificacao);
+            return false;
+        }
+
+        String nomeVerificacao = nomeExiste(obj.getNome());
+        if (nomeVerificacao != null) {
+            JOptionPane.showMessageDialog(null, nomeVerificacao);
+            return false;
+        }
+
         try {
             ps = mycon.prepareStatement(sql);
 
@@ -54,6 +82,8 @@ public class passageiroDao extends conectarDao {
         } catch (SQLException err) {
             JOptionPane.showMessageDialog(null, "Erro ao Alterar!" + err.getMessage());
         }
+        
+        return true;
     }
 
     public Passageiro validarLogin(String login, String senha) {
@@ -156,9 +186,8 @@ public class passageiroDao extends conectarDao {
                 int idade = resultSet.getInt("NR_IDADE");
                 String cpf = resultSet.getString("DS_CPF");
                 String telefone = resultSet.getString("DS_TELEFONE");
-                String email = resultSet.getString("DS_EMAIL");                
+                String email = resultSet.getString("DS_EMAIL");
                 String senha = resultSet.getString("DS_SENHA");
-
 
                 passageiro.setIdPassageiro(idPassageiro);
                 passageiro.setNome(nome);
@@ -167,7 +196,7 @@ public class passageiroDao extends conectarDao {
                 passageiro.setTelefone(telefone);
                 passageiro.setEmail(email);
                 passageiro.setSenha(senha);
-                
+
             } else {
                 JOptionPane.showMessageDialog(null, "Passageiro not found for ID: " + id);
             }
@@ -193,6 +222,46 @@ public class passageiroDao extends conectarDao {
         } catch (SQLException err) {
             JOptionPane.showMessageDialog(null, "Erro ao Excluir Passageiro! " + err.getMessage());
         }
+    }
+
+    private String emailExiste(String email) {
+        try (PreparedStatement ps = mycon.prepareStatement("SELECT COUNT(*) FROM TB_PASSAGEIRO WHERE DS_EMAIL = ?")) {
+            ps.setString(1, email);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    int count = rs.getInt(1);
+                    if (count > 0) {
+                        return "E-mail já cadastrado.";
+                    }
+                }
+            }
+
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, "Erro ao verificar e-mail!" + err.getMessage());
+        }
+
+        return null;
+    }
+
+    private String nomeExiste(String nome) {
+        try (PreparedStatement ps = mycon.prepareStatement("SELECT COUNT(*) FROM TB_PASSAGEIRO WHERE DS_NOME = ?")) {
+            ps.setString(1, nome);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    int count = rs.getInt(1);
+                    if (count > 0) {
+                        return "Nome já cadastrado.";
+                    }
+                }
+            }
+
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, "Erro ao verificar nome!" + err.getMessage());
+        }
+
+        return null;
     }
 
 }

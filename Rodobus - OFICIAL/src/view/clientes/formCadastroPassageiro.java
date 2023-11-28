@@ -255,18 +255,18 @@ public class formCadastroPassageiro extends javax.swing.JFrame {
                 passageiro.setTelefone(telefone);
                 passageiro.setIdade(idade);
 
-                u.Incluir(passageiro);
+                if (u.Incluir(passageiro) == true) {
 
-                this.setVisible(false);
-                this.dispose();
-                
-                passageiro = u.validarLogin(email, senha);
-                        
-                        
-                formConsultaPassagem pass = new formConsultaPassagem(passageiro);
-                pass.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                pass.setVisible(true);
+                    this.setVisible(false);
+                    this.dispose();
 
+                    passageiro = u.validarLogin(nome, senha);
+
+
+                    formConsultaPassagem pass = new formConsultaPassagem(passageiro);
+                    pass.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    pass.setVisible(true);
+                }
             }
         } 
     }//GEN-LAST:event_btnCadastra1MouseClicked

@@ -23,10 +23,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);  
         passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
-        
-        
 
-        
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         rota = r.selecionarUmaRota(rotaId2);
@@ -74,9 +71,9 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         mnNOME = new javax.swing.JMenu();
         mnID = new javax.swing.JMenu();
         mnPERFIL = new javax.swing.JMenu();
-        mnPedido = new javax.swing.JMenu();
         mnSAIR = new javax.swing.JMenu();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        mnPedido = new javax.swing.JMenu();
 
         jTextField1.setBackground(new java.awt.Color(50, 54, 66));
         jTextField1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -108,13 +105,11 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Perfil");
         setBackground(new java.awt.Color(242, 147, 4));
 
         jPanel2.setBackground(new java.awt.Color(242, 147, 4));
 
-        jPanel1.setBackground(new java.awt.Color(50, 54, 66));
-        jPanel1.setForeground(new java.awt.Color(50, 54, 66));
+        jPanel1.setBackground(new java.awt.Color(69, 73, 74));
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -124,6 +119,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Nome");
 
+        ifNOME.setEditable(false);
         ifNOME.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
@@ -140,7 +136,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Documento");
+        jLabel9.setText("CPF");
 
         ifCPF.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         ifCPF.addActionListener(new java.awt.event.ActionListener() {
@@ -198,6 +194,11 @@ public class formInfoPassageiro extends javax.swing.JFrame {
                 btnNOMEMouseClicked(evt);
             }
         });
+        btnNOME.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNOMEActionPerformed(evt);
+            }
+        });
 
         btnMAIL.setBackground(new java.awt.Color(50, 54, 66));
         btnMAIL.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
@@ -214,90 +215,69 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel10)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel7)
+                                    .addComponent(ifMAIL, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                                    .addComponent(ifTEL)
+                                    .addComponent(ifNOME)
+                                    .addComponent(ifCPF)
+                                    .addComponent(ifSENHA))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnTEL, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(112, 112, 112)
-                                        .addComponent(jLabel6))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(ifNOME, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(34, 34, 34)
-                                        .addComponent(btnNOME))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(91, 91, 91)
-                                        .addComponent(jLabel8)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(60, 60, 60)
-                                        .addComponent(ifMAIL, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(147, 147, 147)
-                                        .addComponent(jLabel7))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ifCPF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel9)
-                                                .addGap(76, 76, 76)))))
-                                .addGap(42, 42, 42)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnCPF)
+                                    .addComponent(btnSENHA)
                                     .addComponent(btnMAIL)
-                                    .addComponent(btnCPF, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(ifTEL, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)
-                                .addComponent(ifSENHA, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSENHA))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(316, 316, 316)
-                        .addComponent(jLabel10)))
-                .addContainerGap(114, Short.MAX_VALUE))
+                                    .addComponent(btnTEL)
+                                    .addComponent(btnNOME)))))
+                    .addComponent(jLabel5))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ifNOME, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ifMAIL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnNOME)
-                            .addComponent(btnMAIL))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ifTEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ifCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnTEL)
-                            .addComponent(btnCPF)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ifNOME, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNOME))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ifTEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTEL))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ifMAIL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMAIL))
+                .addGap(12, 12, 12)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ifCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCPF))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ifSENHA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSENHA))
-                .addGap(41, 41, 41))
+                .addGap(0, 32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -305,16 +285,16 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addContainerGap(93, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         jMenuBar1.add(jMenu7);
@@ -342,14 +322,6 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         });
         jMenuBar1.add(mnPERFIL);
 
-        mnPedido.setText("Pedido");
-        mnPedido.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mnPedidoMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(mnPedido);
-
         mnSAIR.setText("Sair");
         mnSAIR.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -359,6 +331,14 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         mnSAIR.add(jSeparator1);
 
         jMenuBar1.add(mnSAIR);
+
+        mnPedido.setText("Pedido");
+        mnPedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnPedidoMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(mnPedido);
 
         setJMenuBar(jMenuBar1);
 
@@ -375,10 +355,6 @@ public class formInfoPassageiro extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ifCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ifCPFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ifCPFActionPerformed
 
     private void mnRODOBUSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnRODOBUSMouseClicked
         this.setVisible(false);
@@ -409,34 +385,9 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_mnSAIRMouseClicked
 
-    private void btnSENHAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSENHAMouseClicked
-        
-        pass.setSenha(ifSENHA.getText());   
-        passageiro.Alterar(pass);
-    }//GEN-LAST:event_btnSENHAMouseClicked
-
-    private void ifSENHAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ifSENHAActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ifSENHAActionPerformed
-
-    private void btnTELMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTELMouseClicked
-        pass.setTelefone(ifTEL.getText());  
-        passageiro.Alterar(pass);
-    }//GEN-LAST:event_btnTELMouseClicked
-
     private void btnSENHA2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSENHA2MouseClicked
         
     }//GEN-LAST:event_btnSENHA2MouseClicked
-
-    private void btnCPFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCPFMouseClicked
-        pass.setCpf(ifCPF.getText());
-        passageiro.Alterar(pass);
-    }//GEN-LAST:event_btnCPFMouseClicked
-
-    private void btnNOMEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNOMEMouseClicked
-        pass.setNome(ifNOME.getText());
-        passageiro.Alterar(pass);
-    }//GEN-LAST:event_btnNOMEMouseClicked
 
     private void btnSENHA5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSENHA5MouseClicked
         // TODO add your handling code here:
@@ -446,6 +397,39 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         pass.setEmail(ifMAIL.getText());
         passageiro.Alterar(pass);
     }//GEN-LAST:event_btnMAILMouseClicked
+
+    private void btnNOMEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNOMEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNOMEActionPerformed
+
+    private void btnNOMEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNOMEMouseClicked
+        pass.setNome(ifNOME.getText());
+        passageiro.Alterar(pass);
+    }//GEN-LAST:event_btnNOMEMouseClicked
+
+    private void btnCPFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCPFMouseClicked
+        pass.setCpf(ifCPF.getText());
+        passageiro.Alterar(pass);
+    }//GEN-LAST:event_btnCPFMouseClicked
+
+    private void btnTELMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTELMouseClicked
+        pass.setTelefone(ifTEL.getText());
+        passageiro.Alterar(pass);
+    }//GEN-LAST:event_btnTELMouseClicked
+
+    private void ifSENHAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ifSENHAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ifSENHAActionPerformed
+
+    private void btnSENHAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSENHAMouseClicked
+
+        pass.setSenha(ifSENHA.getText());
+        passageiro.Alterar(pass);
+    }//GEN-LAST:event_btnSENHAMouseClicked
+
+    private void ifCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ifCPFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ifCPFActionPerformed
 
     /**
      * @param args the command line arguments
