@@ -22,8 +22,10 @@ import javax.swing.text.MaskFormatter;
 import model.Rota;
 
 public class formConsultaPassagem extends javax.swing.JFrame {
-
+    formLogin login = new formLogin();
+            
     public void carregarInfo(int IdPassageiro, int IdRota) {
+        this.dispose();
         this.setVisible(false);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     
@@ -33,6 +35,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
        
     }
     public void carregarInfo2(int IdPassageiro, int IdRota) {
+        this.dispose();
         this.setVisible(false);
         formInfoPassageiro pag = new formInfoPassageiro(IdPassageiro, IdRota);
         
@@ -490,8 +493,10 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBUSCARMouseClicked
 
     private void mnSAIRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnSAIRMouseClicked
-        formLogin login = new formLogin();
+
+        this.dispose();
         this.setVisible(false);
+        
         login.setVisible(true);
     }//GEN-LAST:event_mnSAIRMouseClicked
 
@@ -517,6 +522,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     }//GEN-LAST:event_tblROTASMouseClicked
 
     private void mnPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPedidoMouseClicked
+        this.dispose();
         this.setVisible(false);
         formPedidoRealizado pedido = new formPedidoRealizado(pass);
         pedido.setVisible(true);

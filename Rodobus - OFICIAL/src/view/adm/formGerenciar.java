@@ -47,7 +47,8 @@ import view.clientes.formLogin;
  * @author matheus.rafael
  */
 public class formGerenciar extends javax.swing.JFrame {
-
+    formLogin login = new formLogin();
+        
     public void CarregarPassageiro() {
         passageiroDao passageiroDao = new passageiroDao();
         ArrayList<Passageiro> passageiros = passageiroDao.selecionarPassageiros();
@@ -1961,8 +1962,8 @@ public class formGerenciar extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField16ActionPerformed
 
     private void mnSAIRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnSAIRMouseClicked
-        formLogin login = new formLogin();
-        login.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        this.dispose();
         this.setVisible(false);
         login.setVisible(true);
     }//GEN-LAST:event_mnSAIRMouseClicked

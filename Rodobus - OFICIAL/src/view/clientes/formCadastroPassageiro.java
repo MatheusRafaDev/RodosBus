@@ -12,19 +12,13 @@ import javax.swing.JFrame;
 
 public class formCadastroPassageiro extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NewJFrame
-     */
+    formLogin login = new formLogin();
+
     public formCadastroPassageiro() {
         initComponents();
-
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                
     }
 
-        
-    
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -209,39 +203,39 @@ public class formCadastroPassageiro extends javax.swing.JFrame {
     }//GEN-LAST:event_textIdadeActionPerformed
 
     private void btnCadastra1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastra1MouseClicked
-       passageiroDao u = new passageiroDao();
-       Passageiro passageiro = new Passageiro();
-       
-       String cpf = textCPF.getText();
-       String nome = textNome.getText();
-       String telefone = textTelefone.getText();
-       String email = textEmail.getText();
-       String senha = textSenha.getText();
-       int idade = Integer.parseInt(textIdade.getText());
-       
-       passageiro.setCpf(cpf);
-       passageiro.setEmail(email);
-       passageiro.setSenha(senha);
-       passageiro.setNome(nome);
-       passageiro.setTelefone(telefone);
-       passageiro.setIdPassageiro(idade);
-       
-       u.Incluir(passageiro);
-       
+        passageiroDao u = new passageiroDao();
+        Passageiro passageiro = new Passageiro();
+
+        String cpf = textCPF.getText();
+        String nome = textNome.getText();
+        String telefone = textTelefone.getText();
+        String email = textEmail.getText();
+        String senha = textSenha.getText();
+        int idade = Integer.parseInt(textIdade.getText());
+
+        passageiro.setCpf(cpf);
+        passageiro.setEmail(email);
+        passageiro.setSenha(senha);
+        passageiro.setNome(nome);
+        passageiro.setTelefone(telefone);
+        passageiro.setIdPassageiro(idade);
+
+        u.Incluir(passageiro);
+
         this.setVisible(false);
+        this.dispose();
         formConsultaPassagem pass = new formConsultaPassagem(passageiro);
         pass.setExtendedState(JFrame.MAXIMIZED_BOTH);
         pass.setVisible(true);
     }//GEN-LAST:event_btnCadastra1MouseClicked
 
     private void btnCadastra1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastra1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnCadastra1ActionPerformed
 
     private void mnLOGINMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnLOGINMouseClicked
         this.setVisible(false);
-        formLogin login= new formLogin();
-        login.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.dispose();
         login.setVisible(true);
     }//GEN-LAST:event_mnLOGINMouseClicked
 

@@ -10,19 +10,17 @@ import javax.swing.JFrame;
 import model.Passageiro;
 import model.Rota;
 
-/**
- *
- * @author alesandro.rsjunior
- */
+
 public class formPagCartao extends javax.swing.JFrame {
 
     Rota rota = new Rota();
     Passageiro pass = new Passageiro();
     passageiroDao passageiro = new passageiroDao();
+    formLogin login = new formLogin();
     
     public void carregarInfo2(int IdPassageiro, int IdRota) {
         this.setVisible(false);
-        
+        this.dispose();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
          
         formInfoPassageiro pag = new formInfoPassageiro(IdPassageiro, IdRota);
@@ -31,9 +29,10 @@ public class formPagCartao extends javax.swing.JFrame {
     }
     public void carregarBil(int IdPassageiro, int IdRota) {
         this.setVisible(false);
-        
+        this.dispose();
         formPassagemBilhete pas = new formPassagemBilhete(IdPassageiro, IdRota);
-        this.setVisible(false);
+       
+        
         pas.setVisible(true);
     }
     
@@ -310,19 +309,21 @@ public class formPagCartao extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-         formLogin login = new formLogin();
         this.setVisible(false);
+        this.dispose();
         login.setVisible(true);
     }//GEN-LAST:event_jMenu5MouseClicked
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
-          this.setVisible(false);
+        this.setVisible(false);
+        this.dispose();
         formPedidoRealizado pedido = new formPedidoRealizado(pass);
         pedido.setVisible(true);
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void mnRODOBUSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnRODOBUSMouseClicked
         this.setVisible(false);
+        this.dispose();
         formConsultaPassagem consulta = new formConsultaPassagem(pass);
         consulta.setVisible(true);
     }//GEN-LAST:event_mnRODOBUSMouseClicked

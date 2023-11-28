@@ -186,8 +186,8 @@ public class formLogin extends javax.swing.JFrame {
 
     private void btnCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastroMouseClicked
         this.setVisible(false);
-        cadastro.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.dispose();
+        cadastro.setExtendedState(JFrame.MAXIMIZED_BOTH);
         cadastro.setVisible(true);
     }//GEN-LAST:event_btnCadastroMouseClicked
 
@@ -231,11 +231,12 @@ public class formLogin extends javax.swing.JFrame {
 
         if (login.equals("admin") && senha.equals("1234")) {
             this.setVisible(false);
+            this.dispose();
             gerenciar.setVisible(true);
         } else {
 
             if (resul.getIdPassageiro() > 0) {
-
+                this.dispose();
                 this.setVisible(false);
                 pass.setVisible(true);
             }

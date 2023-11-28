@@ -16,12 +16,13 @@ import model.Rota;
  */
 public class formPix extends javax.swing.JFrame {
 
-   
-     Rota rota = new Rota();
+    formLogin login = new formLogin();
+    Rota rota = new Rota();
     Passageiro pass = new Passageiro();
+    
      public void carregarInfo2(int IdPassageiro, int IdRota) {
         this.setVisible(false);
-        
+        this.dispose();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
          
         formInfoPassageiro pag = new formInfoPassageiro(IdPassageiro, IdRota);
@@ -30,9 +31,9 @@ public class formPix extends javax.swing.JFrame {
     }
     public void carregarBil(int IdPassageiro, int IdRota) {
         this.setVisible(false);
+        this.dispose();
         
         formPassagemBilhete pas = new formPassagemBilhete(IdPassageiro, IdRota);
-         this.setVisible(false);
         pas.setVisible(true);
     }
     public formPix(int passageiroId2, int rotaId2) {
@@ -468,13 +469,15 @@ public class formPix extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu3MouseClicked
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
-  formLogin login = new formLogin();
+
         this.setVisible(false);
+        this.dispose();
         login.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void mnRODOBUSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnRODOBUSMouseClicked
         this.setVisible(false);
+        this.dispose();
         formConsultaPassagem consulta = new formConsultaPassagem(pass);
         consulta.setVisible(true);
     }//GEN-LAST:event_mnRODOBUSMouseClicked

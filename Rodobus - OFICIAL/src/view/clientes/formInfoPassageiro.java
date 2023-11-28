@@ -13,10 +13,10 @@ import model.Rota;
 
 
 public class formInfoPassageiro extends javax.swing.JFrame {
-     passageiroDao passageiro = new passageiroDao();
+    passageiroDao passageiro = new passageiroDao();
     Passageiro pass = new Passageiro();
-     Rota rota = new Rota();
-     
+    Rota rota = new Rota();
+    formLogin login = new formLogin();
     public formInfoPassageiro(int passageiroId2, int rotaId2) {
         initComponents();
         
@@ -382,25 +382,29 @@ public class formInfoPassageiro extends javax.swing.JFrame {
 
     private void mnRODOBUSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnRODOBUSMouseClicked
         this.setVisible(false);
+        this.dispose();
         formConsultaPassagem consulta = new formConsultaPassagem(pass);
         consulta.setVisible(true);
     }//GEN-LAST:event_mnRODOBUSMouseClicked
 
     private void mnPERFILMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPERFILMouseClicked
         this.setVisible(false);
+        this.dispose();
         formInfoPassageiro info = new formInfoPassageiro(pass.getIdPassageiro(), rota.getIdRota());
         info.setVisible(true);
     }//GEN-LAST:event_mnPERFILMouseClicked
 
     private void mnPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPedidoMouseClicked
         this.setVisible(false);
+        this.dispose();
         formPedidoRealizado pedido = new formPedidoRealizado(pass);
         pedido.setVisible(true);
     }//GEN-LAST:event_mnPedidoMouseClicked
 
     private void mnSAIRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnSAIRMouseClicked
-        formLogin login = new formLogin();
+
         this.setVisible(false);
+        this.dispose();
         login.setVisible(true);
     }//GEN-LAST:event_mnSAIRMouseClicked
 

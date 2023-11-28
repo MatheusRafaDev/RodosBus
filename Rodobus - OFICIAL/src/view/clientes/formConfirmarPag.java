@@ -20,7 +20,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
     Passageiro pass = new Passageiro();
     Onibus onibus = new Onibus();   
     Motorista moto = new Motorista();
+    formLogin login = new formLogin();
      public void carregarInfo2(int IdPassageiro, int IdRota) {
+        this.dispose();
         this.setVisible(false);
 
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -523,10 +525,12 @@ public class formConfirmarPag extends javax.swing.JFrame {
     private void btnConfirmaPagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmaPagarMouseClicked
 
         if(this.optPIX.isSelected()){
+            this.dispose();
             this.setVisible(false);
             formPix pix = new formPix(pass.getIdPassageiro(),rota.getIdMotorista());
             pix.setVisible(true);
         } else {
+            this.dispose();
             this.setVisible(false);
             formPagCartao cartao = new formPagCartao(pass.getIdPassageiro(),rota.getIdMotorista());
             cartao.setVisible(true);
@@ -540,19 +544,22 @@ public class formConfirmarPag extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-        formLogin login = new formLogin();
+        this.dispose();
         this.setVisible(false);
         login.setVisible(true);
     }//GEN-LAST:event_jMenu5MouseClicked
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+        this.dispose();
         this.setVisible(false);
         formPedidoRealizado pedido = new formPedidoRealizado(pass);
         pedido.setVisible(true);
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void mnRODOBUSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnRODOBUSMouseClicked
+        
         this.setVisible(false);
+        this.dispose();
         formConsultaPassagem consulta = new formConsultaPassagem(pass);
         consulta.setVisible(true);
     }//GEN-LAST:event_mnRODOBUSMouseClicked
