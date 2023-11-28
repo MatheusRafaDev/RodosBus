@@ -12,16 +12,15 @@ import javax.swing.JFrame;
 
 public class formLogin extends javax.swing.JFrame {
 
-    formCadastroPassageiro cadastro = new formCadastroPassageiro();
+    
     passageiroDao p = new passageiroDao();
-    formGerenciar gerenciar = new formGerenciar();
+    
 
     public formLogin() {
         
         initComponents();
         conectarDao c = new conectarDao();
-        c.fecharConexao();
-        //c.criarBanco();
+        c.criarBanco();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
     }
@@ -189,6 +188,7 @@ public class formLogin extends javax.swing.JFrame {
     private void btnCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastroMouseClicked
         this.setVisible(false);
         this.dispose();
+        formCadastroPassageiro cadastro = new formCadastroPassageiro();
         cadastro.setExtendedState(JFrame.MAXIMIZED_BOTH);
         cadastro.setVisible(true);
     }//GEN-LAST:event_btnCadastroMouseClicked
@@ -196,7 +196,8 @@ public class formLogin extends javax.swing.JFrame {
     private void btnEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEntrarKeyPressed
         String login = this.txtLogin.getText().trim();
         String senha = this.txtSenha.getText().trim();
-
+        formGerenciar gerenciar = new formGerenciar();
+        
         if (login.equals("admin") && senha.equals("1234")) {
             gerenciar.setExtendedState(JFrame.MAXIMIZED_BOTH);
             this.setVisible(false);
