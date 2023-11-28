@@ -22,12 +22,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
     Onibus onibus = new Onibus();   
     Motorista moto = new Motorista();
 
-    formConfirmarPag(Reserva reserva) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    
-     public void carregarInfo2(int IdPassageiro, int IdRota) {
+    public void carregarInfo2(int IdPassageiro, int IdRota) {
         this.dispose();
         this.setVisible(false);
 

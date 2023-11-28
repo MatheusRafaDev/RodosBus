@@ -271,7 +271,7 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Reserva reserva = new Reserva();
-                new formConfirmarPag(reserva).setVisible(true);
+                new formPassagemBilhete(reserva).setVisible(true);
             }
         });
     }

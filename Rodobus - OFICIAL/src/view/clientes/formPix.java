@@ -8,48 +8,56 @@ import controller.passageiroDao;
 import controller.rotaDao;
 import javax.swing.JFrame;
 import model.Passageiro;
+import model.Reserva;
 import model.Rota;
-
 
 public class formPix extends javax.swing.JFrame {
 
-    
     Rota rota = new Rota();
     Passageiro pass = new Passageiro();
-    
-     public void carregarInfo2(int IdPassageiro, int IdRota) {
+    int qtd = 0;
+
+    private formPix(int passageiroId2, int rotaId2, int qtd) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void carregarInfo2(int IdPassageiro, int IdRota) {
         this.setVisible(false);
         this.dispose();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-         
+
         formInfoPassageiro pag = new formInfoPassageiro(IdPassageiro, IdRota);
 
         pag.setVisible(true);
     }
+
     public void carregarBil(int IdPassageiro, int IdRota) {
         this.setVisible(false);
         this.dispose();
-        
-        formPassagemBilhete pas = new formPassagemBilhete(IdPassageiro, IdRota);
+
+        Reserva reserva = new Reserva();
+        formPassagemBilhete pas = new formPassagemBilhete(reserva);
+
         pas.setVisible(true);
     }
+
     public formPix(int passageiroId2, int rotaId2) {
-         passageiroDao p = new passageiroDao();
+        passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
 
         rota = r.selecionarUmaRota(rotaId2);
         pass = p.selecionarUmPassageiro(passageiroId2);
         initComponents();
-        
+
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.pixNOME.setText(pass.getNome());
         this.pixCPF.setText(pass.getCpf());
         this.pixEmail.setText(pass.getEmail());
         this.pixIDADE.setText(String.valueOf(pass.getIdade()));
-         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-         this.mnNOME.setText(pass.getNome());
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.mnNOME.setText(pass.getNome());
         this.mnID.setText("Id: " + pass.getIdPassageiro());
-        
+
     }
 
     /**
@@ -470,7 +478,7 @@ public class formPix extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
         formLogin login = new formLogin();
-        login.setVisible(true);      
+        login.setVisible(true);
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void mnRODOBUSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnRODOBUSMouseClicked
@@ -513,11 +521,12 @@ public class formPix extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-            int passageiroId2 = 0;
+
+                int passageiroId2 = 0;
                 int rotaId2 = 0;
-                new formPix(passageiroId2, rotaId2).setVisible(true);
-                         //JOptionPane.showMessageDialog(null, passageiroId2);
-                         //JOptionPane.showMessageDialog(null, rotaId2);
+                int qtd = 0;
+                new formPix(passageiroId2, rotaId2, qtd).setVisible(true);
+
             }
         });
     }

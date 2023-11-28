@@ -21,7 +21,7 @@ public class formPagCartao extends javax.swing.JFrame {
     Passageiro pass = new Passageiro();
     passageiroDao passageiro = new passageiroDao();
     reservaDao rese = new reservaDao();
-    int qtd =0;
+    
     
     public void carregarInfo2(int IdPassageiro, int IdRota) {
         this.setVisible(false);
@@ -52,16 +52,17 @@ public class formPagCartao extends javax.swing.JFrame {
         
         reserva = rese.incluir(reserva);
         
-       
-
         formPassagemBilhete pas = new formPassagemBilhete(reserva);
         pas.setVisible(true);
     }
 
+    int qtd = 0;
+    
     public formPagCartao(int passageiroId2, int rotaId2,int qtd) {
 
         initComponents();
-
+        JOptionPane.showMessageDialog(null,qtd);
+        
         passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
 
