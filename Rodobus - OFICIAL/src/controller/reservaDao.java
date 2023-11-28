@@ -166,7 +166,7 @@ public class reservaDao extends conectarDao {
     }
     public ArrayList<Reserva> FormPedidos(int id) {
          ArrayList<Reserva> reservas = new ArrayList<>();
-        String sql = "SELECT id_reserva,dt_reserva, ds_status, qtd_reserva, vl_total FROM TB_RESERVAS WHERE ID_PASSAGEIRO ='" + id + "'";
+        String sql = "SELECT id_reserva,id_rota,dt_reserva, ds_status, qtd_reserva, vl_total FROM TB_RESERVAS WHERE ID_PASSAGEIRO ='" + id + "'";
        
         Reserva reserva = new Reserva();
 
@@ -176,11 +176,13 @@ public class reservaDao extends conectarDao {
 
             if (resultSet.next()) {
                 int IdReserva = resultSet.getInt("ID_RESERVA");
+                int IdRota = resultSet.getInt("ID_ROTA");
                 Date dtreserva = resultSet.getDate("DT_RESERVA");
                 int quantidadeReserva = resultSet.getInt("qtd_reserva");
                 String status = resultSet.getString("DS_STATUS");
                 double vl_total = resultSet.getDouble("vl_total");
                reserva.setIdReserva(IdReserva);
+               reserva.setIdRota(IdRota);
                reserva.setDataReserva(dtreserva);
                reserva.setStatus(status);
                reserva.setQuantidadeReserva(quantidadeReserva);
