@@ -18,7 +18,16 @@ import model.Rota;
 public class formPedidoRealizado extends javax.swing.JFrame {
     Passageiro pass = new Passageiro();
     Rota rt = new Rota();
-    
+    public void carregarRota() {
+        reservaDao reserva = new reservaDao();
+        ArrayList<Reserva> reservas = reserva.FormPedidos(pass.getIdPassageiro());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        DefaultTableModel model = (DefaultTableModel) tblPEDIDOS.getModel();
+                
+        for (Reserva reserva2 : reservas) {
+            model.addRow(new Object[]{reserva2.getIdReserva(),sdf.format(reserva2.getDataReserva()), reserva2.getQuantidadeReserva(), reserva2.getValorTotal(),reserva2.getStatus()});
+        }
+    }
     
     public formPedidoRealizado(Passageiro obj) {
         initComponents();
@@ -27,9 +36,11 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         this.mnID.setText("Id: " + obj.getIdPassageiro());
 
         pass = obj;
+        carregarRota();
         
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+       this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -38,7 +49,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblPedido = new javax.swing.JTable();
+        tblPEDIDOS = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
         mnRODOBUS = new javax.swing.JMenu();
@@ -59,39 +70,42 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Meus pedidos");
 
-        tblPedido.setModel(new javax.swing.table.DefaultTableModel(
+        tblPEDIDOS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Id", "Origem", "Destino", "Distância", "Duração", "Preço"
+                "Id", "Data Reserva", "Quantidade", "Valor Total", "Status"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Double.class
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
             };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblPedido);
+        jScrollPane1.setViewportView(tblPEDIDOS);
+        if (tblPEDIDOS.getColumnModel().getColumnCount() > 0) {
+            tblPEDIDOS.getColumnModel().getColumn(0).setResizable(false);
+            tblPEDIDOS.getColumnModel().getColumn(1).setResizable(false);
+            tblPEDIDOS.getColumnModel().getColumn(2).setResizable(false);
+            tblPEDIDOS.getColumnModel().getColumn(3).setResizable(false);
+            tblPEDIDOS.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(177, 177, 177)
-                        .addComponent(jLabel1)))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(280, 280, 280)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -101,7 +115,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jMenuBar1.setForeground(new java.awt.Color(60, 63, 65));
@@ -154,13 +168,13 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(6, 6, 6))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -243,6 +257,6 @@ public class formPedidoRealizado extends javax.swing.JFrame {
     private javax.swing.JMenu mnPedido;
     private javax.swing.JMenu mnRODOBUS;
     private javax.swing.JMenu mnSAIR;
-    private javax.swing.JTable tblPedido;
+    private javax.swing.JTable tblPEDIDOS;
     // End of variables declaration//GEN-END:variables
 }
