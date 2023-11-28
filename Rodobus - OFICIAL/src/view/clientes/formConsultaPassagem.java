@@ -34,11 +34,9 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     }
     public void carregarInfo2(int IdPassageiro, int IdRota) {
         this.setVisible(false);
-        
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-         
         formInfoPassageiro pag = new formInfoPassageiro(IdPassageiro, IdRota);
-
+        
+        this.dispose();
         pag.setVisible(true);
     }
 
