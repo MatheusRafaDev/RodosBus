@@ -16,7 +16,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
     passageiroDao passageiro = new passageiroDao();
     Passageiro pass = new Passageiro();
     Rota rota = new Rota();
-    formLogin login = new formLogin();
+    
     public formInfoPassageiro(int passageiroId2, int rotaId2) {
         initComponents();
         
@@ -405,6 +405,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
 
         this.setVisible(false);
         this.dispose();
+        formLogin login = new formLogin();
         login.setVisible(true);
     }//GEN-LAST:event_mnSAIRMouseClicked
 

@@ -18,7 +18,7 @@ import model.Rota;
 public class formPedidoRealizado extends javax.swing.JFrame {
     Passageiro pass = new Passageiro();
     Rota rt = new Rota();
-    formLogin login = new formLogin();
+    
     
     public formPedidoRealizado(Passageiro obj) {
         initComponents();
@@ -169,6 +169,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
     private void mnSAIRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnSAIRMouseClicked
         this.dispose();
         this.setVisible(false);
+        formLogin login = new formLogin();
         login.setVisible(true);
     }//GEN-LAST:event_mnSAIRMouseClicked
 

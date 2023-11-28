@@ -22,7 +22,7 @@ import javax.swing.text.MaskFormatter;
 import model.Rota;
 
 public class formConsultaPassagem extends javax.swing.JFrame {
-    formLogin login = new formLogin();
+    
             
     public void carregarInfo(int IdPassageiro, int IdRota) {
         this.dispose();
@@ -496,7 +496,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
 
         this.dispose();
         this.setVisible(false);
-        
+        formLogin login = new formLogin();
         login.setVisible(true);
     }//GEN-LAST:event_mnSAIRMouseClicked
 

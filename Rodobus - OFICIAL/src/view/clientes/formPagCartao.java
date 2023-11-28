@@ -16,7 +16,7 @@ public class formPagCartao extends javax.swing.JFrame {
     Rota rota = new Rota();
     Passageiro pass = new Passageiro();
     passageiroDao passageiro = new passageiroDao();
-    formLogin login = new formLogin();
+    
     
     public void carregarInfo2(int IdPassageiro, int IdRota) {
         this.setVisible(false);
@@ -311,6 +311,7 @@ public class formPagCartao extends javax.swing.JFrame {
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
         this.setVisible(false);
         this.dispose();
+        formLogin login = new formLogin();
         login.setVisible(true);
     }//GEN-LAST:event_jMenu5MouseClicked
 

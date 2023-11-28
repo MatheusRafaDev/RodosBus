@@ -20,7 +20,8 @@ public class formConfirmarPag extends javax.swing.JFrame {
     Passageiro pass = new Passageiro();
     Onibus onibus = new Onibus();   
     Motorista moto = new Motorista();
-    formLogin login = new formLogin();
+    
+    
      public void carregarInfo2(int IdPassageiro, int IdRota) {
         this.dispose();
         this.setVisible(false);
@@ -546,6 +547,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
         this.dispose();
         this.setVisible(false);
+        formLogin login = new formLogin();
         login.setVisible(true);
     }//GEN-LAST:event_jMenu5MouseClicked
 

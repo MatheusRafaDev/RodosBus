@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.List;
 import java.sql.Timestamp;
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -9,17 +10,18 @@ import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Reserva;
 
 public class conectarDao {
 
-    public Connection mycon = null;
     public String sql = null;
-
+    public Connection mycon = null;
+ 
     public conectarDao() {
-
+        fecharConexao();
         String con = "jdbc:mysql://localhost:3306/RodoBus";
 
         try {
@@ -28,6 +30,17 @@ public class conectarDao {
             JOptionPane.showMessageDialog(null, "Conexão com Mysql não realizada!\n" + ex);
         }
     }
+    
+    public void fecharConexao() {
+        try {
+            if (mycon != null && !mycon.isClosed()) {
+                mycon.close();
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao fechar a conexão!\n" + ex);
+        }
+    }
+    
 
     public void criarBanco() {
         try {

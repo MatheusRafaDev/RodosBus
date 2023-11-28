@@ -12,11 +12,12 @@ import javax.swing.JFrame;
 
 public class formCadastroPassageiro extends javax.swing.JFrame {
 
-    formLogin login = new formLogin();
+    
 
     public formCadastroPassageiro() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -236,6 +237,7 @@ public class formCadastroPassageiro extends javax.swing.JFrame {
     private void mnLOGINMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnLOGINMouseClicked
         this.setVisible(false);
         this.dispose();
+        formLogin login = new formLogin();
         login.setVisible(true);
     }//GEN-LAST:event_mnLOGINMouseClicked
 

@@ -17,9 +17,11 @@ public class formLogin extends javax.swing.JFrame {
     formGerenciar gerenciar = new formGerenciar();
 
     public formLogin() {
+        
         initComponents();
         conectarDao c = new conectarDao();
-        c.criarBanco();
+        c.fecharConexao();
+        //c.criarBanco();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
     }
