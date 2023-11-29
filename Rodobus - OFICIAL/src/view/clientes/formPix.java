@@ -5,8 +5,12 @@
 package view.clientes;
 
 import controller.passageiroDao;
+import controller.reservaDao;
 import controller.rotaDao;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import model.Passageiro;
 import model.Reserva;
 import model.Rota;
@@ -15,11 +19,10 @@ public class formPix extends javax.swing.JFrame {
 
     Rota rota = new Rota();
     Passageiro pass = new Passageiro();
-    int qtd = 0;
+    passageiroDao passageiro = new passageiroDao();
+    reservaDao rese = new reservaDao();
 
-    private formPix(int passageiroId2, int rotaId2, int qtd) {
- 
-    }
+   
 
     public void carregarInfo2(int IdPassageiro, int IdRota) {
         this.setVisible(false);
@@ -30,26 +33,42 @@ public class formPix extends javax.swing.JFrame {
 
         pag.setVisible(true);
     }
-
-    public void carregarBil(int IdPassageiro, int IdRota) {
+   int qtd = 0;
+    public void carregarBil() {
         this.setVisible(false);
         this.dispose();
 
         Reserva reserva = new Reserva();
-        formPassagemBilhete pas = new formPassagemBilhete(reserva);
 
+        Date dataReserva = new Date();
+        reserva.setDataReserva(dataReserva);
+
+        reserva.setIdPassageiro(pass.getIdPassageiro());
+        reserva.setIdRota(rota.getIdRota());
+        reserva.setStatus("Reservado");
+        reserva.setQuantidadeReserva(qtd);
+
+        reserva.setValorTotal(reserva.getQuantidadeReserva() * rota.getVlPreco());
+
+        reserva = rese.incluir(reserva);
+
+        formPassagemBilhete pas = new formPassagemBilhete(reserva);
         pas.setVisible(true);
     }
 
-    public formPix(int passageiroId2, int rotaId2) {
+ 
+
+    public formPix(int passageiroId2, int rotaId2, int quantidade) {
+        initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
 
+        qtd = quantidade;
         rota = r.selecionarUmaRota(rotaId2);
         pass = p.selecionarUmPassageiro(passageiroId2);
-        initComponents();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.pixNOME.setText(pass.getNome());
         this.pixCPF.setText(pass.getCpf());
         this.pixEmail.setText(pass.getEmail());
@@ -57,6 +76,7 @@ public class formPix extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.mnNOME.setText(pass.getNome());
         this.mnID.setText("Id: " + pass.getIdPassageiro());
+        this.pixTotal.setText(String.valueOf((float) rota.getVlPreco()));
 
     }
 
@@ -91,6 +111,8 @@ public class formPix extends javax.swing.JFrame {
         pixCPF = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         pixIDADE = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnRODOBUS = new javax.swing.JMenu();
         mnNOME = new javax.swing.JMenu();
@@ -277,6 +299,10 @@ public class formPix extends javax.swing.JFrame {
 
         pixIDADE.setText("IDADE");
 
+        jLabel4.setText("CPF");
+
+        jLabel5.setText("Passageiro");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -286,20 +312,17 @@ public class formPix extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(123, 123, 123)
                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pixEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(231, 231, 231)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pixTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(279, 279, 279)
-                                .addComponent(btnPAGO, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 243, Short.MAX_VALUE)))
-                .addGap(6, 6, 6))
+                        .addGap(256, 256, 256)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pixTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(279, 279, 279)
+                        .addComponent(btnPAGO, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(133, Short.MAX_VALUE)
                 .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -328,17 +351,19 @@ public class formPix extends javax.swing.JFrame {
                                     .addGap(14, 14, 14)))
                             .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(268, 268, 268)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(144, 144, 144)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pixCPF)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pixNOME)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(pixIDADE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(268, 268, 268)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(pixCPF)
+                            .addComponent(pixIDADE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -356,13 +381,19 @@ public class formPix extends javax.swing.JFrame {
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pixTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pixEmail))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(pixEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(1, 1, 1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pixNOME)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pixNOME)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pixCPF)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pixCPF)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -465,7 +496,7 @@ public class formPix extends javax.swing.JFrame {
 
     private void btnPAGOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPAGOMouseClicked
         // TODO add your handling code here:
-        carregarBil(pass.getIdPassageiro(), rota.getIdRota());
+        carregarBil();
     }//GEN-LAST:event_btnPAGOMouseClicked
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
@@ -536,6 +567,8 @@ public class formPix extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;

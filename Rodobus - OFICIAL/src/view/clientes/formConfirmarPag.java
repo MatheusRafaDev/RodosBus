@@ -606,7 +606,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         if (this.optPIX.isSelected()) {
             this.dispose();
             this.setVisible(false);
-            formPix pix = new formPix(pass.getIdPassageiro(), rota.getIdMotorista());
+            formPix pix = new formPix(pass.getIdPassageiro(), rota.getIdMotorista(),Integer.parseInt(this.txtQTD.getText()) );
             pix.setVisible(true);
         } else {
             this.dispose();
