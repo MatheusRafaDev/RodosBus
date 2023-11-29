@@ -4,6 +4,8 @@
  */
 package view.clientes;
 
+import controller.motoristaDao;
+import controller.onibusDao;
 import controller.passageiroDao;
 import controller.rotaDao;
 import controller.reservaDao;
@@ -11,7 +13,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Motorista;
+import model.Onibus;
 import model.Passageiro;
 import model.Reserva;
 import model.Rota;
@@ -26,7 +31,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         DefaultTableModel model = (DefaultTableModel) tblPEDIDOS.getModel();
-                
+                model.setRowCount(0);
         for (Reserva reserva2 : reservas) {
             model.addRow(new Object[]{
                 reserva2.getIdReserva(),
@@ -60,6 +65,19 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPEDIDOS = new javax.swing.JTable();
         pedidoBTN = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        pdORIGEM = new javax.swing.JLabel();
+        pdDESTINO = new javax.swing.JLabel();
+        pdDTSaida = new javax.swing.JLabel();
+        pdDTChegada = new javax.swing.JLabel();
+        pdBUS = new javax.swing.JLabel();
+        pdMOTO = new javax.swing.JLabel();
+        cancelarBTN = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
         mnRODOBUS = new javax.swing.JMenu();
@@ -121,31 +139,131 @@ public class formPedidoRealizado extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel2.setText("Origem:");
+
+        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel3.setText("Destino:");
+
+        jLabel4.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel4.setText("Data de Saida:");
+
+        jLabel5.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel5.setText("Data de Chegada:");
+
+        jLabel6.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel6.setText("Modelo do Ônibus:");
+
+        jLabel7.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel7.setText("Motorista:");
+
+        pdORIGEM.setText("-");
+
+        pdDESTINO.setText("-");
+
+        pdDTSaida.setText("-");
+
+        pdDTChegada.setText("-");
+
+        pdBUS.setText("-");
+
+        pdMOTO.setText("-");
+
+        cancelarBTN.setBackground(new java.awt.Color(69, 73, 74));
+        cancelarBTN.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        cancelarBTN.setForeground(new java.awt.Color(255, 255, 255));
+        cancelarBTN.setText("CANCELAR RESERVA");
+        cancelarBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarBTNMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(pedidoBTN))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(235, 235, 235)
+                                .addComponent(pedidoBTN))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(109, 109, 109)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(pdMOTO))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(pdORIGEM))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(pdDESTINO))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(pdDTSaida))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(pdDTChegada))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(pdBUS)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cancelarBTN)))))
+                        .addGap(92, 92, 92)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addComponent(pedidoBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(pdORIGEM))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(pdDESTINO))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(pdDTSaida))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(pdDTChegada))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(pdBUS)
+                    .addComponent(cancelarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(pdMOTO))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jMenuBar1.setForeground(new java.awt.Color(60, 63, 65));
@@ -240,7 +358,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
 
     private void pedidoBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidoBTNMouseClicked
          reservaDao rese = new reservaDao();
-        
+        if (res.getStatus()=="Cancelado"){
         this.setVisible(false);
         this.dispose();
         passageiroDao p = new passageiroDao();
@@ -256,7 +374,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         
         formPassagemBilhete pas = new formPassagemBilhete(res);
         pas.setVisible(true);
-    
+        } else JOptionPane.showMessageDialog(null, "Não é possivel consultar o bilhete de uma reserva cancelada! ");
     }//GEN-LAST:event_pedidoBTNMouseClicked
 
     private void tblPEDIDOSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPEDIDOSMouseClicked
@@ -264,7 +382,12 @@ int selectedRow = tblPEDIDOS.getSelectedRow();
 String lblID;
 String rtID;
 String psID;
+int onID;
+Onibus on = new Onibus();
+Motorista moto = new Motorista();
+int mtID;
 if (selectedRow != -1) {
+      SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             lblID =tblPEDIDOS.getValueAt(selectedRow, 0).toString();
             rtID =(tblPEDIDOS.getValueAt(selectedRow, 1).toString());
             tblPEDIDOS.getValueAt(selectedRow, 2).toString();
@@ -272,13 +395,39 @@ if (selectedRow != -1) {
             tblPEDIDOS.getValueAt(selectedRow, 4).toString();
             tblPEDIDOS.getValueAt(selectedRow, 5).toString();
             reservaDao r = new reservaDao();
-            
+            rotaDao r2 = new rotaDao();
+            onibusDao r3 = new onibusDao();
+            motoristaDao r4 = new motoristaDao();
+            rt = r2.selecionarUmaRota(Integer.parseInt(rtID));
             res = r.selecionarUmaReserva(Integer.parseInt(lblID));
+            onID = rt.getIdOnibus() ;
+            mtID = rt.getIdMotorista();
+            on.setIdOnibus(onID);
+            on = r3.selecionarUmOnibus(onID);
+            moto.setIdMotorista(mtID);
+            moto = r4.selecionarUmMotorista(mtID);
             res.setIdReserva(Integer.parseInt(rtID));
             res.setIdPassageiro(pass.getIdPassageiro());
-
+            this.pdORIGEM.setText(rt.getOrigem());
+        this.pdDESTINO.setText(rt.getDestino());
+        this.pdDTSaida.setText(formato.format(rt.getDtSaida()));
+        this.pdDTChegada.setText(formato.format(rt.getDtChegada()));
+        this.pdBUS.setText(on.getModelo());
+        this.pdMOTO.setText(moto.getNome());
         }   
     }//GEN-LAST:event_tblPEDIDOSMouseClicked
+
+    private void cancelarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarBTNMouseClicked
+        String lblID;
+        reservaDao reses = new reservaDao();
+        int selectedRow = tblPEDIDOS.getSelectedRow();
+        if (selectedRow != -1) {
+           
+            lblID =tblPEDIDOS.getValueAt(selectedRow, 0).toString();
+            reses.alterarStatus(Integer.parseInt(lblID));
+            carregarRota();
+        }
+    }//GEN-LAST:event_cancelarBTNMouseClicked
 
     /**
      * @param args the command line arguments
@@ -317,7 +466,14 @@ if (selectedRow != -1) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelarBTN;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
@@ -329,6 +485,12 @@ if (selectedRow != -1) {
     private javax.swing.JMenu mnPedido;
     private javax.swing.JMenu mnRODOBUS;
     private javax.swing.JMenu mnSAIR;
+    private javax.swing.JLabel pdBUS;
+    private javax.swing.JLabel pdDESTINO;
+    private javax.swing.JLabel pdDTChegada;
+    private javax.swing.JLabel pdDTSaida;
+    private javax.swing.JLabel pdMOTO;
+    private javax.swing.JLabel pdORIGEM;
     private javax.swing.JButton pedidoBTN;
     private javax.swing.JTable tblPEDIDOS;
     // End of variables declaration//GEN-END:variables
