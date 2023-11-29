@@ -46,9 +46,7 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         
         this.txtQTD.setText(String.valueOf(res.getQuantidadeReserva()));
         
-        JOptionPane.showMessageDialog(null, res.getQuantidadeReserva());
-        JOptionPane.showMessageDialog(null, res.getIdReserva());
-         
+
         this.txtIDRESERVA.setText(String.valueOf(res.getIdReserva()));
         
     }

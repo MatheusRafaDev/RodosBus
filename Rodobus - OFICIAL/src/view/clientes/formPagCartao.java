@@ -45,10 +45,7 @@ public class formPagCartao extends javax.swing.JFrame {
         reserva.setIdReserva(id);
         
         reserva = rese.selecionarUmaReserva(id);
-        
-        JOptionPane.showMessageDialog(null, reserva .getQuantidadeReserva());
-        JOptionPane.showMessageDialog(null, reserva .getIdReserva());
-        
+      
         formPassagemBilhete pas = new formPassagemBilhete(reserva);
         pas.setVisible(true);
     }
