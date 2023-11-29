@@ -172,37 +172,33 @@ public class reservaDao extends conectarDao {
 
     public ArrayList<Reserva> FormPedidos(int id) {
         ArrayList<Reserva> reservas = new ArrayList<>();
-        String sql = "SELECT id_reserva,id_rota,dt_reserva, ds_status, qtd_reserva, vl_total FROM TB_RESERVAS WHERE ID_PASSAGEIRO ='" + id + "'";
-
-        Reserva reserva = new Reserva();
-
+        String sql = "SELECT * FROM TB_RESERVAS WHERE ID_PASSAGEIRO =" + id ;
+     
         try {
             PreparedStatement ps = mycon.prepareStatement(sql);
             ResultSet resultSet = ps.executeQuery();
 
-            if (resultSet.next()) {
+            while (resultSet.next()) {
+                Reserva reserva = new Reserva();     
                 int IdReserva = resultSet.getInt("ID_RESERVA");
                 int IdRota = resultSet.getInt("ID_ROTA");
                 Date dtreserva = resultSet.getDate("DT_RESERVA");
                 int quantidadeReserva = resultSet.getInt("qtd_reserva");
                 String status = resultSet.getString("DS_STATUS");
-                double vl_total = resultSet.getDouble("vl_total");
+                double vl_total = resultSet.getDouble("vl_total");      
+                
                 reserva.setIdReserva(IdReserva);
                 reserva.setIdRota(IdRota);
                 reserva.setDataReserva(dtreserva);
                 reserva.setStatus(status);
                 reserva.setQuantidadeReserva(quantidadeReserva);
                 reserva.setValorTotal(vl_total);
-                reservas.add(reserva);
-
-            } else {
-                System.out.println("Reserva not found for ID: " + id);
+                reservas.add(reserva);  
             }
-
             ps.close();
             resultSet.close();
         } catch (SQLException err) {
-            err.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao selecionar reserva! " + err.getMessage());
         }
 
         return reservas;

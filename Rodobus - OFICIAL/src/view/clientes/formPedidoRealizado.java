@@ -19,14 +19,21 @@ public class formPedidoRealizado extends javax.swing.JFrame {
     Passageiro pass = new Passageiro();
     Rota rt = new Rota();
     Reserva res = new Reserva();
+    
     public void carregarRota() {
         reservaDao reserva = new reservaDao();
         ArrayList<Reserva> reservas = reserva.FormPedidos(pass.getIdPassageiro());
+        
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         DefaultTableModel model = (DefaultTableModel) tblPEDIDOS.getModel();
                 
         for (Reserva reserva2 : reservas) {
-            model.addRow(new Object[]{reserva2.getIdReserva(),reserva2.getIdRota(),sdf.format(reserva2.getDataReserva()), reserva2.getQuantidadeReserva(), reserva2.getValorTotal(),reserva2.getStatus()});
+            model.addRow(new Object[]{
+                reserva2.getIdReserva(),
+                reserva2.getIdRota(),
+                sdf.format(reserva2.getDataReserva()),
+                reserva2.getQuantidadeReserva(),
+                reserva2.getValorTotal(),reserva2.getStatus()});
         
         }
     }
@@ -104,7 +111,8 @@ public class formPedidoRealizado extends javax.swing.JFrame {
             tblPEDIDOS.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        pedidoBTN.setBackground(new java.awt.Color(0, 0, 0));
+        pedidoBTN.setBackground(new java.awt.Color(69, 73, 74));
+        pedidoBTN.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         pedidoBTN.setForeground(new java.awt.Color(255, 255, 255));
         pedidoBTN.setText("CONSULTAR BILHETE DO PEDIDO");
         pedidoBTN.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -120,25 +128,24 @@ public class formPedidoRealizado extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 607, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(pedidoBTN)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(pedidoBTN))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pedidoBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGap(57, 57, 57))
         );
 
         jMenuBar1.setForeground(new java.awt.Color(60, 63, 65));

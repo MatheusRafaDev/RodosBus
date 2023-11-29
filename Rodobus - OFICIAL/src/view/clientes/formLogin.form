@@ -216,6 +216,9 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Black" size="14" style="1"/>
                 </Property>
+                <Property name="caretColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="4a" green="49" red="45" type="rgb"/>
+                </Property>
                 <Property name="name" type="java.lang.String" value="txtSenha" noResource="true"/>
               </Properties>
               <Events>
@@ -226,6 +229,9 @@
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Black" size="14" style="1"/>
+                </Property>
+                <Property name="caretColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="4a" green="49" red="45" type="rgb"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="txtLogin" noResource="true"/>
               </Properties>

@@ -104,6 +104,7 @@ public class formLogin extends javax.swing.JFrame {
         jLabel5.setText("USUÁRIO");
 
         txtSenha.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        txtSenha.setCaretColor(new java.awt.Color(69, 73, 74));
         txtSenha.setName("txtSenha"); // NOI18N
         txtSenha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -112,6 +113,7 @@ public class formLogin extends javax.swing.JFrame {
         });
 
         txtLogin.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        txtLogin.setCaretColor(new java.awt.Color(69, 73, 74));
         txtLogin.setName("txtLogin"); // NOI18N
         txtLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
