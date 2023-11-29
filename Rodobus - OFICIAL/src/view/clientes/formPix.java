@@ -18,7 +18,7 @@ public class formPix extends javax.swing.JFrame {
     int qtd = 0;
 
     private formPix(int passageiroId2, int rotaId2, int qtd) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+ 
     }
 
     public void carregarInfo2(int IdPassageiro, int IdRota) {
@@ -26,7 +26,7 @@ public class formPix extends javax.swing.JFrame {
         this.dispose();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        formInfoPassageiro pag = new formInfoPassageiro(IdPassageiro, IdRota);
+        formInfoPassageiro pag = new formInfoPassageiro(IdPassageiro);
 
         pag.setVisible(true);
     }
