@@ -5,6 +5,7 @@ import controller.passageiroDao;
 import controller.rotaDao;
 import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import model.Passageiro;
 import model.Reserva;
 import model.Rota;
@@ -19,14 +20,16 @@ public class formPassagemBilhete extends javax.swing.JFrame {
     public formPassagemBilhete(Reserva reserva) {
         initComponents();
         
-        
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
-
         rota = r.selecionarUmaRota(reserva.getIdRota());
         pass = p.selecionarUmPassageiro(reserva.getIdPassageiro());
         
+        this.mnNOME.setText(pass.getNome());
+        this.mnID.setText("Id: " + pass.getIdPassageiro());
+        
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);        
+
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
         
         this.txtNOME.setText(pass.getNome());
@@ -36,14 +39,14 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         this.txtORIGEM.setText(formato.format(rota.getDtChegada()));
         
         this.txtVALORUNI.setText(String.valueOf((float) rota.getVlPreco()));
+
+        
         this.txtID.setText(String.valueOf(pass.getIdPassageiro()));
-        this.txtVALORTOTAL.setText(String.valueOf(res.getValorTotal()));
-        this.txtQTD.setText(String.valueOf(res.getQuantidadeReserva()));
-        this.txtIDRESERVA.setText(String.valueOf(res.getIdReserva()));
-        this.txtQTD.setText(String.valueOf(res.getQuantidadeReserva()));
-        this.txtVALORTOTAL.setText(String.valueOf(res.getValorTotal()));
-        this.mnNOME.setText(pass.getNome());
-        this.mnID.setText("Id: " + pass.getIdPassageiro());
+        
+        this.txtVALORTOTAL.setText(String.valueOf((float)reserva.getValorTotal()));
+        this.txtQTD.setText(String.valueOf(reserva.getQuantidadeReserva()));
+        this.txtIDRESERVA.setText(String.valueOf(reserva.getIdReserva()));
+        
     }
 
    
@@ -78,10 +81,11 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         txtDESTINO = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
+        mnRODOBUS2 = new javax.swing.JMenu();
         mnNOME = new javax.swing.JMenu();
         mnID = new javax.swing.JMenu();
-        mnPedido = new javax.swing.JMenu();
         mnPERFIL = new javax.swing.JMenu();
+        mnPedido = new javax.swing.JMenu();
         mnSAIR = new javax.swing.JMenu();
 
         jInternalFrame1.setVisible(true);
@@ -101,11 +105,11 @@ public class formPassagemBilhete extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(50, 54, 66));
 
-        jLabel4.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("ORIGEM:");
 
-        jLabel6.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("ID.RESERVA:");
 
@@ -113,7 +117,7 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         txtCHEGADA.setForeground(new java.awt.Color(255, 255, 255));
         txtCHEGADA.setText("chegada");
 
-        jLabel5.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("DESTINO:");
 
@@ -125,7 +129,7 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         txtSAIDA.setForeground(new java.awt.Color(255, 255, 255));
         txtSAIDA.setText("saida");
 
-        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Dt.CHEGADA:");
 
@@ -133,7 +137,7 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         txtNOME.setForeground(new java.awt.Color(255, 255, 255));
         txtNOME.setText("nome");
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Dt.SAÍDA:");
 
@@ -143,10 +147,11 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         txtID.setForeground(new java.awt.Color(255, 255, 255));
         txtID.setText("0");
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("NOME:");
 
+        jLabel13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("VALOR TOTAL:");
 
@@ -154,15 +159,19 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         txtIDRESERVA.setForeground(new java.awt.Color(255, 255, 255));
         txtIDRESERVA.setText("id reserva ");
 
+        jLabel12.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("VALOR (UNIDADE):");
 
+        txtQTD.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         txtQTD.setForeground(new java.awt.Color(255, 255, 255));
         txtQTD.setText("quantidade");
 
+        txtVALORTOTAL.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         txtVALORTOTAL.setForeground(new java.awt.Color(255, 255, 255));
         txtVALORTOTAL.setText("valor total");
 
+        jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("QUANTIDADE:");
 
@@ -174,10 +183,11 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("---------------------------------------------------------- RECIBO ----------------------------------------------------------------");
 
+        txtVALORUNI.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         txtVALORUNI.setForeground(new java.awt.Color(255, 255, 255));
         txtVALORUNI.setText("valor");
 
-        jLabel7.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("ASSENTO:");
 
@@ -192,6 +202,10 @@ public class formPassagemBilhete extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtID)
+                        .addGap(207, 207, 207)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -223,27 +237,29 @@ public class formPassagemBilhete extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel9)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel10)
-                            .addGap(53, 53, 53)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtVALORUNI)
-                                .addComponent(jLabel12))
-                            .addGap(52, 52, 52)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel10)
+                                    .addGap(53, 53, 53)
+                                    .addComponent(jLabel12)
+                                    .addGap(52, 52, 52))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(145, 145, 145)
+                                            .addComponent(txtVALORUNI))
+                                        .addComponent(txtQTD))
+                                    .addGap(136, 136, 136)))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtVALORTOTAL)
-                                .addComponent(jLabel13)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtQTD)
-                                .addComponent(txtID))
-                            .addGap(155, 155, 155)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jLabel13))
+                            .addGap(314, 314, 314))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(11, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNOME, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -274,31 +290,33 @@ public class formPassagemBilhete extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtQTD))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel13)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtVALORTOTAL)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtVALORUNI)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtID))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13))
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtVALORUNI)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtQTD, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtVALORTOTAL)))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtID))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         jMenuBar1.add(jMenu7);
+
+        mnRODOBUS2.setText("RodoBus");
+        mnRODOBUS2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnRODOBUS2MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(mnRODOBUS2);
 
         mnNOME.setText("Nome");
         mnNOME.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -311,14 +329,6 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         mnID.setText("0");
         jMenuBar1.add(mnID);
 
-        mnPedido.setText("Pedido");
-        mnPedido.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mnPedidoMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(mnPedido);
-
         mnPERFIL.setText("Perfil");
         mnPERFIL.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         mnPERFIL.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -327,6 +337,14 @@ public class formPassagemBilhete extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(mnPERFIL);
+
+        mnPedido.setText("Pedido");
+        mnPedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnPedidoMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(mnPedido);
 
         mnSAIR.setText("Sair");
         mnSAIR.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -380,8 +398,14 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_mnSAIRMouseClicked
 
+    private void mnRODOBUS2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnRODOBUS2MouseClicked
+        this.setVisible(false);
+        this.dispose();
+        formConsultaPassagem consulta = new formConsultaPassagem(pass);
+        consulta.setVisible(true);
+    }//GEN-LAST:event_mnRODOBUS2MouseClicked
+
     public static void main(String args[]) {
- 
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -412,6 +436,7 @@ public class formPassagemBilhete extends javax.swing.JFrame {
     private javax.swing.JMenu mnNOME;
     private javax.swing.JMenu mnPERFIL;
     private javax.swing.JMenu mnPedido;
+    private javax.swing.JMenu mnRODOBUS2;
     private javax.swing.JMenu mnSAIR;
     private javax.swing.JLabel txtASSENTO;
     private javax.swing.JLabel txtCHEGADA;
