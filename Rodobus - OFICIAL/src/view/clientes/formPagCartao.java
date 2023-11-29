@@ -30,8 +30,7 @@ public class formPagCartao extends javax.swing.JFrame {
         this.dispose();
 
         
-        Reserva reserva = new Reserva();
-        
+        Reserva reserva = new Reserva(); 
         Date dataReserva = new Date();
         reserva.setDataReserva(dataReserva);
         
@@ -39,14 +38,16 @@ public class formPagCartao extends javax.swing.JFrame {
         reserva.setIdRota(rota.getIdRota());
         reserva.setStatus("Reservado");
         reserva.setQuantidadeReserva(qtd);
-
- 
         reserva.setValorTotal(reserva.getQuantidadeReserva() * rota.getVlPreco());
-
+        rese.incluir(reserva);
         
-        reserva = rese.incluir(reserva);
+        int id = rese.obterUltimoIdReserva();
+        reserva.setIdReserva(id);
         
-        JOptionPane.showMessageDialog(null, reserva.getIdReserva());
+        reserva = rese.selecionarUmaReserva(id);
+        
+        JOptionPane.showMessageDialog(null, reserva .getQuantidadeReserva());
+        JOptionPane.showMessageDialog(null, reserva .getIdReserva());
         
         formPassagemBilhete pas = new formPassagemBilhete(reserva);
         pas.setVisible(true);
@@ -54,7 +55,7 @@ public class formPagCartao extends javax.swing.JFrame {
 
     int qtd = 0;
     
-    public formPagCartao(int passageiroId2, int rotaId2,int quaantidade) {
+    public formPagCartao(int passageiroId2, int rotaId2,int quantidade) {
 
         initComponents();
         
@@ -63,7 +64,7 @@ public class formPagCartao extends javax.swing.JFrame {
         passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
         
-        qtd = quaantidade;
+        qtd = quantidade;
         rota = r.selecionarUmaRota(rotaId2);
         pass = p.selecionarUmPassageiro(passageiroId2);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -90,6 +91,7 @@ public class formPagCartao extends javax.swing.JFrame {
         txtNUMEROCARTAO = new javax.swing.JFormattedTextField();
         txtDATAVALIDADE = new javax.swing.JFormattedTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
+        mnRODOBUS = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
         mnNOME = new javax.swing.JMenu();
         mnID = new javax.swing.JMenu();
@@ -245,6 +247,13 @@ public class formPagCartao extends javax.swing.JFrame {
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
+        mnRODOBUS.setText("RodoBus");
+        mnRODOBUS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnRODOBUSMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(mnRODOBUS);
         jMenuBar1.add(jMenu7);
 
         mnNOME.setText("Nome");
@@ -387,6 +396,7 @@ public class formPagCartao extends javax.swing.JFrame {
     private javax.swing.JMenu mnNOME;
     private javax.swing.JMenu mnPERFIL;
     private javax.swing.JMenu mnPedido;
+    private javax.swing.JMenu mnRODOBUS;
     private javax.swing.JMenu mnSAIR;
     private javax.swing.JFormattedTextField txtCVV;
     private javax.swing.JFormattedTextField txtDATAVALIDADE;

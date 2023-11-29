@@ -5,6 +5,7 @@ import controller.passageiroDao;
 import controller.rotaDao;
 import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import model.Passageiro;
 import model.Reserva;
 import model.Rota;
@@ -19,6 +20,8 @@ public class formPassagemBilhete extends javax.swing.JFrame {
     public formPassagemBilhete(Reserva reserva) {
         initComponents();
         
+        this.mnNOME.setText(pass.getNome());
+        this.mnID.setText("Id: " + pass.getIdPassageiro());
         
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         passageiroDao p = new passageiroDao();
@@ -35,15 +38,19 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         this.txtSAIDA.setText(formato.format(rota.getDtSaida()));
         this.txtORIGEM.setText(formato.format(rota.getDtChegada()));
         
+        this.txtQTD.setText(String.valueOf(res.getQuantidadeReserva()));
         this.txtVALORUNI.setText(String.valueOf((float) rota.getVlPreco()));
+        this.txtVALORTOTAL.setText(String.valueOf((float)res.getValorTotal()));
+        
         this.txtID.setText(String.valueOf(pass.getIdPassageiro()));
-        this.txtVALORTOTAL.setText(String.valueOf(res.getValorTotal()));
+        
         this.txtQTD.setText(String.valueOf(res.getQuantidadeReserva()));
+        
+        JOptionPane.showMessageDialog(null, res.getQuantidadeReserva());
+        JOptionPane.showMessageDialog(null, res.getIdReserva());
+         
         this.txtIDRESERVA.setText(String.valueOf(res.getIdReserva()));
-        this.txtQTD.setText(String.valueOf(res.getQuantidadeReserva()));
-        this.txtVALORTOTAL.setText(String.valueOf(res.getValorTotal()));
-        this.mnNOME.setText(pass.getNome());
-        this.mnID.setText("Id: " + pass.getIdPassageiro());
+        
     }
 
    
@@ -78,6 +85,7 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         txtDESTINO = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
+        mnRODOBUS2 = new javax.swing.JMenu();
         mnNOME = new javax.swing.JMenu();
         mnID = new javax.swing.JMenu();
         mnPedido = new javax.swing.JMenu();
@@ -274,31 +282,38 @@ public class formPassagemBilhete extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtVALORUNI))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtQTD))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel13)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtVALORTOTAL)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtVALORUNI)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtID))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                                .addComponent(txtQTD))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtVALORTOTAL)))
+                        .addGap(40, 40, 40)
+                        .addComponent(txtID)))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         jMenuBar1.add(jMenu7);
+
+        mnRODOBUS2.setText("RodoBus");
+        mnRODOBUS2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnRODOBUS2MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(mnRODOBUS2);
 
         mnNOME.setText("Nome");
         mnNOME.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -380,6 +395,13 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_mnSAIRMouseClicked
 
+    private void mnRODOBUS2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnRODOBUS2MouseClicked
+        this.setVisible(false);
+        this.dispose();
+        formConsultaPassagem consulta = new formConsultaPassagem(pass);
+        consulta.setVisible(true);
+    }//GEN-LAST:event_mnRODOBUS2MouseClicked
+
     public static void main(String args[]) {
  
 
@@ -412,6 +434,7 @@ public class formPassagemBilhete extends javax.swing.JFrame {
     private javax.swing.JMenu mnNOME;
     private javax.swing.JMenu mnPERFIL;
     private javax.swing.JMenu mnPedido;
+    private javax.swing.JMenu mnRODOBUS2;
     private javax.swing.JMenu mnSAIR;
     private javax.swing.JLabel txtASSENTO;
     private javax.swing.JLabel txtCHEGADA;
