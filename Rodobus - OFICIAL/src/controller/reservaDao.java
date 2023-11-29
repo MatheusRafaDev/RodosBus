@@ -203,4 +203,17 @@ public class reservaDao extends conectarDao {
 
         return reservas;
     }
+     public void alterarStatus(int id) {
+        String sql = "UPDATE tb_reservas SET DS_STATUS=? WHERE id_reserva =" + id;
+
+        try {
+            ps = mycon.prepareStatement(sql);
+            ps.setString(1, "Cancelado");
+            ps.executeUpdate();
+            ps.close();
+           JOptionPane.showMessageDialog(null, "Reserva cancelada com com Sucesso!");
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, "Erro ao cancelar pedido!! " + err.getMessage());
+        }
+    }
 }
