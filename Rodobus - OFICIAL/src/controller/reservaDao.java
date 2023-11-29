@@ -1,4 +1,3 @@
-
 package controller;
 
 import com.mysql.cj.xdevapi.Statement;
@@ -9,7 +8,6 @@ import javax.swing.JOptionPane;
 import model.Reserva;
 import java.util.Date;
 import java.util.ArrayList;
-
 
 public class reservaDao extends conectarDao {
 
@@ -22,7 +20,7 @@ public class reservaDao extends conectarDao {
     public Reserva incluir(Reserva obj) {
         sql = "INSERT INTO tb_reservas (id_rota, id_passageiro, dt_reserva, ds_status, qtd_reserva, vl_total) VALUES (?, ?, ?, ?, ?, ?)";
         try {
-            ps = mycon.prepareStatement(sql, new String[] { "id_reserva" });
+            ps = mycon.prepareStatement(sql, new String[]{"id_reserva"});
 
             ps.setInt(1, obj.getIdRota());
             ps.setInt(2, obj.getIdPassageiro());
@@ -31,20 +29,9 @@ public class reservaDao extends conectarDao {
             ps.setInt(5, obj.getQuantidadeReserva());
             ps.setDouble(6, obj.getValorTotal());
 
-            int rowsAffected = ps.executeUpdate();
+            ps.executeUpdate();
 
-            if (rowsAffected > 0) {
-                // Obter o ID gerado
-                ResultSet generatedKeys = ps.getGeneratedKeys();
-                if (generatedKeys.next()) {
-                    int generatedId = generatedKeys.getInt(1);
-                    obj.setIdReserva(generatedId);
-                   // JOptionPane.showMessageDialog(null, "Reserva Cadastrada com Sucesso !");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Falha ao incluir.");
-                }
-                generatedKeys.close();
-            }
+            obj.setIdReserva(obterUltimoIdReserva());
 
             ps.close();
         } catch (SQLException err) {
@@ -55,6 +42,23 @@ public class reservaDao extends conectarDao {
         return obj;
     }
 
+    public int obterUltimoIdReserva() {
+        int ultimoId = -1;
+        String sql = "SELECT MAX(id_reserva) AS ultimo_id FROM tb_reservas";
+
+        try (PreparedStatement ps = mycon.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+
+            if (rs.next()) {
+                ultimoId = rs.getInt("ultimo_id");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao obter o último ID de reserva! " + e.getMessage());
+        }
+
+        return ultimoId;
+    }
 
     public Reserva selecionarUmaReserva(int id) {
         String sql = "SELECT id_reserva, id_rota, id_passageiro, dt_reserva, ds_status, qtd_reserva, vl_total FROM tb_reservas WHERE id_reserva = ?";
@@ -128,7 +132,7 @@ public class reservaDao extends conectarDao {
     public ArrayList<Reserva> selecionarReservas() {
         ArrayList<Reserva> reservas = new ArrayList<Reserva>();
 
-        String sql = "SELECT id_reserva, id_rota, id_passageiro, dt_reserva, ds_status, qtd_reserva, vl_total FROM tb_reservas";
+        String sql = "SELECT * FROM tb_reservas";
 
         try {
             ps = mycon.prepareStatement(sql);
@@ -151,6 +155,7 @@ public class reservaDao extends conectarDao {
                 reserva.setDataReserva(dataReserva);
                 reserva.setStatus(status);
                 reserva.setQuantidadeReserva(quantidadeReserva);
+
                 reserva.setValorTotal(valorTotal);
 
                 reservas.add(reserva);
@@ -164,10 +169,11 @@ public class reservaDao extends conectarDao {
 
         return reservas;
     }
+
     public ArrayList<Reserva> FormPedidos(int id) {
-         ArrayList<Reserva> reservas = new ArrayList<>();
+        ArrayList<Reserva> reservas = new ArrayList<>();
         String sql = "SELECT id_reserva,id_rota,dt_reserva, ds_status, qtd_reserva, vl_total FROM TB_RESERVAS WHERE ID_PASSAGEIRO ='" + id + "'";
-       
+
         Reserva reserva = new Reserva();
 
         try {
@@ -181,14 +187,14 @@ public class reservaDao extends conectarDao {
                 int quantidadeReserva = resultSet.getInt("qtd_reserva");
                 String status = resultSet.getString("DS_STATUS");
                 double vl_total = resultSet.getDouble("vl_total");
-               reserva.setIdReserva(IdReserva);
-               reserva.setIdRota(IdRota);
-               reserva.setDataReserva(dtreserva);
-               reserva.setStatus(status);
-               reserva.setQuantidadeReserva(quantidadeReserva);
-               reserva.setValorTotal(vl_total);
-               reservas.add(reserva);
-                
+                reserva.setIdReserva(IdReserva);
+                reserva.setIdRota(IdRota);
+                reserva.setDataReserva(dtreserva);
+                reserva.setStatus(status);
+                reserva.setQuantidadeReserva(quantidadeReserva);
+                reserva.setValorTotal(vl_total);
+                reservas.add(reserva);
+
             } else {
                 System.out.println("Reserva not found for ID: " + id);
             }
@@ -202,7 +208,3 @@ public class reservaDao extends conectarDao {
         return reservas;
     }
 }
-    
-
-
- 

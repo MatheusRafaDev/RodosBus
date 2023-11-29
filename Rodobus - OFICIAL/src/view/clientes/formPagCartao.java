@@ -38,9 +38,7 @@ public class formPagCartao extends javax.swing.JFrame {
         reserva.setIdPassageiro(pass.getIdPassageiro());
         reserva.setIdRota(rota.getIdRota());
         reserva.setStatus("Reservado");
-        
-        JOptionPane.showMessageDialog(null,qtd);
-        reserva.setQuantidadeReserva(this.qtd);
+        reserva.setQuantidadeReserva(qtd);
 
  
         reserva.setValorTotal(reserva.getQuantidadeReserva() * rota.getVlPreco());
@@ -48,13 +46,15 @@ public class formPagCartao extends javax.swing.JFrame {
         
         reserva = rese.incluir(reserva);
         
+        JOptionPane.showMessageDialog(null, reserva.getIdReserva());
+        
         formPassagemBilhete pas = new formPassagemBilhete(reserva);
         pas.setVisible(true);
     }
 
     int qtd = 0;
     
-    public formPagCartao(int passageiroId2, int rotaId2,int qtd) {
+    public formPagCartao(int passageiroId2, int rotaId2,int quaantidade) {
 
         initComponents();
         
@@ -62,7 +62,8 @@ public class formPagCartao extends javax.swing.JFrame {
         
         passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
-
+        
+        qtd = quaantidade;
         rota = r.selecionarUmaRota(rotaId2);
         pass = p.selecionarUmPassageiro(passageiroId2);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -311,7 +312,7 @@ public class formPagCartao extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnFinalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFinalizarMouseClicked
-     
+
         String nome = txtNOME.getText().trim();
         String numeroCartao = txtNUMEROCARTAO.getText().trim();
         String dataValidade = txtCVV.getText().trim();
@@ -322,8 +323,6 @@ public class formPagCartao extends javax.swing.JFrame {
         } else {
             carregarBil(); 
         }
-
-      
 
     }//GEN-LAST:event_btnFinalizarMouseClicked
 
