@@ -33,7 +33,7 @@ public class formPix extends javax.swing.JFrame {
 
         pag.setVisible(true);
     }
-
+   int qtd = 0;
     public void carregarBil() {
         this.setVisible(false);
         this.dispose();
@@ -56,15 +56,15 @@ public class formPix extends javax.swing.JFrame {
         pas.setVisible(true);
     }
 
-    int qtd = 0;
+ 
 
-    public formPix(int passageiroId2, int rotaId2, int quaantidade) {
+    public formPix(int passageiroId2, int rotaId2, int quantidade) {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
 
-        qtd = quaantidade;
+        qtd = quantidade;
         rota = r.selecionarUmaRota(rotaId2);
         pass = p.selecionarUmPassageiro(passageiroId2);
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
