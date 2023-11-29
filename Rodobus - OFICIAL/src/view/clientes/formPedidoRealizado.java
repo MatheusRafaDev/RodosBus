@@ -227,7 +227,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
     private void mnPERFILMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPERFILMouseClicked
         this.setVisible(false);
         this.dispose();
-        formInfoPassageiro info = new formInfoPassageiro(pass.getIdPassageiro(), rt.getIdRota());
+        formInfoPassageiro info = new formInfoPassageiro(pass.getIdPassageiro());
         info.setVisible(true); 
     }//GEN-LAST:event_mnPERFILMouseClicked
 
@@ -241,7 +241,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         res.setIdRota(res.getIdRota());
         res.setIdPassageiro(pass.getIdPassageiro());
         res.setIdReserva(res.getIdReserva());
-        res.setValorTotal(res.getVlPreco()*res.getQuantidadeReserva());
+        res.setValorTotal(res.getValorTotal());
         
       
         

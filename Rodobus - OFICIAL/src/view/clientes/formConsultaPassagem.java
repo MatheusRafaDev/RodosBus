@@ -34,14 +34,6 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         pag.setVisible(true);
        
     }
-    public void carregarInfo2(int IdPassageiro, int IdRota) {
-        this.dispose();
-        this.setVisible(false);
-        formInfoPassageiro pag = new formInfoPassageiro(IdPassageiro, IdRota);
-        
-        this.dispose();
-        pag.setVisible(true);
-    }
 
     public void carregarRota() {
         rotaDao rota = new rotaDao();
@@ -71,12 +63,6 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     MaskFormatter mascara;
 
     public formConsultaPassagem(Passageiro obj) {
-
-        try {
-            mascara = new MaskFormatter("##/##/####");
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 
         initComponents();
         
@@ -123,8 +109,8 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txtDATAVOLTA = new javax.swing.JFormattedTextField(mascara);
-        txtDATASAIDA = new javax.swing.JFormattedTextField(mascara);
+        txtDATAVOLTA = new javax.swing.JFormattedTextField();
+        txtDATASAIDA = new javax.swing.JFormattedTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
         mnNOME = new javax.swing.JMenu();
@@ -275,6 +261,18 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Data saída:");
+
+        try {
+            txtDATAVOLTA.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            txtDATASAIDA.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -515,9 +513,12 @@ public class formConsultaPassagem extends javax.swing.JFrame {
     }//GEN-LAST:event_mnNOMEMouseClicked
 
     private void mnPERFILMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPERFILMouseClicked
-     
 
-        carregarInfo2(pass.getIdPassageiro(), rt.getIdRota());    
+        this.setVisible(false);
+        formInfoPassageiro pag = new formInfoPassageiro(pass.getIdPassageiro());
+        
+        this.dispose();
+        pag.setVisible(true);  
     }//GEN-LAST:event_mnPERFILMouseClicked
 
     private void txtSAIDAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSAIDAMouseClicked

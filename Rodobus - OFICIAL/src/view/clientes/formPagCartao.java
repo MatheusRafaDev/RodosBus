@@ -25,17 +25,6 @@ public class formPagCartao extends javax.swing.JFrame {
     passageiroDao passageiro = new passageiroDao();
     reservaDao rese = new reservaDao();
     
-    
-    public void carregarInfo2(int IdPassageiro, int IdRota) {
-        this.setVisible(false);
-        this.dispose();
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-        formInfoPassageiro pag = new formInfoPassageiro(IdPassageiro, IdRota);
-
-        pag.setVisible(true);
-    }
-
     public void carregarBil() {
         this.setVisible(false);
         this.dispose();
@@ -50,8 +39,12 @@ public class formPagCartao extends javax.swing.JFrame {
         reserva.setIdRota(rota.getIdRota());
         reserva.setStatus("Reservado");
         
+        JOptionPane.showMessageDialog(null,qtd);
         reserva.setQuantidadeReserva(this.qtd);
-        reserva.setValorTotal(qtd * rota.getVlPreco());
+
+ 
+        reserva.setValorTotal(reserva.getQuantidadeReserva() * rota.getVlPreco());
+
         
         reserva = rese.incluir(reserva);
         
@@ -96,11 +89,12 @@ public class formPagCartao extends javax.swing.JFrame {
         txtNUMEROCARTAO = new javax.swing.JFormattedTextField();
         txtDATAVALIDADE = new javax.swing.JFormattedTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu7 = new javax.swing.JMenu();
         mnNOME = new javax.swing.JMenu();
         mnID = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        mnPedido = new javax.swing.JMenu();
+        mnPERFIL = new javax.swing.JMenu();
+        mnSAIR = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 204, 255));
@@ -245,40 +239,48 @@ public class formPagCartao extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(105, Short.MAX_VALUE)
+                .addContainerGap(104, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
+        jMenuBar1.add(jMenu7);
+
         mnNOME.setText("Nome");
+        mnNOME.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnNOMEMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(mnNOME);
 
-        mnID.setText("ID:");
+        mnID.setText("0");
         jMenuBar1.add(mnID);
 
-        jMenu2.setText("Perfil");
-        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+        mnPedido.setText("Pedido");
+        mnPedido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu2MouseClicked(evt);
+                mnPedidoMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(mnPedido);
 
-        jMenu5.setText("Sair");
-        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+        mnPERFIL.setText("Perfil");
+        mnPERFIL.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        mnPERFIL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu5MouseClicked(evt);
+                mnPERFILMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(mnPERFIL);
 
-        jMenu4.setText("Pedido");
-        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+        mnSAIR.setText("Sair");
+        mnSAIR.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu4MouseClicked(evt);
+                mnSAIRMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(mnSAIR);
 
         setJMenuBar(jMenuBar1);
 
@@ -325,30 +327,39 @@ public class formPagCartao extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnFinalizarMouseClicked
 
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-
-    }//GEN-LAST:event_jMenu2MouseClicked
-
-    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-        this.setVisible(false);
-        this.dispose();
-        formLogin login = new formLogin();
-        login.setVisible(true);
-    }//GEN-LAST:event_jMenu5MouseClicked
-
-    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
-        this.setVisible(false);
-        this.dispose();
-        formPedidoRealizado pedido = new formPedidoRealizado(pass);
-        pedido.setVisible(true);
-    }//GEN-LAST:event_jMenu4MouseClicked
-
     private void mnRODOBUSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnRODOBUSMouseClicked
         this.setVisible(false);
         this.dispose();
         formConsultaPassagem consulta = new formConsultaPassagem(pass);
         consulta.setVisible(true);
     }//GEN-LAST:event_mnRODOBUSMouseClicked
+
+    private void mnNOMEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnNOMEMouseClicked
+
+    }//GEN-LAST:event_mnNOMEMouseClicked
+
+    private void mnPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPedidoMouseClicked
+        this.dispose();
+        this.setVisible(false);
+        formPedidoRealizado pedido = new formPedidoRealizado(pass);
+        pedido.setVisible(true);
+    }//GEN-LAST:event_mnPedidoMouseClicked
+
+    private void mnPERFILMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPERFILMouseClicked
+
+        this.setVisible(false);
+        this.dispose();
+        formInfoPassageiro pag = new formInfoPassageiro(pass.getIdPassageiro());
+        pag.setVisible(true);
+    }//GEN-LAST:event_mnPERFILMouseClicked
+
+    private void mnSAIRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnSAIRMouseClicked
+
+        this.dispose();
+        this.setVisible(false);
+        formLogin login = new formLogin();
+        login.setVisible(true);
+    }//GEN-LAST:event_mnSAIRMouseClicked
 
     public static void main(String args[]) {
 
@@ -369,14 +380,15 @@ public class formPagCartao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JMenu mnID;
     private javax.swing.JMenu mnNOME;
+    private javax.swing.JMenu mnPERFIL;
+    private javax.swing.JMenu mnPedido;
+    private javax.swing.JMenu mnSAIR;
     private javax.swing.JFormattedTextField txtCVV;
     private javax.swing.JFormattedTextField txtDATAVALIDADE;
     private javax.swing.JTextField txtNOME;

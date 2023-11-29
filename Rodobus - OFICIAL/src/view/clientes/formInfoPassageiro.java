@@ -21,7 +21,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
     Passageiro pass = new Passageiro();
     Rota rota = new Rota();
     
-    public formInfoPassageiro(int passageiroId2, int rotaId2) {
+    public formInfoPassageiro(int passageiroId2) {
         initComponents();
         
         this.textEMAIL.setDocument(new Validador(30));
@@ -34,7 +34,6 @@ public class formInfoPassageiro extends javax.swing.JFrame {
 
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
-        rota = r.selecionarUmaRota(rotaId2);
         pass = p.selecionarUmPassageiro(passageiroId2);
         
         this.textNOME.setText(pass.getNome());
@@ -381,7 +380,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
     private void mnPERFILMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPERFILMouseClicked
         this.setVisible(false);
         this.dispose();
-        formInfoPassageiro info = new formInfoPassageiro(pass.getIdPassageiro(), rota.getIdRota());
+        formInfoPassageiro info = new formInfoPassageiro(pass.getIdPassageiro());
         info.setVisible(true);
     }//GEN-LAST:event_mnPERFILMouseClicked
 
@@ -504,7 +503,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
                 Passageiro passageiro = new Passageiro();
                 Passageiro pass = new Passageiro();
     Rota rt = new Rota();
-                new formInfoPassageiro(pass.getIdPassageiro(), rt.getIdRota()).setVisible(true);
+                new formInfoPassageiro(pass.getIdPassageiro()).setVisible(true);
             }
         });
     }

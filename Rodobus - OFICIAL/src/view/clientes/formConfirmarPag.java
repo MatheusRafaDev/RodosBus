@@ -20,36 +20,25 @@ public class formConfirmarPag extends javax.swing.JFrame {
 
     Rota rota = new Rota();
     Passageiro pass = new Passageiro();
-    Onibus onibus = new Onibus();   
+    Onibus onibus = new Onibus();
     Motorista moto = new Motorista();
 
-    public void carregarInfo2(int IdPassageiro, int IdRota) {
-        this.dispose();
-        this.setVisible(false);
-
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-         
-        formInfoPassageiro pag = new formInfoPassageiro(IdPassageiro, IdRota);
-
-        pag.setVisible(true);
-    }
-     
     public formConfirmarPag(int passageiroId2, int rotaId2) {
         initComponents();
-       
+
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
         onibusDao o = new onibusDao();
         motoristaDao m = new motoristaDao();
-        
+
         rota = r.selecionarUmaRota(rotaId2);
         pass = p.selecionarUmPassageiro(passageiroId2);
         onibus = o.selecionarUmOnibus(rota.getIdOnibus());
         moto = m.selecionarUmMotorista(rota.getIdMotorista());
         this.txtQTD.setDocument(new ValidarNumero(2));
-          
+
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         this.lblNOME.setText(pass.getNome());
         this.lblCPF.setText(pass.getCpf());
@@ -60,10 +49,10 @@ public class formConfirmarPag extends javax.swing.JFrame {
         this.lblSAIDA.setText(formato.format(rota.getDtSaida()));
         this.lblCHEGADA.setText(formato.format(rota.getDtChegada()));
         this.txtQTD.setText("1");
-        this.lbVALOR.setText(String.valueOf( rota.getVlPreco()));
+        this.lbVALOR.setText(String.valueOf(rota.getVlPreco()));
         this.lblDURACAO.setText(rota.getDsDuracao());
         this.lblMOTORISTA.setText(moto.getNome());
-        
+
         this.mnNOME.setText(pass.getNome());
         this.mnID.setText("Id: " + pass.getIdPassageiro());
 
@@ -414,6 +403,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         lblNOME8.setText("canceladas em até 1 hora antes do embarque");
         lblNOME8.setToolTipText("");
 
+        optPIX.setBackground(new java.awt.Color(242, 147, 4));
         grupo.add(optPIX);
         optPIX.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         optPIX.setForeground(new java.awt.Color(255, 255, 255));
@@ -425,6 +415,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
+        optCARTAO1.setBackground(new java.awt.Color(242, 147, 4));
         grupo.add(optCARTAO1);
         optCARTAO1.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         optCARTAO1.setForeground(new java.awt.Color(255, 255, 255));
@@ -550,23 +541,25 @@ public class formConfirmarPag extends javax.swing.JFrame {
 
     private void btnConfirmaPagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmaPagarMouseClicked
 
-        if(this.optPIX.isSelected()){
+        if (this.optPIX.isSelected()) {
             this.dispose();
             this.setVisible(false);
-            formPix pix = new formPix(pass.getIdPassageiro(),rota.getIdMotorista());
+            formPix pix = new formPix(pass.getIdPassageiro(), rota.getIdMotorista());
             pix.setVisible(true);
         } else {
             this.dispose();
             this.setVisible(false);
-            formPagCartao cartao = new formPagCartao(pass.getIdPassageiro(),rota.getIdMotorista(), Integer.parseInt(this.txtQTD.getText()));
+            formPagCartao cartao = new formPagCartao(pass.getIdPassageiro(), rota.getIdMotorista(), Integer.parseInt(this.txtQTD.getText()));
             cartao.setVisible(true);
         }
 
     }//GEN-LAST:event_btnConfirmaPagarMouseClicked
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-
-        carregarInfo2(pass.getIdPassageiro(), rota.getIdRota());      // TODO add your handling code here:
+        this.dispose();
+        this.setVisible(false);
+        formInfoPassageiro pag = new formInfoPassageiro(pass.getIdPassageiro());
+        pag.setVisible(true);
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
@@ -584,7 +577,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void mnRODOBUSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnRODOBUSMouseClicked
-        
+
         this.setVisible(false);
         this.dispose();
         formConsultaPassagem consulta = new formConsultaPassagem(pass);
@@ -597,7 +590,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
             public void run() {
                 int passageiroId2 = 0;
                 int rotaId2 = 0;
-                int last=1;
+                int last = 1;
                 new formConfirmarPag(passageiroId2, rotaId2).setVisible(true);
             }
         });

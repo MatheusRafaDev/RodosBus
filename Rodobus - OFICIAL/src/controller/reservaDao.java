@@ -39,9 +39,9 @@ public class reservaDao extends conectarDao {
                 if (generatedKeys.next()) {
                     int generatedId = generatedKeys.getInt(1);
                     obj.setIdReserva(generatedId);
-                    JOptionPane.showMessageDialog(null, "Reserva Cadastrada com Sucesso !");
+                   // JOptionPane.showMessageDialog(null, "Reserva Cadastrada com Sucesso !");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Falha ao obter o ID gerado.");
+                    JOptionPane.showMessageDialog(null, "Falha ao incluir.");
                 }
                 generatedKeys.close();
             }

@@ -10,24 +10,48 @@ public class Reserva {
     private Date dataReserva;
     private String status;
     private int QuantidadeReserva;
-    private Double ValorTotal;
-    private double vlPreco;
-    public int getIdReserva() { return idReserva; }
-    public void setIdReserva(int idReserva) { this.idReserva = idReserva; }
+    private double ValorTotal;
 
-    public int getIdRota() { return idRota; }
-    public void setIdRota(int idRota) { this.idRota = idRota; }
+    public int getIdReserva() {
+        return idReserva;
+    }
 
-    public int getIdPassageiro() { return idPassageiro; }
-    public void setIdPassageiro(int idPassageiro) { this.idPassageiro = idPassageiro; }
+    public void setIdReserva(int idReserva) {
+        this.idReserva = idReserva;
+    }
 
-    public Date getDataReserva() { return dataReserva; }
-    public void setDataReserva(Date dataReserva) { this.dataReserva = dataReserva; }
+    public int getIdRota() {
+        return idRota;
+    }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
-    
-    
+    public void setIdRota(int idRota) {
+        this.idRota = idRota;
+    }
+
+    public int getIdPassageiro() {
+        return idPassageiro;
+    }
+
+    public void setIdPassageiro(int idPassageiro) {
+        this.idPassageiro = idPassageiro;
+    }
+
+    public Date getDataReserva() {
+        return dataReserva;
+    }
+
+    public void setDataReserva(Date dataReserva) {
+        this.dataReserva = dataReserva;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public int getQuantidadeReserva() {
         return QuantidadeReserva;
     }
@@ -36,19 +60,12 @@ public class Reserva {
         this.QuantidadeReserva = QuantidadeReserva;
     }
 
-    public Double getValorTotal() {
+    public double getValorTotal() {
         return ValorTotal;
     }
 
-    public void setValorTotal(Double ValorTotal) {
+    public void setValorTotal(double ValorTotal) {
         this.ValorTotal = ValorTotal;
     }
-        public double getVlPreco() {
-        return vlPreco;
-    }
 
-    public void setVlPreco(double vlPreco) {
-        this.vlPreco = vlPreco;
-    }
-    
 }
