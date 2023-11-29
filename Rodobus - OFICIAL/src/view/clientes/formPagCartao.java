@@ -14,6 +14,9 @@ import javax.swing.JOptionPane;
 import model.Passageiro;
 import model.Reserva;
 import model.Rota;
+import utils.Validador;
+import utils.ValidarLetras;
+import utils.ValidarNumero;
 
 public class formPagCartao extends javax.swing.JFrame {
 
@@ -61,7 +64,8 @@ public class formPagCartao extends javax.swing.JFrame {
     public formPagCartao(int passageiroId2, int rotaId2,int qtd) {
 
         initComponents();
-        JOptionPane.showMessageDialog(null,qtd);
+        
+        this.txtNOME.setDocument(new ValidarLetras(80));
         
         passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
@@ -83,24 +87,22 @@ public class formPagCartao extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtNOME = new javax.swing.JTextField();
-        txtNUMEROCARTAO = new javax.swing.JTextField();
-        txtDATAVALIDADE = new javax.swing.JTextField();
-        txtCVV = new javax.swing.JTextField();
         btnFinalizar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        txtCVV = new javax.swing.JFormattedTextField();
+        txtNUMEROCARTAO = new javax.swing.JFormattedTextField();
+        txtDATAVALIDADE = new javax.swing.JFormattedTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
-        mnRODOBUS = new javax.swing.JMenu();
         mnNOME = new javax.swing.JMenu();
         mnID = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Pagamento cartão");
         setBackground(new java.awt.Color(153, 204, 255));
 
         jPanel1.setBackground(new java.awt.Color(242, 147, 4));
@@ -111,26 +113,12 @@ public class formPagCartao extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("CONFIRME O PAGAMENTO");
 
-        txtNOME.setForeground(new java.awt.Color(102, 102, 102));
+        txtNOME.setBackground(new java.awt.Color(255, 255, 255));
+        txtNOME.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        txtNOME.setForeground(new java.awt.Color(69, 73, 74));
         txtNOME.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNOMEActionPerformed(evt);
-            }
-        });
-
-        txtNUMEROCARTAO.setForeground(new java.awt.Color(102, 102, 102));
-
-        txtDATAVALIDADE.setForeground(new java.awt.Color(102, 102, 102));
-        txtDATAVALIDADE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDATAVALIDADEActionPerformed(evt);
-            }
-        });
-
-        txtCVV.setForeground(new java.awt.Color(102, 102, 102));
-        txtCVV.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCVVActionPerformed(evt);
             }
         });
 
@@ -165,41 +153,59 @@ public class formPagCartao extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("CVV");
 
+        txtCVV.setBackground(new java.awt.Color(255, 255, 255));
+        txtCVV.setForeground(new java.awt.Color(69, 73, 74));
+        try {
+            txtCVV.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtCVV.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+
+        txtNUMEROCARTAO.setBackground(new java.awt.Color(255, 255, 255));
+        txtNUMEROCARTAO.setForeground(new java.awt.Color(69, 73, 74));
+        try {
+            txtNUMEROCARTAO.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#### #### #### #### ")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtNUMEROCARTAO.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+
+        txtDATAVALIDADE.setBackground(new java.awt.Color(255, 255, 255));
+        txtDATAVALIDADE.setForeground(new java.awt.Color(69, 73, 74));
+        try {
+            txtDATAVALIDADE.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtDATAVALIDADE.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(15, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(txtDATAVALIDADE, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtCVV, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(98, 98, 98))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(231, 231, 231)
-                                        .addComponent(jLabel5))
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(151, 151, 151)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtNOME, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNUMEROCARTAO, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtNOME)
+                    .addComponent(txtNUMEROCARTAO)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(btnFinalizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtDATAVALIDADE))
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(txtCVV, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(232, 232, 232)))
+                .addGap(0, 13, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,18 +219,18 @@ public class formPagCartao extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNUMEROCARTAO, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtNUMEROCARTAO, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDATAVALIDADE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCVV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCVV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDATAVALIDADE, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addGap(13, 13, 13))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -232,9 +238,9 @@ public class formPagCartao extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(232, Short.MAX_VALUE)
+                .addContainerGap(218, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addContainerGap(280, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,14 +249,6 @@ public class formPagCartao extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(65, Short.MAX_VALUE))
         );
-
-        mnRODOBUS.setText("RodoBus");
-        mnRODOBUS.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mnRODOBUSMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(mnRODOBUS);
 
         mnNOME.setText("Nome");
         jMenuBar1.add(mnNOME);
@@ -266,14 +264,6 @@ public class formPagCartao extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenu2);
 
-        jMenu4.setText("Pedido");
-        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu4MouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(jMenu4);
-
         jMenu5.setText("Sair");
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -281,6 +271,14 @@ public class formPagCartao extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(jMenu5);
+
+        jMenu4.setText("Pedido");
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -306,10 +304,6 @@ public class formPagCartao extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDATAVALIDADEActionPerformed
 
-    private void txtCVVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCVVActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCVVActionPerformed
-
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFinalizarActionPerformed
@@ -318,7 +312,7 @@ public class formPagCartao extends javax.swing.JFrame {
      
         String nome = txtNOME.getText().trim();
         String numeroCartao = txtNUMEROCARTAO.getText().trim();
-        String dataValidade = txtDATAVALIDADE.getText().trim();
+        String dataValidade = txtCVV.getText().trim();
         String cvv = txtCVV.getText().trim();
 
         if (nome.trim().isEmpty() || numeroCartao.trim().isEmpty() || dataValidade.trim().isEmpty() || cvv.trim().isEmpty()) {    
@@ -383,10 +377,9 @@ public class formPagCartao extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JMenu mnID;
     private javax.swing.JMenu mnNOME;
-    private javax.swing.JMenu mnRODOBUS;
-    private javax.swing.JTextField txtCVV;
-    private javax.swing.JTextField txtDATAVALIDADE;
+    private javax.swing.JFormattedTextField txtCVV;
+    private javax.swing.JFormattedTextField txtDATAVALIDADE;
     private javax.swing.JTextField txtNOME;
-    private javax.swing.JTextField txtNUMEROCARTAO;
+    private javax.swing.JFormattedTextField txtNUMEROCARTAO;
     // End of variables declaration//GEN-END:variables
 }

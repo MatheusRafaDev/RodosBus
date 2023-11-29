@@ -59,6 +59,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         this.lblDESEMBARQUE.setText(rota.getDestino());
         this.lblSAIDA.setText(formato.format(rota.getDtSaida()));
         this.lblCHEGADA.setText(formato.format(rota.getDtChegada()));
+        this.txtQTD.setText("1");
         this.lbVALOR.setText(String.valueOf( rota.getVlPreco()));
         this.lblDURACAO.setText(rota.getDsDuracao());
         this.lblMOTORISTA.setText(moto.getNome());
@@ -274,6 +275,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
         lbVALOR3.setForeground(new java.awt.Color(255, 255, 255));
         lbVALOR3.setText("Valor");
 
+        txtQTD.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        txtQTD.setText("1");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -311,7 +315,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(lbVALOR1)
                                 .addGap(76, 76, 76)
-                                .addComponent(txtQTD, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtQTD, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -413,6 +417,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         grupo.add(optPIX);
         optPIX.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         optPIX.setForeground(new java.awt.Color(255, 255, 255));
+        optPIX.setSelected(true);
         optPIX.setText("Pagamaneto no pix");
         optPIX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -420,6 +425,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
 
+        grupo.add(optCARTAO1);
         optCARTAO1.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         optCARTAO1.setForeground(new java.awt.Color(255, 255, 255));
         optCARTAO1.setText("Pagar com Cartão de Crédito");
@@ -429,7 +435,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addContainerGap(31, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNOME4)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -457,7 +463,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblNOME1)
@@ -470,7 +476,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(optPIX)
                             .addComponent(optCARTAO1))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNOME4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -485,7 +491,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnConfirmaPagar))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         mnNOME.setText("Nome");
@@ -528,7 +534,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
