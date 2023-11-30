@@ -3,6 +3,7 @@ package view.clientes;
 
 import controller.passageiroDao;
 import controller.rotaDao;
+import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -33,10 +34,12 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
         
         this.txtNOME.setText(pass.getNome());
-        this.txtCHEGADA.setText(rota.getOrigem());
-        this.txtDESTINO.setText(rota.getDestino());
+
         this.txtSAIDA.setText(formato.format(rota.getDtSaida()));
-        this.txtORIGEM.setText(formato.format(rota.getDtChegada()));
+        this.txtCHEGADA.setText(formato.format(rota.getDtChegada()));
+        
+        this.txtDESTINO.setText(rota.getDestino());
+        this.txtORIGEM.setText(rota.getOrigem());
         
         this.txtVALORUNI.setText(String.valueOf((float) rota.getVlPreco()));
 
@@ -47,8 +50,22 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         this.txtQTD.setText(String.valueOf(reserva.getQuantidadeReserva()));
         this.txtIDRESERVA.setText(String.valueOf(reserva.getIdReserva()));
         
+        lblCODIGO.setText(gerarCodigoAleatorio(12));
     }
 
+    public static String gerarCodigoAleatorio(int comprimento) {
+        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder codigoAleatorio = new StringBuilder();
+
+        SecureRandom random = new SecureRandom();
+        for (int i = 0; i < comprimento; i++) {
+            int index = random.nextInt(caracteres.length());
+            codigoAleatorio.append(caracteres.charAt(index));
+        }
+
+        return codigoAleatorio.toString();
+    }
+        
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -65,7 +82,7 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtNOME = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        lblCODIGO = new javax.swing.JLabel();
         txtID = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -79,6 +96,7 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         txtVALORUNI = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtDESTINO = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
         mnRODOBUS2 = new javax.swing.JMenu();
@@ -102,6 +120,7 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Bilhete");
 
         jPanel1.setBackground(new java.awt.Color(50, 54, 66));
 
@@ -141,8 +160,9 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Dt.SAÍDA:");
 
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Apresente este QRCODE na hora como passagem");
+        lblCODIGO.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        lblCODIGO.setForeground(new java.awt.Color(255, 255, 255));
+        lblCODIGO.setText("Codigo");
 
         txtID.setForeground(new java.awt.Color(255, 255, 255));
         txtID.setText("0");
@@ -195,17 +215,17 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         txtDESTINO.setForeground(new java.awt.Color(255, 255, 255));
         txtDESTINO.setText("destino");
 
+        jLabel14.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("CÓDIGO:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtID)
-                        .addGap(207, 207, 207)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -251,9 +271,13 @@ public class formPassagemBilhete extends javax.swing.JFrame {
                                         .addComponent(txtQTD))
                                     .addGap(136, 136, 136)))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtVALORTOTAL)
-                                .addComponent(jLabel13))
-                            .addGap(314, 314, 314))))
+                                .addComponent(jLabel13)
+                                .addComponent(txtVALORTOTAL))
+                            .addGap(51, 51, 51)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblCODIGO, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel14))))
+                    .addComponent(txtID))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -293,19 +317,20 @@ public class formPassagemBilhete extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel13))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel14)))
                     .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtVALORUNI)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtQTD, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(txtVALORTOTAL)))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtID))
-                .addContainerGap(83, Short.MAX_VALUE))
+                        .addComponent(txtVALORTOTAL))
+                    .addComponent(lblCODIGO, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addComponent(txtID)
+                .addGap(31, 31, 31))
         );
 
         jMenuBar1.add(jMenu7);
@@ -432,6 +457,7 @@ public class formPassagemBilhete extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblCODIGO;
     private javax.swing.JMenu mnID;
     private javax.swing.JMenu mnNOME;
     private javax.swing.JMenu mnPERFIL;

@@ -20,29 +20,31 @@ import model.Onibus;
 import model.Passageiro;
 import model.Reserva;
 import model.Rota;
+
 public class formPedidoRealizado extends javax.swing.JFrame {
+
     Passageiro pass = new Passageiro();
     Rota rt = new Rota();
     Reserva res = new Reserva();
-    
+
     public void carregarRota() {
         reservaDao reserva = new reservaDao();
         ArrayList<Reserva> reservas = reserva.FormPedidos(pass.getIdPassageiro());
-        
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         DefaultTableModel model = (DefaultTableModel) tblPEDIDOS.getModel();
-                model.setRowCount(0);
+        model.setRowCount(0);
         for (Reserva reserva2 : reservas) {
             model.addRow(new Object[]{
                 reserva2.getIdReserva(),
                 reserva2.getIdRota(),
                 sdf.format(reserva2.getDataReserva()),
                 reserva2.getQuantidadeReserva(),
-                reserva2.getValorTotal(),reserva2.getStatus()});
-        
+                reserva2.getValorTotal(), reserva2.getStatus()});
+
         }
     }
-    
+
     public formPedidoRealizado(Passageiro obj) {
         initComponents();
 
@@ -51,10 +53,9 @@ public class formPedidoRealizado extends javax.swing.JFrame {
 
         pass = obj;
         carregarRota();
-        
-       this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -138,6 +139,11 @@ public class formPedidoRealizado extends javax.swing.JFrame {
                 pedidoBTNMouseClicked(evt);
             }
         });
+        pedidoBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pedidoBTNActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel2.setText("Origem:");
@@ -184,49 +190,41 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(pedidoBTN)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cancelarBTN))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(235, 235, 235)
-                                .addComponent(pedidoBTN))
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(pdMOTO))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(109, 109, 109)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(pdMOTO))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(pdORIGEM))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(pdDESTINO))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(pdDTSaida))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(pdDTChegada))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(pdBUS)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cancelarBTN)))))
-                        .addGap(92, 92, 92)))
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(pdORIGEM))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(pdDESTINO))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(pdDTSaida))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(pdDTChegada))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pdBUS)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -235,10 +233,12 @@ public class formPedidoRealizado extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(pedidoBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pedidoBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(pdORIGEM))
@@ -257,13 +257,12 @@ public class formPedidoRealizado extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(pdBUS)
-                    .addComponent(cancelarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pdBUS))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(pdMOTO))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(85, 85, 85))
         );
 
         jMenuBar1.setForeground(new java.awt.Color(60, 63, 65));
@@ -353,43 +352,40 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
         formInfoPassageiro info = new formInfoPassageiro(pass.getIdPassageiro());
-        info.setVisible(true); 
+        info.setVisible(true);
     }//GEN-LAST:event_mnPERFILMouseClicked
 
     private void pedidoBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidoBTNMouseClicked
-         reservaDao rese = new reservaDao();
-        if (res.getStatus()=="Cancelado"){
-        this.setVisible(false);
-        this.dispose();
-        passageiroDao p = new passageiroDao();
-        rotaDao r = new rotaDao();  
-        res.setIdRota(res.getIdRota());
-        res.setIdPassageiro(pass.getIdPassageiro());
-        res.setIdReserva(res.getIdReserva());
-        res.setValorTotal(res.getValorTotal());
-        
-      
-        
-     
-        
-        formPassagemBilhete pas = new formPassagemBilhete(res);
-        pas.setVisible(true);
-        } else JOptionPane.showMessageDialog(null, "Não é possivel consultar o bilhete de uma reserva cancelada! ");
+        reservaDao rese = new reservaDao();
+        if (! res.getStatus().equals("Cancelada")) {
+            this.setVisible(false);
+            this.dispose();
+            passageiroDao p = new passageiroDao();
+            rotaDao r = new rotaDao();
+            res.setIdRota(res.getIdRota());
+            res.setIdPassageiro(pass.getIdPassageiro());
+            res.setIdReserva(res.getIdReserva());
+            res.setValorTotal(res.getValorTotal());
+
+            formPassagemBilhete pas = new formPassagemBilhete(res);
+            pas.setVisible(true);
+        } else
+            JOptionPane.showMessageDialog(null, "Não é possivel consultar o bilhete de uma reserva cancelada! ");
     }//GEN-LAST:event_pedidoBTNMouseClicked
 
     private void tblPEDIDOSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPEDIDOSMouseClicked
-int selectedRow = tblPEDIDOS.getSelectedRow();
-String lblID;
-String rtID;
-String psID;
-int onID;
-Onibus on = new Onibus();
-Motorista moto = new Motorista();
-int mtID;
-if (selectedRow != -1) {
-      SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            lblID =tblPEDIDOS.getValueAt(selectedRow, 0).toString();
-            rtID =(tblPEDIDOS.getValueAt(selectedRow, 1).toString());
+        int selectedRow = tblPEDIDOS.getSelectedRow();
+        String lblID;
+        String rtID;
+        String psID;
+        int onID;
+        Onibus on = new Onibus();
+        Motorista moto = new Motorista();
+        int mtID;
+        if (selectedRow != -1) {
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            lblID = tblPEDIDOS.getValueAt(selectedRow, 0).toString();
+            rtID = (tblPEDIDOS.getValueAt(selectedRow, 1).toString());
             tblPEDIDOS.getValueAt(selectedRow, 2).toString();
             tblPEDIDOS.getValueAt(selectedRow, 3).toString();
             tblPEDIDOS.getValueAt(selectedRow, 4).toString();
@@ -400,7 +396,7 @@ if (selectedRow != -1) {
             motoristaDao r4 = new motoristaDao();
             rt = r2.selecionarUmaRota(Integer.parseInt(rtID));
             res = r.selecionarUmaReserva(Integer.parseInt(lblID));
-            onID = rt.getIdOnibus() ;
+            onID = rt.getIdOnibus();
             mtID = rt.getIdMotorista();
             on.setIdOnibus(onID);
             on = r3.selecionarUmOnibus(onID);
@@ -409,12 +405,12 @@ if (selectedRow != -1) {
             res.setIdReserva(Integer.parseInt(rtID));
             res.setIdPassageiro(pass.getIdPassageiro());
             this.pdORIGEM.setText(rt.getOrigem());
-        this.pdDESTINO.setText(rt.getDestino());
-        this.pdDTSaida.setText(formato.format(rt.getDtSaida()));
-        this.pdDTChegada.setText(formato.format(rt.getDtChegada()));
-        this.pdBUS.setText(on.getModelo());
-        this.pdMOTO.setText(moto.getNome());
-        }   
+            this.pdDESTINO.setText(rt.getDestino());
+            this.pdDTSaida.setText(formato.format(rt.getDtSaida()));
+            this.pdDTChegada.setText(formato.format(rt.getDtChegada()));
+            this.pdBUS.setText(on.getModelo());
+            this.pdMOTO.setText(moto.getNome());
+        }
     }//GEN-LAST:event_tblPEDIDOSMouseClicked
 
     private void cancelarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarBTNMouseClicked
@@ -422,12 +418,16 @@ if (selectedRow != -1) {
         reservaDao reses = new reservaDao();
         int selectedRow = tblPEDIDOS.getSelectedRow();
         if (selectedRow != -1) {
-           
-            lblID =tblPEDIDOS.getValueAt(selectedRow, 0).toString();
+
+            lblID = tblPEDIDOS.getValueAt(selectedRow, 0).toString();
             reses.alterarStatus(Integer.parseInt(lblID));
             carregarRota();
         }
     }//GEN-LAST:event_cancelarBTNMouseClicked
+
+    private void pedidoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedidoBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pedidoBTNActionPerformed
 
     /**
      * @param args the command line arguments

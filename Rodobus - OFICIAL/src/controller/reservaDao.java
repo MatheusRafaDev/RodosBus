@@ -208,7 +208,7 @@ public class reservaDao extends conectarDao {
 
         try {
             ps = mycon.prepareStatement(sql);
-            ps.setString(1, "Cancelado");
+            ps.setString(1, "Cancelada");
             ps.executeUpdate();
             ps.close();
            JOptionPane.showMessageDialog(null, "Reserva cancelada com com Sucesso!");
