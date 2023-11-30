@@ -87,8 +87,9 @@ public class rotaDao extends conectarDao {
             ps.setTimestamp(4, new java.sql.Timestamp(rota.getDtSaida().getTime()));
             ps.setTimestamp(5, new java.sql.Timestamp(rota.getDtChegada().getTime()));
             ps.setInt(6, rota.getIdMotorista());
+
             ps.setInt(7, rota.getIdOnibus());
-            
+                    
             ps.execute();
             ps.close();
             JOptionPane.showMessageDialog(null, "Cadastro concluído com Sucesso!");

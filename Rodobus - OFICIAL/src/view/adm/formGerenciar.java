@@ -1429,16 +1429,16 @@ public class formGerenciar extends javax.swing.JFrame {
                         .addComponent(jLabel46)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblID4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(btnDELETAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBUSCAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jLabel41)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 953, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(27, 27, 27))
         );
         jPanel11Layout.setVerticalGroup(
@@ -1447,7 +1447,7 @@ public class formGerenciar extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(jLabel41)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDELETAR4)
@@ -1786,13 +1786,16 @@ public class formGerenciar extends javax.swing.JFrame {
                         .addComponent(jLabel33)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtVALOR5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCADASTRAR5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnALTERAR5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(btnALTERAR5))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCADASTRAR5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnNOVO5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbID4)
                             .addComponent(jLabel47))
@@ -1855,7 +1858,9 @@ public class formGerenciar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBUSCAR5ActionPerformed
 
     private void btnBUSCAR5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBUSCAR5MouseClicked
-
+        Controller.carregarOnibusComboBox(cmbONIBUS5);
+        Controller.carregarComboBoxMotoristas(cmbMOTORISTA5);
+        Controller.carregarRotasComboBox(cmbROTAS5);
         Controller.carregarRotas(tblROTA);
         Controller.carregarMotorista(motoristaModel, tblMOTORISTA);
         Controller.carregarOnibus(tblOnibus);
@@ -1895,7 +1900,7 @@ public class formGerenciar extends javax.swing.JFrame {
         String numeroComoString = IdMoto.replaceAll("\\D+", "");
         int motorista = Integer.parseInt(numeroComoString);
 
-        String IdBus = (String) cmbMOTORISTA5.getSelectedItem();
+        String IdBus = (String) cmbONIBUS5.getSelectedItem();
         String numeroComoString2 = IdBus.replaceAll("\\D+", "");
         int bus = Integer.parseInt(numeroComoString2);
 
@@ -1962,7 +1967,7 @@ public class formGerenciar extends javax.swing.JFrame {
         String numeroComoString = IdMoto.replaceAll("\\D+", "");
         int motorista = Integer.parseInt(numeroComoString);
 
-        String IdBus = (String) cmbMOTORISTA5.getSelectedItem();
+        String IdBus = (String) cmbONIBUS5.getSelectedItem();
         String numeroComoString2 = IdBus.replaceAll("\\D+", "");
         int bus = Integer.parseInt(numeroComoString2);
 
@@ -2340,6 +2345,9 @@ public class formGerenciar extends javax.swing.JFrame {
         Controller.carregarPassageirosComboBox(cmbPASSAGEIRO4);
         Controller.carregarReservasBasicas(tblRESERVAS);
         Controller.carregarReservasDetalhadas(tblRESERVAS);
+        
+        Controller.carregarPassageirosComboBox(cmbPASSAGEIRO4);
+        Controller.carregarStatusReservaComboBox(cmbSTATUS4);
     }//GEN-LAST:event_btnBUSCAR4MouseClicked
 
     private void btnBUSCAR4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBUSCAR4ActionPerformed
