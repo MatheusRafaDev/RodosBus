@@ -109,14 +109,14 @@ public class onibusDao extends conectarDao {
 
     public void excluir(int id) {
 
-        sql = "DELETE FROM ID_ONIBUS WHERE ID_ONIBUS = '" + id + "'";
+        sql = "DELETE FROM TB_ONIBUS WHERE ID_ONIBUS = '" + id + "'";
         try {
             ps = mycon.prepareStatement(sql);
             ps.execute();
             ps.close();
             JOptionPane.showMessageDialog(null, "Registro Excluido com Sucesso !");
         } catch (SQLException err) {
-            JOptionPane.showMessageDialog(null, "Erro ao Excluir usuário!" + err.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao Excluir ônibus!" + err.getMessage());
         }
     }
 
