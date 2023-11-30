@@ -7,38 +7,38 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 
 public class VerificadorData {
-
-    private static final SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    private static final SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-
+    
     public boolean verificarData(JFormattedTextField txtCHEGADA4, JFormattedTextField txtSAIDA4) {
-        String inputText = txtCHEGADA4.getText().trim();
-        Date date = parseDate(inputText, sdf1);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
-        if (date == null) {
-            date = parseDate(inputText, sdf2);
-        }
+        String inputTextChegada = txtCHEGADA4.getText().trim();
+        Date chegada = parseDate(inputTextChegada, sdf);
 
-        if (date != null) {
-            txtCHEGADA4.setValue(sdf1.format(date));
-        } else {
+        if (chegada == null) {
             showError("Formato de data de chegada é inválido.");
             return false;
         }
 
-        String inputText2 = txtSAIDA4.getText().trim();
-        Date date2 = parseDate(inputText2, sdf2);
+        String inputTextSaida = txtSAIDA4.getText().trim();
+        Date saida = parseDate(inputTextSaida, sdf);
 
-        if (date2 == null) {
-            date2 = parseDate(inputText2, sdf2);
-        }
-
-        if (date2 != null) {
-            txtSAIDA4.setValue(sdf1.format(date2));
-        } else {  
+        if (saida == null) {
             showError("Formato de data de saída é inválido.");
             return false;
         }
+
+        if (saida.after(chegada)) {
+            showError("A data de chegada não pode ser antes da data de saída.");
+            return false;
+        }
+
+        if (saida.before(new Date())) {
+            showError("A data de saída não pode ser anterior à data atual.");
+            return false;
+        }
+
+        txtCHEGADA4.setValue(sdf.format(chegada));
+        txtSAIDA4.setValue(sdf.format(saida));
 
         return true;
     }

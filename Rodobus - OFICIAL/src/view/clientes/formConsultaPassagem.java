@@ -180,7 +180,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         });
 
         tblROTAS.setAutoCreateRowSorter(true);
-        tblROTAS.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        tblROTAS.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         tblROTAS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
