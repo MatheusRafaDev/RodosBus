@@ -1530,10 +1530,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jPanel11" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jPanel11" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -1578,7 +1575,7 @@
                               </Group>
                               <Component id="txtQTD4" min="-2" pref="77" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" pref="21" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="btnDELETAR4" min="-2" pref="90" max="-2" attributes="0"/>
@@ -1589,7 +1586,7 @@
                                   <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane5" alignment="0" pref="950" max="32767" attributes="0"/>
+                              <Component id="jScrollPane5" alignment="0" pref="953" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
@@ -1625,9 +1622,9 @@
                                       <Component id="btnCADASTRAR4" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="btnALTERA4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnNOVA4" min="-2" pref="29" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>

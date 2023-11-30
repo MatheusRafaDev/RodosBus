@@ -1376,7 +1376,7 @@ public class formGerenciar extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addComponent(btnALTERA4, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(txtQTD4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 21, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(btnDELETAR4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1385,7 +1385,7 @@ public class formGerenciar extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
                         .addComponent(jLabel41)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 953, Short.MAX_VALUE))
                 .addGap(27, 27, 27))
         );
         jPanel11Layout.setVerticalGroup(
@@ -1417,9 +1417,9 @@ public class formGerenciar extends javax.swing.JFrame {
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCADASTRAR4)
                             .addComponent(btnALTERA4))
-                        .addGap(36, 36, 36)
+                        .addGap(18, 18, 18)
                         .addComponent(btnNOVA4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabel41)
@@ -1437,9 +1437,7 @@ public class formGerenciar extends javax.swing.JFrame {
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2285,7 +2283,8 @@ public class formGerenciar extends javax.swing.JFrame {
         Controller.carregarStatusReservaComboBox(cmbSTATUS4);
         Controller.carregarPassageirosComboBox(cmbPASSAGEIRO4);
         Controller.carregarReservasDetalhadas(tblRESERVAS);
-
+        txtVALORTOTAL4.setText("");
+        txtQTD4.setText("");
     }//GEN-LAST:event_btnDELETAR4MouseClicked
 
     private void btnDELETAR4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDELETAR4ActionPerformed

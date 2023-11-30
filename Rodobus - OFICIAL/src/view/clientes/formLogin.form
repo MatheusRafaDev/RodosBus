@@ -40,6 +40,7 @@
           <Color blue="4a" green="49" red="45" type="rgb"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -83,9 +84,7 @@
                                       <Component id="btnCadastro" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                                       <Component id="txtSenha" min="-2" pref="240" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -95,8 +94,6 @@
                               <Component id="btnEntrar" min="-2" pref="132" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblImagem2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
@@ -122,17 +119,11 @@
                       <EmptySpace pref="97" max="32767" attributes="0"/>
                       <Component id="jLabel5" min="-2" pref="18" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblImagem2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtLogin" min="-2" pref="32" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="txtLogin" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel7" min="-2" pref="18" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="txtSenha" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="txtSenha" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnEntrar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
@@ -250,20 +241,6 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtLoginMouseClicked"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel1">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Images/icons 2/cadeado-trancado.png"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblImagem2">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Images/icons 2/pessoa.png"/>
-                </Property>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>

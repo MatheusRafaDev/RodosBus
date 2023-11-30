@@ -48,14 +48,13 @@ public class formLogin extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
         txtLogin = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        lblImagem2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
 
         jPanel1.setBackground(new java.awt.Color(69, 73, 74));
         jPanel1.setToolTipText("");
+        jPanel1.setOpaque(false);
 
         jPanel2.setBackground(new java.awt.Color(242, 147, 4));
 
@@ -123,10 +122,6 @@ public class formLogin extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons 2/cadeado-trancado.png"))); // NOI18N
-
-        lblImagem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons 2/pessoa.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -140,17 +135,13 @@ public class formLogin extends javax.swing.JFrame {
                                 .addGap(168, 168, 168)
                                 .addComponent(btnCadastro))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(46, 46, 46)
                                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(97, 97, 97)
                         .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(lblImagem2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -168,15 +159,11 @@ public class formLogin extends javax.swing.JFrame {
                 .addContainerGap(97, Short.MAX_VALUE)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblImagem2)
-                    .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnEntrar)
                 .addGap(36, 36, 36)
@@ -264,15 +251,14 @@ public class formLogin extends javax.swing.JFrame {
         formGerenciar gerenciar = new formGerenciar();
         Passageiro obj = new Passageiro();
 
-        Passageiro resul = p.validarLogin(login, senha);
-        formConsultaPassagem pass = new formConsultaPassagem(resul);
 
         if (login.equals("admin") && senha.equals("1234")) {
             this.setVisible(false);
             this.dispose();
             gerenciar.setVisible(true);
         } else {
-
+            Passageiro resul = p.validarLogin(login, senha);
+            formConsultaPassagem pass = new formConsultaPassagem(resul);
             if (resul.getIdPassageiro() > 0) {
                 this.dispose();
                 this.setVisible(false);
@@ -303,13 +289,11 @@ public class formLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnCadastro;
     private javax.swing.JButton btnEntrar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel lblImagem2;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
