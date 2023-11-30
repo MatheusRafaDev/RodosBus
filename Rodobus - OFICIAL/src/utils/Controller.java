@@ -7,7 +7,11 @@ import javax.swing.table.DefaultTableModel;
 import controller.passageiroDao;
 import controller.reservaDao;
 import controller.rotaDao;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -114,6 +118,14 @@ public class Controller {
         }
     }
 
+    public static String formatarParaBRL(double valor) {
+        DecimalFormatSymbols simbolos = new DecimalFormatSymbols(new Locale("pt", "BR"));
+        simbolos.setCurrencySymbol(""); 
+        DecimalFormat formatoSemSimbolo = new DecimalFormat("#,##0", simbolos);
+        return formatoSemSimbolo.format(valor);
+    }
+
+
     public void carregarReservasDetalhadas(JTable tblReservas) {
         SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
@@ -136,7 +148,7 @@ public class Controller {
                 motorista.getIdMotorista() + " - " + motorista.getNome(),
                 passageiro.getIdPassageiro() + " - " + passageiro.getNome(),
                 reserva.getQuantidadeReserva(),
-                reserva.getValorTotal(),
+                formatarParaBRL(reserva.getValorTotal()),
                 rota.getOrigem(),
                 rota.getDestino(),
                 rota.getDtSaida(),
@@ -162,7 +174,7 @@ public class Controller {
                 rota.getIdRota(),
                 rota.getIdMotorista() + " - " + motorista.getNome(),
                 rota.getIdOnibus() + " - " + onibus.getModelo(),
-                rota.getVlPreco(),
+                formatarParaBRL(rota.getVlPreco()),
                 rota.getOrigem(),
                 rota.getDestino(),
                 sdf.format(rota.getDtSaida()),

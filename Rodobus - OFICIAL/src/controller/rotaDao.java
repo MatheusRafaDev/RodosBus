@@ -248,11 +248,11 @@ public class rotaDao extends conectarDao {
         try {
             PreparedStatement ps = mycon.prepareStatement(sql);
 
-            ps.setString(1, obj.getDestino());
-            ps.setString(2, obj.getOrigem());
+            ps.setString(1, obj.getOrigem());
+            ps.setString(2, obj.getDestino());
             ps.setDouble(3, obj.getVlPreco());
             ps.setDate(4, new java.sql.Date(obj.getDtChegada().getTime()));
-            ps.setDate(5, new java.sql.Date(obj.getDtSaida().getTime())); // Você deve fornecer o ID do motorista a ser atualizado
+            ps.setDate(5, new java.sql.Date(obj.getDtSaida().getTime())); 
             ps.setInt(6, obj.getIdMotorista());
             ps.setInt(7, obj.getIdOnibus());
             ps.setInt(8, obj.getIdRota());

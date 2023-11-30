@@ -23,4 +23,8 @@ public class Formatador {
         return matcher.matches();
     }
     
+    public static String limparFormatoValor(String valor) {
+        return valor.replaceAll("[^0-9]", "");
+    }
+    
 }
