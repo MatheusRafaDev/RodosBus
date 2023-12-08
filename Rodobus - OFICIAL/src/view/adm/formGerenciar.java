@@ -1804,6 +1804,7 @@ public class formGerenciar extends javax.swing.JFrame {
 
         pgROTAS.addTab("Rotas", jPanel10);
 
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons 1/house.png"))); // NOI18N
         jMenu3.setText("RodoBus");
         jMenuBar2.add(jMenu3);
 
