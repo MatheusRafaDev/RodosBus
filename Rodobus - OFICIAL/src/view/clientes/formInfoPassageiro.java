@@ -314,6 +314,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu7);
 
+        mnRODOBUS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons 1/house.png"))); // NOI18N
         mnRODOBUS.setText("RodoBus");
         mnRODOBUS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -328,8 +329,9 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         mnID.setText("0");
         jMenuBar1.add(mnID);
 
+        mnPERFIL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons 1/user.png"))); // NOI18N
         mnPERFIL.setText("Perfil");
-        mnPERFIL.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        mnPERFIL.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         mnPERFIL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 mnPERFILMouseClicked(evt);
@@ -337,6 +339,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         });
         jMenuBar1.add(mnPERFIL);
 
+        mnPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons 1/cart.png"))); // NOI18N
         mnPedido.setText("Pedido");
         mnPedido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

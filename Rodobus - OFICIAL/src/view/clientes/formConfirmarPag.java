@@ -141,8 +141,8 @@ public class formConfirmarPag extends javax.swing.JFrame {
         mnNOME = new javax.swing.JMenu();
         mnID = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -523,6 +523,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
+        mnRODOBUS1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons 1/house.png"))); // NOI18N
         mnRODOBUS1.setText("RodoBus");
         mnRODOBUS1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -537,6 +538,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         mnID.setText("ID:");
         jMenuBar1.add(mnID);
 
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons 1/user.png"))); // NOI18N
         jMenu2.setText("Perfil");
         jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -545,14 +547,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenu2);
 
-        jMenu5.setText("Sair");
-        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu5MouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(jMenu5);
-
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons 1/cart.png"))); // NOI18N
         jMenu4.setText("Pedido");
         jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -560,6 +555,14 @@ public class formConfirmarPag extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(jMenu4);
+
+        jMenu5.setText("Sair");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
 
