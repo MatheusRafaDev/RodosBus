@@ -1626,27 +1626,23 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel38" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel39" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel40" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel42" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtVALORTOTAL4" min="-2" pref="77" max="-2" attributes="0"/>
-                                          <Component id="cmbROTAS5" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="cmbSTATUS4" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="cmbPASSAGEIRO4" alignment="0" max="32767" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="btnCADASTRAR4" max="32767" attributes="0"/>
-                                                  <Component id="btnNOVA4" max="32767" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="btnALTERA4" min="-2" pref="101" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel38" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel39" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel40" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtVALORTOTAL4" min="-2" pref="77" max="-2" attributes="0"/>
+                                      <Component id="cmbROTAS5" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="cmbSTATUS4" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="cmbPASSAGEIRO4" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="btnCADASTRAR4" max="32767" attributes="0"/>
+                                              <Component id="btnNOVA4" max="32767" attributes="0"/>
                                           </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="btnALTERA4" min="-2" pref="101" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="txtQTD4" min="-2" pref="77" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -1656,14 +1652,14 @@
                                   <Component id="lblID4" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="12" max="32767" attributes="0"/>
+                          <EmptySpace pref="22" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="btnDELETAR4" min="-2" pref="90" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnBUSCAR4" min="-2" pref="90" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane5" alignment="0" pref="943" max="32767" attributes="0"/>
+                              <Component id="jScrollPane5" alignment="0" pref="952" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -1679,7 +1675,7 @@
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jScrollPane5" pref="464" max="32767" attributes="0"/>
+                          <Component id="jScrollPane5" pref="469" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnDELETAR4" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1706,11 +1702,7 @@
                           <Component id="jLabel40" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="txtVALORTOTAL4" min="-2" pref="29" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                          <Component id="jLabel42" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                          <Component id="txtQTD4" min="-2" pref="29" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnCADASTRAR4" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnALTERA4" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1772,14 +1764,13 @@
                           <Color blue="41" green="3f" red="3c" type="rgb"/>
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="13" rowCount="0">
+                          <Table columnCount="12" rowCount="0">
                             <Column editable="false" title="Id.Reserva" type="java.lang.Object"/>
                             <Column editable="false" title="Id.Rota" type="java.lang.Object"/>
                             <Column editable="false" title="Data Reserva" type="java.lang.Object"/>
                             <Column editable="false" title="Status" type="java.lang.Object"/>
                             <Column editable="false" title="Motorista" type="java.lang.Object"/>
                             <Column editable="false" title="Passageiro" type="java.lang.Object"/>
-                            <Column editable="false" title="Qtd.Resevas" type="java.lang.Object"/>
                             <Column editable="false" title="Vl.Total" type="java.lang.Object"/>
                             <Column editable="false" title="Origem" type="java.lang.Object"/>
                             <Column editable="false" title="Destino" type="java.lang.Object"/>
@@ -1790,11 +1781,6 @@
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
@@ -1981,17 +1967,6 @@
                     <Property name="text" type="java.lang.String" value="Vl.total"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel42">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial Black" size="18" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Qtd.reservas"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JButton" name="btnCADASTRAR4">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -2052,14 +2027,6 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtVALORTOTAL4ActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JTextField" name="txtQTD4">
-                  <Properties>
-                    <Property name="inheritsPopupMenu" type="boolean" value="true"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtQTD4ActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel46">

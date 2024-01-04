@@ -147,7 +147,6 @@ public class Controller {
                 reserva.getStatus(),
                 motorista.getIdMotorista() + " - " + motorista.getNome(),
                 passageiro.getIdPassageiro() + " - " + passageiro.getNome(),
-                reserva.getQuantidadeReserva(),
                 formatarParaBRL(reserva.getValorTotal()),
                 rota.getOrigem(),
                 rota.getDestino(),

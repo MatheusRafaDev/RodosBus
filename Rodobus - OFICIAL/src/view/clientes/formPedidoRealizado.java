@@ -39,8 +39,8 @@ public class formPedidoRealizado extends javax.swing.JFrame {
                 reserva2.getIdReserva(),
                 reserva2.getIdRota(),
                 sdf.format(reserva2.getDataReserva()),
-                reserva2.getQuantidadeReserva(),
-                reserva2.getValorTotal(), reserva2.getStatus()});
+                reserva2.getValorTotal(), reserva2.getStatus()
+            });
 
         }
     }

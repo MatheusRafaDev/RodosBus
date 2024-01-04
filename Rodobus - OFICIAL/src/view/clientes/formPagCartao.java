@@ -37,8 +37,7 @@ public class formPagCartao extends javax.swing.JFrame {
         reserva.setIdPassageiro(pass.getIdPassageiro());
         reserva.setIdRota(rota.getIdRota());
         reserva.setStatus("Reservado");
-        reserva.setQuantidadeReserva(qtd);
-        reserva.setValorTotal(reserva.getQuantidadeReserva() * rota.getVlPreco());
+        reserva.setValorTotal(rota.getVlPreco());
         rese.incluir(reserva);
         
         int id = rese.obterUltimoIdReserva();
@@ -52,7 +51,7 @@ public class formPagCartao extends javax.swing.JFrame {
 
     int qtd = 0;
     
-    public formPagCartao(int passageiroId2, int rotaId2,int quantidade) {
+    public formPagCartao(int passageiroId2, int rotaId2) {
 
         initComponents();
         
@@ -61,7 +60,6 @@ public class formPagCartao extends javax.swing.JFrame {
         passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
         
-        qtd = quantidade;
         rota = r.selecionarUmaRota(rotaId2);
         pass = p.selecionarUmPassageiro(passageiroId2);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -375,8 +373,7 @@ public class formPagCartao extends javax.swing.JFrame {
             public void run() {
                 int passageiroId2 = 0;
                 int rotaId2 = 0;
-                int qtd = 0;
-                new formPagCartao(passageiroId2, rotaId2, qtd).setVisible(true);
+                new formPagCartao(passageiroId2, rotaId2).setVisible(true);
             }
         });
     }

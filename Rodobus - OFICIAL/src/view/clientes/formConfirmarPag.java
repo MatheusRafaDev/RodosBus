@@ -26,16 +26,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
     Motorista moto = new Motorista();
     
     private void atualizarValorTotal() {
-        try {
-            double quantidade = Double.parseDouble(txtQTD.getText());
-            double valorUnitario = Double.parseDouble(lbVALOR.getText());
-
-            double valorTotal = quantidade * valorUnitario;
-
-            lblVALORTOTAL.setText(String.valueOf(valorTotal));
-        } catch (NumberFormatException ex) {
-            lblVALORTOTAL.setText("Erro");
-        }
+        double valorUnitario = Double.parseDouble(lbVALOR.getText());
     }
 
     
@@ -54,9 +45,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
         pass = p.selecionarUmPassageiro(passageiroId2);
         onibus = o.selecionarUmOnibus(rota.getIdOnibus());
         moto = m.selecionarUmMotorista(rota.getIdMotorista());
-        this.txtQTD.setDocument(new ValidarNumero(2));
 
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        
         this.lblNOME.setText(pass.getNome());
         this.lblCPF.setText(pass.getCpf());
         this.lblEMAIL.setText(pass.getEmail());
@@ -65,32 +56,14 @@ public class formConfirmarPag extends javax.swing.JFrame {
         this.lblDESEMBARQUE.setText(rota.getDestino());
         this.lblSAIDA.setText(formato.format(rota.getDtSaida()));
         this.lblCHEGADA.setText(formato.format(rota.getDtChegada()));
-        this.txtQTD.setText("1");
         this.lbVALOR.setText(String.valueOf(rota.getVlPreco()));
         this.lblDURACAO.setText(rota.getDsDuracao());
         this.lblMOTORISTA.setText(moto.getNome());
 
         this.mnNOME.setText(pass.getNome());
         this.mnID.setText("Id: " + pass.getIdPassageiro());
-        
-        atualizarValorTotal();
-        
-        txtQTD.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                atualizarValorTotal();
-            }
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                atualizarValorTotal();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                atualizarValorTotal();
-            }
-        });
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -123,10 +96,6 @@ public class formConfirmarPag extends javax.swing.JFrame {
         lblEMBARQUE1 = new javax.swing.JLabel();
         lbVALOR3 = new javax.swing.JLabel();
         lbVALOR = new javax.swing.JLabel();
-        lbVALOR1 = new javax.swing.JLabel();
-        txtQTD = new javax.swing.JTextField();
-        lbVALOR4 = new javax.swing.JLabel();
-        lblVALORTOTAL = new javax.swing.JLabel();
         btnConfirmaPagar = new javax.swing.JButton();
         lblNOME1 = new javax.swing.JLabel();
         lblNOME2 = new javax.swing.JLabel();
@@ -296,28 +265,6 @@ public class formConfirmarPag extends javax.swing.JFrame {
         lbVALOR.setForeground(new java.awt.Color(255, 255, 255));
         lbVALOR.setText("Valor");
 
-        lbVALOR1.setBackground(new java.awt.Color(51, 255, 204));
-        lbVALOR1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lbVALOR1.setForeground(new java.awt.Color(255, 255, 255));
-        lbVALOR1.setText("Qtd.Reservas");
-
-        txtQTD.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        txtQTD.setText("1");
-        txtQTD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtQTDActionPerformed(evt);
-            }
-        });
-
-        lbVALOR4.setBackground(new java.awt.Color(51, 255, 204));
-        lbVALOR4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lbVALOR4.setForeground(new java.awt.Color(255, 255, 255));
-        lbVALOR4.setText("Valor Total");
-
-        lblVALORTOTAL.setBackground(new java.awt.Color(51, 255, 204));
-        lblVALORTOTAL.setForeground(new java.awt.Color(255, 255, 255));
-        lblVALORTOTAL.setText("Valor Total");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -347,17 +294,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lblMOTORISTA, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbVALOR3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbVALOR1))
+                                .addComponent(lbVALOR3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtQTD, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbVALOR, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(lbVALOR4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblVALORTOTAL, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(lbVALOR, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -392,15 +331,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbVALOR3)
                     .addComponent(lbVALOR))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbVALOR1)
-                    .addComponent(txtQTD, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbVALOR4)
-                    .addComponent(lblVALORTOTAL))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         btnConfirmaPagar.setBackground(new java.awt.Color(50, 54, 66));
@@ -496,7 +427,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblNOME1)
@@ -520,7 +451,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
                         .addComponent(lblNOME8)
                         .addGap(18, 18, 18)
                         .addComponent(btnConfirmaPagar)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         mnRODOBUS1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons 1/house.png"))); // NOI18N
@@ -589,7 +520,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
     this.dispose();
     this.setVisible(false);
 
-    formPagCartao cartao = new formPagCartao(pass.getIdPassageiro(), rota.getIdMotorista(), Integer.parseInt(this.txtQTD.getText()));
+    formPagCartao cartao = new formPagCartao(pass.getIdPassageiro(), rota.getIdMotorista());
     cartao.setVisible(true);
 
 
@@ -631,21 +562,13 @@ public class formConfirmarPag extends javax.swing.JFrame {
         consulta.setVisible(true);
     }//GEN-LAST:event_mnRODOBUS1MouseClicked
 
-    private void txtQTDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQTDActionPerformed
-        double quantidade = Double.parseDouble(this.txtQTD.getText());
-        double valorUnitario = Double.parseDouble(this.lbVALOR.getText());
-        double valorTotal = quantidade * valorUnitario;
-        this.lblVALORTOTAL.setText(String.valueOf(valorTotal));
-
-    }//GEN-LAST:event_txtQTDActionPerformed
-
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 int passageiroId2 = 0;
                 int rotaId2 = 0;
-                int last = 1;
+
                 new formConfirmarPag(passageiroId2, rotaId2).setVisible(true);
             }
         });
@@ -662,9 +585,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lbVALOR;
-    private javax.swing.JLabel lbVALOR1;
     private javax.swing.JLabel lbVALOR3;
-    private javax.swing.JLabel lbVALOR4;
     private javax.swing.JLabel lblCHEGADA;
     private javax.swing.JLabel lblCHEGADA1;
     private javax.swing.JLabel lblCPF;
@@ -692,11 +613,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
     private javax.swing.JLabel lblSAIDA1;
     private javax.swing.JLabel lblTELEFONE;
     private javax.swing.JLabel lblTELEFONE1;
-    private javax.swing.JLabel lblVALORTOTAL;
     private javax.swing.JMenu mnID;
     private javax.swing.JMenu mnNOME;
     private javax.swing.JMenu mnRODOBUS1;
     private javax.swing.JRadioButton optCARTAO1;
-    private javax.swing.JTextField txtQTD;
     // End of variables declaration//GEN-END:variables
 }

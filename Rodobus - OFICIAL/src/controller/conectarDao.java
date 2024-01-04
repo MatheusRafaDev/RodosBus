@@ -93,18 +93,29 @@ public class conectarDao {
             ps = mycon.prepareStatement(sql);
             ps.execute();
 
-            sql = "CREATE TABLE IF NOT EXISTS TB_RESERVAS ("
-                    + "id_reserva INT(5) PRIMARY KEY AUTO_INCREMENT,"
+
+            sql = "CREATE TABLE IF NOT EXISTS TB_ASSENTOS ("
+                    + "id_assento INT(5) PRIMARY KEY AUTO_INCREMENT,"
                     + "id_rota INT(5) NOT NULL,"
-                    + "id_passageiro INT(5) NOT NULL,"
-                    + "dt_reserva DATETIME,"
+                    + "nr_numero_assento INT(3) NOT NULL,"
                     + "ds_status VARCHAR(20),"
-                    + "qtd_reserva INT,"
-                    + "vl_total DECIMAL(10,2),"
-                    + "CONSTRAINT FOREIGN KEY (id_passageiro) REFERENCES TB_PASSAGEIRO(id_passageiro),"
                     + "CONSTRAINT FOREIGN KEY (id_rota) REFERENCES TB_ROTA(id_rota)"
                     + ");";
+            ps = mycon.prepareStatement(sql);
+            ps.execute();
 
+            
+            sql = "CREATE TABLE IF NOT EXISTS TB_RESERVAS ("
+                + "id_reserva INT(5) PRIMARY KEY AUTO_INCREMENT,"
+                + "id_rota INT(5) NOT NULL,"
+                + "id_passageiro INT(5) NOT NULL,"
+                + "id_assento INT(5) NOT NULL,"
+                + "dt_reserva DATETIME,"
+                + "ds_status VARCHAR(20),"
+                + "vl_total DECIMAL(10,2),"
+                + "CONSTRAINT FOREIGN KEY (id_passageiro) REFERENCES TB_PASSAGEIRO(id_passageiro),"
+                + "CONSTRAINT FOREIGN KEY (id_rota) REFERENCES TB_ROTA(id_rota)"
+                + ");";
             ps = mycon.prepareStatement(sql);
             ps.execute();
 
@@ -207,25 +218,52 @@ public class conectarDao {
             psRota.executeUpdate();
 
             psRota.close();
+            
+            String insertAssentosSql = "INSERT INTO TB_ASSENTOS (id_rota, nr_numero_assento, ds_status) VALUES (?, ?, ?)";
+            PreparedStatement psAssentos = mycon.prepareStatement(insertAssentosSql);
 
-            sql = "INSERT INTO TB_RESERVAS (id_rota, id_passageiro, dt_reserva, ds_status, qtd_reserva, vl_total) VALUES (?, ?, ?, ?, ?, ?)";
+            psAssentos.setInt(1, 1);  
+            psAssentos.setInt(2, 1);  
+            psAssentos.setString(3, "Indisponivel");  
+            psAssentos.executeUpdate();
+
+            psAssentos.setInt(1, 1);
+            psAssentos.setInt(2, 2);
+            psAssentos.setString(3, "Indisponivel");
+            psAssentos.executeUpdate();
+
+            psAssentos.setInt(1, 2);
+            psAssentos.setInt(2, 1);
+            psAssentos.setString(3, "Indisponivel");
+            psAssentos.executeUpdate();
+
+            psAssentos.setInt(1, 2);
+            psAssentos.setInt(2, 2);
+            psAssentos.setString(3, "Indisponivel");
+            psAssentos.executeUpdate();
+            
+            psAssentos.close();
+
+            sql = "INSERT INTO TB_RESERVAS (id_rota, id_passageiro, dt_reserva, ds_status, vl_total,id_assento) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement psReservas = mycon.prepareStatement(sql);
             psReservas.setInt(1, 1);
             psReservas.setInt(2, 1);
             psReservas.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
             psReservas.setString(4, "Reservado");
-            psReservas.setInt(5, 1);
-            psReservas.setBigDecimal(6, new BigDecimal("50.00"));
+            psReservas.setBigDecimal(5, new BigDecimal("50.00"));
+            psReservas.setInt(6, 1);
             psReservas.executeUpdate();
 
             psReservas.setInt(1, 2);
             psReservas.setInt(2, 2);
             psReservas.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
             psReservas.setString(4, "Reservado");
-            psReservas.setInt(5, 1);
-            psReservas.setBigDecimal(6, new BigDecimal("75.00"));
+            psReservas.setBigDecimal(5, new BigDecimal("75.00"));
+            psReservas.setInt(6, 1);
             psReservas.executeUpdate();
             psReservas.close();
+            
+
 
             JOptionPane.showMessageDialog(null, "Dados inseridos com sucesso...");
         } catch (SQLException err) {

@@ -46,9 +46,8 @@ public class formPix extends javax.swing.JFrame {
         reserva.setIdPassageiro(pass.getIdPassageiro());
         reserva.setIdRota(rota.getIdRota());
         reserva.setStatus("Reservado");
-        reserva.setQuantidadeReserva(qtd);
 
-        reserva.setValorTotal(reserva.getQuantidadeReserva() * rota.getVlPreco());
+        reserva.setValorTotal( rota.getVlPreco());
 
         reserva = rese.incluir(reserva);
 

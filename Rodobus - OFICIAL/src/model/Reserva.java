@@ -9,7 +9,6 @@ public class Reserva {
     private int idPassageiro;
     private Date dataReserva;
     private String status;
-    private int QuantidadeReserva;
     private double ValorTotal;
 
     public int getIdReserva() {
@@ -50,14 +49,6 @@ public class Reserva {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public int getQuantidadeReserva() {
-        return QuantidadeReserva;
-    }
-
-    public void setQuantidadeReserva(int QuantidadeReserva) {
-        this.QuantidadeReserva = QuantidadeReserva;
     }
 
     public double getValorTotal() {

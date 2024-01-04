@@ -47,7 +47,6 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         this.txtID.setText(String.valueOf(pass.getIdPassageiro()));
         
         this.txtVALORTOTAL.setText(String.valueOf((float)reserva.getValorTotal()));
-        this.txtQTD.setText(String.valueOf(reserva.getQuantidadeReserva()));
         this.txtIDRESERVA.setText(String.valueOf(reserva.getIdReserva()));
         
         lblCODIGO.setText(gerarCodigoAleatorio(12));
@@ -188,7 +187,7 @@ public class formPassagemBilhete extends javax.swing.JFrame {
 
         txtQTD.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         txtQTD.setForeground(new java.awt.Color(255, 255, 255));
-        txtQTD.setText("quantidade");
+        txtQTD.setText("1");
 
         txtVALORTOTAL.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         txtVALORTOTAL.setForeground(new java.awt.Color(255, 255, 255));

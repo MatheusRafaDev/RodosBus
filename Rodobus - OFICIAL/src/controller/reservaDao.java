@@ -18,7 +18,7 @@ public class reservaDao extends conectarDao {
     }
 
     public Reserva incluir(Reserva obj) {
-        sql = "INSERT INTO tb_reservas (id_rota, id_passageiro, dt_reserva, ds_status, qtd_reserva, vl_total) VALUES (?, ?, ?, ?, ?, ?)";
+        sql = "INSERT INTO tb_reservas (id_rota, id_passageiro, dt_reserva, ds_status, vl_total) VALUES (?, ?, ?, ?, ?)";
         try {
             ps = mycon.prepareStatement(sql, new String[]{"id_reserva"});
 
@@ -26,8 +26,7 @@ public class reservaDao extends conectarDao {
             ps.setInt(2, obj.getIdPassageiro());
             ps.setDate(3, new java.sql.Date(obj.getDataReserva().getTime()));
             ps.setString(4, obj.getStatus());
-            ps.setInt(5, obj.getQuantidadeReserva());
-            ps.setDouble(6, obj.getValorTotal());
+            ps.setDouble(5, obj.getValorTotal());
 
             ps.executeUpdate();
 
@@ -61,7 +60,7 @@ public class reservaDao extends conectarDao {
     }
 
     public Reserva selecionarUmaReserva(int id) {
-        String sql = "SELECT id_reserva, id_rota, id_passageiro, dt_reserva, ds_status, qtd_reserva, vl_total FROM tb_reservas WHERE id_reserva = ?";
+        String sql = "SELECT * FROM tb_reservas WHERE id_reserva = ?";
         Reserva reserva = new Reserva();
 
         try {
@@ -77,7 +76,6 @@ public class reservaDao extends conectarDao {
                 java.sql.Timestamp reserTimestamp = resultSet.getTimestamp("dt_reserva");
                 reserva.setDataReserva(new Date(reserTimestamp.getTime()));
                 reserva.setStatus(resultSet.getString("ds_status"));
-                reserva.setQuantidadeReserva(resultSet.getInt("qtd_reserva"));
                 reserva.setValorTotal(resultSet.getDouble("vl_total"));
             } else {
                 reserva.setIdReserva(0);
@@ -108,7 +106,7 @@ public class reservaDao extends conectarDao {
     }
 
     public void alterarReserva(Reserva obj) {
-        String sql = "UPDATE tb_reservas SET id_rota = ?, id_passageiro = ?, dt_reserva = ?, ds_status = ?, qtd_reserva = ?, vl_total = ? WHERE id_reserva = ?";
+        String sql = "UPDATE tb_reservas SET id_rota = ?, id_passageiro = ?, dt_reserva = ?, ds_status = ?, vl_total = ? WHERE id_reserva = ?";
 
         try {
             ps = mycon.prepareStatement(sql);
@@ -117,9 +115,8 @@ public class reservaDao extends conectarDao {
             ps.setInt(2, obj.getIdPassageiro());
             ps.setDate(3, new java.sql.Date(obj.getDataReserva().getTime()));
             ps.setString(4, obj.getStatus());
-            ps.setInt(5, obj.getQuantidadeReserva());
-            ps.setDouble(6, obj.getValorTotal());
-            ps.setInt(7, obj.getIdReserva());
+            ps.setDouble(5, obj.getValorTotal());
+            ps.setInt(6, obj.getIdReserva());
 
             ps.executeUpdate();
             ps.close();
@@ -145,7 +142,6 @@ public class reservaDao extends conectarDao {
                 java.sql.Timestamp reserTimestamp = resultSet.getTimestamp("dt_reserva");
                 Date dataReserva = new Date(reserTimestamp.getTime());
                 String status = resultSet.getString("ds_status");
-                int quantidadeReserva = resultSet.getInt("qtd_reserva");
                 double valorTotal = resultSet.getDouble("vl_total");
 
                 Reserva reserva = new Reserva();
@@ -154,7 +150,6 @@ public class reservaDao extends conectarDao {
                 reserva.setIdPassageiro(idPassageiro);
                 reserva.setDataReserva(dataReserva);
                 reserva.setStatus(status);
-                reserva.setQuantidadeReserva(quantidadeReserva);
 
                 reserva.setValorTotal(valorTotal);
 
@@ -191,7 +186,6 @@ public class reservaDao extends conectarDao {
                 reserva.setIdRota(IdRota);
                 reserva.setDataReserva(dtreserva);
                 reserva.setStatus(status);
-                reserva.setQuantidadeReserva(quantidadeReserva);
                 reserva.setValorTotal(vl_total);
                 reservas.add(reserva);  
             }
