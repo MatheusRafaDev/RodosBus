@@ -59,9 +59,10 @@ public class formConfirmarPag extends javax.swing.JFrame {
         this.lblSAIDA.setText(formato.format(rota.getDtSaida()));
         this.lblCHEGADA.setText(formato.format(rota.getDtChegada()));
         this.lbVALOR.setText(String.valueOf(rota.getVlPreco()));
-        this.lbVALOR.setText(String.valueOf(IdAssento));
         this.lblDURACAO.setText(rota.getDsDuracao());
         this.lblMOTORISTA.setText(moto.getNome());
+        this.lblASSENTO.setText(String.valueOf(IdAssento));
+        this.lblROTA.setText(String.valueOf(IdRota));
         
         this.mnNOME.setText(pass.getNome());
         this.mnID.setText("Id: " + pass.getIdPassageiro());
@@ -104,6 +105,8 @@ public class formConfirmarPag extends javax.swing.JFrame {
         lbVALOR = new javax.swing.JLabel();
         lbVALOR4 = new javax.swing.JLabel();
         lblASSENTO = new javax.swing.JLabel();
+        lbVALOR5 = new javax.swing.JLabel();
+        lblROTA = new javax.swing.JLabel();
         btnConfirmaPagar = new javax.swing.JButton();
         lblNOME1 = new javax.swing.JLabel();
         lblNOME2 = new javax.swing.JLabel();
@@ -282,6 +285,15 @@ public class formConfirmarPag extends javax.swing.JFrame {
         lblASSENTO.setForeground(new java.awt.Color(255, 255, 255));
         lblASSENTO.setText("Assento");
 
+        lbVALOR5.setBackground(new java.awt.Color(51, 255, 204));
+        lbVALOR5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lbVALOR5.setForeground(new java.awt.Color(255, 255, 255));
+        lbVALOR5.setText("Id.Rota");
+
+        lblROTA.setBackground(new java.awt.Color(51, 255, 204));
+        lblROTA.setForeground(new java.awt.Color(255, 255, 255));
+        lblROTA.setText("Rota");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -317,7 +329,11 @@ public class formConfirmarPag extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(lbVALOR4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblASSENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(lblASSENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(lbVALOR5, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblROTA, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -353,6 +369,10 @@ public class formConfirmarPag extends javax.swing.JFrame {
                     .addComponent(lbVALOR4)
                     .addComponent(lblASSENTO))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbVALOR5)
+                    .addComponent(lblROTA))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbVALOR3)
                     .addComponent(lbVALOR))
@@ -420,6 +440,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
         grupo.add(optCARTAO1);
         optCARTAO1.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         optCARTAO1.setForeground(new java.awt.Color(255, 255, 255));
+        optCARTAO1.setSelected(true);
         optCARTAO1.setText("Pagar com Cartão de Crédito");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -453,7 +474,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(16, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblNOME1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -474,9 +495,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
                         .addComponent(lblNOME7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblNOME8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(36, 36, 36)
                         .addComponent(btnConfirmaPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         mnRODOBUS1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons 1/house.png"))); // NOI18N
@@ -544,8 +565,9 @@ public class formConfirmarPag extends javax.swing.JFrame {
         
         this.dispose();
         this.setVisible(false);
-          
-        formPagCartao cartao = new formPagCartao(pass.getIdPassageiro(), rota.getIdMotorista());
+         
+        
+        formPagCartao cartao = new formPagCartao(pass.getIdPassageiro(), rota.getIdMotorista(),Integer.parseInt(this.lblASSENTO.getText()));
         cartao.setVisible(true);
         
 
@@ -615,6 +637,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
     private javax.swing.JLabel lbVALOR;
     private javax.swing.JLabel lbVALOR3;
     private javax.swing.JLabel lbVALOR4;
+    private javax.swing.JLabel lbVALOR5;
     private javax.swing.JLabel lblASSENTO;
     private javax.swing.JLabel lblCHEGADA;
     private javax.swing.JLabel lblCHEGADA1;
@@ -639,6 +662,7 @@ public class formConfirmarPag extends javax.swing.JFrame {
     private javax.swing.JLabel lblNOME6;
     private javax.swing.JLabel lblNOME7;
     private javax.swing.JLabel lblNOME8;
+    private javax.swing.JLabel lblROTA;
     private javax.swing.JLabel lblSAIDA;
     private javax.swing.JLabel lblSAIDA1;
     private javax.swing.JLabel lblTELEFONE;

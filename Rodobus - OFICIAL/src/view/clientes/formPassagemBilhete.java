@@ -1,12 +1,14 @@
 
 package view.clientes;
 
+import controller.assentoDao;
 import controller.passageiroDao;
 import controller.rotaDao;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.Assento;
 import model.Passageiro;
 import model.Reserva;
 import model.Rota;
@@ -48,6 +50,13 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         
         this.txtVALORTOTAL.setText(String.valueOf((float)reserva.getValorTotal()));
         this.txtIDRESERVA.setText(String.valueOf(reserva.getIdReserva()));
+        
+        assentoDao a = new assentoDao();
+        Assento assento = new Assento();
+        
+        assento = a.selecionarAssento(reserva.getIdAssento());
+        
+        this.txtASSENTO.setText(String.valueOf(assento.getNumeroAssento()));
         
         lblCODIGO.setText(gerarCodigoAleatorio(12));
     }
@@ -199,7 +208,7 @@ public class formPassagemBilhete extends javax.swing.JFrame {
 
         txtASSENTO.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         txtASSENTO.setForeground(new java.awt.Color(255, 255, 255));
-        txtASSENTO.setText("32");
+        txtASSENTO.setText("0");
 
         jLabel9.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -341,9 +350,9 @@ public class formPassagemBilhete extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtASSENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addComponent(jLabel9)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -360,15 +369,14 @@ public class formPassagemBilhete extends javax.swing.JFrame {
                                 .addComponent(txtQTD, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(txtVALORTOTAL))
                             .addComponent(lblCODIGO, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(48, 48, 48)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtID)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
-                        .addComponent(jLabel15)
-                        .addContainerGap(49, Short.MAX_VALUE))))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 114, Short.MAX_VALUE)
+                        .addComponent(jLabel15)))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         jMenuBar1.add(jMenu7);

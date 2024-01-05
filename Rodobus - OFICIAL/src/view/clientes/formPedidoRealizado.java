@@ -94,6 +94,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 102, 0));
 
         jPanel1.setBackground(new java.awt.Color(50, 54, 66));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -146,33 +147,45 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Origem:");
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Destino:");
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Data de Saida:");
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Data de Chegada:");
 
         jLabel6.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Modelo do Ônibus:");
 
         jLabel7.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Motorista:");
 
+        pdORIGEM.setForeground(new java.awt.Color(255, 255, 255));
         pdORIGEM.setText("-");
 
+        pdDESTINO.setForeground(new java.awt.Color(255, 255, 255));
         pdDESTINO.setText("-");
 
+        pdDTSaida.setForeground(new java.awt.Color(255, 255, 255));
         pdDTSaida.setText("-");
 
+        pdDTChegada.setForeground(new java.awt.Color(255, 255, 255));
         pdDTChegada.setText("-");
 
+        pdBUS.setForeground(new java.awt.Color(255, 255, 255));
         pdBUS.setText("-");
 
+        pdMOTO.setForeground(new java.awt.Color(255, 255, 255));
         pdMOTO.setText("-");
 
         cancelarBTN.setBackground(new java.awt.Color(69, 73, 74));
@@ -233,7 +246,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pedidoBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)

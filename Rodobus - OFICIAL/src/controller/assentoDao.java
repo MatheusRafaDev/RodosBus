@@ -55,8 +55,31 @@ public class assentoDao extends conectarDao {
             throw new RuntimeException("Erro ao buscar assentos por rota", e);
         }
 
-    return assentos;
-}
+        return assentos;
+    }
+    
+    public Assento selecionarAssento(int idAssento) {
+        Assento assento = null;
+        String sql = "SELECT * FROM TB_ASSENTOS WHERE ID_ASSENTO = ?";
+
+        try (PreparedStatement ps = mycon.prepareStatement(sql)) {
+            ps.setInt(1, idAssento);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    assento = new Assento();
+                    assento.setIdAssento(rs.getInt("id_assento"));
+                    assento.setIdRota(rs.getInt("id_rota"));
+                    assento.setNumeroAssento(rs.getInt("nr_numero_assento"));
+                    assento.setStatus(rs.getString("ds_status"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao selecionar assento", e);
+        }
+
+        return assento;
+    }
 
 
 }

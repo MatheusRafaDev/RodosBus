@@ -4,6 +4,7 @@
  */
 package view.clientes;
 
+import controller.assentoDao;
 import controller.passageiroDao;
 import controller.reservaDao;
 import controller.rotaDao;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.Assento;
 import model.Passageiro;
 import model.Reserva;
 import model.Rota;
@@ -25,13 +27,23 @@ public class formPagCartao extends javax.swing.JFrame {
     passageiroDao passageiro = new passageiroDao();
     reservaDao rese = new reservaDao();
     
+    int nrAssento = 0;
+    
     public void carregarBil() {
         this.setVisible(false);
         this.dispose();
 
+        assentoDao a = new assentoDao();
+        Assento assento = new Assento();
+        assento.setNumeroAssento(nrAssento);
+        assento.setIdRota(rota.getIdRota());
+        assento.setStatus("indisponivel");
+        a.incluir(assento);
         
         Reserva reserva = new Reserva(); 
         Date dataReserva = new Date();
+        
+        
         reserva.setDataReserva(dataReserva);
         
         reserva.setIdPassageiro(pass.getIdPassageiro());
@@ -39,6 +51,8 @@ public class formPagCartao extends javax.swing.JFrame {
         reserva.setStatus("Reservado");
         reserva.setValorTotal(rota.getVlPreco());
         rese.incluir(reserva);
+        
+ 
         
         int id = rese.obterUltimoIdReserva();
         reserva.setIdReserva(id);
@@ -51,7 +65,7 @@ public class formPagCartao extends javax.swing.JFrame {
 
     int qtd = 0;
     
-    public formPagCartao(int passageiroId2, int rotaId2) {
+    public formPagCartao(int IdPassageiro, int idRota,int idAssento) {
 
         initComponents();
         
@@ -60,8 +74,10 @@ public class formPagCartao extends javax.swing.JFrame {
         passageiroDao p = new passageiroDao();
         rotaDao r = new rotaDao();
         
-        rota = r.selecionarUmaRota(rotaId2);
-        pass = p.selecionarUmPassageiro(passageiroId2);
+        rota = r.selecionarUmaRota(idRota);
+        pass = p.selecionarUmPassageiro(IdPassageiro);
+        
+        nrAssento = idAssento;
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         this.mnNOME.setText(pass.getNome());
@@ -371,9 +387,11 @@ public class formPagCartao extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                int passageiroId2 = 0;
-                int rotaId2 = 0;
-                new formPagCartao(passageiroId2, rotaId2).setVisible(true);
+                int IdPassageiro = 0;
+                int idRota = 0;
+                int IdAssento = 0;
+                
+                new formPagCartao(IdPassageiro, idRota,IdAssento).setVisible(true);
             }
         });
     }

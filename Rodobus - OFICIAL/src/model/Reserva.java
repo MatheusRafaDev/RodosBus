@@ -6,6 +6,7 @@ public class Reserva {
 
     private int idReserva;
     private int idRota;
+    private int idAssento;
     private int idPassageiro;
     private Date dataReserva;
     private String status;
@@ -57,6 +58,14 @@ public class Reserva {
 
     public void setValorTotal(double ValorTotal) {
         this.ValorTotal = ValorTotal;
+    }
+       
+    public int getIdAssento() {
+        return idAssento;
+    }
+
+    public void setIdAssento(int idAssento) {
+        this.idAssento = idAssento;
     }
 
 }
