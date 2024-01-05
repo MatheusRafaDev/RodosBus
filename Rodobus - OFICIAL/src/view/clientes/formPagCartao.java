@@ -97,9 +97,9 @@ public class formPagCartao extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 204, 255));
 
-        jPanel1.setBackground(new java.awt.Color(242, 147, 4));
+        jPanel1.setBackground(new java.awt.Color(50, 54, 66));
 
-        jPanel2.setBackground(new java.awt.Color(50, 54, 66));
+        jPanel2.setBackground(new java.awt.Color(102, 102, 102));
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));

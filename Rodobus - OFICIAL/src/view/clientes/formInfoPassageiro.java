@@ -118,40 +118,40 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         setTitle("Perfil");
         setBackground(new java.awt.Color(242, 147, 4));
 
-        jPanel2.setBackground(new java.awt.Color(69, 73, 74));
+        jPanel2.setBackground(new java.awt.Color(50, 54, 66));
 
-        jPanel1.setBackground(new java.awt.Color(242, 147, 4));
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Perfil");
 
-        jLabel6.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Nome");
 
         textNOME.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
 
-        jLabel7.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("E-mail");
 
         textEMAIL.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
 
-        jLabel8.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Telefone");
 
-        jLabel9.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("CPF");
 
-        jLabel10.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Senha");
 
         btnSENHA.setBackground(new java.awt.Color(50, 54, 66));
-        btnSENHA.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        btnSENHA.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnSENHA.setForeground(new java.awt.Color(255, 255, 255));
         btnSENHA.setText("Alterar");
         btnSENHA.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -167,7 +167,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         });
 
         btnTEL.setBackground(new java.awt.Color(50, 54, 66));
-        btnTEL.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        btnTEL.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnTEL.setForeground(new java.awt.Color(255, 255, 255));
         btnTEL.setText("Alterar");
         btnTEL.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -177,7 +177,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         });
 
         btnCPF.setBackground(new java.awt.Color(50, 54, 66));
-        btnCPF.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        btnCPF.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnCPF.setForeground(new java.awt.Color(255, 255, 255));
         btnCPF.setText("Alterar");
         btnCPF.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -187,7 +187,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         });
 
         btnNOME.setBackground(new java.awt.Color(50, 54, 66));
-        btnNOME.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        btnNOME.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnNOME.setForeground(new java.awt.Color(255, 255, 255));
         btnNOME.setText("Alterar");
         btnNOME.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -202,7 +202,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         });
 
         btnEMAIL.setBackground(new java.awt.Color(50, 54, 66));
-        btnEMAIL.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        btnEMAIL.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnEMAIL.setForeground(new java.awt.Color(255, 255, 255));
         btnEMAIL.setText("Alterar");
         btnEMAIL.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -258,14 +258,14 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnNOME, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                    .addComponent(textNOME))
+                    .addComponent(btnNOME, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textNOME, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -277,7 +277,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnEMAIL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textEMAIL, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                    .addComponent(textEMAIL, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -292,7 +292,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnSENHA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(1, 1, 1)))
-                .addGap(26, 26, 26))
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -307,9 +307,9 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jMenuBar1.add(jMenu7);

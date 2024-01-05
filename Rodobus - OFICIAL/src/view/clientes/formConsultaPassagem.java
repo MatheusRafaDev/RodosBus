@@ -5,6 +5,7 @@ import model.Passageiro;
 import view.clientes.formLogin;
 import view.clientes.formConfirmarPag;
 import controller.rotaDao;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -71,6 +72,11 @@ public class formConsultaPassagem extends javax.swing.JFrame {
 
         initComponents();
         
+        Color background = new Color(60, 63, 65);
+        //tblROTAS.setForeground(background);
+        
+        // tblROTAS.repaint();
+           
         carregarRota();
         this.mnNOME.setText(obj.getNome());
         this.mnID.setText("Id: " + obj.getIdPassageiro());
@@ -133,7 +139,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(142, 157, 204));
 
-        jPanel1.setBackground(new java.awt.Color(242, 147, 4));
+        jPanel1.setBackground(new java.awt.Color(50, 54, 66));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -162,7 +168,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         });
 
         btnBUSCAR.setBackground(new java.awt.Color(69, 73, 74));
-        btnBUSCAR.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        btnBUSCAR.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnBUSCAR.setForeground(new java.awt.Color(255, 255, 255));
         btnBUSCAR.setText("BUSCAR");
         btnBUSCAR.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -177,7 +183,8 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         });
 
         tblROTAS.setAutoCreateRowSorter(true);
-        tblROTAS.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        tblROTAS.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tblROTAS.setForeground(new java.awt.Color(60, 63, 65));
         tblROTAS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -194,6 +201,14 @@ public class formConsultaPassagem extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblROTAS.setGridColor(new java.awt.Color(60, 63, 65));
+        tblROTAS.setOpaque(false);
+        tblROTAS.setSelectionBackground(new java.awt.Color(102, 102, 102));
+        tblROTAS.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tblROTAS.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblROTAS.setShowGrid(false);
+        tblROTAS.setShowHorizontalLines(false);
+        tblROTAS.setShowVerticalLines(false);
         tblROTAS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblROTASMouseClicked(evt);
@@ -203,20 +218,21 @@ public class formConsultaPassagem extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tblROTAS);
+        tblROTAS.getAccessibleContext().setAccessibleDescription("");
 
-        jLabel7.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Data chegada:");
 
-        jLabel8.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Para onde você vai?");
 
-        jLabel9.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("De onde você vai sair?");
 
-        jLabel10.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Data saída:");
 
@@ -232,19 +248,21 @@ public class formConsultaPassagem extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        lblID.setText("Embarque");
+        lblID.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblID.setForeground(new java.awt.Color(255, 255, 255));
+        lblID.setText("0");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jScrollPane1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(12, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblID)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,34 +278,31 @@ public class formConsultaPassagem extends javax.swing.JFrame {
                                     .addComponent(jLabel7))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtSAIDA, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtSAIDA, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(btnBUSCAR, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(txtDATAVOLTA, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel2))
-                        .addGap(152, 152, 152)
-                        .addComponent(btnBUSCAR, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)))
-                .addGap(17, 17, 17))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(lblID)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE)
+                        .addGap(17, 17, 17))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(17, 17, 17)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSAIDA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtSAIDA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBUSCAR))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtDATAVOLTA, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBUSCAR)))
+                        .addComponent(txtDATAVOLTA, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -298,13 +313,10 @@ public class formConsultaPassagem extends javax.swing.JFrame {
                             .addComponent(txtDATASAIDA, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(lblID)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         jMenuBar1.add(jMenu7);

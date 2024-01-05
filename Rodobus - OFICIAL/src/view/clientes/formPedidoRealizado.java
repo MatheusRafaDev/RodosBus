@@ -93,7 +93,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         setTitle("Meus pedidos");
         setBackground(new java.awt.Color(255, 102, 0));
 
-        jPanel1.setBackground(new java.awt.Color(242, 147, 4));
+        jPanel1.setBackground(new java.awt.Color(50, 54, 66));
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));

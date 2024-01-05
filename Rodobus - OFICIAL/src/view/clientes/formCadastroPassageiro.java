@@ -65,7 +65,7 @@ public class formCadastroPassageiro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Criar conta");
 
-        jPanel1.setBackground(new java.awt.Color(242, 147, 4));
+        jPanel1.setBackground(new java.awt.Color(50, 54, 66));
         jPanel1.setToolTipText("Login");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N

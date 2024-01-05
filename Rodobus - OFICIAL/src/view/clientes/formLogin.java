@@ -56,9 +56,9 @@ public class formLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
 
-        jPanel1.setBackground(new java.awt.Color(69, 73, 74));
+        jPanel1.setBackground(new java.awt.Color(50, 54, 66));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setToolTipText("");
-        jPanel1.setOpaque(false);
 
         jPanel2.setBackground(new java.awt.Color(242, 147, 4));
 
