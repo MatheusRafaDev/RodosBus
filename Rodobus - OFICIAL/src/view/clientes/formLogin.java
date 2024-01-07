@@ -29,12 +29,30 @@ public class formLogin extends javax.swing.JFrame {
         
         txtLogin.setDocument(new ValidarLetras(20));
         txtSenha.setDocument(new Validador(20));
-            
     }
     
+    public void Logar() {
+        String login = this.txtLogin.getText().trim();
+        String senha = this.txtSenha.getText().trim();
 
+        passageiroDao p = new passageiroDao();
 
-
+        if (login.equals("admin") && senha.equals("1234")) {
+            this.setVisible(false);
+            this.dispose();
+            new formGerenciar().setVisible(true);
+        } else {
+            Passageiro resul = p.validarLogin(login, senha);
+            if (resul.getIdPassageiro() > 0) {
+                this.dispose();
+                this.setVisible(false);
+                new formConsultaPassagem(resul).setVisible(true);
+            }   
+        }
+    }
+    
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -111,6 +129,11 @@ public class formLogin extends javax.swing.JFrame {
                 txtSenhaMouseClicked(evt);
             }
         });
+        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSenhaKeyPressed(evt);
+            }
+        });
 
         txtLogin.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         txtLogin.setCaretColor(new java.awt.Color(69, 73, 74));
@@ -118,6 +141,11 @@ public class formLogin extends javax.swing.JFrame {
         txtLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtLoginMouseClicked(evt);
+            }
+        });
+        txtLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtLoginKeyPressed(evt);
             }
         });
 
@@ -197,16 +225,16 @@ public class formLogin extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(292, Short.MAX_VALUE)
+                .addContainerGap(100, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -231,27 +259,9 @@ public class formLogin extends javax.swing.JFrame {
         cadastro.setVisible(true);
     }//GEN-LAST:event_btnCadastroMouseClicked
 
+    
     private void btnEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEntrarKeyPressed
-        String login = this.txtLogin.getText().trim();
-        String senha = this.txtSenha.getText().trim();
-        formGerenciar gerenciar = new formGerenciar();
-
-        if (login.equals("admin") && senha.equals("1234")) {
-            gerenciar.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            this.setVisible(false);
-            this.dispose();
-            gerenciar.setVisible(true);
-        } else {
-            Passageiro resul = p.validarLogin(login, senha);
-
-            if (resul.getIdPassageiro() > 0) {
-
-                this.setVisible(false);
-                this.dispose();
-                formConsultaPassagem pass = new formConsultaPassagem(resul);
-                pass.setVisible(true);
-            }
-        }
+        Logar();
     }//GEN-LAST:event_btnEntrarKeyPressed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
@@ -259,28 +269,7 @@ public class formLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseClicked
-        // TODO add your handling code here:
-        String login = this.txtLogin.getText().trim();
-        String senha = this.txtSenha.getText().trim();
-
-        passageiroDao p = new passageiroDao();
-        formGerenciar gerenciar = new formGerenciar();
-        Passageiro obj = new Passageiro();
-
-
-        if (login.equals("admin") && senha.equals("1234")) {
-            this.setVisible(false);
-            this.dispose();
-            gerenciar.setVisible(true);
-        } else {
-            Passageiro resul = p.validarLogin(login, senha);
-            formConsultaPassagem pass = new formConsultaPassagem(resul);
-            if (resul.getIdPassageiro() > 0) {
-                this.dispose();
-                this.setVisible(false);
-                pass.setVisible(true);
-            }
-        }
+        Logar();
     }//GEN-LAST:event_btnEntrarMouseClicked
 
     private void txtSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSenhaMouseClicked
@@ -290,6 +279,18 @@ public class formLogin extends javax.swing.JFrame {
     private void txtLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLoginMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLoginMouseClicked
+
+    private void txtLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLoginKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            Logar();
+        }
+    }//GEN-LAST:event_txtLoginKeyPressed
+
+    private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            Logar();
+        }
+    }//GEN-LAST:event_txtSenhaKeyPressed
 
     /**
      * @param args the command line arguments

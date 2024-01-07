@@ -9,10 +9,13 @@ import controller.onibusDao;
 import controller.passageiroDao;
 import controller.rotaDao;
 import controller.reservaDao;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Motorista;
@@ -33,52 +36,115 @@ public class formPedidoRealizado extends javax.swing.JFrame {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         DefaultTableModel model = (DefaultTableModel) tblPEDIDOS.getModel();
+        
         model.setRowCount(0);
         for (Reserva reserva2 : reservas) {
             model.addRow(new Object[]{
                 reserva2.getIdReserva(),
                 reserva2.getIdRota(),
                 sdf.format(reserva2.getDataReserva()),
-                reserva2.getValorTotal(), reserva2.getStatus()
+                reserva2.getQuantidade(),
+                reserva2.getValorTotal(), 
+                reserva2.getStatus()
             });
 
         }
     }
 
+    public void carregarBilhete(int IdReserva) {
+        this.dispose();
+        this.setVisible(false);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    
+        reservaDao rese = new reservaDao();
+        res = rese.selecionarUmaReserva(IdReserva);
+        
+        if (! res.getStatus().equals("Cancelada") && IdReserva > 0) {
+
+            res = rese.selecionarUmaReserva(IdReserva);
+          
+            formPassagemBilhete pas = new formPassagemBilhete(res);
+            pas.setVisible(true);
+        } else
+            JOptionPane.showMessageDialog(null, "Não é possivel consultar o bilhete de uma reserva cancelada! ");
+    }
+    
+    public void cancelarPedido(int IdReserva) {
+        reservaDao rese = new reservaDao();
+        res = rese.selecionarUmaReserva(IdReserva);
+        
+        if(res.getStatus().equals("Cancelada")){
+            return;
+        }
+        
+        JFrame frame = new JFrame("Confirmação");
+        int resposta = JOptionPane.showConfirmDialog(frame, "Deseja Cancelar o pedido?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (resposta == JOptionPane.YES_OPTION) {
+            rese.alterarStatus(IdReserva);
+        }
+        
+        carregarRota();
+    }
+    
+    JMenuItem Cancelar = new JMenuItem("Cancelar");
+    JMenuItem Bilhete  = new JMenuItem("Consultar Bilhete");
+    
     public formPedidoRealizado(Passageiro obj) {
         initComponents();
-
+        
         this.mnNOME.setText(obj.getNome());
         this.mnID.setText("Id: " + obj.getIdPassageiro());
-
+   
         pass = obj;
+        
         carregarRota();
-
+        
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        Bilhete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                String id = lblID.getText();
+                
+                if(id == "0") {
+                    return;
+                } else {
+                    carregarBilhete(Integer.parseInt(id));             
+                }
+            }
+        });
+           
+        Cancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String id = lblID.getText();
+                
+                 if(id == "0") {
+                    return;
+                } else {
+                    cancelarPedido(Integer.parseInt(id));              
+                }
+       
+            }
+        });
+
+        jPopupMenu1.add(Bilhete);
+        jPopupMenu1.add(Cancelar);
+  
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPEDIDOS = new javax.swing.JTable();
-        pedidoBTN = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        pdORIGEM = new javax.swing.JLabel();
-        pdDESTINO = new javax.swing.JLabel();
-        pdDTSaida = new javax.swing.JLabel();
-        pdDTChegada = new javax.swing.JLabel();
-        pdBUS = new javax.swing.JLabel();
-        pdMOTO = new javax.swing.JLabel();
-        cancelarBTN = new javax.swing.JButton();
+        lblID = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
         mnRODOBUS = new javax.swing.JMenu();
@@ -100,6 +166,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Meus pedidos");
 
+        tblPEDIDOS.setAutoCreateRowSorter(true);
         tblPEDIDOS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -116,9 +183,14 @@ public class formPedidoRealizado extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblPEDIDOS.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblPEDIDOS.setShowGrid(false);
         tblPEDIDOS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblPEDIDOSMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tblPEDIDOSMouseReleased(evt);
             }
         });
         jScrollPane1.setViewportView(tblPEDIDOS);
@@ -131,72 +203,9 @@ public class formPedidoRealizado extends javax.swing.JFrame {
             tblPEDIDOS.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        pedidoBTN.setBackground(new java.awt.Color(69, 73, 74));
-        pedidoBTN.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        pedidoBTN.setForeground(new java.awt.Color(255, 255, 255));
-        pedidoBTN.setText("CONSULTAR BILHETE DO PEDIDO");
-        pedidoBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pedidoBTNMouseClicked(evt);
-            }
-        });
-        pedidoBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pedidoBTNActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Origem:");
-
-        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Destino:");
-
-        jLabel4.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Data de Saida:");
-
-        jLabel5.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Data de Chegada:");
-
-        jLabel6.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Modelo do Ônibus:");
-
-        jLabel7.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Motorista:");
-
-        pdORIGEM.setForeground(new java.awt.Color(255, 255, 255));
-        pdORIGEM.setText("-");
-
-        pdDESTINO.setForeground(new java.awt.Color(255, 255, 255));
-        pdDESTINO.setText("-");
-
-        pdDTSaida.setForeground(new java.awt.Color(255, 255, 255));
-        pdDTSaida.setText("-");
-
-        pdDTChegada.setForeground(new java.awt.Color(255, 255, 255));
-        pdDTChegada.setText("-");
-
-        pdBUS.setForeground(new java.awt.Color(255, 255, 255));
-        pdBUS.setText("-");
-
-        pdMOTO.setForeground(new java.awt.Color(255, 255, 255));
-        pdMOTO.setText("-");
-
-        cancelarBTN.setBackground(new java.awt.Color(69, 73, 74));
-        cancelarBTN.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        cancelarBTN.setForeground(new java.awt.Color(255, 255, 255));
-        cancelarBTN.setText("CANCELAR RESERVA");
-        cancelarBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancelarBTNMouseClicked(evt);
-            }
-        });
+        lblID.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblID.setForeground(new java.awt.Color(255, 255, 255));
+        lblID.setText("0");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -207,36 +216,9 @@ public class formPedidoRealizado extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(pedidoBTN)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cancelarBTN))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(pdMOTO))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(pdORIGEM))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(pdDESTINO))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(pdDTSaida))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(pdDTChegada))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pdBUS)))
+                            .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -246,36 +228,9 @@ public class formPedidoRealizado extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pedidoBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(pdORIGEM))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(pdDESTINO))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(pdDTSaida))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(pdDTChegada))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(pdBUS))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(pdMOTO))
-                .addGap(85, 85, 85))
+                .addComponent(lblID))
         );
 
         jMenuBar1.setForeground(new java.awt.Color(60, 63, 65));
@@ -335,9 +290,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -371,79 +324,26 @@ public class formPedidoRealizado extends javax.swing.JFrame {
         info.setVisible(true);
     }//GEN-LAST:event_mnPERFILMouseClicked
 
-    private void pedidoBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidoBTNMouseClicked
-        reservaDao rese = new reservaDao();
-        if (! res.getStatus().equals("Cancelada")) {
-            this.setVisible(false);
-            this.dispose();
-            passageiroDao p = new passageiroDao();
-            rotaDao r = new rotaDao();
-            res.setIdRota(res.getIdRota());
-            res.setIdPassageiro(pass.getIdPassageiro());
-            res.setIdReserva(res.getIdReserva());
-            res.setValorTotal(res.getValorTotal());
-
-            formPassagemBilhete pas = new formPassagemBilhete(res);
-            pas.setVisible(true);
-        } else
-            JOptionPane.showMessageDialog(null, "Não é possivel consultar o bilhete de uma reserva cancelada! ");
-    }//GEN-LAST:event_pedidoBTNMouseClicked
-
     private void tblPEDIDOSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPEDIDOSMouseClicked
         int selectedRow = tblPEDIDOS.getSelectedRow();
-        String lblID;
-        String rtID;
-        String psID;
-        int onID;
-        Onibus on = new Onibus();
-        Motorista moto = new Motorista();
-        int mtID;
-        if (selectedRow != -1) {
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            lblID = tblPEDIDOS.getValueAt(selectedRow, 0).toString();
-            rtID = (tblPEDIDOS.getValueAt(selectedRow, 1).toString());
-            tblPEDIDOS.getValueAt(selectedRow, 2).toString();
-            tblPEDIDOS.getValueAt(selectedRow, 3).toString();
-            tblPEDIDOS.getValueAt(selectedRow, 4).toString();
-            tblPEDIDOS.getValueAt(selectedRow, 5).toString();
-            reservaDao r = new reservaDao();
-            rotaDao r2 = new rotaDao();
-            onibusDao r3 = new onibusDao();
-            motoristaDao r4 = new motoristaDao();
-            rt = r2.selecionarUmaRota(Integer.parseInt(rtID));
-            res = r.selecionarUmaReserva(Integer.parseInt(lblID));
-            onID = rt.getIdOnibus();
-            mtID = rt.getIdMotorista();
-            on.setIdOnibus(onID);
-            on = r3.selecionarUmOnibus(onID);
-            moto.setIdMotorista(mtID);
-            moto = r4.selecionarUmMotorista(mtID);
-            res.setIdReserva(Integer.parseInt(rtID));
-            res.setIdPassageiro(pass.getIdPassageiro());
-            this.pdORIGEM.setText(rt.getOrigem());
-            this.pdDESTINO.setText(rt.getDestino());
-            this.pdDTSaida.setText(formato.format(rt.getDtSaida()));
-            this.pdDTChegada.setText(formato.format(rt.getDtChegada()));
-            this.pdBUS.setText(on.getModelo());
-            this.pdMOTO.setText(moto.getNome());
+        
+        if (selectedRow != -1) { 
+            this.lblID.setText(tblPEDIDOS.getValueAt(selectedRow, 0).toString());
         }
     }//GEN-LAST:event_tblPEDIDOSMouseClicked
 
-    private void cancelarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarBTNMouseClicked
-        String lblID;
-        reservaDao reses = new reservaDao();
-        int selectedRow = tblPEDIDOS.getSelectedRow();
-        if (selectedRow != -1) {
+    private void tblPEDIDOSMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPEDIDOSMouseReleased
+       if (evt.isPopupTrigger()) {
+        int row = tblPEDIDOS.rowAtPoint(evt.getPoint());
 
-            lblID = tblPEDIDOS.getValueAt(selectedRow, 0).toString();
-            reses.alterarStatus(Integer.parseInt(lblID));
-            carregarRota();
+        tblPEDIDOS.setRowSelectionInterval(row, row);
+        
+        int x = evt.getX();
+        int y = evt.getY();
+
+        jPopupMenu1.show(tblPEDIDOS, x, y);
         }
-    }//GEN-LAST:event_cancelarBTNMouseClicked
-
-    private void pedidoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedidoBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pedidoBTNActionPerformed
+    }//GEN-LAST:event_tblPEDIDOSMouseReleased
 
     /**
      * @param args the command line arguments
@@ -482,32 +382,20 @@ public class formPedidoRealizado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancelarBTN;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JLabel lblID;
     private javax.swing.JMenu mnID;
     private javax.swing.JMenu mnNOME;
     private javax.swing.JMenu mnPERFIL;
     private javax.swing.JMenu mnPedido;
     private javax.swing.JMenu mnRODOBUS;
     private javax.swing.JMenu mnSAIR;
-    private javax.swing.JLabel pdBUS;
-    private javax.swing.JLabel pdDESTINO;
-    private javax.swing.JLabel pdDTChegada;
-    private javax.swing.JLabel pdDTSaida;
-    private javax.swing.JLabel pdMOTO;
-    private javax.swing.JLabel pdORIGEM;
-    private javax.swing.JButton pedidoBTN;
     private javax.swing.JTable tblPEDIDOS;
     // End of variables declaration//GEN-END:variables
 }

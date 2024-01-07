@@ -113,6 +113,7 @@ public class conectarDao {
                 + "dt_reserva DATETIME,"
                 + "ds_status VARCHAR(20),"
                 + "vl_total DECIMAL(10,2),"
+                + "qtd_reserva INT(5) NOT NULL,"
                 + "CONSTRAINT FOREIGN KEY (id_passageiro) REFERENCES TB_PASSAGEIRO(id_passageiro),"
                 + "CONSTRAINT FOREIGN KEY (id_rota) REFERENCES TB_ROTA(id_rota)"
                 + ");";
@@ -244,7 +245,7 @@ public class conectarDao {
             
             psAssentos.close();
 
-            sql = "INSERT INTO TB_RESERVAS (id_rota, id_passageiro, dt_reserva, ds_status, vl_total,id_assento) VALUES (?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO TB_RESERVAS (id_rota, id_passageiro, dt_reserva, ds_status, vl_total,id_assento,qtd_reserva) VALUES (?, ?, ?, ?, ?, ?,?)";
             PreparedStatement psReservas = mycon.prepareStatement(sql);
             psReservas.setInt(1, 1);
             psReservas.setInt(2, 1);
@@ -252,6 +253,7 @@ public class conectarDao {
             psReservas.setString(4, "Reservado");
             psReservas.setBigDecimal(5, new BigDecimal("50.00"));
             psReservas.setInt(6, 1);
+            psReservas.setInt(7, 1);
             psReservas.executeUpdate();
 
             psReservas.setInt(1, 2);
@@ -260,6 +262,7 @@ public class conectarDao {
             psReservas.setString(4, "Reservado");
             psReservas.setBigDecimal(5, new BigDecimal("75.00"));
             psReservas.setInt(6, 1);
+            psReservas.setInt(7, 1);
             psReservas.executeUpdate();
             psReservas.close();
             

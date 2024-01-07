@@ -39,7 +39,7 @@ public class motoristaDao extends conectarDao {
     public ArrayList<Motorista> selecionarMotoristas() {
         ArrayList<Motorista> motoristas = new ArrayList<Motorista>();
 
-        String sql = "SELECT ID_MOTORISTA,DS_NOME, NR_IDADE, DS_CPF, DS_TELEFONE FROM TB_MOTORISTA";
+        String sql = "SELECT * FROM TB_MOTORISTA";
 
         try {
             PreparedStatement ps = mycon.prepareStatement(sql);
@@ -73,7 +73,7 @@ public class motoristaDao extends conectarDao {
     }
 
     public Motorista selecionarUmMotorista(int idMotorista) {
-        String sql = "SELECT ID_MOTORISTA, DS_NOME, NR_IDADE, DS_CPF, DS_TELEFONE FROM TB_MOTORISTA WHERE ID_MOTORISTA = ?";
+        String sql = "SELECT * FROM TB_MOTORISTA WHERE ID_MOTORISTA = ?";
         Motorista motorista = new Motorista();
 
         try {

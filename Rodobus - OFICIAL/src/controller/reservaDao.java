@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import model.Reserva;
 import java.util.Date;
 import java.util.ArrayList;
+import model.Passageiro;
 
 public class reservaDao extends conectarDao {
 
@@ -18,7 +19,7 @@ public class reservaDao extends conectarDao {
     }
 
     public Reserva incluir(Reserva obj) {
-        sql = "INSERT INTO tb_reservas (id_rota, id_passageiro, dt_reserva, ds_status, vl_total,id_assento) VALUES (?, ?, ?, ?, ?,?)";
+        sql = "INSERT INTO tb_reservas (id_rota, id_passageiro, dt_reserva, ds_status, vl_total,id_assento,qtd_reserva) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             ps = mycon.prepareStatement(sql, new String[]{"id_reserva"});
 
@@ -28,7 +29,8 @@ public class reservaDao extends conectarDao {
             ps.setString(4, obj.getStatus());
             ps.setDouble(5, obj.getValorTotal());
             ps.setInt(6, obterUltimoIdAssento());
-
+            ps.setInt(7, obj.getQuantidade());
+            
             ps.executeUpdate();
 
             obj.setIdReserva(obterUltimoIdReserva());
@@ -79,16 +81,19 @@ public class reservaDao extends conectarDao {
     }
 
     public Reserva selecionarUmaReserva(int id) {
-        String sql = "SELECT * FROM tb_reservas WHERE id_reserva = ?";
-        Reserva reserva = new Reserva();
+        String sql = "SELECT * FROM TB_RESERVAS WHERE ID_RESERVA = " + id;
+        
+        Reserva reserva = null;
 
         try {
-            ps = mycon.prepareStatement(sql);
-            ps.setInt(1, id);
-
+            
+            PreparedStatement ps = mycon.prepareStatement(sql);
             ResultSet resultSet = ps.executeQuery();
 
+
             if (resultSet.next()) {
+                reserva = new Reserva();
+                
                 reserva.setIdReserva(resultSet.getInt("id_reserva"));
                 reserva.setIdRota(resultSet.getInt("id_rota"));
                 reserva.setIdPassageiro(resultSet.getInt("id_passageiro"));
@@ -97,9 +102,10 @@ public class reservaDao extends conectarDao {
                 reserva.setStatus(resultSet.getString("ds_status"));
                 reserva.setValorTotal(resultSet.getDouble("vl_total"));
                 reserva.setIdAssento(resultSet.getInt("id_assento"));
+                reserva.setQuantidade(resultSet.getInt("qtd_reserva"));
 
             } else {
-                reserva.setIdReserva(0);
+                JOptionPane.showMessageDialog(null, "Reserva not found for ID: " + id);
             }
 
             ps.close();
@@ -151,7 +157,7 @@ public class reservaDao extends conectarDao {
     public ArrayList<Reserva> selecionarReservas() {
         ArrayList<Reserva> reservas = new ArrayList<Reserva>();
 
-        String sql = "SELECT * FROM tb_reservas";
+        String sql = "SELECT * FROM TB_RESERVAS";
 
         try {
             ps = mycon.prepareStatement(sql);
@@ -167,6 +173,7 @@ public class reservaDao extends conectarDao {
                 Date dataReserva = new Date(reserTimestamp.getTime());
                 String status = resultSet.getString("ds_status");
                 double valorTotal = resultSet.getDouble("vl_total");
+                int Quantidade = resultSet.getInt("qtd_reserva");
 
                 Reserva reserva = new Reserva();
                 reserva.setIdReserva(idReserva);
@@ -175,6 +182,7 @@ public class reservaDao extends conectarDao {
                 reserva.setDataReserva(dataReserva);
                 reserva.setStatus(status);
                 reserva.setIdAssento(idAssento);
+                reserva.setQuantidade(Quantidade);
 
                 reserva.setValorTotal(valorTotal);
 

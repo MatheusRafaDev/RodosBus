@@ -52,8 +52,6 @@ public class formPagCartao extends javax.swing.JFrame {
         reserva.setValorTotal(rota.getVlPreco());
         rese.incluir(reserva);
         
- 
-        
         int id = rese.obterUltimoIdReserva();
         reserva.setIdReserva(id);
         
@@ -130,7 +128,7 @@ public class formPagCartao extends javax.swing.JFrame {
             }
         });
 
-        btnFinalizar.setBackground(new java.awt.Color(242, 147, 4));
+        btnFinalizar.setBackground(new java.awt.Color(50, 54, 66));
         btnFinalizar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         btnFinalizar.setForeground(new java.awt.Color(255, 255, 255));
         btnFinalizar.setText("FINALIZAR COMPRA");
@@ -246,16 +244,16 @@ public class formPagCartao extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(218, Short.MAX_VALUE)
+                .addContainerGap(82, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(104, Short.MAX_VALUE)
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         mnRODOBUS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons 1/house.png"))); // NOI18N

@@ -1003,7 +1003,7 @@ public class formAssento extends javax.swing.JFrame {
         lblSelecionado.setText("Assento selecionado");
 
         lblVALOR.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        lblVALOR.setForeground(new java.awt.Color(255, 0, 0));
+        lblVALOR.setForeground(new java.awt.Color(255, 255, 255));
         lblVALOR.setText("0");
 
         btnBUSCAR.setBackground(new java.awt.Color(69, 73, 74));
@@ -1021,7 +1021,7 @@ public class formAssento extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(68, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -1086,7 +1086,7 @@ public class formAssento extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnBUSCAR, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         mnRODOBUS1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons 1/house.png"))); // NOI18N

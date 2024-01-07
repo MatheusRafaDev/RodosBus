@@ -24,7 +24,7 @@ public class rotaDao extends conectarDao {
     public ArrayList<Rota> selecionarRotas() {
         ArrayList<Rota> rotas = new ArrayList<>();
 
-        String sql = "SELECT ID_ROTA, DS_ORIGEM, DS_DESTINO, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA,ID_MOTORISTA,ID_ONIBUS FROM TB_ROTA ROT ";
+        String sql = "SELECT * FROM TB_ROTA ROT ";
 
         try {
             ps = mycon.prepareStatement(sql);
@@ -101,7 +101,7 @@ public class rotaDao extends conectarDao {
     }
 
     public Rota selecionarUmaRota(int id) {
-        String sql = "SELECT ID_ROTA,ID_MOTORISTA,ID_ONIBUS, DS_ORIGEM, DS_DESTINO, DS_DURACAO, VL_PRECO, DT_SAIDA, DT_CHEGADA FROM TB_ROTA WHERE ID_ROTA =" + id ;
+        String sql = "SELECT * FROM TB_ROTA WHERE ID_ROTA =" + id ;
 
         Rota rota = new Rota();
 

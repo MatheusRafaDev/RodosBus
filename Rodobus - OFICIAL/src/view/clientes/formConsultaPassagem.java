@@ -22,8 +22,7 @@ import javax.swing.text.MaskFormatter;
 import model.Rota;
 
 public class formConsultaPassagem extends javax.swing.JFrame {
-    
-            
+         
     public void carregarInfo(int IdPassageiro, int IdRota) {
         this.dispose();
         this.setVisible(false);
@@ -32,9 +31,6 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         formAssento assento = new formAssento(IdPassageiro, IdRota);
         
         assento.setVisible(true);
-        //formConfirmarPag pag = new formConfirmarPag(IdPassageiro, IdRota);
-
-        // pag.setVisible(true);
        
     }
 
@@ -45,7 +41,14 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tblROTAS.getModel();
                 
         for (Rota rota2 : rotas) {
-            model.addRow(new Object[]{rota2.getIdRota(), rota2.getOrigem(), rota2.getDestino(), sdf.format(rota2.getDtSaida()), sdf.format(rota2.getDtChegada()), rota2.getVlPreco()});
+            model.addRow(new Object[]{
+                rota2.getIdRota(),
+                rota2.getOrigem(),
+                rota2.getDestino(),
+                sdf.format(rota2.getDtSaida()),
+                sdf.format(rota2.getDtChegada()),
+                rota2.getVlPreco()
+            });
         }
     }
 
@@ -66,16 +69,9 @@ public class formConsultaPassagem extends javax.swing.JFrame {
 
     JMenuItem novoItem = new JMenuItem("Reservar");
     
-    
-
     public formConsultaPassagem(Passageiro obj) {
 
         initComponents();
-        
-        Color background = new Color(60, 63, 65);
-        //tblROTAS.setForeground(background);
-        
-        // tblROTAS.repaint();
            
         carregarRota();
         this.mnNOME.setText(obj.getNome());
@@ -207,8 +203,6 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         tblROTAS.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tblROTAS.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblROTAS.setShowGrid(false);
-        tblROTAS.setShowHorizontalLines(false);
-        tblROTAS.setShowVerticalLines(false);
         tblROTAS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblROTASMouseClicked(evt);
@@ -313,8 +307,8 @@ public class formConsultaPassagem extends javax.swing.JFrame {
                             .addComponent(txtDATASAIDA, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
                 .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -469,7 +463,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         int y = evt.getY();
 
         jPopupMenu1.show(tblROTAS, x, y);
-    }
+        }
     }//GEN-LAST:event_tblROTASMouseReleased
 
     public static void main(String args[]) {

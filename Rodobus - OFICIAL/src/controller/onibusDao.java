@@ -45,7 +45,7 @@ public class onibusDao extends conectarDao {
     public ArrayList<Onibus> selecionarOnibus() {
         ArrayList<Onibus> selecionarOnibus = new ArrayList<Onibus>();
 
-        String sql = "SELECT ID_ONIBUS,DS_MODELO, DS_PLACA, DS_ANO_FABRICACAO, NR_CAPACIDADE FROM TB_ONIBUS";
+        String sql = "SELECT * FROM TB_ONIBUS";
 
         try {
             PreparedStatement ps = mycon.prepareStatement(sql);
@@ -79,7 +79,7 @@ public class onibusDao extends conectarDao {
     }
 
     public Onibus selecionarUmOnibus(int idOnibus) {
-        String sql = "SELECT ID_ONIBUS, DS_MODELO, DS_PLACA, DS_ANO_FABRICACAO, NR_CAPACIDADE FROM TB_ONIBUS WHERE ID_ONIBUS = ?";
+        String sql = "SELECT * FROM TB_ONIBUS WHERE ID_ONIBUS = ?";
         Onibus onibus = new Onibus();
         
         try {
