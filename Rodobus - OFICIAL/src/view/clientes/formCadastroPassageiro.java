@@ -8,6 +8,7 @@ import controller.passageiroDao;
 import javax.swing.table.DefaultTableModel;
 import model.Passageiro;
 import controller.conectarDao;
+import functions.EmailSender;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.text.ParseException;
@@ -290,7 +291,48 @@ public class formCadastroPassageiro extends javax.swing.JFrame {
                     this.dispose();
 
                     passageiro = u.validarLogin(nome, senha);
+                    
+                    String fromEmail = "rafaelmatheus160@gmail.com";
+                    String password = "aopq iwrg nouk izon";
+                    String toEmail = passageiro.getEmail();
+                    
+                    String emailSubject = "Seja bem vindo(a) à RodoBus";
+                    
+                    String emailBody = "<!DOCTYPE html>\n" +
+                    "<html lang=\"pt-br\">\n" +
+                    "<head>\n" +
+                    "    <meta charset=\"UTF-8\">\n" +
+                    "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                    "    <title>Bem-Vindo ao Nosso Serviço de Vendas de Passagens</title>\n" +
+                    "</head>\n" +
+                    "<body style=\"font-family: Arial, sans-serif; background-color: #f4f4f4; color: #333; padding: 20px; text-align: center;\">\n" +
+                    "\n" +
+                    "    <h2 style=\"color: #007bff;\">Bem-Vindo ao Nosso Serviço de Vendas de Passagens!</h2>\n" +
+                    "\n" +
+                    "    <p>Olá " + passageiro.getNome() + " ,</p>\n" +
+                    "\n" +
+                    "    <p>É com grande prazer que damos as boas-vindas ao nosso sistema de vendas de passagens de ônibus! Estamos empolgados por tê-lo(a) conosco e esperamos que tenha uma experiência tranquila e eficiente ao utilizar nossos serviços.</p>\n" +
+                    "\n" +
+                    "    <p>Aqui estão algumas informações úteis para começar:</p>\n" +
+                    "\n" +
+                    "    <ol style=\"text-align: left;\">\n" +
+                    "        <li><strong>Perfil:</strong> Certifique-se de verificar e completar seu perfil. Isso garantirá que suas informações estejam corretas para facilitar o processo de compra de passagens.</li>\n" +
+                    "        <li><strong>Buscar Viagens:</strong> Explore as diferentes opções de destinos e horários disponíveis. Temos uma ampla variedade de rotas para atender às suas necessidades.</li>\n" +
+                    "        <li><strong>Reservar Assentos:</strong> Ao escolher sua viagem, aproveite a opção de reservar assentos. Isso proporcionará uma experiência mais personalizada durante sua jornada.</li>\n" +
+                    "    </ol>\n" +
+                    "\n" +
+                    "    <p>Estamos aqui para ajudar. Se tiver alguma dúvida ou precisar de assistência, não hesite em entrar em contato conosco.</p>\n" +
+                    "\n" +
+                    "    <p>Mais uma vez, seja bem-vindo(a) ao nosso serviço de vendas de passagens de ônibus! Estamos ansiosos para proporcionar uma experiência de viagem incrível.</p>\n" +
+                    "\n" +
+                    "    <p>Atenciosamente,<br>\n" +
+                    "    RodoBus<br>\n" +
+                    "\n" +
+                    "</body>\n" +
+                    "</html>";
 
+                    EmailSender emailSender = new EmailSender(fromEmail, password, toEmail, emailSubject, emailBody);
+                    emailSender.sendEmail();
 
                     formConsultaPassagem pass = new formConsultaPassagem(passageiro);
                     pass.setExtendedState(JFrame.MAXIMIZED_BOTH);

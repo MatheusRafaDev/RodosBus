@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import model.Passageiro;
 import view.adm.formGerenciar;
 import controller.conectarDao;
+import functions.EmailSender;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.text.AbstractDocument;
@@ -16,6 +17,9 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 import utils.Validador;
 import utils.ValidarLetras;
+
+
+
 
 public class formLogin extends javax.swing.JFrame {
 
@@ -270,6 +274,8 @@ public class formLogin extends javax.swing.JFrame {
 
     private void btnEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseClicked
         Logar();
+        
+       
     }//GEN-LAST:event_btnEntrarMouseClicked
 
     private void txtSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSenhaMouseClicked
