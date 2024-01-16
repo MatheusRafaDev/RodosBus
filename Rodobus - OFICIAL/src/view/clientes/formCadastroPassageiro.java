@@ -8,7 +8,7 @@ import controller.passageiroDao;
 import javax.swing.table.DefaultTableModel;
 import model.Passageiro;
 import controller.conectarDao;
-import functions.EmailSender;
+import functions.Email;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.text.ParseException;
@@ -51,7 +51,6 @@ public class formCadastroPassageiro extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        textSenha = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnCadastra1 = new javax.swing.JButton();
         textIdade = new javax.swing.JTextField();
@@ -61,6 +60,7 @@ public class formCadastroPassageiro extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        textSenha = new javax.swing.JPasswordField();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnLOGIN = new javax.swing.JMenu();
 
@@ -100,8 +100,6 @@ public class formCadastroPassageiro extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("CPF");
-
-        textSenha.setName("txtSenha"); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -162,38 +160,42 @@ public class formCadastroPassageiro extends javax.swing.JFrame {
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCadastra1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(100, 100, 100))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(100, 100, 100))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(textTelefone)
+                                        .addGap(40, 40, 40)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(textTelefone)
-                                .addGap(40, 40, 40)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(40, 40, 40)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textCPF)))
+                            .addComponent(jLabel5))
+                        .addGap(0, 50, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textCPF)))
-                    .addComponent(jLabel5))
-                .addGap(0, 50, Short.MAX_VALUE))
+                        .addComponent(btnCadastra1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 30, Short.MAX_VALUE)
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jLabel2)
@@ -215,21 +217,22 @@ public class formCadastroPassageiro extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(textIdade)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(textTelefone)
+                        .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel8)))
                 .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(1, 1, 1)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(textCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3))))
                     .addComponent(jLabel10))
                 .addGap(18, 18, 18)
                 .addComponent(btnCadastra1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 30, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
 
         mnLOGIN.setText("Login");
@@ -291,48 +294,9 @@ public class formCadastroPassageiro extends javax.swing.JFrame {
                     this.dispose();
 
                     passageiro = u.validarLogin(nome, senha);
-                    
-                    String fromEmail = "rafaelmatheus160@gmail.com";
-                    String password = "aopq iwrg nouk izon";
-                    String toEmail = passageiro.getEmail();
-                    
-                    String emailSubject = "Seja bem vindo(a) à RodoBus";
-                    
-                    String emailBody = "<!DOCTYPE html>\n" +
-                    "<html lang=\"pt-br\">\n" +
-                    "<head>\n" +
-                    "    <meta charset=\"UTF-8\">\n" +
-                    "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-                    "    <title>Bem-Vindo ao Nosso Serviço de Vendas de Passagens</title>\n" +
-                    "</head>\n" +
-                    "<body style=\"font-family: Arial, sans-serif; background-color: #f4f4f4; color: #333; padding: 20px; text-align: center;\">\n" +
-                    "\n" +
-                    "    <h2 style=\"color: #007bff;\">Bem-Vindo ao Nosso Serviço de Vendas de Passagens!</h2>\n" +
-                    "\n" +
-                    "    <p>Olá " + passageiro.getNome() + " ,</p>\n" +
-                    "\n" +
-                    "    <p>É com grande prazer que damos as boas-vindas ao nosso sistema de vendas de passagens de ônibus! Estamos empolgados por tê-lo(a) conosco e esperamos que tenha uma experiência tranquila e eficiente ao utilizar nossos serviços.</p>\n" +
-                    "\n" +
-                    "    <p>Aqui estão algumas informações úteis para começar:</p>\n" +
-                    "\n" +
-                    "    <ol style=\"text-align: left;\">\n" +
-                    "        <li><strong>Perfil:</strong> Certifique-se de verificar e completar seu perfil. Isso garantirá que suas informações estejam corretas para facilitar o processo de compra de passagens.</li>\n" +
-                    "        <li><strong>Buscar Viagens:</strong> Explore as diferentes opções de destinos e horários disponíveis. Temos uma ampla variedade de rotas para atender às suas necessidades.</li>\n" +
-                    "        <li><strong>Reservar Assentos:</strong> Ao escolher sua viagem, aproveite a opção de reservar assentos. Isso proporcionará uma experiência mais personalizada durante sua jornada.</li>\n" +
-                    "    </ol>\n" +
-                    "\n" +
-                    "    <p>Estamos aqui para ajudar. Se tiver alguma dúvida ou precisar de assistência, não hesite em entrar em contato conosco.</p>\n" +
-                    "\n" +
-                    "    <p>Mais uma vez, seja bem-vindo(a) ao nosso serviço de vendas de passagens de ônibus! Estamos ansiosos para proporcionar uma experiência de viagem incrível.</p>\n" +
-                    "\n" +
-                    "    <p>Atenciosamente,<br>\n" +
-                    "    RodoBus<br>\n" +
-                    "\n" +
-                    "</body>\n" +
-                    "</html>";
-
-                    EmailSender emailSender = new EmailSender(fromEmail, password, toEmail, emailSubject, emailBody);
-                    emailSender.sendEmail();
+                   
+                    Email emailEnvia = new Email("","",passageiro.getEmail(),"","","html");
+                    emailEnvia.enviarBoasVindas(passageiro);
 
                     formConsultaPassagem pass = new formConsultaPassagem(passageiro);
                     pass.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -386,7 +350,7 @@ public class formCadastroPassageiro extends javax.swing.JFrame {
     private javax.swing.JTextField textEmail;
     private javax.swing.JTextField textIdade;
     private javax.swing.JTextField textNome;
-    private javax.swing.JTextField textSenha;
+    private javax.swing.JPasswordField textSenha;
     private javax.swing.JFormattedTextField textTelefone;
     // End of variables declaration//GEN-END:variables
 }

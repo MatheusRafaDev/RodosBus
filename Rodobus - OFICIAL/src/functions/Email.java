@@ -1,5 +1,7 @@
 package functions;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -8,23 +10,28 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import model.Passageiro;
+import model.Reserva;
+import model.Rota;
 
-public class EmailSender {
+public class Email {
     private String fromEmail;
     private String password;
     private String toEmail;
     private String emailSubject;
     private String emailBody;
-
-    public EmailSender(String fromEmail, String password, String toEmail, String emailSubject, String emailBody) {
+    private String emailType;
+    
+    public Email(String fromEmail, String password, String toEmail, String emailSubject, String emailBody, String emailType) {
         this.fromEmail = fromEmail;
         this.password = password;
         this.toEmail = toEmail;
         this.emailSubject = emailSubject;
         this.emailBody = emailBody;
+        this.emailType = emailType;
     }
 
-    public void sendEmail() {
+    public void EnviarEmail() {
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
@@ -43,22 +50,48 @@ public class EmailSender {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
             message.setSubject(emailSubject);
             message.setText(emailBody);
-            message.setContent(emailBody, "text/html");
+            
+            if (emailType.equals("html")) {
+                message.setContent(emailBody, "text/html");
+            }
+                        
             
             new Thread(() -> {
                 try {
                     Transport.send(message);
-                    System.out.println("Email sent successfully");
+                    //System.out.println("Email sent successfully");
                 } catch (MessagingException e) {
-                    handleSendException(e);
+                    
                 }
             }).start();
         } catch (MessagingException e) {
-            handleSendException(e);
+            
         }
     }
+    
+    public void enviarConfirmacaoPedido(Reserva reserva, Rota rota, String nrAssento, Passageiro passageiro) {
+        this.fromEmail = "rafaelmatheus160@gmail.com";
+        this.password = "aopq iwrg nouk izon";
+        this.emailSubject = "Confirmação de pedido";
+        this.emailType = "html";
+        
+        String emailBody = ConstrutorHTML.criarConteudoHTMLConfirmacaoPedido(reserva,rota ,nrAssento, passageiro);
 
-    private void handleSendException(MessagingException e) {
-        e.printStackTrace();
+        Email email = new Email(fromEmail, password, toEmail, emailSubject, emailBody, emailType);
+        email.EnviarEmail();
+    }
+
+    public void enviarBoasVindas(Passageiro passageiro) { 
+        
+        this.fromEmail = "rafaelmatheus160@gmail.com";
+        this.password = "aopq iwrg nouk izon";
+        this.emailSubject = "Seja bem vindo(a) à RodoBus";
+        this.emailType = "html";
+        
+        String emailBody = ConstrutorHTML.criarConteudoHTMLBoasVindas(passageiro);
+
+
+        Email email = new Email(fromEmail, password, toEmail, emailSubject, emailBody, emailType);
+        email.EnviarEmail();
     }
 }

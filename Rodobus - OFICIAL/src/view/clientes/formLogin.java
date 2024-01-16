@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import model.Passageiro;
 import view.adm.formGerenciar;
 import controller.conectarDao;
-import functions.EmailSender;
+import functions.Email;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.text.AbstractDocument;
@@ -17,8 +17,6 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 import utils.Validador;
 import utils.ValidarLetras;
-
-
 
 
 public class formLogin extends javax.swing.JFrame {
@@ -55,8 +53,7 @@ public class formLogin extends javax.swing.JFrame {
         }
     }
     
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

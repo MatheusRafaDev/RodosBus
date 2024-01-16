@@ -8,6 +8,8 @@ import controller.assentoDao;
 import controller.passageiroDao;
 import controller.reservaDao;
 import controller.rotaDao;
+import functions.Email;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 import javax.swing.JFrame;
@@ -24,6 +26,8 @@ public class formPagCartao extends javax.swing.JFrame {
 
     Rota rota = new Rota();
     Passageiro pass = new Passageiro();
+    Reserva reserva = new Reserva(); 
+    
     passageiroDao passageiro = new passageiroDao();
     reservaDao rese = new reservaDao();
     
@@ -40,7 +44,7 @@ public class formPagCartao extends javax.swing.JFrame {
         assento.setStatus("indisponivel");
         a.incluir(assento);
         
-        Reserva reserva = new Reserva(); 
+        
         Date dataReserva = new Date();
         
         
@@ -135,6 +139,9 @@ public class formPagCartao extends javax.swing.JFrame {
         btnFinalizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnFinalizarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnFinalizarMouseEntered(evt);
             }
         });
         btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
@@ -343,6 +350,16 @@ public class formPagCartao extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos.");
         } else {
             carregarBil(); 
+
+            String fromEmail = "rafaelmatheus160@gmail.com";
+            String password = "aopq iwrg nouk izon";
+            String toEmail = pass.getEmail();
+            String emailSubject = "Compra realizada";
+            
+            Email email = new Email(fromEmail, password, toEmail, emailSubject, "","html");
+            
+            email.enviarConfirmacaoPedido(reserva, rota, String.valueOf(nrAssento), pass);
+            
         }
 
     }//GEN-LAST:event_btnFinalizarMouseClicked
@@ -380,6 +397,10 @@ public class formPagCartao extends javax.swing.JFrame {
         formLogin login = new formLogin();
         login.setVisible(true);
     }//GEN-LAST:event_mnSAIRMouseClicked
+
+    private void btnFinalizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFinalizarMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFinalizarMouseEntered
 
     public static void main(String args[]) {
 
