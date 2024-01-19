@@ -104,14 +104,19 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="lblNOME4" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblNOME1" min="-2" pref="213" max="-2" attributes="0"/>
-                      <Component id="jPanel3" max="32767" attributes="0"/>
-                      <Component id="jPanel2" alignment="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblNOME4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNOME1" min="-2" pref="213" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblNOME5" min="-2" pref="213" max="-2" attributes="0"/>
                       <Group type="103" alignment="0" groupAlignment="0" attributes="0">
@@ -130,7 +135,7 @@
                       <Component id="btnConfirmaPagar" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
                       <Component id="optPIX" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="17" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -193,14 +198,14 @@
                           <Component id="lblCPF1" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
                           <Component id="lblNOME3" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblEMAIL" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
-                          <Component id="lblTELEFONE" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
-                          <Component id="lblCPF" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
-                          <Component id="lblNOME" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblTELEFONE" alignment="0" pref="197" max="32767" attributes="0"/>
+                          <Component id="lblCPF" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblNOME" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblEMAIL" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -353,8 +358,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblSAIDA1" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
                                   <Component id="lblCHEGADA1" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
@@ -362,39 +366,34 @@
                                   <Component id="lblEMBARQUE1" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
                                   <Component id="lblDESEMBARQUE1" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblSAIDA" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
-                                  <Component id="lblCHEGADA" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
-                                  <Component id="lblDURACAO" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
-                                  <Component id="lblEMBARQUE" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
-                                  <Component id="lblDESEMBARQUE" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
+                                  <Component id="lblEMBARQUE" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lblDESEMBARQUE" alignment="1" pref="203" max="32767" attributes="0"/>
+                                  <Component id="lblSAIDA" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="lblCHEGADA" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="lblDURACAO" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lblMOTORISTA1" min="-2" pref="160" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="lblMOTORISTA" min="-2" pref="160" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lbVALOR3" min="-2" pref="160" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="lbVALOR" min="-2" pref="160" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lbVALOR4" min="-2" pref="160" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="lblASSENTO" min="-2" pref="160" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lbVALOR5" min="-2" pref="160" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="lblROTA" min="-2" pref="160" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="lbVALOR3" min="-2" pref="160" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lbVALOR" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblMOTORISTA1" min="-2" pref="160" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lblMOTORISTA" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lbVALOR4" min="-2" pref="160" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lblASSENTO" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lbVALOR5" min="-2" pref="160" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lblROTA" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>

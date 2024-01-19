@@ -94,4 +94,19 @@ public class Email {
         Email email = new Email(fromEmail, password, toEmail, emailSubject, emailBody, emailType);
         email.EnviarEmail();
     }
+    
+    public void enviarCancelamento(Passageiro passageiro,Reserva reserva) { 
+        
+        this.fromEmail = "rafaelmatheus160@gmail.com";
+        this.password = "aopq iwrg nouk izon";
+        this.emailSubject = "Cancelamento de Reserva de Bilhete";
+        this.emailType = "html";
+        
+        String emailBody = ConstrutorHTML.criarConteudoHTMLCancelamento(String.valueOf(reserva.getCodigo()));
+
+
+        Email email = new Email(fromEmail, password, toEmail, emailSubject, emailBody, emailType);
+        email.EnviarEmail();
+    }
+    
 }

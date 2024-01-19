@@ -1,5 +1,6 @@
 package controller;
 
+import static functions.Geradores.gerarCodigoAleatorio;
 import java.awt.List;
 import java.sql.Timestamp;
 import java.math.BigDecimal;
@@ -114,6 +115,7 @@ public class conectarDao {
                 + "ds_status VARCHAR(20),"
                 + "vl_total DECIMAL(10,2),"
                 + "qtd_reserva INT(5) NOT NULL,"
+                + "ds_codigo VARCHAR(20),"
                 + "CONSTRAINT FOREIGN KEY (id_passageiro) REFERENCES TB_PASSAGEIRO(id_passageiro),"
                 + "CONSTRAINT FOREIGN KEY (id_rota) REFERENCES TB_ROTA(id_rota)"
                 + ");";
@@ -146,12 +148,12 @@ public class conectarDao {
         try {
             sql = "INSERT INTO TB_PASSAGEIRO (ds_nome, nr_idade, ds_CPF, ds_TELEFONE, ds_email, ds_SENHA) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement psPassageiro = mycon.prepareStatement(sql);
-            psPassageiro.setString(1, "alice ");
+            psPassageiro.setString(1, "matheus");
             psPassageiro.setInt(2, 25);
             psPassageiro.setString(3, "11122233344");
             psPassageiro.setString(4, "(11) 2223344");
-            psPassageiro.setString(5, "alice@example.com");
-            psPassageiro.setString(6, "123");
+            psPassageiro.setString(5, "rafaelmatheus061@gmail.com");
+            psPassageiro.setString(6, "1111");
             psPassageiro.executeUpdate();
 
             psPassageiro.setString(1, "bob");
@@ -245,7 +247,7 @@ public class conectarDao {
             
             psAssentos.close();
 
-            sql = "INSERT INTO TB_RESERVAS (id_rota, id_passageiro, dt_reserva, ds_status, vl_total,id_assento,qtd_reserva) VALUES (?, ?, ?, ?, ?, ?,?)";
+            sql = "INSERT INTO TB_RESERVAS (id_rota, id_passageiro, dt_reserva, ds_status, vl_total,id_assento,qtd_reserva,ds_codigo) VALUES (?, ?, ?, ?, ?, ?,?,?)";
             PreparedStatement psReservas = mycon.prepareStatement(sql);
             psReservas.setInt(1, 1);
             psReservas.setInt(2, 1);
@@ -254,6 +256,7 @@ public class conectarDao {
             psReservas.setBigDecimal(5, new BigDecimal("50.00"));
             psReservas.setInt(6, 1);
             psReservas.setInt(7, 1);
+            psReservas.setString(8, gerarCodigoAleatorio(8));
             psReservas.executeUpdate();
 
             psReservas.setInt(1, 2);
@@ -263,6 +266,7 @@ public class conectarDao {
             psReservas.setBigDecimal(5, new BigDecimal("75.00"));
             psReservas.setInt(6, 1);
             psReservas.setInt(7, 1);
+            psReservas.setString(8, gerarCodigoAleatorio(8));
             psReservas.executeUpdate();
             psReservas.close();
             

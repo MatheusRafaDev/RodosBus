@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Reserva {
 
+
     private int idReserva;
     private int idRota;
     private int idAssento;
@@ -14,6 +15,16 @@ public class Reserva {
     private String status;
     private double ValorTotal;
 
+    private String Codigo;
+    
+    public String getCodigo() {
+        return Codigo;
+    }
+
+    public void setCodigo(String Código) {
+        this.Codigo = Código;
+    }
+    
     public int getIdReserva() {
         return idReserva;
     }

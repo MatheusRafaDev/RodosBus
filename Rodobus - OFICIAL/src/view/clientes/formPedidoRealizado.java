@@ -9,6 +9,7 @@ import controller.onibusDao;
 import controller.passageiroDao;
 import controller.rotaDao;
 import controller.reservaDao;
+import functions.Email;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -82,6 +83,15 @@ public class formPedidoRealizado extends javax.swing.JFrame {
 
         if (resposta == JOptionPane.YES_OPTION) {
             rese.alterarStatus(IdReserva);
+            
+            String fromEmail = "rafaelmatheus160@gmail.com";
+            String password = "aopq iwrg nouk izon";
+            String toEmail = pass.getEmail();
+            String emailSubject = "Compra realizada";
+            
+            Email email = new Email(fromEmail, password, toEmail, emailSubject, "","html");
+            
+            email.enviarCancelamento(pass,res);
         }
         
         carregarRota();

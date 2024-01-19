@@ -4,6 +4,7 @@ package view.clientes;
 import controller.assentoDao;
 import controller.passageiroDao;
 import controller.rotaDao;
+import static functions.Geradores.gerarCodigoAleatorio;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
@@ -60,20 +61,7 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         this.txtNOME.setText(pass.getNome());
         this.txtQTD.setText(String.valueOf(reserva.getQuantidade()));
         this.txtCPF.setText(pass.getCpf());
-        lblCODIGO.setText(gerarCodigoAleatorio(12));
-    }
-
-    public static String gerarCodigoAleatorio(int comprimento) {
-        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        StringBuilder codigoAleatorio = new StringBuilder();
-
-        SecureRandom random = new SecureRandom();
-        for (int i = 0; i < comprimento; i++) {
-            int index = random.nextInt(caracteres.length());
-            codigoAleatorio.append(caracteres.charAt(index));
-        }
-
-        return codigoAleatorio.toString();
+        lblCODIGO.setText(reserva.getCodigo());
     }
         
    

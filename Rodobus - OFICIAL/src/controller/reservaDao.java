@@ -1,6 +1,7 @@
 package controller;
 
 import com.mysql.cj.xdevapi.Statement;
+import static functions.Geradores.gerarCodigoAleatorio;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +20,7 @@ public class reservaDao extends conectarDao {
     }
 
     public Reserva incluir(Reserva obj) {
-        sql = "INSERT INTO tb_reservas (id_rota, id_passageiro, dt_reserva, ds_status, vl_total,id_assento,qtd_reserva) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        sql = "INSERT INTO tb_reservas (id_rota, id_passageiro, dt_reserva, ds_status, vl_total,id_assento,qtd_reserva,ds_codigo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             ps = mycon.prepareStatement(sql, new String[]{"id_reserva"});
 
@@ -30,6 +31,7 @@ public class reservaDao extends conectarDao {
             ps.setDouble(5, obj.getValorTotal());
             ps.setInt(6, obterUltimoIdAssento());
             ps.setInt(7, obj.getQuantidade());
+            ps.setString(8, gerarCodigoAleatorio(8));
             
             ps.executeUpdate();
 
@@ -103,6 +105,7 @@ public class reservaDao extends conectarDao {
                 reserva.setValorTotal(resultSet.getDouble("vl_total"));
                 reserva.setIdAssento(resultSet.getInt("id_assento"));
                 reserva.setQuantidade(resultSet.getInt("qtd_reserva"));
+                reserva.setCodigo( resultSet.getString("ds_codigo"));
 
             } else {
                 JOptionPane.showMessageDialog(null, "Reserva not found for ID: " + id);
@@ -174,7 +177,8 @@ public class reservaDao extends conectarDao {
                 String status = resultSet.getString("ds_status");
                 double valorTotal = resultSet.getDouble("vl_total");
                 int Quantidade = resultSet.getInt("qtd_reserva");
-
+                String Codigo  = resultSet.getString("ds_codigo");
+                
                 Reserva reserva = new Reserva();
                 reserva.setIdReserva(idReserva);
                 reserva.setIdRota(idRota);
@@ -183,9 +187,10 @@ public class reservaDao extends conectarDao {
                 reserva.setStatus(status);
                 reserva.setIdAssento(idAssento);
                 reserva.setQuantidade(Quantidade);
-
+                    
                 reserva.setValorTotal(valorTotal);
-
+                reserva.setCodigo(Codigo);
+                
                 reservas.add(reserva);
             }
 
@@ -214,12 +219,14 @@ public class reservaDao extends conectarDao {
                 int quantidadeReserva = resultSet.getInt("qtd_reserva");
                 String status = resultSet.getString("DS_STATUS");
                 double vl_total = resultSet.getDouble("vl_total");
-
+                String Codigo  = resultSet.getString("ds_codigo");
+                
                 reserva.setIdReserva(IdReserva);
                 reserva.setIdRota(IdRota);
                 reserva.setDataReserva(dtreserva);
                 reserva.setStatus(status);
                 reserva.setValorTotal(vl_total);
+                reserva.setCodigo(Codigo);
                 reservas.add(reserva);
             }
             ps.close();
