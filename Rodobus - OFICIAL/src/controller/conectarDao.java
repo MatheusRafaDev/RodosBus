@@ -20,7 +20,7 @@ public class conectarDao {
 
     public String sql = null;
     public Connection mycon = null;
- 
+
     public conectarDao() {
         fecharConexao();
         String con = "jdbc:mysql://localhost:3306/RodoBus";
@@ -31,7 +31,7 @@ public class conectarDao {
             JOptionPane.showMessageDialog(null, "Conexão com Mysql não realizada!\n" + ex);
         }
     }
-    
+
     public void fecharConexao() {
         try {
             if (mycon != null && !mycon.isClosed()) {
@@ -41,7 +41,6 @@ public class conectarDao {
             JOptionPane.showMessageDialog(null, "Erro ao fechar a conexão!\n" + ex);
         }
     }
-    
 
     public void criarBanco() {
         try {
@@ -68,6 +67,7 @@ public class conectarDao {
             sql = "CREATE TABLE IF NOT EXISTS TB_PASSAGEIRO ("
                     + "id_passageiro INT(5) PRIMARY KEY AUTO_INCREMENT,"
                     + "ds_nome VARCHAR(100),"
+                    + "ds_nome_completo VARCHAR(100),"
                     + "nr_idade INT(3),"
                     + "ds_CPF VARCHAR(14),"
                     + "ds_TELEFONE VARCHAR(13),"
@@ -94,7 +94,6 @@ public class conectarDao {
             ps = mycon.prepareStatement(sql);
             ps.execute();
 
-
             sql = "CREATE TABLE IF NOT EXISTS TB_ASSENTOS ("
                     + "id_assento INT(5) PRIMARY KEY AUTO_INCREMENT,"
                     + "id_rota INT(5) NOT NULL,"
@@ -105,20 +104,19 @@ public class conectarDao {
             ps = mycon.prepareStatement(sql);
             ps.execute();
 
-            
             sql = "CREATE TABLE IF NOT EXISTS TB_RESERVAS ("
-                + "id_reserva INT(5) PRIMARY KEY AUTO_INCREMENT,"
-                + "id_rota INT(5) NOT NULL,"
-                + "id_passageiro INT(5) NOT NULL,"
-                + "id_assento INT(5) NOT NULL,"
-                + "dt_reserva DATETIME,"
-                + "ds_status VARCHAR(20),"
-                + "vl_total DECIMAL(10,2),"
-                + "qtd_reserva INT(5) NOT NULL,"
-                + "ds_codigo VARCHAR(20),"
-                + "CONSTRAINT FOREIGN KEY (id_passageiro) REFERENCES TB_PASSAGEIRO(id_passageiro),"
-                + "CONSTRAINT FOREIGN KEY (id_rota) REFERENCES TB_ROTA(id_rota)"
-                + ");";
+                    + "id_reserva INT(5) PRIMARY KEY AUTO_INCREMENT,"
+                    + "id_rota INT(5) NOT NULL,"
+                    + "id_passageiro INT(5) NOT NULL,"
+                    + "id_assento INT(5) NOT NULL,"
+                    + "dt_reserva DATETIME,"
+                    + "ds_status VARCHAR(20),"
+                    + "vl_total DECIMAL(10,2),"
+                    + "qtd_reserva INT(5) NOT NULL,"
+                    + "ds_codigo VARCHAR(20),"
+                    + "CONSTRAINT FOREIGN KEY (id_passageiro) REFERENCES TB_PASSAGEIRO(id_passageiro),"
+                    + "CONSTRAINT FOREIGN KEY (id_rota) REFERENCES TB_ROTA(id_rota)"
+                    + ");";
             ps = mycon.prepareStatement(sql);
             ps.execute();
 
@@ -146,7 +144,7 @@ public class conectarDao {
     public void inserirDados() {
 
         try {
-            sql = "INSERT INTO TB_PASSAGEIRO (ds_nome, nr_idade, ds_CPF, ds_TELEFONE, ds_email, ds_SENHA) VALUES (?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO TB_PASSAGEIRO (DS_NOME, NR_IDADE, DS_CPF, DS_TELEFONE, ds_email, DS_SENHA,DS_NOME_COMPLETO) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement psPassageiro = mycon.prepareStatement(sql);
             psPassageiro.setString(1, "matheus");
             psPassageiro.setInt(2, 25);
@@ -154,6 +152,7 @@ public class conectarDao {
             psPassageiro.setString(4, "(11) 2223344");
             psPassageiro.setString(5, "rafaelmatheus061@gmail.com");
             psPassageiro.setString(6, "1111");
+            psPassageiro.setString(7, "matheus rafael");
             psPassageiro.executeUpdate();
 
             psPassageiro.setString(1, "bob");
@@ -162,6 +161,7 @@ public class conectarDao {
             psPassageiro.setString(4, "(55) 666-7788");
             psPassageiro.setString(5, "bob@example.com");
             psPassageiro.setString(6, "123");
+            psPassageiro.setString(7, "matheus bob");
             psPassageiro.executeUpdate();
             psPassageiro.close();
 
@@ -180,7 +180,6 @@ public class conectarDao {
             psMotorista.executeUpdate();
             psMotorista.close();
 
-
             sql = "INSERT INTO TB_ONIBUS (ds_modelo, ds_placa, ds_ano_fabricacao, nr_capacidade) VALUES (?, ?, ?, ?)";
             PreparedStatement psOnibus = mycon.prepareStatement(sql);
             psOnibus.setString(1, "Scania 344");
@@ -195,8 +194,7 @@ public class conectarDao {
             psOnibus.setInt(4, 45);
             psOnibus.executeUpdate();
             psOnibus.close();
-            
-            
+
             String sql = "INSERT INTO TB_ROTA (ds_origem, ds_destino, ds_duracao, vl_preco, dt_saida, dt_chegada, id_motorista, id_onibus) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement psRota = mycon.prepareStatement(sql);
 
@@ -206,8 +204,8 @@ public class conectarDao {
             psRota.setBigDecimal(4, new BigDecimal("50.00"));
             psRota.setTimestamp(5, Timestamp.valueOf(LocalDateTime.now()));
             psRota.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now().plusHours(2)));
-            psRota.setInt(7, 1); 
-            psRota.setInt(8, 1); 
+            psRota.setInt(7, 1);
+            psRota.setInt(8, 1);
             psRota.executeUpdate();
 
             psRota.setString(1, "Curitiba");
@@ -216,18 +214,18 @@ public class conectarDao {
             psRota.setBigDecimal(4, new BigDecimal("75.00"));
             psRota.setTimestamp(5, Timestamp.valueOf(LocalDateTime.now().plusDays(1)));
             psRota.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now().plusDays(1).plusHours(3)));
-            psRota.setInt(7, 2); 
-            psRota.setInt(8, 2); 
+            psRota.setInt(7, 2);
+            psRota.setInt(8, 2);
             psRota.executeUpdate();
 
             psRota.close();
-            
-            String insertAssentosSql = "INSERT INTO TB_ASSENTOS (id_rota, nr_numero_assento, ds_status) VALUES (?, ?, ?)";
+
+            String insertAssentosSql = "INSERT INTO TB_ASSENTOS (ID_ROTA, NR_NUMERO_ASSENTO, DS_STATUS) VALUES (?, ?, ?)";
             PreparedStatement psAssentos = mycon.prepareStatement(insertAssentosSql);
 
-            psAssentos.setInt(1, 1);  
-            psAssentos.setInt(2, 1);  
-            psAssentos.setString(3, "Indisponivel");  
+            psAssentos.setInt(1, 1);
+            psAssentos.setInt(2, 1);
+            psAssentos.setString(3, "Indisponivel");
             psAssentos.executeUpdate();
 
             psAssentos.setInt(1, 1);
@@ -244,7 +242,7 @@ public class conectarDao {
             psAssentos.setInt(2, 2);
             psAssentos.setString(3, "Indisponivel");
             psAssentos.executeUpdate();
-            
+
             psAssentos.close();
 
             sql = "INSERT INTO TB_RESERVAS (id_rota, id_passageiro, dt_reserva, ds_status, vl_total,id_assento,qtd_reserva,ds_codigo) VALUES (?, ?, ?, ?, ?, ?,?,?)";
@@ -269,8 +267,6 @@ public class conectarDao {
             psReservas.setString(8, gerarCodigoAleatorio(8));
             psReservas.executeUpdate();
             psReservas.close();
-            
-
 
             JOptionPane.showMessageDialog(null, "Dados inseridos com sucesso...");
         } catch (SQLException err) {

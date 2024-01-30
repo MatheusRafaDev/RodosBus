@@ -23,14 +23,16 @@ public class Email {
     private String emailType;
     
     public Email(String fromEmail, String password, String toEmail, String emailSubject, String emailBody, String emailType) {
-        this.fromEmail = fromEmail;
-        this.password = password;
+        this.fromEmail = "rafaelmatheus160@gmail.com";
+        this.password = "aopq iwrg nouk izon";
         this.toEmail = toEmail;
         this.emailSubject = emailSubject;
         this.emailBody = emailBody;
         this.emailType = emailType;
     }
 
+    
+        
     public void EnviarEmail() {
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -59,7 +61,7 @@ public class Email {
             new Thread(() -> {
                 try {
                     Transport.send(message);
-                    //System.out.println("Email sent successfully");
+                    
                 } catch (MessagingException e) {
                     
                 }
@@ -70,8 +72,7 @@ public class Email {
     }
     
     public void enviarConfirmacaoPedido(Reserva reserva, Rota rota, String nrAssento, Passageiro passageiro) {
-        this.fromEmail = "rafaelmatheus160@gmail.com";
-        this.password = "aopq iwrg nouk izon";
+
         this.emailSubject = "Confirmação de pedido";
         this.emailType = "html";
         
@@ -83,8 +84,6 @@ public class Email {
 
     public void enviarBoasVindas(Passageiro passageiro) { 
         
-        this.fromEmail = "rafaelmatheus160@gmail.com";
-        this.password = "aopq iwrg nouk izon";
         this.emailSubject = "Seja bem vindo(a) à RodoBus";
         this.emailType = "html";
         
@@ -96,9 +95,7 @@ public class Email {
     }
     
     public void enviarCancelamento(Passageiro passageiro,Reserva reserva) { 
-        
-        this.fromEmail = "rafaelmatheus160@gmail.com";
-        this.password = "aopq iwrg nouk izon";
+
         this.emailSubject = "Cancelamento de Reserva de Bilhete";
         this.emailType = "html";
         
@@ -109,4 +106,27 @@ public class Email {
         email.EnviarEmail();
     }
     
+    public void enviarRecuperacao(String codigo) { 
+        
+        this.emailSubject = "Código de verificação";
+        this.emailType = "html";
+        
+        String emailBody = ConstrutorHTML.criarConteudoHTMLRecuperacaoSenha(codigo);
+
+
+        Email email = new Email(fromEmail, password, toEmail, emailSubject, emailBody, emailType);
+        email.EnviarEmail();
+    }
+    
+    public void enviarSenha(String senha) { 
+        
+        this.emailSubject = "Confirmação de Senha";
+        this.emailType = "html";
+        
+        String emailBody = ConstrutorHTML.criarConteudoHTMLConfirmacaoSenha(senha);
+
+
+        Email email = new Email(fromEmail, password, toEmail, emailSubject, emailBody, emailType);
+        email.EnviarEmail();
+    }
 }

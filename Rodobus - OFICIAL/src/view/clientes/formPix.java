@@ -83,19 +83,21 @@ public class formPix extends javax.swing.JFrame {
         reserva.setValorTotal(rota.getVlPreco());
         rese.incluir(reserva);
         
-        String fromEmail = "rafaelmatheus160@gmail.com";
-        String password = "aopq iwrg nouk izon";
+        String fromEmail = "";
+        String password = "";
         String toEmail = pass.getEmail();
-        String emailSubject = "Compra realizada";
+        String emailSubject = "";
 
         Email email = new Email(fromEmail, password, toEmail, emailSubject, "","html");
 
-        email.enviarConfirmacaoPedido(reserva, rota, String.valueOf(nrAssento), pass);
+        
             
         int id = rese.obterUltimoIdReserva();
         reserva.setIdReserva(id);
         
         reserva = rese.selecionarUmaReserva(id);
+        
+        email.enviarConfirmacaoPedido(reserva, rota, String.valueOf(nrAssento), pass);
       
         formPassagemBilhete pas = new formPassagemBilhete(reserva);
         pas.setVisible(true);
@@ -374,9 +376,9 @@ public class formPix extends javax.swing.JFrame {
                             .addComponent(jLabel29))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtNUMERO, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel31))
-                            .addGap(44, 44, 44)
+                                .addComponent(jLabel31)
+                                .addComponent(txtNUMERO, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel17)
                                 .addComponent(txtEMAIL, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))

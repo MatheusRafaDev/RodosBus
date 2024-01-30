@@ -378,7 +378,7 @@ public class formPagCartao extends javax.swing.JFrame {
     private void mnPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPedidoMouseClicked
         this.dispose();
         this.setVisible(false);
-        formPedidoRealizado pedido = new formPedidoRealizado(pass);
+        formPedido pedido = new formPedido(pass);
         pedido.setVisible(true);
     }//GEN-LAST:event_mnPedidoMouseClicked
 

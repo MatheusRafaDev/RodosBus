@@ -1405,7 +1405,7 @@ public class formAssento extends javax.swing.JFrame {
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
         this.dispose();
         this.setVisible(false);
-        formPedidoRealizado pedido = new formPedidoRealizado(pass);
+        formPedido pedido = new formPedido(pass);
         pedido.setVisible(true);
     }//GEN-LAST:event_jMenu4MouseClicked
 

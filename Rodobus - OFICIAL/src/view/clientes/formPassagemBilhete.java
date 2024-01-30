@@ -58,7 +58,7 @@ public class formPassagemBilhete extends javax.swing.JFrame {
         assento = a.selecionarAssento(reserva.getIdAssento());
         
         this.txtASSENTO.setText(String.valueOf(assento.getNumeroAssento()));
-        this.txtNOME.setText(pass.getNome());
+        this.txtNOME.setText(pass.getNomeCompleto());
         this.txtQTD.setText(String.valueOf(reserva.getQuantidade()));
         this.txtCPF.setText(pass.getCpf());
         lblCODIGO.setText(reserva.getCodigo());
@@ -547,7 +547,7 @@ public class formPassagemBilhete extends javax.swing.JFrame {
     private void mnPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPedidoMouseClicked
         this.dispose();
         this.setVisible(false);
-        formPedidoRealizado pedido = new formPedidoRealizado(pass);
+        formPedido pedido = new formPedido(pass);
         pedido.setVisible(true);
     }//GEN-LAST:event_mnPedidoMouseClicked
 

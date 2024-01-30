@@ -25,7 +25,7 @@ import model.Passageiro;
 import model.Reserva;
 import model.Rota;
 
-public class formPedidoRealizado extends javax.swing.JFrame {
+public class formPedido extends javax.swing.JFrame {
 
     Passageiro pass = new Passageiro();
     Rota rt = new Rota();
@@ -100,7 +100,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
     JMenuItem Cancelar = new JMenuItem("Cancelar");
     JMenuItem Bilhete  = new JMenuItem("Consultar Bilhete");
     
-    public formPedidoRealizado(Passageiro obj) {
+    public formPedido(Passageiro obj) {
         initComponents();
         
         this.mnNOME.setText(obj.getNome());
@@ -323,7 +323,7 @@ public class formPedidoRealizado extends javax.swing.JFrame {
     private void mnPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPedidoMouseClicked
         this.setVisible(false);
         this.dispose();
-        formPedidoRealizado pedido = new formPedidoRealizado(pass);
+        formPedido pedido = new formPedido(pass);
         pedido.setVisible(true);
     }//GEN-LAST:event_mnPedidoMouseClicked
 
@@ -372,21 +372,22 @@ public class formPedidoRealizado extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(formPedidoRealizado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(formPedidoRealizado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(formPedidoRealizado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(formPedidoRealizado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(formPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Passageiro passageiro = new Passageiro();
-                new formPedidoRealizado(passageiro).setVisible(true);
+                new formPedido(passageiro).setVisible(true);
             }
         });
     }

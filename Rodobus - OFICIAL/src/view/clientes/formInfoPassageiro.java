@@ -26,6 +26,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         
         this.textEMAIL.setDocument(new Validador(30));
         this.textNOME.setDocument(new ValidarLetras(20));
+        this.textNOMECOMPLETO.setDocument(new ValidarLetras(80));
         this.textSENHA.setDocument(new Validador(20));
         
         this.setLocationRelativeTo(null);  
@@ -37,6 +38,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         pass = p.selecionarUmPassageiro(passageiroId2);
         
         this.textNOME.setText(pass.getNome());
+        this.textNOMECOMPLETO.setText(pass.getNomeCompleto());
         this.textTELEFONE.setText(pass.getCpf());
         this.textEMAIL.setText(pass.getEmail());
         this.textTELEFONE.setText(pass.getTelefone());
@@ -75,6 +77,9 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         btnEMAIL = new javax.swing.JButton();
         textTELEFONE = new javax.swing.JFormattedTextField();
         textCPF = new javax.swing.JFormattedTextField();
+        jLabel11 = new javax.swing.JLabel();
+        btnNOMECOMPLETO = new javax.swing.JButton();
+        textNOMECOMPLETO = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
         mnRODOBUS = new javax.swing.JMenu();
@@ -128,7 +133,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Nome");
+        jLabel6.setText("Nome de usuário");
 
         textNOME.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
 
@@ -157,6 +162,11 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         btnSENHA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSENHAMouseClicked(evt);
+            }
+        });
+        btnSENHA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSENHAActionPerformed(evt);
             }
         });
 
@@ -223,6 +233,27 @@ public class formInfoPassageiro extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        jLabel11.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Nome completo");
+
+        btnNOMECOMPLETO.setBackground(new java.awt.Color(50, 54, 66));
+        btnNOMECOMPLETO.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnNOMECOMPLETO.setForeground(new java.awt.Color(255, 255, 255));
+        btnNOMECOMPLETO.setText("Alterar");
+        btnNOMECOMPLETO.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNOMECOMPLETOMouseClicked(evt);
+            }
+        });
+        btnNOMECOMPLETO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNOMECOMPLETOActionPerformed(evt);
+            }
+        });
+
+        textNOMECOMPLETO.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -241,16 +272,20 @@ public class formInfoPassageiro extends javax.swing.JFrame {
                                 .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(textTELEFONE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)))
+                                .addComponent(textTELEFONE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(textNOMECOMPLETO, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnCPF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnTEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnEMAIL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSENHA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnNOME, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(btnSENHA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnNOME, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnNOMECOMPLETO, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
                 .addGap(16, 16, 16))
@@ -267,6 +302,12 @@ public class formInfoPassageiro extends javax.swing.JFrame {
                     .addComponent(btnNOME, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(textNOME, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textNOMECOMPLETO, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNOMECOMPLETO, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -287,12 +328,10 @@ public class formInfoPassageiro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textSENHA, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnSENHA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(1, 1, 1)))
-                .addGap(14, 14, 14))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnSENHA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textSENHA, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -300,16 +339,16 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
+                .addContainerGap(63, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jMenuBar1.add(jMenu7);
@@ -391,7 +430,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
     private void mnPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnPedidoMouseClicked
         this.setVisible(false);
         this.dispose();
-        formPedidoRealizado pedido = new formPedidoRealizado(pass);
+        formPedido pedido = new formPedido(pass);
         pedido.setVisible(true);
     }//GEN-LAST:event_mnPedidoMouseClicked
 
@@ -431,7 +470,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         pass.setNome(nome);
         
         if (nome.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, preencha o Nome.", "Campo Vazio", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, preencha o Nome de usuário.", "Campo Vazio", JOptionPane.WARNING_MESSAGE);
         } else { 
             passageiro.alterarNome(pass);
         }
@@ -472,6 +511,25 @@ public class formInfoPassageiro extends javax.swing.JFrame {
             passageiro.alterarSenha(pass);
         }
     }//GEN-LAST:event_btnSENHAMouseClicked
+
+    private void btnNOMECOMPLETOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNOMECOMPLETOMouseClicked
+        String nomeCompleto = textNOMECOMPLETO.getText().trim();
+        pass.setNomeCompleto(nomeCompleto);
+        
+        if (nomeCompleto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, preencha o Nome Completo.", "Campo Vazio", JOptionPane.WARNING_MESSAGE);
+        } else { 
+            passageiro.alterarNomeCompleto(pass);
+        }
+    }//GEN-LAST:event_btnNOMECOMPLETOMouseClicked
+
+    private void btnNOMECOMPLETOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNOMECOMPLETOActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNOMECOMPLETOActionPerformed
+
+    private void btnSENHAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSENHAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSENHAActionPerformed
 
     /**
      * @param args the command line arguments
@@ -516,12 +574,14 @@ public class formInfoPassageiro extends javax.swing.JFrame {
     private javax.swing.JButton btnCPF;
     private javax.swing.JButton btnEMAIL;
     private javax.swing.JButton btnNOME;
+    private javax.swing.JButton btnNOMECOMPLETO;
     private javax.swing.JButton btnSENHA;
     private javax.swing.JButton btnSENHA2;
     private javax.swing.JButton btnSENHA5;
     private javax.swing.JButton btnTEL;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -542,6 +602,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField textCPF;
     private javax.swing.JTextField textEMAIL;
     private javax.swing.JTextField textNOME;
+    private javax.swing.JTextField textNOMECOMPLETO;
     private javax.swing.JTextField textSENHA;
     private javax.swing.JFormattedTextField textTELEFONE;
     // End of variables declaration//GEN-END:variables

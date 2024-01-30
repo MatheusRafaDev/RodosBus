@@ -167,29 +167,18 @@ public class reservaDao extends conectarDao {
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
-                int idReserva = resultSet.getInt("id_reserva");
-                int idRota = resultSet.getInt("id_rota");
-                int idPassageiro = resultSet.getInt("id_passageiro");
-                int idAssento = resultSet.getInt("id_assento");
-
-                java.sql.Timestamp reserTimestamp = resultSet.getTimestamp("dt_reserva");
-                Date dataReserva = new Date(reserTimestamp.getTime());
-                String status = resultSet.getString("ds_status");
-                double valorTotal = resultSet.getDouble("vl_total");
-                int Quantidade = resultSet.getInt("qtd_reserva");
-                String Codigo  = resultSet.getString("ds_codigo");
-                
+             
                 Reserva reserva = new Reserva();
-                reserva.setIdReserva(idReserva);
-                reserva.setIdRota(idRota);
-                reserva.setIdPassageiro(idPassageiro);
-                reserva.setDataReserva(dataReserva);
-                reserva.setStatus(status);
-                reserva.setIdAssento(idAssento);
-                reserva.setQuantidade(Quantidade);
+                reserva.setIdReserva(resultSet.getInt("id_reserva"));
+                reserva.setIdRota(resultSet.getInt("id_rota"));
+                reserva.setIdPassageiro(resultSet.getInt("id_passageiro"));
+                reserva.setDataReserva(resultSet.getTimestamp("dt_reserva"));
+                reserva.setStatus(resultSet.getString("ds_status"));
+                reserva.setIdAssento(resultSet.getInt("id_assento"));
+                reserva.setQuantidade(resultSet.getInt("qtd_reserva"));
                     
-                reserva.setValorTotal(valorTotal);
-                reserva.setCodigo(Codigo);
+                reserva.setValorTotal(resultSet.getDouble("vl_total"));
+                reserva.setCodigo(resultSet.getString("ds_codigo"));
                 
                 reservas.add(reserva);
             }

@@ -30,7 +30,7 @@ public class passageiroDao extends conectarDao {
             return false;
         }
 
-        sql = "INSERT INTO TB_PASSAGEIRO (DS_CPF, DS_NOME, DS_EMAIL, DS_TELEFONE, NR_IDADE, DS_SENHA) VALUES(?, ?, ?, ?, ?, ?)";
+        sql = "INSERT INTO TB_PASSAGEIRO (DS_CPF, DS_NOME, DS_EMAIL, DS_TELEFONE, NR_IDADE, DS_SENHA,DS_NOME_COMPLETO) VALUES(?, ?, ?, ?, ?, ?, ?)";
         try {
             ps = mycon.prepareStatement(sql);
 
@@ -40,7 +40,8 @@ public class passageiroDao extends conectarDao {
             ps.setString(4, obj.getTelefone());
             ps.setInt(5, obj.getIdade());
             ps.setString(6, obj.getSenha());
-
+            ps.setString(7, obj.getNomeCompleto());
+            
             ps.execute();
             ps.close();
             JOptionPane.showMessageDialog(null, "Cadastro concluído com Sucesso!");
@@ -52,7 +53,7 @@ public class passageiroDao extends conectarDao {
     }
 
     public boolean Alterar(Passageiro obj) {
-        sql = " UPDATE TB_PASSAGEIRO SET DS_CPF = ?,DS_NOME  = ?,DS_EMAIL = ?, DS_TELEFONE = ?, NR_IDADE = ?,DS_SENHA = ? WHERE ID_PASSAGEIRO =  " + (obj.getIdPassageiro());
+        sql = " UPDATE TB_PASSAGEIRO SET DS_CPF = ?,DS_NOME  = ?,DS_EMAIL = ?, DS_TELEFONE = ?, NR_IDADE = ?,DS_SENHA = ?,DS_NOME_COMPLETO  = ? WHERE ID_PASSAGEIRO =  " + (obj.getIdPassageiro());
 
         String emailVerificacao = emailExiste(obj.getEmail());
         if (emailVerificacao != null) {
@@ -75,6 +76,7 @@ public class passageiroDao extends conectarDao {
             ps.setString(4, obj.getTelefone());
             ps.setInt(5, obj.getIdade());
             ps.setString(6, obj.getSenha());
+            ps.setString(7, obj.getNomeCompleto());
 
             ps.execute();
             ps.close();
@@ -88,7 +90,7 @@ public class passageiroDao extends conectarDao {
 
     public Passageiro validarLogin(String login, String senha) {
 
-        String sql = "SELECT ID_PASSAGEIRO, DS_NOME, DS_EMAIL, NR_IDADE, DS_CPF, DS_TELEFONE, DS_SENHA "
+        String sql = "SELECT ID_PASSAGEIRO, DS_NOME, DS_EMAIL, NR_IDADE, DS_CPF, DS_TELEFONE, DS_SENHA,DS_NOME_COMPLETO "
                 + "FROM TB_PASSAGEIRO WHERE ucase(DS_NOME) = ucase(?) AND DS_SENHA = ucase(?)";
 
         try (PreparedStatement ps = mycon.prepareStatement(sql)) {
@@ -98,22 +100,17 @@ public class passageiroDao extends conectarDao {
             ResultSet result = ps.executeQuery();
 
             if (result.next()) {
-                int id = result.getInt("ID_PASSAGEIRO");
-                String nome = result.getString("DS_NOME");
-                int idade = result.getInt("NR_IDADE");
-                String cpf = result.getString("DS_CPF");
-                String telefone = result.getString("DS_TELEFONE");
-                String email = result.getString("DS_EMAIL");
 
                 Passageiro passageiro = new Passageiro();
-                passageiro.setIdPassageiro(id);
-                passageiro.setCpf(cpf);
-                passageiro.setIdade(idade);
-                passageiro.setNome(nome);
-                passageiro.setTelefone(telefone);
+                passageiro.setIdPassageiro(result.getInt("ID_PASSAGEIRO"));
+                passageiro.setCpf(result.getString("DS_CPF"));
+                passageiro.setIdade(result.getInt("NR_IDADE"));
+                passageiro.setNome(result.getString("DS_NOME"));
+                passageiro.setTelefone(result.getString("DS_TELEFONE"));
                 passageiro.setSenha(senha);
-                passageiro.setEmail(email);
-
+                passageiro.setEmail(result.getString("DS_EMAIL"));
+                passageiro.setNomeCompleto(result.getString("DS_NOME_COMPLETO"));
+                
                 return passageiro;
             } else {
                 JOptionPane.showMessageDialog(null, "Login ou Senha Inválidos", "Erro de operação", JOptionPane.WARNING_MESSAGE);
@@ -140,23 +137,17 @@ public class passageiroDao extends conectarDao {
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
-                int id = resultSet.getInt("ID_PASSAGEIRO");
-                String nome = resultSet.getString("DS_NOME");
-                int idade = resultSet.getInt("NR_IDADE");
-                String cpf = resultSet.getString("DS_CPF");
-                String telefone = resultSet.getString("DS_TELEFONE");
-                String senha = resultSet.getString("DS_SENHA");
-                String email = resultSet.getString("DS_EMAIL");
 
                 Passageiro passageiro = new Passageiro();
 
-                passageiro.setIdPassageiro(id);
-                passageiro.setCpf(cpf);
-                passageiro.setIdade(idade);
-                passageiro.setNome(nome);
-                passageiro.setTelefone(telefone);
-                passageiro.setSenha(senha);
-                passageiro.setEmail(email);
+                passageiro.setIdPassageiro(resultSet.getInt("ID_PASSAGEIRO"));
+                passageiro.setCpf(resultSet.getString("DS_CPF"));
+                passageiro.setIdade(resultSet.getInt("NR_IDADE"));
+                passageiro.setNome(resultSet.getString("DS_NOME"));
+                passageiro.setNomeCompleto(resultSet.getString("DS_NOME_COMPLETO"));
+                passageiro.setTelefone(resultSet.getString("DS_TELEFONE"));
+                passageiro.setSenha(resultSet.getString("DS_SENHA"));
+                passageiro.setEmail(resultSet.getString("DS_EMAIL"));
                 passageiros.add(passageiro);
             }
 
@@ -181,21 +172,14 @@ public class passageiroDao extends conectarDao {
             if (resultSet.next()) {
                 passageiro = new Passageiro();
 
-                int idPassageiro = resultSet.getInt("ID_PASSAGEIRO");
-                String nome = resultSet.getString("DS_NOME");
-                int idade = resultSet.getInt("NR_IDADE");
-                String cpf = resultSet.getString("DS_CPF");
-                String telefone = resultSet.getString("DS_TELEFONE");
-                String email = resultSet.getString("DS_EMAIL");
-                String senha = resultSet.getString("DS_SENHA");
-
-                passageiro.setIdPassageiro(idPassageiro);
-                passageiro.setNome(nome);
-                passageiro.setIdade(idade);
-                passageiro.setCpf(cpf);
-                passageiro.setTelefone(telefone);
-                passageiro.setEmail(email);
-                passageiro.setSenha(senha);
+                passageiro.setIdPassageiro(resultSet.getInt("ID_PASSAGEIRO"));
+                passageiro.setNome(resultSet.getString("DS_NOME"));
+                passageiro.setNomeCompleto(resultSet.getString("DS_NOME_COMPLETO"));     
+                passageiro.setIdade(resultSet.getInt("NR_IDADE"));
+                passageiro.setCpf(resultSet.getString("DS_CPF"));
+                passageiro.setTelefone(resultSet.getString("DS_TELEFONE"));
+                passageiro.setEmail(resultSet.getString("DS_EMAIL"));
+                passageiro.setSenha(resultSet.getString("DS_SENHA"));
 
             } else {
                 JOptionPane.showMessageDialog(null, "Passageiro not found for ID: " + id);
@@ -263,6 +247,42 @@ public class passageiroDao extends conectarDao {
 
         return null;
     }
+    
+    public Passageiro selecionarPassageiroPorEmail(String email) {
+        String sql = "SELECT * FROM TB_PASSAGEIRO WHERE DS_EMAIL = ?";
+
+        Passageiro passageiro = null;
+
+        try {
+            PreparedStatement ps = mycon.prepareStatement(sql);
+            ps.setString(1, email); // Define o valor do parâmetro
+
+            ResultSet resultSet = ps.executeQuery();
+
+            if (resultSet.next()) {
+                passageiro = new Passageiro();
+
+                passageiro.setIdPassageiro(resultSet.getInt("ID_PASSAGEIRO"));
+                passageiro.setNome(resultSet.getString("DS_NOME"));
+                passageiro.setNomeCompleto(resultSet.getString("DS_NOME_COMPLETO"));     
+                passageiro.setIdade(resultSet.getInt("NR_IDADE"));
+                passageiro.setCpf(resultSet.getString("DS_CPF"));
+                passageiro.setTelefone(resultSet.getString("DS_TELEFONE"));
+                passageiro.setEmail(resultSet.getString("DS_EMAIL"));
+                passageiro.setSenha(resultSet.getString("DS_SENHA"));
+            } else {
+                JOptionPane.showMessageDialog(null, "Passageiro not found for email: " + email);
+            }
+
+            ps.close();
+            resultSet.close();
+        } catch (SQLException err) {
+            err.printStackTrace();
+        }
+
+        return passageiro;
+    }
+
 
     public boolean alterarCpf(Passageiro obj) {
         return alterarCampo("DS_CPF", obj.getCpf(), obj.getIdPassageiro());
@@ -276,6 +296,10 @@ public class passageiroDao extends conectarDao {
         }
 
         return alterarCampo("DS_NOME", obj.getNome(), obj.getIdPassageiro());
+    }
+    
+    public boolean alterarNomeCompleto(Passageiro obj) {
+        return alterarCampo("DS_NOME_COMPLETO", obj.getNomeCompleto(), obj.getIdPassageiro());
     }
 
     public boolean alterarEmail(Passageiro obj) {
