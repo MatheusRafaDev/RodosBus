@@ -133,6 +133,7 @@ public class formConsultaPassagem extends javax.swing.JFrame {
         mnSAIR = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Consulta de passagens");
         setBackground(new java.awt.Color(142, 157, 204));
 
         jPanel1.setBackground(new java.awt.Color(50, 54, 66));

@@ -57,7 +57,7 @@ public class formPix extends javax.swing.JFrame {
                 
             
             }
-        }, 30000);  
+        }, 10000);  
     }
      
     public void carregarBil() {
@@ -76,7 +76,7 @@ public class formPix extends javax.swing.JFrame {
         
         
         reserva.setDataReserva(dataReserva);
-        
+        reserva.setQuantidade(1);
         reserva.setIdPassageiro(pass.getIdPassageiro());
         reserva.setIdRota(rota.getIdRota());
         reserva.setStatus("Reservado");

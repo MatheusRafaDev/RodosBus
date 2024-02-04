@@ -53,6 +53,8 @@ public class formPagCartao extends javax.swing.JFrame {
         reserva.setIdPassageiro(pass.getIdPassageiro());
         reserva.setIdRota(rota.getIdRota());
         reserva.setStatus("Reservado");
+        reserva.setQuantidade(1);
+        
         reserva.setValorTotal(rota.getVlPreco());
         rese.incluir(reserva);
         
@@ -351,12 +353,10 @@ public class formPagCartao extends javax.swing.JFrame {
         } else {
             carregarBil(); 
 
-            String fromEmail = "rafaelmatheus160@gmail.com";
-            String password = "aopq iwrg nouk izon";
             String toEmail = pass.getEmail();
             String emailSubject = "Compra realizada";
             
-            Email email = new Email(fromEmail, password, toEmail, emailSubject, "","html");
+            Email email = new Email("", "", toEmail, emailSubject, "","html");
             
             email.enviarConfirmacaoPedido(reserva, rota, String.valueOf(nrAssento), pass);
             

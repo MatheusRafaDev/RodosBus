@@ -23,8 +23,8 @@ public class Email {
     private String emailType;
     
     public Email(String fromEmail, String password, String toEmail, String emailSubject, String emailBody, String emailType) {
-        this.fromEmail = "rafaelmatheus160@gmail.com";
-        this.password = "aopq iwrg nouk izon";
+        this.fromEmail = "rodobusproject@gmail.com";
+        this.password = "mfgh atcd slca iajo";
         this.toEmail = toEmail;
         this.emailSubject = emailSubject;
         this.emailBody = emailBody;

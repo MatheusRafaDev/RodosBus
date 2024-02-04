@@ -958,7 +958,7 @@ public class formAssento extends javax.swing.JFrame {
             .addGap(0, 25, Short.MAX_VALUE)
         );
 
-        jPanel5.setBackground(new java.awt.Color(242, 147, 4));
+        jPanel5.setBackground(new java.awt.Color(187, 187, 187));
         jPanel5.setPreferredSize(new java.awt.Dimension(25, 25));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -980,7 +980,7 @@ public class formAssento extends javax.swing.JFrame {
         lblID.setForeground(new java.awt.Color(255, 255, 255));
         lblID.setText("0");
 
-        jpCOR.setBackground(new java.awt.Color(242, 147, 4));
+        jpCOR.setBackground(new java.awt.Color(187, 187, 187));
         jpCOR.setPreferredSize(new java.awt.Dimension(25, 25));
 
         javax.swing.GroupLayout jpCORLayout = new javax.swing.GroupLayout(jpCOR);

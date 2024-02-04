@@ -1,11 +1,17 @@
 package controller;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.Passageiro;
+import org.mindrot.jbcrypt.BCrypt;
+
 
 public class passageiroDao extends conectarDao {
 
@@ -15,6 +21,7 @@ public class passageiroDao extends conectarDao {
     public passageiroDao() {
         super();
     }
+
 
     public boolean Incluir(Passageiro obj) {
 
@@ -30,8 +37,11 @@ public class passageiroDao extends conectarDao {
             return false;
         }
 
-        sql = "INSERT INTO TB_PASSAGEIRO (DS_CPF, DS_NOME, DS_EMAIL, DS_TELEFONE, NR_IDADE, DS_SENHA,DS_NOME_COMPLETO) VALUES(?, ?, ?, ?, ?, ?, ?)";
         try {
+            // Gerar o hash da senha usando SHA-256
+            String hashedPassword = hashSenhaSHA256(obj.getSenha());
+
+            sql = "INSERT INTO TB_PASSAGEIRO (DS_CPF, DS_NOME, DS_EMAIL, DS_TELEFONE, NR_IDADE, DS_SENHA, DS_NOME_COMPLETO) VALUES(?, ?, ?, ?, ?, ?, ?)";
             ps = mycon.prepareStatement(sql);
 
             ps.setString(1, obj.getCpf());
@@ -39,79 +49,68 @@ public class passageiroDao extends conectarDao {
             ps.setString(3, obj.getEmail());
             ps.setString(4, obj.getTelefone());
             ps.setInt(5, obj.getIdade());
-            ps.setString(6, obj.getSenha());
+            ps.setString(6, hashedPassword); // Armazenar o hash da senha no banco
             ps.setString(7, obj.getNomeCompleto());
-            
+
             ps.execute();
             ps.close();
             JOptionPane.showMessageDialog(null, "Cadastro concluído com Sucesso!");
-        } catch (SQLException err) {
+        } catch (SQLException | NoSuchAlgorithmException err) {
             JOptionPane.showMessageDialog(null, "Erro ao Cadastrar!" + err.getMessage());
         }
 
         return true;
     }
 
-    public boolean Alterar(Passageiro obj) {
-        sql = " UPDATE TB_PASSAGEIRO SET DS_CPF = ?,DS_NOME  = ?,DS_EMAIL = ?, DS_TELEFONE = ?, NR_IDADE = ?,DS_SENHA = ?,DS_NOME_COMPLETO  = ? WHERE ID_PASSAGEIRO =  " + (obj.getIdPassageiro());
+    private String hashSenhaSHA256(String senha) throws NoSuchAlgorithmException {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] hash = digest.digest(senha.getBytes());
 
-        String emailVerificacao = emailExiste(obj.getEmail());
-        if (emailVerificacao != null) {
-            JOptionPane.showMessageDialog(null, emailVerificacao);
-            return false;
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : hash) {
+            String hex = Integer.toHexString(0xff & b);
+            if (hex.length() == 1) hexString.append('0');
+            hexString.append(hex);
         }
 
-        String nomeVerificacao = nomeExiste(obj.getNome());
-        if (nomeVerificacao != null) {
-            JOptionPane.showMessageDialog(null, nomeVerificacao);
-            return false;
-        }
-
-        try {
-            ps = mycon.prepareStatement(sql);
-
-            ps.setString(1, obj.getCpf());
-            ps.setString(2, obj.getNome());
-            ps.setString(3, obj.getEmail());
-            ps.setString(4, obj.getTelefone());
-            ps.setInt(5, obj.getIdade());
-            ps.setString(6, obj.getSenha());
-            ps.setString(7, obj.getNomeCompleto());
-
-            ps.execute();
-            ps.close();
-            JOptionPane.showMessageDialog(null, "Alteração feita com Sucesso!");
-        } catch (SQLException err) {
-            JOptionPane.showMessageDialog(null, "Erro ao Alterar!" + err.getMessage());
-        }
-
-        return true;
+        return hexString.toString();
     }
 
-    public Passageiro validarLogin(String login, String senha) {
-
-        String sql = "SELECT ID_PASSAGEIRO, DS_NOME, DS_EMAIL, NR_IDADE, DS_CPF, DS_TELEFONE, DS_SENHA,DS_NOME_COMPLETO "
-                + "FROM TB_PASSAGEIRO WHERE ucase(DS_NOME) = ucase(?) AND DS_SENHA = ucase(?)";
+    public Passageiro validarLogin(String login, String senha) throws NoSuchAlgorithmException {
+        String sql = "SELECT ID_PASSAGEIRO, DS_NOME, DS_EMAIL, NR_IDADE, DS_CPF, DS_TELEFONE, DS_SENHA, DS_NOME_COMPLETO "
+                + "FROM TB_PASSAGEIRO WHERE ucase(DS_NOME) = ucase(?)";
 
         try (PreparedStatement ps = mycon.prepareStatement(sql)) {
             ps.setString(1, login);
-            ps.setString(2, senha);
 
             ResultSet result = ps.executeQuery();
 
             if (result.next()) {
-
-                Passageiro passageiro = new Passageiro();
-                passageiro.setIdPassageiro(result.getInt("ID_PASSAGEIRO"));
-                passageiro.setCpf(result.getString("DS_CPF"));
-                passageiro.setIdade(result.getInt("NR_IDADE"));
-                passageiro.setNome(result.getString("DS_NOME"));
-                passageiro.setTelefone(result.getString("DS_TELEFONE"));
-                passageiro.setSenha(senha);
-                passageiro.setEmail(result.getString("DS_EMAIL"));
-                passageiro.setNomeCompleto(result.getString("DS_NOME_COMPLETO"));
+                // Obtenha o hash da senha armazenada no banco de dados
+                String hashedPassword = result.getString("DS_SENHA");
                 
-                return passageiro;
+                String senha1 = hashSenhaSHA256(senha);
+                   
+                // Verifique a senha usando BCrypt
+                if (senha1.equals(hashedPassword)) {
+                    Passageiro passageiro = new Passageiro();
+                    passageiro.setIdPassageiro(result.getInt("ID_PASSAGEIRO"));
+                    passageiro.setCpf(result.getString("DS_CPF"));
+                    passageiro.setIdade(result.getInt("NR_IDADE"));
+                    passageiro.setNome(result.getString("DS_NOME"));
+                    passageiro.setTelefone(result.getString("DS_TELEFONE"));
+                    passageiro.setSenha(hashedPassword);  // Armazenar o hash da senha
+                    passageiro.setEmail(result.getString("DS_EMAIL"));
+                    passageiro.setNomeCompleto(result.getString("DS_NOME_COMPLETO"));
+
+                    return passageiro;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Login ou Senha Inválidos", "Erro de operação", JOptionPane.WARNING_MESSAGE);
+
+                    Passageiro p = new Passageiro();
+                    p.setIdPassageiro(0);
+                    return p;
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Login ou Senha Inválidos", "Erro de operação", JOptionPane.WARNING_MESSAGE);
 
@@ -320,9 +319,16 @@ public class passageiroDao extends conectarDao {
     }
 
     public boolean alterarSenha(Passageiro obj) {
-        return alterarCampo("DS_SENHA", obj.getSenha(), obj.getIdPassageiro());
-    }
+        try {
+            String hashedPassword = hashSenhaSHA256(obj.getSenha());
 
+            return alterarCampo("DS_SENHA", hashedPassword, obj.getIdPassageiro());
+        } catch (NoSuchAlgorithmException err) {
+            JOptionPane.showMessageDialog(null, "Erro ao Alterar Senha!" + err.getMessage());
+            return false;
+        }
+    }
+    
     private boolean alterarCampo(String campo, String valor, int idPassageiro) {
         sql = "UPDATE TB_PASSAGEIRO SET " + campo + " = ? WHERE ID_PASSAGEIRO = " + idPassageiro;
 

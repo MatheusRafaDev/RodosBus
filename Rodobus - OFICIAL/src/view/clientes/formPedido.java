@@ -33,6 +33,9 @@ public class formPedido extends javax.swing.JFrame {
 
     public void carregarRota() {
         reservaDao reserva = new reservaDao();
+        rotaDao rotaDao = new rotaDao();
+        
+        Rota rota = new Rota();
         ArrayList<Reserva> reservas = reserva.FormPedidos(pass.getIdPassageiro());
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -40,9 +43,13 @@ public class formPedido extends javax.swing.JFrame {
         
         model.setRowCount(0);
         for (Reserva reserva2 : reservas) {
+            rota = rotaDao.selecionarUmaRota(reserva2.getIdRota());
+            
             model.addRow(new Object[]{
                 reserva2.getIdReserva(),
                 reserva2.getIdRota(),
+                rota.getOrigem(),
+                rota.getDestino(),
                 sdf.format(reserva2.getDataReserva()),
                 reserva2.getQuantidade(),
                 reserva2.getValorTotal(), 
@@ -53,15 +60,14 @@ public class formPedido extends javax.swing.JFrame {
     }
 
     public void carregarBilhete(int IdReserva) {
-        this.dispose();
-        this.setVisible(false);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
     
         reservaDao rese = new reservaDao();
         res = rese.selecionarUmaReserva(IdReserva);
         
         if (! res.getStatus().equals("Cancelada") && IdReserva > 0) {
-
+              this.dispose();
+              this.setVisible(false);
             res = rese.selecionarUmaReserva(IdReserva);
           
             formPassagemBilhete pas = new formPassagemBilhete(res);
@@ -84,12 +90,11 @@ public class formPedido extends javax.swing.JFrame {
         if (resposta == JOptionPane.YES_OPTION) {
             rese.alterarStatus(IdReserva);
             
-            String fromEmail = "rafaelmatheus160@gmail.com";
-            String password = "aopq iwrg nouk izon";
+
             String toEmail = pass.getEmail();
             String emailSubject = "Compra realizada";
             
-            Email email = new Email(fromEmail, password, toEmail, emailSubject, "","html");
+            Email email = new Email("", "", toEmail, emailSubject, "","html");
             
             email.enviarCancelamento(pass,res);
         }
@@ -182,11 +187,11 @@ public class formPedido extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id.Reserva", "Id.Rota", "Data Reserva", "Quantidade", "Valor Total", "Status"
+                "Id.Reserva", "Id.Rota", "Origem", "Destino", "Data Reserva", "Quantidade", "Valor Total", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -211,6 +216,8 @@ public class formPedido extends javax.swing.JFrame {
             tblPEDIDOS.getColumnModel().getColumn(3).setResizable(false);
             tblPEDIDOS.getColumnModel().getColumn(4).setResizable(false);
             tblPEDIDOS.getColumnModel().getColumn(5).setResizable(false);
+            tblPEDIDOS.getColumnModel().getColumn(6).setResizable(false);
+            tblPEDIDOS.getColumnModel().getColumn(7).setResizable(false);
         }
 
         lblID.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N

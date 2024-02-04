@@ -42,7 +42,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         this.textTELEFONE.setText(pass.getCpf());
         this.textEMAIL.setText(pass.getEmail());
         this.textTELEFONE.setText(pass.getTelefone());
-        this.textSENHA.setText(pass.getSenha());
+        this.textSENHA.setText("12323");
         this.textCPF.setText(pass.getCpf());
         this.mnNOME.setText(pass.getNome());
         this.mnID.setText("Id: " + pass.getIdPassageiro());
@@ -70,7 +70,6 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         btnSENHA = new javax.swing.JButton();
-        textSENHA = new javax.swing.JTextField();
         btnTEL = new javax.swing.JButton();
         btnCPF = new javax.swing.JButton();
         btnNOME = new javax.swing.JButton();
@@ -80,6 +79,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         btnNOMECOMPLETO = new javax.swing.JButton();
         textNOMECOMPLETO = new javax.swing.JTextField();
+        textSENHA = new javax.swing.JPasswordField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
         mnRODOBUS = new javax.swing.JMenu();
@@ -170,12 +170,6 @@ public class formInfoPassageiro extends javax.swing.JFrame {
             }
         });
 
-        textSENHA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textSENHAActionPerformed(evt);
-            }
-        });
-
         btnTEL.setBackground(new java.awt.Color(50, 54, 66));
         btnTEL.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnTEL.setForeground(new java.awt.Color(255, 255, 255));
@@ -254,6 +248,8 @@ public class formInfoPassageiro extends javax.swing.JFrame {
 
         textNOMECOMPLETO.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
 
+        textSENHA.setText("jPasswordField1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -265,7 +261,6 @@ public class formInfoPassageiro extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(textSENHA, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(textCPF, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(textEMAIL, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(textNOME, javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,7 +269,8 @@ public class formInfoPassageiro extends javax.swing.JFrame {
                                 .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(textTELEFONE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                                 .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(textNOMECOMPLETO, javax.swing.GroupLayout.Alignment.LEADING)))
+                                .addComponent(textNOMECOMPLETO, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(textSENHA, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnCPF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -329,8 +325,8 @@ public class formInfoPassageiro extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSENHA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textSENHA, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSENHA, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(textSENHA))
                 .addGap(13, 13, 13))
         );
 
@@ -498,10 +494,6 @@ public class formInfoPassageiro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnTELMouseClicked
 
-    private void textSENHAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSENHAActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textSENHAActionPerformed
-
     private void btnSENHAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSENHAMouseClicked
         String senha = textSENHA.getText().trim();
         pass.setSenha(senha);
@@ -603,7 +595,7 @@ public class formInfoPassageiro extends javax.swing.JFrame {
     private javax.swing.JTextField textEMAIL;
     private javax.swing.JTextField textNOME;
     private javax.swing.JTextField textNOMECOMPLETO;
-    private javax.swing.JTextField textSENHA;
+    private javax.swing.JPasswordField textSENHA;
     private javax.swing.JFormattedTextField textTELEFONE;
     // End of variables declaration//GEN-END:variables
 }

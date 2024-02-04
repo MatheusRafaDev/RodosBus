@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Passageiro;
 import model.Reserva;
 
 public class conectarDao {
@@ -72,7 +73,7 @@ public class conectarDao {
                     + "ds_CPF VARCHAR(14),"
                     + "ds_TELEFONE VARCHAR(13),"
                     + "ds_email VARCHAR(100),"
-                    + "ds_SENHA VARCHAR(30)"
+                    + "ds_SENHA VARCHAR(300)"
                     + ");";
             ps = mycon.prepareStatement(sql);
             ps.execute();
@@ -144,26 +145,32 @@ public class conectarDao {
     public void inserirDados() {
 
         try {
-            sql = "INSERT INTO TB_PASSAGEIRO (DS_NOME, NR_IDADE, DS_CPF, DS_TELEFONE, ds_email, DS_SENHA,DS_NOME_COMPLETO) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement psPassageiro = mycon.prepareStatement(sql);
-            psPassageiro.setString(1, "matheus");
-            psPassageiro.setInt(2, 25);
-            psPassageiro.setString(3, "11122233344");
-            psPassageiro.setString(4, "(11) 2223344");
-            psPassageiro.setString(5, "rafaelmatheus061@gmail.com");
-            psPassageiro.setString(6, "1111");
-            psPassageiro.setString(7, "matheus rafael");
-            psPassageiro.executeUpdate();
+            
+            passageiroDao dao = new passageiroDao();
+            Passageiro passageiro1 = new Passageiro();
+            passageiro1.setNome("Matheus");
+            passageiro1.setIdade(25);
+            passageiro1.setCpf("11122233344");
+            passageiro1.setTelefone("(11) 2223344");
+            passageiro1.setEmail("rafaelmatheus061@gmail.com");
+            passageiro1.setSenha("1111");
+            passageiro1.setNomeCompleto("Matheus Rafael");
 
-            psPassageiro.setString(1, "bob");
-            psPassageiro.setInt(2, 30);
-            psPassageiro.setString(3, "55566677788");
-            psPassageiro.setString(4, "(55) 666-7788");
-            psPassageiro.setString(5, "bob@example.com");
-            psPassageiro.setString(6, "123");
-            psPassageiro.setString(7, "matheus bob");
-            psPassageiro.executeUpdate();
-            psPassageiro.close();
+            // Incluir o primeiro passageiro
+            dao.Incluir(passageiro1);
+
+            Passageiro passageiro2 = new Passageiro();
+            passageiro2.setNome("Bob");
+            passageiro2.setIdade(30);
+            passageiro2.setCpf("55566677788");
+            passageiro2.setTelefone("(55) 666-7788");
+            passageiro2.setEmail("bob@example.com");
+            passageiro2.setSenha("123");
+            passageiro2.setNomeCompleto("Matheus Bob");
+
+            // Incluir o segundo passageiro
+            dao.Incluir(passageiro2);
+
 
             sql = "INSERT INTO TB_MOTORISTA (ds_nome, nr_idade, ds_cpf, ds_telefone) VALUES (?, ?, ?, ?)";
             PreparedStatement psMotorista = mycon.prepareStatement(sql);
